@@ -1,6 +1,6 @@
 package uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear;
 
-import com.simibubi.create.content.equipment.goggles.IProxyHoveringInformation;
+import com.simibubi.create.api.equipment.goggles.IProxyHoveringInformation;
 import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.block.render.MultiPosDestructionHandler;
 import net.minecraft.client.multiplayer.ClientLevel;

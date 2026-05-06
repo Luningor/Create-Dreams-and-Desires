@@ -5,28 +5,30 @@
 
 package uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor;
 
-import com.jozufozu.flywheel.util.transform.TransformStack;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.content.kinetics.base.GeneratingKineticBlockEntity;
 import com.simibubi.create.content.kinetics.base.IRotate;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
-import com.simibubi.create.foundation.utility.AngleHelper;
-import com.simibubi.create.foundation.utility.Lang;
-import com.simibubi.create.foundation.utility.VecHelper;
 import java.util.List;
 
+import com.simibubi.create.foundation.utility.CreateLang;
+import dev.engine_room.flywheel.lib.transform.TransformStack;
+import net.createmod.catnip.math.AngleHelper;
+import net.createmod.catnip.math.VecHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import uwu.lopyluna.create_dd.registry.DesiresBlocks;
+import uwu.lopyluna.create_dd.registry.helper.Lang;
 
 public class KineticMotorBlockEntity extends GeneratingKineticBlockEntity {
     public static final int DEFAULT_SPEED = 16;
@@ -66,18 +68,22 @@ public class KineticMotorBlockEntity extends GeneratingKineticBlockEntity {
         if (Mth.equal(stressBase, 0))
             return super.addToGoggleTooltip(tooltip, isPlayerSneaking);
 
-        Lang.translate("gui.goggles.generator_stats")
+        Lang.builder()
+                .translate("gui.goggles.generator_stats")
                 .forGoggles(tooltip);
-        Lang.translate("tooltip.capacityProvided")
+        Lang.builder()
+                .translate("tooltip.capacityProvided")
                 .style(ChatFormatting.GRAY)
                 .forGoggles(tooltip);
 
 
-        Lang.number(stressBase)
+        Lang.builder()
+                .add(CreateLang.number(stressBase))
                 .translate("generic.unit.stress")
                 .style(ChatFormatting.AQUA)
                 .space()
-                .add(Lang.translate("gui.goggles.at_current_speed")
+                .add(Lang.builder()
+                        .translate("gui.goggles.at_current_speed")
                         .style(ChatFormatting.DARK_GRAY))
                 .forGoggles(tooltip, 1);
 
@@ -95,17 +101,19 @@ public class KineticMotorBlockEntity extends GeneratingKineticBlockEntity {
             return VecHelper.voxelSpace(8.0, 8.0, 12.5);
         }
 
-        public Vec3 getLocalOffset(BlockState state) {
+        @Override
+        public Vec3 getLocalOffset(LevelAccessor level, BlockPos pos, BlockState state) {
             Direction facing = (Direction)state.getValue(KineticMotorBlock.FACING);
-            return super.getLocalOffset(state).add(Vec3.atLowerCornerOf(facing.getNormal()).scale(-0.0625));
+            return super.getLocalOffset(level, pos, state).add(Vec3.atLowerCornerOf(facing.getNormal()).scale(-0.0625));
         }
 
-        public void rotate(BlockState state, PoseStack ms) {
-            super.rotate(state, ms);
+        @Override
+        public void rotate(LevelAccessor level, BlockPos pos, BlockState state, PoseStack ms) {
+            super.rotate(level, pos, state, ms);
             Direction facing = (Direction)state.getValue(KineticMotorBlock.FACING);
             if (facing.getAxis() != Axis.Y) {
                 if (this.getSide() == Direction.UP) {
-                    TransformStack.cast(ms).rotateZ((double)(-AngleHelper.horizontalAngle(facing) + 180.0F));
+                    TransformStack.of(ms).rotateZ(-AngleHelper.horizontalAngle(facing) + 180.0F);
                 }
             }
         }

@@ -1,7 +1,6 @@
 package uwu.lopyluna.create_dd.infrastructure.config;
 
-import com.simibubi.create.foundation.config.ConfigBase;
-import com.simibubi.create.foundation.config.ui.ConfigAnnotations;
+import net.createmod.catnip.config.ConfigBase;
 
 public class DClient extends ConfigBase {
 

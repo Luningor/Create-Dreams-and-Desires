@@ -11,6 +11,8 @@ import uwu.lopyluna.create_dd.registry.DesiresItems;
 
 import static uwu.lopyluna.create_dd.registry.DesiresTags.forgeItemTag;
 
+import static com.simibubi.create.api.data.recipe.BaseRecipeProvider.GeneratedRecipe;
+
 public class ItemApplicationRecipeGen extends DesireProcessingRecipeGen {
     public ItemApplicationRecipeGen(PackOutput generator) {
         super(generator);

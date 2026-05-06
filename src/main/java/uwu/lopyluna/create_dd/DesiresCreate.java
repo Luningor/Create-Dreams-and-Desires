@@ -8,6 +8,7 @@ import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipHelper;
 import com.simibubi.create.foundation.item.TooltipModifier;
+import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -24,6 +25,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import uwu.lopyluna.create_dd.compat.DesiresMods;
+import uwu.lopyluna.create_dd.compat.contraption.DesiresContraptionCompat;
 import uwu.lopyluna.create_dd.compat.registry.EncasedCompat;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.FurnaceEngineBlock;
 import uwu.lopyluna.create_dd.infrastructure.config.DesiresConfigs;
@@ -58,7 +60,7 @@ public class DesiresCreate
 
     static {
         REGISTRATE.setTooltipModifierFactory(item -> {
-            return new ItemDescription.Modifier(item, TooltipHelper.Palette.STANDARD_CREATE)
+            return new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
                     .andThen(TooltipModifier.mapNull(DesiresCreate.create(item)));
         });
     }
@@ -88,11 +90,13 @@ public class DesiresCreate
         ClassicBlockEntityTypes.register();
         DesiresEntityTypes.register();
         DesiresBlockEntityTypes.register();
-        DesireFanProcessingTypes.register();
+        DesireFanProcessingTypes.register(modEventBus);
         DesiresRecipeTypes.register(modEventBus);
         DesiresParticleTypes.register(modEventBus);
         DesiresEntityDataSerializers.register(modEventBus);
         DesiresPackets.registerPackets();
+        DesiresMountedStorageTypes.register(modEventBus);
+        DesiresContraptionCompat.register();
 
         //if (DesiresMods.CREATECASING.isLoaded()) {
         //    EncasedCompat.register();

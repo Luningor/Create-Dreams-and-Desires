@@ -7,8 +7,6 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import uwu.lopyluna.create_dd.DesiresCreate;
 import uwu.lopyluna.create_dd.content.data_recipes.DesireProcessingRecipeGen;
 import uwu.lopyluna.create_dd.content.data_recipes.AdvanceCraftingRecipeGen;
-import uwu.lopyluna.create_dd.infrastructure.ponder.DesirePonderTags;
-import uwu.lopyluna.create_dd.infrastructure.ponder.DesiresPonderIndex;
 import uwu.lopyluna.create_dd.registry.DesiresLangPartial;
 
 import java.util.function.BiConsumer;
@@ -34,16 +32,10 @@ public class DesiresDatagen {
 			BiConsumer<String, String> langConsumer = provider::add;
 
 			providePartialLang(langConsumer);
-			providePonderLang();
 		});
 	}
 
 	private static void providePartialLang(BiConsumer<String, String> consumer) {
 		DesiresLangPartial.provideLang(consumer);
-	}
-
-	private static void providePonderLang() {
-		DesirePonderTags.register();
-		DesiresPonderIndex.register();
 	}
 }

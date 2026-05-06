@@ -1,15 +1,16 @@
 package uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press;
 
 import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.Create;
 import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack;
 import com.simibubi.create.content.kinetics.crafter.MechanicalCraftingRecipe;
 import com.simibubi.create.content.kinetics.press.MechanicalPressBlockEntity;
 import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
-import com.simibubi.create.foundation.utility.Lang;
-import com.simibubi.create.foundation.utility.LangBuilder;
+import com.simibubi.create.foundation.utility.CreateLang;
 import com.simibubi.create.infrastructure.config.AllConfigs;
+import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,6 +32,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import uwu.lopyluna.create_dd.infrastructure.config.DesiresConfigs;
+import uwu.lopyluna.create_dd.registry.helper.Lang;
 
 import java.util.List;
 
@@ -47,46 +49,51 @@ public class HydraulicPressBlockEntity extends MechanicalPressBlockEntity {
 
     @Override
     public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
-        LangBuilder mb = Lang.translate("generic.unit.millibuckets");
-        Lang.translate("gui.goggles.fluid_container")
+        LangBuilder mb = Lang.builder().translate("generic.unit.millibuckets");
+        Lang.builder()
+                .translate("gui.goggles.fluid_container")
                 .forGoggles(tooltip);
 
         FluidStack fluidStack = tank.getPrimaryHandler().getFluidInTank(0);
         if (!fluidStack.isEmpty()) {
-            Lang.fluidName(fluidStack)
+            CreateLang.fluidName(fluidStack)
                     .style(ChatFormatting.GRAY)
                     .forGoggles(tooltip, 1);
 
             Lang.builder()
-                    .add(Lang.number(fluidStack.getAmount())
+                    .add(CreateLang.number(fluidStack.getAmount())
                             .add(mb)
                             .style(ChatFormatting.GOLD))
                     .text(ChatFormatting.GRAY, " / ")
-                    .add(Lang.number(tank.getPrimaryHandler().getTankCapacity(0))
+                    .add(CreateLang.number(tank.getPrimaryHandler().getTankCapacity(0))
                             .add(mb)
                             .style(ChatFormatting.DARK_GRAY))
                     .forGoggles(tooltip, 1);
 
         } else if (fluidStack.isEmpty()) {
-            Lang.translate("gui.goggles.fluid_container.capacity")
-                    .add(Lang.number(tank.getPrimaryHandler().getTankCapacity(0))
+            Lang.builder()
+                    .translate("gui.goggles.fluid_container.capacity")
+                    .add(CreateLang.number(tank.getPrimaryHandler().getTankCapacity(0))
                             .add(mb)
                             .style(ChatFormatting.GOLD))
                     .style(ChatFormatting.GRAY)
                     .forGoggles(tooltip, 1);
         }
 
-        Lang.translate("tooltip.stressImpact")
+        Lang.builder()
+                .translate("tooltip.stressImpact")
                 .style(GRAY)
                 .forGoggles(tooltip);
 
         float stressTotal = calculateStressApplied() * Math.abs(getTheoreticalSpeed());
 
-        Lang.number(stressTotal)
+        Lang.builder()
+                .add(CreateLang.number(stressTotal))
                 .translate("generic.unit.stress")
                 .style(ChatFormatting.AQUA)
                 .space()
-                .add(Lang.translate("gui.goggles.at_current_speed")
+                .add(Lang.builder()
+                        .translate("gui.goggles.at_current_speed")
                         .style(ChatFormatting.DARK_GRAY))
                 .forGoggles(tooltip, 1);
         return true;

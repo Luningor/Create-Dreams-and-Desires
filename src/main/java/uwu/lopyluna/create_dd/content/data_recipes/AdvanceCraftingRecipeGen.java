@@ -4,15 +4,15 @@ import com.google.common.base.Supplier;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllTags;
+import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
+import com.simibubi.create.api.data.recipe.MechanicalCraftingRecipeBuilder;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyRecipeBuilder;
-import com.simibubi.create.foundation.data.recipe.CreateRecipeProvider;
-import com.simibubi.create.foundation.data.recipe.MechanicalCraftingRecipeBuilder;
-import com.simibubi.create.foundation.utility.RegisteredObjects;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 import uwu.lopyluna.create_dd.DesiresCreate;
 import uwu.lopyluna.create_dd.registry.DesiresBlocks;
 import uwu.lopyluna.create_dd.registry.DesiresItems;
@@ -22,10 +22,9 @@ import java.util.function.UnaryOperator;
 
 @ParametersAreNonnullByDefault
 @SuppressWarnings({"unused", "all"})
-public class AdvanceCraftingRecipeGen extends CreateRecipeProvider {
+public class AdvanceCraftingRecipeGen extends BaseRecipeProvider {
 
     GeneratedRecipe
-            //SEQUENCED ASSEMBLY RECIPE
             KINETIC_MECHANISM = createSequencedAssembly("kinetic_mechanism", b -> b.require(AllItems.IRON_SHEET.get())
             .transitionTo(DesiresItems.INCOMPLETE_KINETIC_MECHANISM.get())
             .addOutput(DesiresItems.KINETIC_MECHANISM.get(), 480)
@@ -44,8 +43,6 @@ public class AdvanceCraftingRecipeGen extends CreateRecipeProvider {
             .addStep(DeployerApplicationRecipe::new, rb -> rb.require(AllItems.ZINC_NUGGET.get()))
     ),
 
-
-    //MECHANICAL CRAFTING RECIPE
     FURNACE_ENGINE = createMechanicalCrafting(DesiresBlocks.FURNACE_ENGINE::get).returns(1)
             .recipe(b -> b
                     .key('S', AllTags.forgeItemTag("plates/brass"))
@@ -95,71 +92,69 @@ public class AdvanceCraftingRecipeGen extends CreateRecipeProvider {
                     .patternLine("ZTZ")
                     .patternLine(" G ")
             ),
-            GILDED_ROSE_PICKAXE = createMechanicalCrafting(DesiresItems.GILDED_ROSE_PICKAXE::get).returns(1)
-                    .recipe(b -> b
-                            .key('R', AllItems.ROSE_QUARTZ.get())
-                            .key('G', AllTags.forgeItemTag("plates/gold"))
-                            .key('Z', AllTags.forgeItemTag("ingots/zinc"))
-                            .key('E', AllItems.EXP_NUGGET.get())
-                            .key('T', Items.DIAMOND_PICKAXE)
-                            .patternLine(" E ")
-                            .patternLine("RGR")
-                            .patternLine("RTR")
-                            .patternLine(" Z ")
-                            .patternLine(" Z ")
-                    ),
-            GILDED_ROSE_AXE = createMechanicalCrafting(DesiresItems.GILDED_ROSE_AXE::get).returns(1)
-                    .recipe(b -> b
-                            .key('R', AllItems.ROSE_QUARTZ.get())
-                            .key('G', AllTags.forgeItemTag("plates/gold"))
-                            .key('Z', AllTags.forgeItemTag("ingots/zinc"))
-                            .key('E', AllItems.EXP_NUGGET.get())
-                            .key('T', Items.DIAMOND_AXE)
-                            .patternLine("RE ")
-                            .patternLine("RGR")
-                            .patternLine("RT ")
-                            .patternLine(" Z ")
-                            .patternLine(" Z ")
-                    ),
-            GILDED_ROSE_SHOVEL = createMechanicalCrafting(DesiresItems.GILDED_ROSE_SHOVEL::get).returns(1)
-                    .recipe(b -> b
-                            .key('R', AllItems.ROSE_QUARTZ.get())
-                            .key('G', AllTags.forgeItemTag("plates/gold"))
-                            .key('Z', AllTags.forgeItemTag("ingots/zinc"))
-                            .key('E', AllItems.EXP_NUGGET.get())
-                            .key('T', Items.DIAMOND_SHOVEL)
-                            .patternLine(" R ")
-                            .patternLine("RER")
-                            .patternLine("GTG")
-                            .patternLine(" Z ")
-                            .patternLine(" Z ")
-                    ),
-            GILDED_ROSE_HOE = createMechanicalCrafting(DesiresItems.GILDED_ROSE_HOE::get).returns(1)
-                    .recipe(b -> b
-                            .key('R', AllItems.ROSE_QUARTZ.get())
-                            .key('G', AllTags.forgeItemTag("plates/gold"))
-                            .key('Z', AllTags.forgeItemTag("ingots/zinc"))
-                            .key('E', AllItems.EXP_NUGGET.get())
-                            .key('T', Items.DIAMOND_HOE)
-                            .patternLine(" E ")
-                            .patternLine("RRG")
-                            .patternLine(" T ")
-                            .patternLine(" Z ")
-                            .patternLine(" Z ")
-                    )
 
-    ;
+    GILDED_ROSE_PICKAXE = createMechanicalCrafting(DesiresItems.GILDED_ROSE_PICKAXE::get).returns(1)
+            .recipe(b -> b
+                    .key('R', AllItems.ROSE_QUARTZ.get())
+                    .key('G', AllTags.forgeItemTag("plates/gold"))
+                    .key('Z', AllTags.forgeItemTag("ingots/zinc"))
+                    .key('E', AllItems.EXP_NUGGET.get())
+                    .key('T', Items.DIAMOND_PICKAXE)
+                    .patternLine(" E ")
+                    .patternLine("RGR")
+                    .patternLine("RTR")
+                    .patternLine(" Z ")
+                    .patternLine(" Z ")
+            ),
 
-    public AdvanceCraftingRecipeGen(PackOutput p_i48262_1_) {
-        super(p_i48262_1_);
+    GILDED_ROSE_AXE = createMechanicalCrafting(DesiresItems.GILDED_ROSE_AXE::get).returns(1)
+            .recipe(b -> b
+                    .key('R', AllItems.ROSE_QUARTZ.get())
+                    .key('G', AllTags.forgeItemTag("plates/gold"))
+                    .key('Z', AllTags.forgeItemTag("ingots/zinc"))
+                    .key('E', AllItems.EXP_NUGGET.get())
+                    .key('T', Items.DIAMOND_AXE)
+                    .patternLine("RE ")
+                    .patternLine("RGR")
+                    .patternLine("RT ")
+                    .patternLine(" Z ")
+                    .patternLine(" Z ")
+            ),
+
+    GILDED_ROSE_SHOVEL = createMechanicalCrafting(DesiresItems.GILDED_ROSE_SHOVEL::get).returns(1)
+            .recipe(b -> b
+                    .key('R', AllItems.ROSE_QUARTZ.get())
+                    .key('G', AllTags.forgeItemTag("plates/gold"))
+                    .key('Z', AllTags.forgeItemTag("ingots/zinc"))
+                    .key('E', AllItems.EXP_NUGGET.get())
+                    .key('T', Items.DIAMOND_SHOVEL)
+                    .patternLine(" R ")
+                    .patternLine("RER")
+                    .patternLine("GTG")
+                    .patternLine(" Z ")
+                    .patternLine(" Z ")
+            ),
+
+    GILDED_ROSE_HOE = createMechanicalCrafting(DesiresItems.GILDED_ROSE_HOE::get).returns(1)
+            .recipe(b -> b
+                    .key('R', AllItems.ROSE_QUARTZ.get())
+                    .key('G', AllTags.forgeItemTag("plates/gold"))
+                    .key('Z', AllTags.forgeItemTag("ingots/zinc"))
+                    .key('E', AllItems.EXP_NUGGET.get())
+                    .key('T', Items.DIAMOND_HOE)
+                    .patternLine(" E ")
+                    .patternLine("RRG")
+                    .patternLine(" T ")
+                    .patternLine(" Z ")
+                    .patternLine(" Z ")
+            );
+
+    public AdvanceCraftingRecipeGen(PackOutput output) {
+        super(output, DesiresCreate.MOD_ID);
     }
 
     protected GeneratedRecipe createSequencedAssembly(String name, UnaryOperator<SequencedAssemblyRecipeBuilder> transform) {
-        GeneratedRecipe generatedRecipe =
-                c -> transform.apply(new SequencedAssemblyRecipeBuilder(DesiresCreate.asResource(name)))
-                        .build(c);
-        all.add(generatedRecipe);
-        return generatedRecipe;
+        return register(c -> transform.apply(new SequencedAssemblyRecipeBuilder(asResource(name))).build(c));
     }
 
     GeneratedRecipeBuilder createMechanicalCrafting(Supplier<ItemLike> result) {
@@ -192,12 +187,10 @@ public class AdvanceCraftingRecipeGen extends CreateRecipeProvider {
             return register(consumer -> {
                 MechanicalCraftingRecipeBuilder b =
                         builder.apply(MechanicalCraftingRecipeBuilder.shapedRecipe(result.get(), amount));
-                ResourceLocation location = DesiresCreate.asResource("mechanical_crafting/" + RegisteredObjects.getKeyOrThrow(result.get()
-                                .asItem())
-                        .getPath() + suffix);
+                ResourceLocation location = asResource("mechanical_crafting/"
+                        + ForgeRegistries.ITEMS.getKey(result.get().asItem()).getPath() + suffix);
                 b.build(consumer, location);
             });
         }
     }
-    
 }

@@ -1,6 +1,6 @@
 package uwu.lopyluna.create_dd.registry;
 
-import com.jozufozu.flywheel.core.PartialModel;
+import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import uwu.lopyluna.create_dd.DesiresCreate;
 
 @SuppressWarnings({"all"})
@@ -33,11 +33,11 @@ public class DesiresPartialModels {
 	//}
 
 	private static PartialModel block(String path) {
-		return new PartialModel(DesiresCreate.asResource("block/" + path));
+		return PartialModel.of(DesiresCreate.asResource("block/" + path));
 	}
 
 	//private static PartialModel entity(String path) {
-	//	return new PartialModel(DesiresCreate.asResource("entity/" + path));
+	//	return PartialModel.of(DesiresCreate.asResource("entity/" + path));
 	//}
 
 	public static void init() {

@@ -1,19 +1,18 @@
 package uwu.lopyluna.create_dd.infrastructure.ponder;
 
 import com.simibubi.create.AllItems;
-import com.simibubi.create.foundation.ponder.PonderTag;
+import net.createmod.ponder.foundation.PonderTag;
+import net.minecraft.world.item.ItemStack;
 import uwu.lopyluna.create_dd.DesiresCreate;
 
 public class DesirePonderTags {
 
-	public static final PonderTag
-			Desires = create("create_dd").item(AllItems.PRECISION_MECHANISM.get())
-			.defaultLang("Create: Dreams n' Desires", "Welcome to the mod!")
-			.addToIndex();
-
-	private static PonderTag create(String id) {
-		return new PonderTag(DesiresCreate.asResource(id));
-	}
+	public static final PonderTag DESIRES = new PonderTag(
+			DesiresCreate.asResource("create_dd"),
+			null,
+			new ItemStack(AllItems.PRECISION_MECHANISM.get()),
+			new ItemStack(AllItems.PRECISION_MECHANISM.get())
+	);
 
 	public static void register() {
 		// Add items to tags here

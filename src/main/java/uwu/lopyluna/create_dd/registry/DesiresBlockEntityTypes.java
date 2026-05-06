@@ -1,19 +1,20 @@
 package uwu.lopyluna.create_dd.registry;
 
+import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.kinetics.base.*;
-import com.simibubi.create.content.kinetics.transmission.SplitShaftInstance;
 import com.simibubi.create.content.kinetics.transmission.SplitShaftRenderer;
+import com.simibubi.create.content.kinetics.transmission.SplitShaftVisual;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankVisual;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press.HydraulicPressVisual;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.industrial_fan_block.IndustrialFanVisual;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.multimeter.MultiMeterBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press.HydraulicPressBlockEntity;
-import uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press.HydraulicPressInstance;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press.HydraulicPressRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.industrial_fan_block.IndustrialFanBlockEntity;
-import uwu.lopyluna.create_dd.content.blocks.kinetics.industrial_fan_block.IndustrialFanInstance;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.industrial_fan_block.IndustrialFanRemderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankBlockEntity;
-import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankInstance;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.*;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlockEntity;
@@ -29,21 +30,21 @@ public class DesiresBlockEntityTypes {
 
 	public static final BlockEntityEntry<IndustrialFanBlockEntity> INDUSTRIAL_FAN = REGISTRATE
 			.blockEntity("industrial_fan", IndustrialFanBlockEntity::new)
-			.instance(() -> IndustrialFanInstance::new, false)
+			.visual(() -> IndustrialFanVisual::new, false)
 			.validBlocks(DesiresBlocks.INDUSTRIAL_FAN)
 			.renderer(() -> IndustrialFanRemderer::new)
 			.register();
 
 	public static final BlockEntityEntry<HydraulicPressBlockEntity> HYDRAULIC_PRESS = REGISTRATE
 			.blockEntity("hydraulic_press", HydraulicPressBlockEntity::new)
-			.instance(() -> HydraulicPressInstance::new)
+			.visual(() -> HydraulicPressVisual::new)
 			.validBlocks(DesiresBlocks.HYDRAULIC_PRESS)
 			.renderer(() -> HydraulicPressRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<CogCrankBlockEntity> COG_CRANK = REGISTRATE
 			.blockEntity("cog_crank", CogCrankBlockEntity::new)
-			.instance(() -> CogCrankInstance::new)
+			.visual(() -> CogCrankVisual::new)
 			.validBlocks(DesiresBlocks.COG_CRANK)
 			.renderer(() -> CogCrankRenderer::new)
 			.register();
@@ -60,49 +61,48 @@ public class DesiresBlockEntityTypes {
 
 	public static final BlockEntityEntry<FurnaceEngineBlockEntity> FURNACE_ENGINE = REGISTRATE
 			.blockEntity("furnace_engine", FurnaceEngineBlockEntity::new)
-			.instance(()->FurnaceEngineInstance::new)
+			.visual(()->FurnaceEngineVisual::new)
 			.validBlocks(DesiresBlocks.FURNACE_ENGINE)
 			.renderer(()-> FurnaceEngineRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<PoweredFlywheelBlockEntity> POWERED_FLYWHEEL = REGISTRATE
 			.blockEntity("powered_flywheel", PoweredFlywheelBlockEntity::new)
-			.instance(() -> PoweredFlywheelInstance::new, false)
+			.visual(() -> PoweredFlywheelVisual::new, false)
 			.validBlocks(DesiresBlocks.POWERED_FLYWHEEL)
 			.renderer(() -> PoweredFlywheelRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<InverseBoxBlockEntity> INVERSE_BOX = REGISTRATE
 			.blockEntity("inverse_box", InverseBoxBlockEntity::new)
-			.instance(() -> SplitShaftInstance::new, false)
+			.visual(() -> SplitShaftVisual::new, false)
 			.validBlocks(DesiresBlocks.INVERSE_BOX)
 			.renderer(() -> SplitShaftRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<KineticMotorBlockEntity> KINETIC_MOTOR = REGISTRATE
 			.blockEntity("motor", KineticMotorBlockEntity::new)
-			.instance(() -> HalfShaftInstance::new, false)
+			.visual(() -> SingleAxisRotatingVisual.ofZ(AllPartialModels.SHAFT_HALF), false)
 			.validBlocks(DesiresBlocks.KINETIC_MOTOR)
 			.renderer(() -> KineticMotorRenderer::new).register();
 
 
 	public static final BlockEntityEntry<GiantGearBlockEntity> GIANT_GEAR = REGISTRATE
 			.blockEntity("giant_gear", GiantGearBlockEntity::new)
-			.instance(() -> CutoutRotatingInstance::new, false)
 			.validBlocks(DesiresBlocks.GIANT_GEAR)
 			.renderer(() -> KineticBlockEntityRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<MultiMeterBlockEntity> MULTIMETER = REGISTRATE
 			.blockEntity("multimeter", MultiMeterBlockEntity::new)
-			.instance(() -> ShaftInstance::new)
+			.visual(() -> ShaftVisual::new)
 			.validBlocks(DesiresBlocks.MULTIMETER)
 			.renderer(() -> ShaftRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<RedstoneDividerBlockEntity> REDSTONE_DIVIDER = REGISTRATE
 			.blockEntity("redstone_divider", RedstoneDividerBlockEntity::new)
-			.instance(() -> SplitShaftInstance::new, false)
+			.visual(() -> SplitShaftVisual::new, false)
 			.validBlocks(DesiresBlocks.REDSTONE_DIVIDER)
 			.renderer(() -> SplitShaftRenderer::new)
 			.register();

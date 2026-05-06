@@ -10,9 +10,8 @@ import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
-import com.simibubi.create.foundation.utility.AngleHelper;
-import com.simibubi.create.foundation.utility.Lang;
-import com.simibubi.create.foundation.utility.VecHelper;
+import net.createmod.catnip.math.AngleHelper;
+import net.createmod.catnip.math.VecHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -27,6 +26,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
 import uwu.lopyluna.create_dd.registry.DesiresBlocks;
+import uwu.lopyluna.create_dd.registry.helper.Lang;
 
 import javax.annotation.Nullable;
 import java.lang.ref.WeakReference;
@@ -227,7 +227,7 @@ public class FurnaceEngineBlockEntity extends SmartBlockEntity {
                 return null;
             } else {
                 axis = KineticBlockEntityRenderer.getRotationAxisOf(flywheel);
-                angle = KineticBlockEntityRenderer.getAngleForTe(flywheel, flywheel.getBlockPos(), axis);
+                angle = KineticBlockEntityRenderer.getAngleForBe(flywheel, flywheel.getBlockPos(), axis);
                 if (axis == facingAxis) {
                     return null;
                 } else {

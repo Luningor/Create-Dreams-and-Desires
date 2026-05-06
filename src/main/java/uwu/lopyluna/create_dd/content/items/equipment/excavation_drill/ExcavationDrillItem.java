@@ -3,7 +3,7 @@ package uwu.lopyluna.create_dd.content.items.equipment.excavation_drill;
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.foundation.item.render.SimpleCustomRenderer;
 import com.simibubi.create.foundation.utility.BlockHelper;
-import com.simibubi.create.foundation.utility.VecHelper;
+import net.createmod.catnip.math.VecHelper;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -68,7 +68,8 @@ public class ExcavationDrillItem extends BackTankPickaxeItem {
         Vec3 vec = player.getLookAngle();
 
         veinExcavating = true;
-        findVein(pLevel, pos).destroyBlocks(pLevel, player, (dropPos, item) -> dropItemFromExcavatedVein(pLevel, pos, vec, dropPos, item));
+        ItemStack tool = player.getMainHandItem();
+        findVein(pLevel, pos).destroyBlocks(pLevel, tool, player, (dropPos, item) -> dropItemFromExcavatedVein(pLevel, pos, vec, dropPos, item));
         veinExcavating = false;
     }
 

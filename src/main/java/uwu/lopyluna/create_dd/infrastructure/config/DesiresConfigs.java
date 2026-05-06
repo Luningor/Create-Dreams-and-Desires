@@ -1,7 +1,6 @@
 package uwu.lopyluna.create_dd.infrastructure.config;
 
-import com.simibubi.create.content.kinetics.BlockStressValues;
-import com.simibubi.create.foundation.config.ConfigBase;
+import net.createmod.catnip.config.ConfigBase;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -52,10 +51,9 @@ public class DesiresConfigs {
 		client = register(DClient::new, ModConfig.Type.CLIENT);
 		server = register(DServer::new, ModConfig.Type.SERVER);
 
-		for (Entry<ModConfig.Type, ConfigBase> pair : CONFIGS.entrySet())
+		for (Entry<ModConfig.Type, ConfigBase> pair : CONFIGS.entrySet()) {
 			context.registerConfig(pair.getKey(), pair.getValue().specification);
-
-		BlockStressValues.registerProvider(context.getActiveNamespace(), server().kinetics.stressValues);
+		}
 	}
 
 	@SubscribeEvent

@@ -1,6 +1,6 @@
 package uwu.lopyluna.create_dd.infrastructure.config;
 
-import com.simibubi.create.foundation.config.ConfigBase;
+import net.createmod.catnip.config.ConfigBase;
 
 public class DEquipment extends ConfigBase {
 	//Plans to change this

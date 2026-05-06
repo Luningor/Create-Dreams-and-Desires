@@ -1,8 +1,10 @@
 package uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear;
 
 import com.simibubi.create.CreateClient;
+import net.createmod.catnip.data.Pair;
+import net.createmod.catnip.outliner.Outliner;
+import uwu.lopyluna.create_dd.DesiresCreate;
 import uwu.lopyluna.create_dd.registry.helper.Lang;
-import com.simibubi.create.foundation.utility.Pair;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -55,10 +57,11 @@ public class GiantGearBlockItem extends BlockItem {
         Vec3 inflateZAxis = new Vec3 (inflate_yz, inflate_xz, inflate_xy);
         if (!(context.getPlayer()instanceof LocalPlayer localPlayer))
             return;
-        CreateClient.OUTLINER.showAABB(Pair.of("waterwheel", pos), new AABB(pos).inflate(inflateZAxis.x, inflateZAxis.y, inflateZAxis.z)
+        Outliner.getInstance().showAABB(Pair.of("waterwheel", pos), new AABB(pos).inflate(inflateZAxis.x, inflateZAxis.y, inflateZAxis.z)
                         .deflate(contract.x, contract.y, contract.z))
                 .colored(0xFF_ff5d6c);
-        Lang.translate("large_water_wheel.not_enough_space")
+        Lang.builder()
+                .translate("large_water_wheel.not_enough_space")
                 .color(0xFF_ff5d6c)
                 .sendStatus(localPlayer);
     }

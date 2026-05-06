@@ -1,21 +1,20 @@
 package uwu.lopyluna.create_dd.content.data_recipes;
 
-import static com.simibubi.create.foundation.data.recipe.CompatMetals.ALUMINUM;
-import static com.simibubi.create.foundation.data.recipe.CompatMetals.LEAD;
-import static com.simibubi.create.foundation.data.recipe.CompatMetals.NICKEL;
-import static com.simibubi.create.foundation.data.recipe.CompatMetals.OSMIUM;
-import static com.simibubi.create.foundation.data.recipe.CompatMetals.PLATINUM;
-import static com.simibubi.create.foundation.data.recipe.CompatMetals.QUICKSILVER;
-import static com.simibubi.create.foundation.data.recipe.CompatMetals.SILVER;
-import static com.simibubi.create.foundation.data.recipe.CompatMetals.TIN;
-import static com.simibubi.create.foundation.data.recipe.CompatMetals.URANIUM;
+import static com.simibubi.create.foundation.data.recipe.CommonMetal.ALUMINUM;
+import static com.simibubi.create.foundation.data.recipe.CommonMetal.LEAD;
+import static com.simibubi.create.foundation.data.recipe.CommonMetal.NICKEL;
+import static com.simibubi.create.foundation.data.recipe.CommonMetal.OSMIUM;
+import static com.simibubi.create.foundation.data.recipe.CommonMetal.PLATINUM;
+import static com.simibubi.create.foundation.data.recipe.CommonMetal.QUICKSILVER;
+import static com.simibubi.create.foundation.data.recipe.CommonMetal.SILVER;
+import static com.simibubi.create.foundation.data.recipe.CommonMetal.TIN;
+import static com.simibubi.create.foundation.data.recipe.CommonMetal.URANIUM;
 
 import com.simibubi.create.AllItems;
-import com.simibubi.create.foundation.data.recipe.CompatMetals;
+import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
+import com.simibubi.create.foundation.data.recipe.CommonMetal;
 import com.simibubi.create.foundation.data.recipe.Mods;
 import com.tterrag.registrate.util.entry.ItemEntry;
-import net.minecraft.core.Registry;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -30,10 +29,12 @@ import uwu.lopyluna.create_dd.registry.DesiresRecipeTypes;
 
 import java.util.function.Supplier;
 
+import static com.simibubi.create.api.data.recipe.BaseRecipeProvider.GeneratedRecipe;
+
 @SuppressWarnings({"unused", "deprecation", "all"})
 public class SeethingRecipeGen extends DesireProcessingRecipeGen {
 
-	GeneratedRecipe
+	BaseRecipeProvider.GeneratedRecipe
 
 		ENDER_EYE = convert(Items.ENDER_PEARL, Items.ENDER_EYE),
 		MAGMA_BLOCK = convert(Blocks.NETHERRACK, Blocks.MAGMA_BLOCK),
@@ -95,9 +96,9 @@ public class SeethingRecipeGen extends DesireProcessingRecipeGen {
 			.output(secondaryChance, secondary.get(), 1));
 	}
 
-	public GeneratedRecipe moddedCrushedOre(ItemEntry<? extends Item> crushed, CompatMetals metal) {
-		String metalName = metal.getName();
-		for (Mods mod : metal.getMods()) {
+	public GeneratedRecipe moddedCrushedOre(ItemEntry<? extends Item> crushed, CommonMetal metal) {
+		for (Mods mod : metal.mods) {
+			String metalName = metal.getName(mod);
 			ResourceLocation ingot = mod.ingotOf(metalName);
 			create(mod.getId() + "/" + crushed.getId()
 				.getPath(),

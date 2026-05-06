@@ -4,7 +4,7 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.compat.jei.*;
 import com.simibubi.create.compat.jei.category.*;
-import com.simibubi.create.foundation.config.ConfigBase;
+import net.createmod.catnip.config.ConfigBase;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import uwu.lopyluna.create_dd.registry.helper.Lang;
 import mezz.jei.api.IModPlugin;

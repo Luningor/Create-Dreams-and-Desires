@@ -1,13 +1,14 @@
 package uwu.lopyluna.create_dd.registry;
 
+import com.simibubi.create.api.registry.CreateRegistries;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingTypeRegistry;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.trains.CubeParticleData;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
-import com.simibubi.create.foundation.utility.Color;
-import com.simibubi.create.foundation.utility.VecHelper;
+import net.createmod.catnip.math.VecHelper;
 import it.unimi.dsi.fastutil.objects.Object2ReferenceOpenHashMap;
+import net.createmod.catnip.theme.Color;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -27,6 +28,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 import uwu.lopyluna.create_dd.DesiresCreate;
@@ -40,24 +44,18 @@ import java.util.List;
 import java.util.Optional;
 
 public class DesireFanProcessingTypes {
-    public static final SandingType SANDING = register("sanding", new SandingType());
-    public static final FreezingType FREEZING = register("freezing", new FreezingType());
-    public static final SeethingType SEETHING = register("seething", new SeethingType());
+    public static final DeferredRegister<FanProcessingType> REGISTER =
+            DeferredRegister.create(CreateRegistries.FAN_PROCESSING_TYPE, DesiresCreate.MOD_ID);
 
-    static {
-        Object2ReferenceOpenHashMap<String, FanProcessingType> map = new Object2ReferenceOpenHashMap<>();
-        map.put("SANDING", SANDING);
-        map.put("FREEZING", FREEZING);
-        map.put("SEETHING", SEETHING);
-        map.trim();
-    }
+    public static final RegistryObject<SandingType> SANDING =
+            REGISTER.register("sanding", SandingType::new);
+    public static final RegistryObject<FreezingType> FREEZING =
+            REGISTER.register("freezing", FreezingType::new);
+    public static final RegistryObject<SeethingType> SEETHING =
+            REGISTER.register("seething", SeethingType::new);
 
-    private static <T extends FanProcessingType> T register(String id, T type) {
-        FanProcessingTypeRegistry.register(DesiresCreate.asResource(id), type);
-        return type;
-    }
-
-    public static void register() {
+    public static void register(IEventBus bus) {
+        REGISTER.register(bus);
     }
 
     public static class SandingType implements FanProcessingType {
@@ -91,7 +89,7 @@ public class DesireFanProcessingTypes {
         public List<ItemStack> process(ItemStack stack, Level level) {
             SANDING_WRAPPER.setItem(0, stack);
             Optional<SandingRecipe> recipe = DesiresRecipeTypes.SANDING.find(SANDING_WRAPPER, level);
-            return recipe.map(sandingRecipe -> RecipeApplier.applyRecipeOn(level, stack, sandingRecipe)).orElse(null);
+            return recipe.map(sandingRecipe -> RecipeApplier.applyRecipeOn(level, stack, sandingRecipe, false)).orElse(null);
         }
 
         @Override
@@ -212,7 +210,7 @@ public class DesireFanProcessingTypes {
         public List<ItemStack> process(ItemStack stack, Level level) {
             SEETHING_WRAPPER.setItem(0, stack);
             Optional<SeethingRecipe> recipe = DesiresRecipeTypes.SEETHING.find(SEETHING_WRAPPER, level);
-            return recipe.map(seethingRecipe -> RecipeApplier.applyRecipeOn(level, stack, seethingRecipe)).orElse(null);
+            return recipe.map(seethingRecipe -> RecipeApplier.applyRecipeOn(level, stack, seethingRecipe, false)).orElse(null);
         }
 
         @Override
@@ -327,7 +325,7 @@ public class DesireFanProcessingTypes {
         public List<ItemStack> process(ItemStack stack, Level level) {
             FREEZING_WRAPPER.setItem(0, stack);
             Optional<FreezingRecipe> recipe = DesiresRecipeTypes.FREEZING.find(FREEZING_WRAPPER, level);
-            return recipe.map(freezingRecipe -> RecipeApplier.applyRecipeOn(level, stack, freezingRecipe)).orElse(null);
+            return recipe.map(freezingRecipe -> RecipeApplier.applyRecipeOn(level, stack, freezingRecipe, false)).orElse(null);
         }
 
         @Override

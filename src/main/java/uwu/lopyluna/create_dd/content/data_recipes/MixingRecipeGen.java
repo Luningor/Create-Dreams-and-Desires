@@ -9,6 +9,8 @@ import net.minecraft.world.item.Items;
 import uwu.lopyluna.create_dd.registry.DesiresFluids;
 import uwu.lopyluna.create_dd.registry.DesiresItems;
 
+import static com.simibubi.create.api.data.recipe.BaseRecipeProvider.GeneratedRecipe;
+
 @SuppressWarnings({"all"})
 public class MixingRecipeGen extends DesireProcessingRecipeGen {
 

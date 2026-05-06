@@ -1,6 +1,6 @@
 package uwu.lopyluna.create_dd.infrastructure.config;
 
-import com.simibubi.create.foundation.config.ConfigBase;
+import net.createmod.catnip.config.ConfigBase;
 
 public class DKinetics extends ConfigBase {
 
@@ -19,8 +19,6 @@ public class DKinetics extends ConfigBase {
 	//public final ConfigBool weakenedHarvesterReplants = b(false, "weakenedHarvesterReplants", Comments.weakenedHarvesterReplants);
 
 	public final ConfigGroup stats = group(1, "stats", Comments.stats);
-
-	public final DStress stressValues = nested(1, DStress::new, Comments.stress);
 
 	@Override
 	public String getName() {

@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import uwu.lopyluna.create_dd.registry.DesiresPaletteStoneTypes;
 
+import static com.simibubi.create.api.data.recipe.BaseRecipeProvider.GeneratedRecipe;
+
 @SuppressWarnings({"unused"})
 public class WashingRecipeGen extends DesireProcessingRecipeGen {
 

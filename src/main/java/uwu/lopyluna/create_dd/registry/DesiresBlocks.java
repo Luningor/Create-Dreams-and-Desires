@@ -1,10 +1,14 @@
 package uwu.lopyluna.create_dd.registry;
 
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllDisplaySources;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.AllTags;
+import com.simibubi.create.api.behaviour.display.DisplaySource;
+import com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType;
+import com.simibubi.create.api.contraption.storage.item.MountedItemStorageType;
+import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
-import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.content.kinetics.gauge.GaugeGenerator;
 import com.simibubi.create.content.kinetics.motor.CreativeMotorGenerator;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
@@ -12,11 +16,11 @@ import com.simibubi.create.content.redstone.displayLink.source.KineticSpeedDispl
 import com.simibubi.create.content.redstone.displayLink.source.KineticStressDisplaySource;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
-import com.simibubi.create.foundation.utility.Couple;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.createmod.catnip.data.Couple;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -61,8 +65,7 @@ import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockp
 
 import java.util.function.Consumer;
 
-import static com.simibubi.create.AllMovementBehaviours.movementBehaviour;
-import static com.simibubi.create.content.redstone.displayLink.AllDisplayBehaviours.assignDataBehaviour;
+import static com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour;
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.*;
@@ -161,8 +164,8 @@ public class DesiresBlocks {
 			.blockstate(BlockStateGen.directionalBlockProvider(true))
 			.addLayer(() -> RenderType::cutoutMipped)
 			.transform(pickaxeOnly())
-			.transform(BlockStressDefaults.setImpact(4.0))
-			.transform(BlockStressDefaults.setCapacity(16))
+			.onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 4.0))
+			.onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 16.0))
 			.recipe((c, p) -> {
 				ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, c.get(), 4)
 						.pattern("CIP")
@@ -185,7 +188,7 @@ public class DesiresBlocks {
 			.properties(p -> p.noOcclusion().mapColor(MapColor.TERRACOTTA_ORANGE))
 			.transform(pickaxeOnly())
 			.blockstate(BlockStateGen.horizontalBlockProvider(true))
-			.transform(BlockStressDefaults.setImpact(64.0))
+			.onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 64.0))
 			.item(AssemblyOperatorBlockItem::new)
 			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
 			.transform(customItemModel())
@@ -219,10 +222,10 @@ public class DesiresBlocks {
 			.initialProperties(SharedProperties::wooden)
 			.properties(p -> p.mapColor(MapColor.PODZOL))
 			.transform(axeOrPickaxe())
-			.transform(BlockStressDefaults.setNoImpact())
+			.onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 0))
 			.blockstate(new GaugeGenerator()::generate)
-			.onRegister(assignDataBehaviour(new KineticSpeedDisplaySource(), "kinetic_speed"))
-			.onRegister(assignDataBehaviour(new KineticStressDisplaySource(), "kinetic_stress"))
+			.transform(DisplaySource.displaySource(AllDisplaySources.KINETIC_SPEED))
+			.transform(DisplaySource.displaySource(AllDisplaySources.KINETIC_STRESS))
 			.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 2)
 					.requires(AllBlocks.STRESSOMETER.get())
 					.requires(AllBlocks.SPEEDOMETER.get())
@@ -237,7 +240,7 @@ public class DesiresBlocks {
 			.initialProperties(SharedProperties::stone)
 			.properties(p -> p.noOcclusion().mapColor(MapColor.PODZOL))
 			.addLayer(() -> RenderType::cutoutMipped)
-			.transform(BlockStressDefaults.setNoImpact())
+			.onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 0))
 			.transform(axeOrPickaxe())
 			.blockstate((c, p) -> BlockStateGen.axisBlock(c, p, s -> {
 			int power = s.getValue(BlockStateProperties.POWER);
@@ -262,7 +265,7 @@ public class DesiresBlocks {
 			.initialProperties(SharedProperties::stone)
 			.properties(p -> p.noOcclusion().mapColor(MapColor.PODZOL))
 			.addLayer(() -> RenderType::cutoutMipped)
-			.transform(BlockStressDefaults.setNoImpact())
+			.onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 0))
 			.transform(axeOrPickaxe())
 			.blockstate(BlockStateGen.axisBlockProvider(true))
 			.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 1)
@@ -287,8 +290,8 @@ public class DesiresBlocks {
 					.unlockedBy("has_kinetic_mechanism", has(DesiresItems.KINETIC_MECHANISM.get()))
 					.save(p, DesiresCreate.asResource("crafting/kinetics/kinetic_motor")))
 			.blockstate(new CreativeMotorGenerator()::generate)
-			.transform(BlockStressDefaults.setCapacity(48))
-			.transform(BlockStressDefaults.setGeneratorSpeed(() -> Couple.create(0, 32)))
+			.onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 48.0))
+			.onRegister(block -> BlockStressValues.RPM.register(block, new BlockStressValues.GeneratedRpm(32, true)))
 			.item()
 			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
 			.transform(customItemModel())
@@ -299,8 +302,8 @@ public class DesiresBlocks {
 			.properties(p -> p.mapColor(MapColor.PODZOL))
 			.transform(axeOrPickaxe())
 			.blockstate(BlockStateGen.directionalBlockProvider(true))
-			.transform(BlockStressDefaults.setCapacity(8.0))
-			.transform(BlockStressDefaults.setGeneratorSpeed(CogCrankBlock::getSpeedRange))
+			.onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 8.0))
+			.onRegister(block -> BlockStressValues.RPM.register(block, new BlockStressValues.GeneratedRpm(32, false)))
 			.tag(AllTags.AllBlockTags.BRITTLE.tag)
 			.recipe((ctx, prov) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ctx.getEntry(), 1)
 					.requires(AllBlocks.HAND_CRANK.get())
@@ -322,8 +325,8 @@ public class DesiresBlocks {
 					.transform(pickaxeOnly())
 					.tag(AllTags.AllBlockTags.BRITTLE.tag)
 					.blockstate(new FurnaceEngineGenerator()::generate)
-					.transform(BlockStressDefaults.setCapacity(256.0))
-					.transform(BlockStressDefaults.setGeneratorSpeed(FurnaceEngineBlock::getSpeedRange))
+					.onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 256.0))
+					.onRegister(block -> BlockStressValues.RPM.register(block, new BlockStressValues.GeneratedRpm(32, true)))
 					.item()
 					.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
 					.transform(ModelGen.customItemModel())
@@ -342,7 +345,7 @@ public class DesiresBlocks {
 			.initialProperties(SharedProperties::netheriteMetal)
 			.properties(p -> p.noOcclusion().sound(SoundType.METAL).mapColor(MapColor.COLOR_YELLOW))
 			.transform(pickaxeOnly())
-			.transform(BlockStressDefaults.setImpact(8.0))
+			.onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 8.0))
 			.blockstate(BlockStateGen.axisBlockProvider(true))
 			.item(GiantGearBlockItem::new)
 			.tab(DesiresCreativeModeTabs.BETA_CREATIVE_TAB.getKey())
@@ -370,6 +373,7 @@ public class DesiresBlocks {
 							.modelFile(AssetLookup.standardModel(c, p))
 							.build()))
 			.onRegister(connectedTextures(ItemStockpileCTBehaviour::new))
+			.onRegister(block -> MountedItemStorageType.REGISTRY.register(block, DesiresMountedStorageTypes.ITEM_STOCKPILE.get()))
 			.item(ItemStockpileItem::new)
 			.recipe((c, p) -> {
 				p.stonecutting(DataIngredient.items(AllBlocks.ITEM_VAULT.get()), RecipeCategory.BUILDING_BLOCKS, c::get, 1);
@@ -396,6 +400,7 @@ public class DesiresBlocks {
 							.rotationY(s.getValue(FluidReservoirBlock.HORIZONTAL_AXIS) == Direction.Axis.X ? 90 : 0)
 							.build()))
 			.onRegister(connectedTextures(FluidReservoirCTBehaviour::new))
+			.onRegister(block -> MountedFluidStorageType.REGISTRY.register(block, DesiresMountedStorageTypes.FLUID_RESERVOIR.get()))
 			.item(FluidReservoirItem::new)
 			.recipe((c, p) -> {
 				p.stonecutting(DataIngredient.items(AllBlocks.FLUID_TANK.get()), RecipeCategory.BUILDING_BLOCKS, c::get, 1);

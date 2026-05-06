@@ -2,11 +2,10 @@ package uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine;
 
 import java.util.List;
 
-import com.simibubi.create.content.kinetics.BlockStressValues;
+import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.kinetics.base.GeneratingKineticBlockEntity;
-import com.simibubi.create.foundation.utility.RegisteredObjects;
 
-import com.simibubi.create.foundation.utility.animation.LerpedFloat;
+import net.createmod.catnip.animation.LerpedFloat;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.nbt.CompoundTag;
@@ -95,7 +94,7 @@ public class PoweredFlywheelBlockEntity extends GeneratingKineticBlockEntity {
 		if (enginePos != null && capacityKey != null) {
 			compound.put("EnginePos", NbtUtils.writeBlockPos(enginePos));
 			compound.putFloat("EnginePower", engineEfficiency);
-			compound.putString("EngineType", RegisteredObjects.getKeyOrThrow(capacityKey)
+			compound.putString("EngineType", ForgeRegistries.BLOCKS.getKey(capacityKey)
 				.toString());
 		}
 		super.write(compound, clientPacket);

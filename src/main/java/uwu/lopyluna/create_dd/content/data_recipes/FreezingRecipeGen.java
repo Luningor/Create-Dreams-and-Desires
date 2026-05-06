@@ -12,6 +12,8 @@ import uwu.lopyluna.create_dd.registry.DesiresRecipeTypes;
 
 import java.util.function.Supplier;
 
+import static com.simibubi.create.api.data.recipe.BaseRecipeProvider.GeneratedRecipe;
+
 
 @SuppressWarnings({"unused"})
 public class FreezingRecipeGen extends DesireProcessingRecipeGen {

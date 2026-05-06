@@ -1,7 +1,7 @@
 package uwu.lopyluna.create_dd.content.entities.seething_ablaze;
 
 import com.simibubi.create.content.trains.CubeParticleData;
-import com.simibubi.create.foundation.utility.Color;
+import net.createmod.catnip.theme.Color;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;

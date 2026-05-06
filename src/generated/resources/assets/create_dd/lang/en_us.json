@@ -383,5 +383,7 @@
   "itemGroup.create_dd.base": "Create: Dreams n' Desires",
   "itemGroup.create_dd.beta": "DnDesires Beta Stuff",
   "itemGroup.create_dd.classic": "DnDesires Classic Stuff",
-  "itemGroup.create_dd.palettes": "DnDesires Building Blocks"
+  "itemGroup.create_dd.palettes": "DnDesires Building Blocks",
+  "ponder.tag.create_dd": "Create: Dreams n' Desires",
+  "ponder.tag.create_dd.description": "Welcome to the mod!"
 }

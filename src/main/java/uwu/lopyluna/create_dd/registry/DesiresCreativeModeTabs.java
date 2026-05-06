@@ -1,7 +1,6 @@
 package uwu.lopyluna.create_dd.registry;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.simibubi.create.foundation.utility.Components;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import it.unimi.dsi.fastutil.objects.*;
@@ -9,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
@@ -33,28 +33,28 @@ public class DesiresCreativeModeTabs {
 
 	public static final RegistryObject<CreativeModeTab> BASE_CREATIVE_TAB = REGISTER.register("base",
 			() -> CreativeModeTab.builder()
-					.title(Components.translatable("itemGroup.create_dd.base"))
+					.title(Component.translatable("itemGroup.create_dd.base"))
 					.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 					.icon(DesiresBlocks.COG_CRANK::asStack)
 					.displayItems(new DesiresCreativeModeTabs.RegistrateDisplayItemsGenerator(true, DesiresCreativeModeTabs.BASE_CREATIVE_TAB))
 					.build());
 	public static final RegistryObject<CreativeModeTab> PALETTES_CREATIVE_TAB = REGISTER.register("palettes",
 			() -> CreativeModeTab.builder()
-					.title(Components.translatable("itemGroup.create_dd.palettes"))
+					.title(Component.translatable("itemGroup.create_dd.palettes"))
 					.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 					.icon(DesiresPaletteBlocks.LIGHT_BLUE_BLUEPRINT_BLOCK::asStack)
 					.displayItems(new DesiresCreativeModeTabs.RegistrateDisplayItemsGenerator(true, DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB))
 					.build());
 	public static final RegistryObject<CreativeModeTab> CLASSIC_CREATIVE_TAB = REGISTER.register("classic",
 			() -> CreativeModeTab.builder()
-					.title(Components.translatable("itemGroup.create_dd.classic"))
+					.title(Component.translatable("itemGroup.create_dd.classic"))
 					.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 					.icon(ClassicItems.integrated_circuit::asStack)
 					.displayItems(new DesiresCreativeModeTabs.RegistrateDisplayItemsGenerator(true, DesiresCreativeModeTabs.CLASSIC_CREATIVE_TAB))
 					.build());
 	public static final RegistryObject<CreativeModeTab> BETA_CREATIVE_TAB = REGISTER.register("beta",
 			() -> CreativeModeTab.builder()
-					.title(Components.translatable("itemGroup.create_dd.beta"))
+					.title(Component.translatable("itemGroup.create_dd.beta"))
 					.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 					.icon(DesiresBlocks.CREATIVE_CASING::asStack)
 					.displayItems(new DesiresCreativeModeTabs.RegistrateDisplayItemsGenerator(true, DesiresCreativeModeTabs.BETA_CREATIVE_TAB))

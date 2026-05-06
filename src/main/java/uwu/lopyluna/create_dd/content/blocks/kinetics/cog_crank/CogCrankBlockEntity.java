@@ -1,14 +1,11 @@
 package uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank;
 
-import com.jozufozu.flywheel.api.Instancer;
-import com.jozufozu.flywheel.api.Material;
-import com.jozufozu.flywheel.core.materials.model.ModelData;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.content.kinetics.crank.HandCrankBlockEntity;
-import com.simibubi.create.foundation.render.CachedBufferer;
-import com.simibubi.create.foundation.render.SuperByteBuffer;
-import com.simibubi.create.foundation.utility.AnimationTickHolder;
+import net.createmod.catnip.animation.AnimationTickHolder;
+import net.createmod.catnip.render.CachedBuffers;
+import net.createmod.catnip.render.SuperByteBuffer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -30,6 +27,7 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
     public CogCrankBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
+
     @Override
     public void turn(boolean back) {
         boolean update = false;
@@ -42,6 +40,7 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
         if (update && !level.isClientSide)
             updateGeneratedRotation();
     }
+
     @Override
     public float getIndependentAngle(float partialTicks) {
         return (independentAngle + partialTicks * chasingVelocity) / 360;
@@ -50,12 +49,12 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
     @Override
     public float getGeneratedSpeed() {
         Block block = getBlockState().getBlock();
-        if (!(block instanceof CogCrankBlock))
+        if (!(block instanceof CogCrankBlock crank))
             return 0;
-        CogCrankBlock crank = (CogCrankBlock) block;
         int speed = (inUse == 0 ? 0 : clockwise() ? -1 : 1) * crank.getRotationSpeed();
         return speed;
     }
+
     @Override
     protected boolean clockwise() {
         return backwards;
@@ -92,21 +91,14 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
             }
         }
     }
+
     @Override
     @OnlyIn(Dist.CLIENT)
     public SuperByteBuffer getRenderedHandle() {
         BlockState blockState = getBlockState();
         Direction facing = blockState.getOptionalValue(CogCrankBlock.FACING)
                 .orElse(Direction.UP);
-        return CachedBufferer.partialFacing(DesiresPartialModels.COG_CRANK_HANDLE, blockState, facing.getOpposite());
-    }
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public Instancer<ModelData> getRenderedHandleInstance(Material<ModelData> material) {
-        BlockState blockState = getBlockState();
-        Direction facing = blockState.getOptionalValue(CogCrankBlock.FACING)
-                .orElse(Direction.UP);
-        return material.getModel(DesiresPartialModels.COG_CRANK_HANDLE, blockState, facing.getOpposite());
+        return CachedBuffers.partialFacing(DesiresPartialModels.COG_CRANK_HANDLE, blockState, facing.getOpposite());
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -3,7 +3,7 @@ package uwu.lopyluna.create_dd.content.items.equipment.deforester_saw;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.foundation.item.render.SimpleCustomRenderer;
-import com.simibubi.create.foundation.utility.VecHelper;
+import net.createmod.catnip.math.VecHelper;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -29,7 +29,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import java.util.function.Consumer;
 
-import static com.simibubi.create.foundation.utility.TreeCutter.findTree;
+import static com.simibubi.create.content.kinetics.saw.TreeCutter.findTree;
 import static uwu.lopyluna.create_dd.registry.DesireTiers.Deforester;
 
 @ParametersAreNonnullByDefault
@@ -52,7 +52,7 @@ public class DeforesterSawItem extends BackTankAxeItem {
         Vec3 vec = player.getLookAngle();
 
         deforesting = true;
-        findTree(pLevel, pos).destroyBlocks(pLevel, player, (dropPos, item) -> dropItemFromCutTree(pLevel, pos, vec, dropPos, item));
+        findTree(pLevel, pos, state).destroyBlocks(pLevel, player, (dropPos, item) -> dropItemFromCutTree(pLevel, pos, vec, dropPos, item));
         deforesting = false;
     }
 
