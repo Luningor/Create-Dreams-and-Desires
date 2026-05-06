@@ -7,6 +7,7 @@ import com.simibubi.create.AllTags;
 import com.simibubi.create.api.behaviour.display.DisplaySource;
 import com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType;
 import com.simibubi.create.api.contraption.storage.item.MountedItemStorageType;
+import com.simibubi.create.api.registry.CreateRegistries;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.kinetics.gauge.GaugeGenerator;
@@ -373,7 +374,8 @@ public class DesiresBlocks {
 							.modelFile(AssetLookup.standardModel(c, p))
 							.build()))
 			.onRegister(connectedTextures(ItemStockpileCTBehaviour::new))
-			.onRegister(block -> MountedItemStorageType.REGISTRY.register(block, DesiresMountedStorageTypes.ITEM_STOCKPILE.get()))
+			.onRegisterAfter(CreateRegistries.MOUNTED_ITEM_STORAGE_TYPE, block ->
+					MountedItemStorageType.REGISTRY.register(block, DesiresMountedStorageTypes.ITEM_STOCKPILE.get()))
 			.item(ItemStockpileItem::new)
 			.recipe((c, p) -> {
 				p.stonecutting(DataIngredient.items(AllBlocks.ITEM_VAULT.get()), RecipeCategory.BUILDING_BLOCKS, c::get, 1);
@@ -400,7 +402,8 @@ public class DesiresBlocks {
 							.rotationY(s.getValue(FluidReservoirBlock.HORIZONTAL_AXIS) == Direction.Axis.X ? 90 : 0)
 							.build()))
 			.onRegister(connectedTextures(FluidReservoirCTBehaviour::new))
-			.onRegister(block -> MountedFluidStorageType.REGISTRY.register(block, DesiresMountedStorageTypes.FLUID_RESERVOIR.get()))
+			.onRegisterAfter(CreateRegistries.MOUNTED_FLUID_STORAGE_TYPE, block ->
+					MountedFluidStorageType.REGISTRY.register(block, DesiresMountedStorageTypes.FLUID_RESERVOIR.get()))
 			.item(FluidReservoirItem::new)
 			.recipe((c, p) -> {
 				p.stonecutting(DataIngredient.items(AllBlocks.FLUID_TANK.get()), RecipeCategory.BUILDING_BLOCKS, c::get, 1);

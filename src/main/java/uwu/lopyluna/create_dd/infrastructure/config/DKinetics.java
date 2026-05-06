@@ -5,8 +5,6 @@ import net.createmod.catnip.config.ConfigBase;
 public class DKinetics extends ConfigBase {
 
 	public final ConfigFloat cogCrankHungerMultiplier = f(.01f, 0, 1, "cogCrankHungerMultiplier", Comments.cogCrankHungerMultiplier);
-
-	public final ConfigGroup fan = group(1, "industrialFan", "Industrial Fan");
 	public final ConfigInt fanPushDistance = i(40, 5, "fanPushDistance", Comments.fanPushDistance);
 	public final ConfigInt fanPullDistance = i(40, 5, "fanPullDistance", Comments.fanPullDistance);
 	public final ConfigInt fanRotationArgmax = i(256, 64, "fanRotationArgmax", Comments.rpm, Comments.fanRotationArgmax);
@@ -17,8 +15,6 @@ public class DKinetics extends ConfigBase {
 
 	//public final ConfigBool weakenedHarvestPartiallyGrown = b(true, "weakenedHarvestPartiallyGrown", Comments.weakenedHarvestPartiallyGrown);
 	//public final ConfigBool weakenedHarvesterReplants = b(false, "weakenedHarvesterReplants", Comments.weakenedHarvesterReplants);
-
-	public final ConfigGroup stats = group(1, "stats", Comments.stats);
 
 	@Override
 	public String getName() {
