@@ -2,7 +2,9 @@ package uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank;
 
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllSoundEvents;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.crank.HandCrankBlockEntity;
+import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.render.CachedBuffers;
 import net.createmod.catnip.render.SuperByteBuffer;
@@ -12,6 +14,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import uwu.lopyluna.create_dd.registry.DesiresBlocks;
@@ -30,15 +33,14 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
 
     @Override
     public void turn(boolean back) {
-        boolean update = false;
-
-        if (getGeneratedSpeed() == 0 || back != backwards)
-            update = true;
+        boolean update = getGeneratedSpeed() == 0 || back != backwards;
 
         inUse = 10;
         this.backwards = back;
-        if (update && !level.isClientSide)
-            updateGeneratedRotation();
+        if (update) {
+            assert level != null;
+            if (!level.isClientSide) updateGeneratedRotation();
+        }
     }
 
     @Override
@@ -51,8 +53,7 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
         Block block = getBlockState().getBlock();
         if (!(block instanceof CogCrankBlock crank))
             return 0;
-        int speed = (inUse == 0 ? 0 : clockwise() ? -1 : 1) * crank.getRotationSpeed();
-        return speed;
+        return (inUse == 0 ? 0 : clockwise() ? -1 : 1) * crank.getRotationSpeed();
     }
 
     @Override
@@ -85,9 +86,12 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
         if (inUse > 0) {
             inUse--;
 
-            if (inUse == 0 && !level.isClientSide) {
-                sequenceContext = null;
-                updateGeneratedRotation();
+            if (inUse == 0) {
+                assert level != null;
+                if (!level.isClientSide) {
+                    sequenceContext = null;
+                    updateGeneratedRotation();
+                }
             }
         }
     }
@@ -98,7 +102,7 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
         BlockState blockState = getBlockState();
         Direction facing = blockState.getOptionalValue(CogCrankBlock.FACING)
                 .orElse(Direction.UP);
-        return CachedBuffers.partialFacing(DesiresPartialModels.COG_CRANK_HANDLE, blockState, facing.getOpposite());
+        return CachedBuffers.partialFacing(DesiresPartialModels.COG_CRANK_COG, blockState, facing.getOpposite());
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -127,5 +131,9 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
                 return;
             AllSoundEvents.CRANKING.playAt(level, worldPosition, (inUse) / 2.5f, .65f + (10 - inUse) / 10f, true);
         }
+    }
+
+    public float getRotationAngle(float pt) {
+        return CogCrankRenderer.getAngleForBe(this, worldPosition, getBlockState().getValue(CogCrankBlock.FACING).getAxis());
     }
 }

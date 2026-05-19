@@ -58,7 +58,8 @@ public class GiantGearBlock extends RotatedPillarKineticBlock implements IBE<Gia
 
     @Override
     public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.ENTITYBLOCK_ANIMATED;
+        return RenderShape.ENTITYBLOCK_ANIMATED; // Does not work (yet)
+        //return RenderShape.MODEL;
     }
 
     @Override

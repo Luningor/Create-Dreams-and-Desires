@@ -40,7 +40,7 @@ public class PoweredFlywheelVisual extends KineticBlockEntityVisual<PoweredFlywh
                 .rotateToFace(axis)
                 .setChanged();
 
-        wheel = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.block(blockState))
+        wheel = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(AllPartialModels.FLYWHEEL))
                 .createInstance();
 
         Direction align = Direction.fromAxisAndDirection(axis, Direction.AxisDirection.POSITIVE);

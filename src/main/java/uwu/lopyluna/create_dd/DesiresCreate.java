@@ -86,7 +86,6 @@ public class DesiresCreate
         DesiresFluids.register();
         DesiresPaletteBlocks.register();
         //ClassicBlocks.register();
-        ClassicItems.register();
         ClassicBlockEntityTypes.register();
         DesiresEntityTypes.register();
         DesiresBlockEntityTypes.register();

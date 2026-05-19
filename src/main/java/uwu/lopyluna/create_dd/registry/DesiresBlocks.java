@@ -13,15 +13,12 @@ import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.kinetics.gauge.GaugeGenerator;
 import com.simibubi.create.content.kinetics.motor.CreativeMotorGenerator;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
-import com.simibubi.create.content.redstone.displayLink.source.KineticSpeedDisplaySource;
-import com.simibubi.create.content.redstone.displayLink.source.KineticStressDisplaySource;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import net.createmod.catnip.data.Couple;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -43,6 +40,8 @@ import net.minecraftforge.common.util.ForgeSoundType;
 import uwu.lopyluna.create_dd.DesiresCreate;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.bore_block.BoreBlock;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.bore_block.BoreBlockMovementBehaviour;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.multimeter.MultiMeterBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlockItem;
@@ -54,7 +53,7 @@ import uwu.lopyluna.create_dd.content.blocks.functional.FanSailBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.FurnaceEngineBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.FurnaceEngineGenerator;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.PoweredFlywheelBlock;
-import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlock;
+//import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlock;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlock;
@@ -106,16 +105,16 @@ public class DesiresBlocks {
 
 	public static final BlockEntry<CasingBlock> CREATIVE_CASING = REGISTRATE.block("creative_casing", CasingBlock::new)
 			.transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.CREATIVE_CASING))
-			.properties(p -> p.mapColor(MapColor.COLOR_BLACK)
-					.requiresCorrectToolForDrops())
-			.properties(p -> p.sound(new ForgeSoundType(0.8f, .8f, () -> DesiresSoundEvents.CREATVEDITE_BREAK.get(),
+            .properties(p -> p.mapColor(MapColor.COLOR_BLACK)
+                    .requiresCorrectToolForDrops())
+            .properties(p -> p.sound(new ForgeSoundType(0.8f, .8f, () -> DesiresSoundEvents.CREATVEDITE_BREAK.get(),
 					() -> DesiresSoundEvents.CREATVEDITE_STEP.get(), () -> DesiresSoundEvents.CREATVEDITE_PLACE.get(),
 					() -> DesiresSoundEvents.CREATVEDITE_HIT.get(), () -> DesiresSoundEvents.CREATVEDITE_FALL.get())))
 			.transform(pickaxeOnly())
 			.properties(p -> p.lightLevel($ -> 5))
 			.lang("Creative Casing")
 			.item()
-			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
 			.properties(p -> p.rarity(Rarity.EPIC))
 			.build()
 			.register();
@@ -131,6 +130,66 @@ public class DesiresBlocks {
 			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
 			.build()
 			.register();
+
+	public static final BlockEntry<CasingBlock> FAUXVAULT_CASING = REGISTRATE.block("fauxvault_casing", CasingBlock::new)
+			.transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.FAUXVAULT_CASING))
+			.properties(p -> p.mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
+					.requiresCorrectToolForDrops()
+					.sound(SoundType.NETHERITE_BLOCK))
+			.transform(pickaxeOnly())
+			.lang("Faux Vault Casing")
+			.item()
+			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+			.build()
+			.register();
+
+    public static final BlockEntry<CasingBlock> HEAVY_BRASS_CASING = REGISTRATE.block("heavy_brass_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.HEAVY_BRASS_CASING))
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK))
+            .transform(pickaxeOnly())
+            .lang("Heavy brass Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CasingBlock> INDUSTRIAL_BRASS_CASING = REGISTRATE.block("industrial_brass_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.INDUSTRIAL_BRASS_CASING))
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK))
+            .transform(pickaxeOnly())
+            .lang("Industrial brass Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CasingBlock> FAUX_INDUSTRIAL_BRASS_CASING = REGISTRATE.block("faux_industrial_brass_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.FAUX_INDUSTRIAL_BRASS_CASING))
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK))
+            .transform(pickaxeOnly())
+            .lang("Faux industrial brass Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CasingBlock> TECHBRAIN_CASING = REGISTRATE.block("techbrain_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.TECHBRAIN_CASING))
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK))
+            .transform(pickaxeOnly())
+            .lang("Techbrain Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
 	public static final BlockEntry<CasingBlock> HYDRAULIC_CASING = REGISTRATE.block("hydraulic_casing", CasingBlock::new)
 			.transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.HYDRAULIC_CASING))
@@ -149,12 +208,12 @@ public class DesiresBlocks {
 			.properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN)
 					.requiresCorrectToolForDrops()
 					.sound(SoundType.NETHERITE_BLOCK))
-			.transform(pickaxeOnly())
-			.lang("Industrial Casing")
-			.item()
-			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-			.build()
-			.register();
+            .transform(pickaxeOnly())
+            .lang("Industrial Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
 	public static final BlockEntry<IndustrialFanBlock> INDUSTRIAL_FAN = REGISTRATE.block("industrial_fan", IndustrialFanBlock::new)
 			.initialProperties(SharedProperties::stone)
@@ -298,6 +357,20 @@ public class DesiresBlocks {
 			.transform(customItemModel())
 			.register();
 
+	public static final BlockEntry<AcceleratorMotorBlock> ACCELERATOR_MOTOR = REGISTRATE
+			.block("accelerator_motor", AcceleratorMotorBlock::new)
+			.initialProperties(SharedProperties::stone)
+			.properties(p -> p.mapColor(MapColor.COLOR_YELLOW))
+			.tag(AllTags.AllBlockTags.SAFE_NBT.tag)
+			.transform(axeOrPickaxe())
+			.blockstate(new CreativeMotorGenerator()::generate)
+			.onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 0.0))
+			.onRegister(block -> BlockStressValues.RPM.register(block, new BlockStressValues.GeneratedRpm(256, true)))
+			.item()
+			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+			.transform(customItemModel())
+			.register();
+
 	public static final BlockEntry<CogCrankBlock> COG_CRANK = REGISTRATE.block("cog_crank", CogCrankBlock::new)
 			.initialProperties(SharedProperties::wooden)
 			.properties(p -> p.mapColor(MapColor.PODZOL))
@@ -333,20 +406,19 @@ public class DesiresBlocks {
 					.transform(ModelGen.customItemModel())
 					.register();
 
-	public static final BlockEntry<PoweredFlywheelBlock> POWERED_FLYWHEEL =
-			REGISTRATE.block("powered_flywheel", PoweredFlywheelBlock::new)
-					.initialProperties(SharedProperties::softMetal)
-					.properties(p -> p.mapColor(MapColor.METAL))
-					.transform(pickaxeOnly())
-					.blockstate(BlockStateGen.axisBlockProvider(false))
-					.loot((lt, block) -> lt.dropOther(block, AllBlocks.FLYWHEEL.get()))
-					.register();
+	public static final BlockEntry<PoweredFlywheelBlock> POWERED_FLYWHEEL = REGISTRATE.block("powered_flywheel", PoweredFlywheelBlock::new)
+            .initialProperties(SharedProperties::softMetal)
+            .properties(p -> p.mapColor(MapColor.METAL))
+            .transform(pickaxeOnly())
+            .blockstate(BlockStateGen.axisBlockProvider(false))
+            .loot((lt, block) -> lt.dropOther(block, AllBlocks.FLYWHEEL.get()))
+            .register();
 
 	public static final BlockEntry<GiantGearBlock> GIANT_GEAR = REGISTRATE.block("giant_gear", GiantGearBlock::new)
 			.initialProperties(SharedProperties::netheriteMetal)
 			.properties(p -> p.noOcclusion().sound(SoundType.METAL).mapColor(MapColor.COLOR_YELLOW))
 			.transform(pickaxeOnly())
-			.onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 8.0))
+			.onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
 			.blockstate(BlockStateGen.axisBlockProvider(true))
 			.item(GiantGearBlockItem::new)
 			.tab(DesiresCreativeModeTabs.BETA_CREATIVE_TAB.getKey())

@@ -18,6 +18,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraft.world.level.block.entity.BlastFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -64,7 +65,12 @@ public class FurnaceEngineBlockEntity extends SmartBlockEntity {
         AbstractFurnaceBlockEntity furnace = this.getFurnace();
 
         if (furnace != null && flywheel != null) {
-            float efficiency = furnace.cookingProgress > 0 && furnace.cookingTotalTime > 0 ? 1.0f : 0.0f;
+            float efficiency = furnace.cookingProgress > 0 && furnace.cookingTotalTime > 0 ? 0.5f : 0.0f;
+
+            if (furnace instanceof BlastFurnaceBlockEntity) {
+                efficiency *= 2.0f;
+            }
+
             if (efficiency > 0.0F && delayedTimer < 5) {
                 delayedTimer++;
             } else if (delayedTimer > 0) {
@@ -87,7 +93,7 @@ public class FurnaceEngineBlockEntity extends SmartBlockEntity {
                     facing = (Direction)blockState.getValue(SteamEngineBlock.FACING);
                 }
 
-                float delayedEfficiency = delayedTimer > 1 ? 1.0f : 0.0f;
+                float delayedEfficiency = delayedTimer > 1 ? efficiency : 0.0f;
 
                 if (delayedEfficiency > 0.0F) {
                     this.award(AllAdvancements.STEAM_ENGINE);

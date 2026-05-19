@@ -77,7 +77,7 @@ public class FurnaceEngineVisual extends AbstractBlockEntityVisual<FurnaceEngine
 
         boolean roll90 = facingAxis.isHorizontal() && axis == Axis.Y || facingAxis.isVertical() && axis == Axis.Z;
         float sine = Mth.sin(angle);
-        float sine2 = Mth.sin(angle - Mth.HALF_PI);
+        float sine2 = Mth.sin(angle - Mth.HALF_PI) / 2;
         float pistonOffset = (1.0f - sine) / 4.0f * 24.0f / 16.0f;
 
         transformed(this.piston, facing, roll90)
@@ -90,14 +90,14 @@ public class FurnaceEngineVisual extends AbstractBlockEntityVisual<FurnaceEngine
                 .uncenter()
                 .translate(0, pistonOffset, 0)
                 .translate(0, 0.25, 0.5)
-                .rotateX(sine2 * 23.0f)
+                .rotateX(sine2)
                 .translate(0, -0.25, -0.5)
                 .setChanged();
 
         transformed(connector, facing, roll90)
                 .translate(0, 2, 0)
                 .center()
-                .rotateX(-(angle + Mth.HALF_PI))
+                .rotateX(-(angle + Mth.HALF_PI + Mth.PI))
                 .uncenter()
                 .setChanged();
     }

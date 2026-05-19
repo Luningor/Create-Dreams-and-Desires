@@ -1,5 +1,6 @@
 package uwu.lopyluna.create_dd.registry;
 
+import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -18,6 +19,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.mutable.MutableObject;
+import org.jetbrains.annotations.NotNull;
 import uwu.lopyluna.create_dd.DesiresCreate;
 
 import java.util.LinkedList;
@@ -44,13 +46,6 @@ public class DesiresCreativeModeTabs {
 					.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 					.icon(DesiresPaletteBlocks.LIGHT_BLUE_BLUEPRINT_BLOCK::asStack)
 					.displayItems(new DesiresCreativeModeTabs.RegistrateDisplayItemsGenerator(true, DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB))
-					.build());
-	public static final RegistryObject<CreativeModeTab> CLASSIC_CREATIVE_TAB = REGISTER.register("classic",
-			() -> CreativeModeTab.builder()
-					.title(Component.translatable("itemGroup.create_dd.classic"))
-					.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
-					.icon(ClassicItems.integrated_circuit::asStack)
-					.displayItems(new DesiresCreativeModeTabs.RegistrateDisplayItemsGenerator(true, DesiresCreativeModeTabs.CLASSIC_CREATIVE_TAB))
 					.build());
 	public static final RegistryObject<CreativeModeTab> BETA_CREATIVE_TAB = REGISTER.register("beta",
 			() -> CreativeModeTab.builder()
@@ -105,27 +100,15 @@ public class DesiresCreativeModeTabs {
 
 			List<ItemProviderEntry<?>> simpleExclusions = List.of(
 					DesiresClassicStuffPorting.REVERSED_GEARSHIFT,
-					DesiresClassicStuffPorting.steel_block,
-					DesiresClassicStuffPorting.steel_casing,
-					DesiresClassicStuffPorting.steel_polished_block,
-					DesiresClassicStuffPorting.steel_polished_stairs,
-					DesiresClassicStuffPorting.steel_polished_slab,
-					DesiresClassicStuffPorting.steel_tiled_block,
-					DesiresClassicStuffPorting.steel_tiled_stairs,
-					DesiresClassicStuffPorting.steel_tiled_slab,
-					DesiresClassicStuffPorting.horizontal_hazard_block,
-					DesiresClassicStuffPorting.hazard_block_r,
-					DesiresClassicStuffPorting.horizontal_hazard_block_r,
 					DesiresClassicStuffPorting.inductive_mechanism,
 					DesiresClassicStuffPorting.incomplete_inductive_mechanism,
-					DesiresClassicStuffPorting.LAPIS_ALLOY,
 					DesiresItems.INCOMPLETE_KINETIC_MECHANISM,
-					ClassicItems.incomplete_abstruse_mechanism,
-					ClassicItems.incomplete_calculation_mechanism,
-					ClassicItems.incomplete_infernal_mechanism,
-					ClassicItems.incomplete_integrated_circuit,
-					ClassicItems.incomplete_integrated_mechanism,
-					ClassicItems.incomplete_sealed_mechanism
+                    DesiresItems.INCOMPLETE_ABSTRUSE_MECHANISM,
+                    DesiresItems.INCOMPLETE_CALCULATION_MECHANISM,
+                    DesiresItems.INCOMPLETE_INFERNAL_MECHANISM,
+                    DesiresItems.INCOMPLETE_INTEGRATED_CIRCUIT,
+                    DesiresItems.INCOMPLETE_INTEGRATED_MECHANISM,
+                    DesiresItems.INCOMPLETE_SEALED_MECHANISM
 			);
 
 			for (ItemProviderEntry<?> entry : simpleExclusions) {
@@ -136,9 +119,7 @@ public class DesiresCreativeModeTabs {
 		}
 
 		private static List<RegistrateDisplayItemsGenerator.ItemOrdering> makeOrderings() {
-			List<RegistrateDisplayItemsGenerator.ItemOrdering> orderings = new ReferenceArrayList<>();
-			
-			return orderings;
+            return new ReferenceArrayList<>();
 		}
 
 		private static Function<Item, ItemStack> makeStackFunc() {
@@ -166,7 +147,7 @@ public class DesiresCreativeModeTabs {
 		}
 
 		@Override
-		public void accept(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
+		public void accept(CreativeModeTab.@NotNull ItemDisplayParameters parameters, CreativeModeTab.@NotNull Output output) {
 			Predicate<Item> exclusionPredicate = makeExclusionPredicate();
 			List<RegistrateDisplayItemsGenerator.ItemOrdering> orderings = makeOrderings();
 			Function<Item, ItemStack> stackFunc = makeStackFunc();
@@ -188,10 +169,14 @@ public class DesiresCreativeModeTabs {
 		private List<Item> collectBlocks(Predicate<Item> exclusionPredicate) {
 			List<Item> items = new ReferenceArrayList<>();
 			for (RegistryEntry<Block> entry : DesiresCreate.REGISTRATE.getAll(Registries.BLOCK)) {
-				if (!CreateRegistrate.isInCreativeTab(entry, tabFilter))
+				if (entry.get() instanceof CasingBlock && tabFilter.get() == DesiresCreativeModeTabs.BASE_CREATIVE_TAB.get()) {
+                    Item item = entry.get().asItem();
+                    items.add(item);
+                }
+                if (!CreateRegistrate.isInCreativeTab(entry, tabFilter)) // Makes sure only in creative tab goes
 					continue;
 				Item item = entry.get()
-						.asItem();
+                        .asItem();
 				if (item == Items.AIR)
 					continue;
 				if (!exclusionPredicate.test(item))

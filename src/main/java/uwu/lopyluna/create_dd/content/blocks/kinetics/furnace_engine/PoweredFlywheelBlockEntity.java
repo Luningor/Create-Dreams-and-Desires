@@ -40,7 +40,8 @@ public class PoweredFlywheelBlockEntity extends GeneratingKineticBlockEntity {
 		super.tick();
 		if (initialTicks > 0)
 			initialTicks--;
-		if (this.level.isClientSide) {
+        assert this.level != null;
+        if (this.level.isClientSide) {
 			float targetSpeed = this.getSpeed();
 			this.visualSpeed.updateChaseTarget(targetSpeed);
 			this.visualSpeed.tickChaser();
@@ -52,15 +53,15 @@ public class PoweredFlywheelBlockEntity extends GeneratingKineticBlockEntity {
 	}
 
 	public void update(BlockPos sourcePos, int direction, float efficiency) {
-		BlockPos key = worldPosition.subtract(sourcePos);
-		enginePos = key;
+        enginePos = worldPosition.subtract(sourcePos);
 		float prev = engineEfficiency;
 		engineEfficiency = efficiency;
 		int prevDirection = this.movementDirection;
 		if (Mth.equal(efficiency, prev) && prevDirection == direction)
 			return;
 
-		capacityKey = level.getBlockState(sourcePos)
+        assert level != null;
+        capacityKey = level.getBlockState(sourcePos)
 			.getBlock();
 		this.movementDirection = direction;
 		updateGeneratedRotation();

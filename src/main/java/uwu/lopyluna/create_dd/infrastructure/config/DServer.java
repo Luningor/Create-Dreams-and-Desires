@@ -1,6 +1,7 @@
 package uwu.lopyluna.create_dd.infrastructure.config;
 
 import net.createmod.catnip.config.ConfigBase;
+import org.jetbrains.annotations.NotNull;
 
 public class DServer extends ConfigBase {
 
@@ -12,7 +13,7 @@ public class DServer extends ConfigBase {
 	//public final DEquipment equipment = nested(0, DEquipment::new, Comments.equipment);
 
 	@Override
-	public String getName() {
+	public @NotNull String getName() {
 		return "server";
 	}
 

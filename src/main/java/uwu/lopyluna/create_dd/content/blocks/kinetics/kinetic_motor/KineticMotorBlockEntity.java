@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -89,11 +84,14 @@ public class KineticMotorBlockEntity extends GeneratingKineticBlockEntity {
 
         return true;
     }
+
     public float getGeneratedSpeed() {
-        return !DesiresBlocks.KINETIC_MOTOR.has(this.getBlockState()) ? 0.0F : convertToDirection((float)this.generatedSpeed.getValue(), (Direction)this.getBlockState().getValue(KineticMotorBlock.FACING));
+        if (!DesiresBlocks.KINETIC_MOTOR.has(getBlockState()))
+            return 0;
+        return convertToDirection(generatedSpeed.getValue(), getBlockState().getValue(KineticMotorBlock.FACING));
     }
 
-    class MotorValueBox extends ValueBoxTransform.Sided {
+    static class MotorValueBox extends ValueBoxTransform.Sided {
         MotorValueBox() {
         }
 
@@ -110,12 +108,13 @@ public class KineticMotorBlockEntity extends GeneratingKineticBlockEntity {
         @Override
         public void rotate(LevelAccessor level, BlockPos pos, BlockState state, PoseStack ms) {
             super.rotate(level, pos, state, ms);
-            Direction facing = (Direction)state.getValue(KineticMotorBlock.FACING);
-            if (facing.getAxis() != Axis.Y) {
-                if (this.getSide() == Direction.UP) {
-                    TransformStack.of(ms).rotateZ(-AngleHelper.horizontalAngle(facing) + 180.0F);
-                }
-            }
+            Direction facing = state.getValue(KineticMotorBlock.FACING);
+            if (facing.getAxis() == Axis.Y)
+                return;
+            if (getSide() != Direction.UP)
+                return;
+            TransformStack.of(ms)
+                    .rotateZDegrees(-AngleHelper.horizontalAngle(facing) + 180);
         }
 
         protected boolean isSideActive(BlockState state, Direction direction) {

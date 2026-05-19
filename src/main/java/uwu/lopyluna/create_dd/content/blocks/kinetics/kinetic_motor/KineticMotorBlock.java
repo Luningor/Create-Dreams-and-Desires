@@ -16,26 +16,35 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import uwu.lopyluna.create_dd.registry.DesiresBlockEntityTypes;
 
+@SuppressWarnings({"unused", "deprecation", "all"})
 public class KineticMotorBlock extends DirectionalKineticBlock implements IBE<KineticMotorBlockEntity> {
+
     public KineticMotorBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
-        return AllShapes.MOTOR_BLOCK.get((Direction)state.getValue(FACING));
+        return AllShapes.MOTOR_BLOCK.get(state.getValue(FACING));
     }
 
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        Direction preferred = this.getPreferredFacing(context);
-        return (context.getPlayer() == null || !context.getPlayer().isShiftKeyDown()) && preferred != null ? (BlockState)this.defaultBlockState().setValue(FACING, preferred) : super.getStateForPlacement(context);
+        Direction preferred = getPreferredFacing(context);
+        if ((context.getPlayer() != null && context.getPlayer()
+                .isShiftKeyDown()) || preferred == null)
+            return super.getStateForPlacement(context);
+        return defaultBlockState().setValue(FACING, preferred);
     }
 
     public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
         return face == state.getValue(FACING);
     }
 
+    @Override
     public Direction.Axis getRotationAxis(BlockState state) {
-        return ((Direction)state.getValue(FACING)).getAxis();
+        return state.getValue(FACING)
+                .getAxis();
     }
 
     public boolean hideStressImpact() {

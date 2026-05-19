@@ -3,7 +3,6 @@ package uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.press.PressingBehaviour;
-import dev.engine_room.flywheel.api.backend.Backend;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import net.createmod.catnip.render.CachedBuffers;
 import net.createmod.catnip.render.SuperByteBuffer;
@@ -11,6 +10,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import uwu.lopyluna.create_dd.registry.DesiresPartialModels;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
@@ -21,7 +21,7 @@ public class HydraulicPressRenderer extends KineticBlockEntityRenderer<Hydraulic
     }
 
     @Override
-    public boolean shouldRenderOffScreen(HydraulicPressBlockEntity pBlockEntity) {
+    public boolean shouldRenderOffScreen(@NotNull HydraulicPressBlockEntity pBlockEntity) {
         return true;
     }
 
@@ -41,7 +41,7 @@ public class HydraulicPressRenderer extends KineticBlockEntityRenderer<Hydraulic
                 blockState.getValue(HORIZONTAL_FACING));
         headRender.translate(0, (-renderedHeadOffset / 1.2f) - 0.1f, 0)
                 .light(light)
-                .renderInto(ms, buffer.getBuffer(RenderType.solid()));
+                .renderInto(ms, buffer.getBuffer(RenderType.translucent()));
     }
 
     @Override

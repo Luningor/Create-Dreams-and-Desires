@@ -36,7 +36,7 @@ import java.util.function.Predicate;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class FanSailBlock extends WrenchableDirectionalBlock {
-    public static @NotNull FanSailBlock sail(Properties properties) {
+    public static FanSailBlock sail(Properties properties) {
         return new FanSailBlock(properties);
     }
     private static final int placementHelperId = PlacementHelpers.register(new PlacementHelper());
@@ -44,7 +44,6 @@ public class FanSailBlock extends WrenchableDirectionalBlock {
     protected FanSailBlock(Properties properties) {
         super(properties);
     }
-    @NotNull
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
                                  BlockHitResult ray) {
@@ -65,35 +64,35 @@ public class FanSailBlock extends WrenchableDirectionalBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = super.getStateForPlacement(context);
+        assert state != null;
         return state.setValue(FACING, state.getValue(FACING)
                 .getOpposite());
     }
 
-    @NotNull
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter p_220053_2_, BlockPos p_220053_3_,
-                               CollisionContext p_220053_4_) {
+    public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos,
+                               CollisionContext context) {
         return AllShapes.SAIL.get(state.getValue(FACING));
     }
-    @NotNull
+
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter p_220071_2_, BlockPos p_220071_3_,
-                                        CollisionContext p_220071_4_) {
-        return getShape(state, p_220071_2_, p_220071_3_, p_220071_4_);
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos,
+                                        CollisionContext context) {
+        return getShape(state, blockGetter, blockPos, context);
     }
     @Override
     public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
         super.fallOn(pLevel, pState, pPos, pEntity, 0);
     }
-    public void updateEntityAfterFallOn(BlockGetter p_176216_1_, Entity p_176216_2_) {
-        this.bounce(p_176216_2_);
+    public void updateEntityAfterFallOn(BlockGetter blockGetter, Entity entity) {
+        this.bounce(entity);
     }
 
-    private void bounce(Entity p_226860_1_) {
-        Vec3 Vector3d = p_226860_1_.getDeltaMovement();
+    private void bounce(Entity entity) {
+        Vec3 Vector3d = entity.getDeltaMovement();
         if (Vector3d.y < 0.0D) {
-            double d0 = p_226860_1_ instanceof LivingEntity ? 1.5D : 1.2D;
-            p_226860_1_.setDeltaMovement(Vector3d.x, -Vector3d.y * (double) 0.26F * d0, Vector3d.z);
+            double d0 = entity instanceof LivingEntity ? 1.5D : 1.2D;
+            entity.setDeltaMovement(Vector3d.x, -Vector3d.y * (double) 0.26F * d0, Vector3d.z);
         }
     }
 

@@ -5,20 +5,25 @@ import com.simibubi.create.content.kinetics.base.*;
 import com.simibubi.create.content.kinetics.transmission.SplitShaftRenderer;
 import com.simibubi.create.content.kinetics.transmission.SplitShaftVisual;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankVisual;
+//import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlockRenderer;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlockRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press.HydraulicPressVisual;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.industrial_fan_block.IndustrialFanVisual;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.multimeter.MultiMeterBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press.HydraulicPressBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press.HydraulicPressRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.industrial_fan_block.IndustrialFanBlockEntity;
-import uwu.lopyluna.create_dd.content.blocks.kinetics.industrial_fan_block.IndustrialFanRemderer;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.industrial_fan_block.IndustrialFanRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.*;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlockEntity;
-import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorRenderer;
+//import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlockRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlockEntity;
@@ -32,7 +37,7 @@ public class DesiresBlockEntityTypes {
 			.blockEntity("industrial_fan", IndustrialFanBlockEntity::new)
 			.visual(() -> IndustrialFanVisual::new, false)
 			.validBlocks(DesiresBlocks.INDUSTRIAL_FAN)
-			.renderer(() -> IndustrialFanRemderer::new)
+			.renderer(() -> IndustrialFanRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<HydraulicPressBlockEntity> HYDRAULIC_PRESS = REGISTRATE
@@ -80,17 +85,23 @@ public class DesiresBlockEntityTypes {
 			.renderer(() -> SplitShaftRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<KineticMotorBlockEntity> KINETIC_MOTOR = REGISTRATE
-			.blockEntity("motor", KineticMotorBlockEntity::new)
-			.visual(() -> SingleAxisRotatingVisual.ofZ(AllPartialModels.SHAFT_HALF), false)
-			.validBlocks(DesiresBlocks.KINETIC_MOTOR)
-			.renderer(() -> KineticMotorRenderer::new).register();
+    public static final BlockEntityEntry<KineticMotorBlockEntity> KINETIC_MOTOR = REGISTRATE
+            .blockEntity("motor", KineticMotorBlockEntity::new)
+            .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
+            .validBlocks(DesiresBlocks.KINETIC_MOTOR)
+            .renderer(() -> KineticMotorRenderer::new).register();
 
+    public static final BlockEntityEntry<AcceleratorMotorBlockEntity> ACCELERATOR_MOTOR = REGISTRATE
+            .blockEntity("acc_motor", AcceleratorMotorBlockEntity::new)
+            .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
+            .validBlocks(DesiresBlocks.ACCELERATOR_MOTOR)
+            .renderer(() -> AcceleratorMotorRenderer::new).register();
 
 	public static final BlockEntityEntry<GiantGearBlockEntity> GIANT_GEAR = REGISTRATE
 			.blockEntity("giant_gear", GiantGearBlockEntity::new)
 			.validBlocks(DesiresBlocks.GIANT_GEAR)
-			.renderer(() -> KineticBlockEntityRenderer::new)
+			//.renderer(() -> KineticBlockEntityRenderer::new)
+			.renderer(() -> GiantGearBlockRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<MultiMeterBlockEntity> MULTIMETER = REGISTRATE

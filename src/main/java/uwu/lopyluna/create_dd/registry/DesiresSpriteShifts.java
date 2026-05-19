@@ -37,13 +37,18 @@ public class DesiresSpriteShifts {
 			HAZARD_BLOCK = omni("hazard_block"),
 			DARK_METAL_PLATING = omni("dark_metal_plating"),
 			CREATIVE_CASING = omni("creative_casing"),
-			OVERBURDEN_CASING = omni("overburden_casing"),
+            OVERBURDEN_CASING = omni("overburden_casing"),
+            FAUXVAULT_CASING = omni("fauxvault_casing"),
+            TECHBRAIN_CASING = omni("techbrain_casing"),
+            FAUX_INDUSTRIAL_BRASS_CASING = omni("faux_industrial_brass_casing"),
+            HEAVY_BRASS_CASING = omni("heavy_brass_casing"),
+            INDUSTRIAL_BRASS_CASING = omni("industrial_brass_casing"),
 			INDUSTRIAL_CASING = omni("industrial_casing"),
 			HYDRAULIC_CASING = omni("hydraulic_casing");
 
 	public static final CTSpriteShiftEntry
 			CREATIVE_CASING_COGWHEEL_SIDE = vertical("creative_encased_cogwheel_side"),
-			OVERBURDEN_CASING_COGWHEEL_SIDE = vertical("overburden_encased_cogwheel_side"),
+            OVERBURDEN_CASING_COGWHEEL_SIDE = vertical("overburden_encased_cogwheel_side"),
 			INDUSTRIAL_CASING_COGWHEEL_SIDE = vertical("industrial_encased_cogwheel_side"),
 			HYDRAULIC_CASING_COGWHEEL_SIDE = vertical("hydraulic_encased_cogwheel_side");
 

@@ -1,13 +1,9 @@
 package uwu.lopyluna.create_dd.registry;
 
-import com.mojang.blaze3d.shaders.FogShape;
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.simibubi.create.AllFluids;
 import com.tterrag.registrate.builders.FluidBuilder.FluidTypeFactory;
 import com.tterrag.registrate.util.entry.FluidEntry;
 import net.createmod.catnip.theme.Color;
-import net.minecraft.client.Camera;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.FogRenderer.FogMode;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -15,19 +11,15 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fluids.FluidInteractionRegistry;
 import net.minecraftforge.fluids.FluidInteractionRegistry.InteractionInformation;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
-import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 import uwu.lopyluna.create_dd.infrastructure.config.DesiresConfigs;
 
 import javax.annotation.Nullable;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static uwu.lopyluna.create_dd.DesiresCreate.REGISTRATE;
@@ -35,23 +27,335 @@ import static uwu.lopyluna.create_dd.DesiresCreate.REGISTRATE;
 
 public class DesiresFluids {
 
-	public static final FluidEntry<ForgeFlowingFluid.Flowing> SAP =
-		REGISTRATE.standardFluid("sap",
-				SolidRenderedPlaceableFluidType.create(0xEAAE2F,
-					() -> 1f / 4f * DesiresConfigs.client().sapTransparencyMultiplier.getF()))
-			.lang("Sap")
-			.properties(b -> b.viscosity(2000)
-				.density(1400))
-			.fluidProperties(p -> p.levelDecreasePerBlock(2)
-				.tickRate(25)
-				.slopeFindDistance(3)
-				.explosionResistance(100f))
-			.tag(DesiresTags.AllFluidTags.SAP.tag)
-			.source(ForgeFlowingFluid.Source::new)
-			.bucket()
-			.tag(DesiresTags.forgeItemTag("buckets/sap"))
-			.build()
-			.register();
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> CONDENSE_MILK =
+            REGISTRATE.standardFluid("condense_milk",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().condense_milkTransparencyMultiplier.getF()))
+                    .lang("condense_milk")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.CONDENSE_MILK.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/condense_milk"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> CREAM =
+            REGISTRATE.standardFluid("cream",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().creamTransparencyMultiplier.getF()))
+                    .lang("cream")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.CREAM.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/cream"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> VANILLA =
+            REGISTRATE.standardFluid("vanilla",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().vanillaTransparencyMultiplier.getF()))
+                    .lang("vanilla")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.VANILLA.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/vanilla"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> VANILLA_MILKSHAKE =
+            REGISTRATE.standardFluid("vanilla_milkshake",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().vanilla_milkshakeTransparencyMultiplier.getF()))
+                    .lang("vanilla_milkshake")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.VANILLA_MILKSHAKE.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/vanilla_milkshake"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> STRAWBERRY =
+            REGISTRATE.standardFluid("strawberry",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().strawberryTransparencyMultiplier.getF()))
+                    .lang("strawberry")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.STRAWBERRY.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/strawberry"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> STRAWBERRY_MILKSHAKE =
+            REGISTRATE.standardFluid("strawberry_milkshake",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().strawberry_milkshakeTransparencyMultiplier.getF()))
+                    .lang("strawberry_milkshake")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.STRAWBERRY_MILKSHAKE.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/strawberry_milkshake"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> GLOWBERRY =
+            REGISTRATE.standardFluid("glowberry",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().glowberryTransparencyMultiplier.getF()))
+                    .lang("glowberry")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.GLOWBERRY.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/glowberry"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> GLOWBERRY_MILKSHAKE =
+            REGISTRATE.standardFluid("glowberry_milkshake",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().glowberry_milkshakeTransparencyMultiplier.getF()))
+                    .lang("glowberry_milkshake")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.GLOWBERRY_MILKSHAKE.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/glowberry_milkshake"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> CARAMEL =
+            REGISTRATE.standardFluid("caramel",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().caramelTransparencyMultiplier.getF()))
+                    .lang("caramel")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.CARAMEL.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/caramel"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> CARAMEL_MILKSHAKE =
+            REGISTRATE.standardFluid("caramel_milkshake",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().caramel_milkshakeTransparencyMultiplier.getF()))
+                    .lang("caramel_milkshake")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.CARAMEL_MILKSHAKE.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/caramel_milkshake"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> HOT_CHOCOLATE =
+            REGISTRATE.standardFluid("hot_chocolate",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().hot_chocolateTransparencyMultiplier.getF()))
+                    .lang("hot_chocolate")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.HOT_CHOCOLATE.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/hot_chocolate"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> CHOCOLATE_MILKSHAKE =
+            REGISTRATE.standardFluid("chocolate_milkshake",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().chocolate_milkshakeTransparencyMultiplier.getF()))
+                    .lang("chocolate_milkshake")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.CHOCOLATE_MILKSHAKE.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/chocolate_milkshake"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> SAP =
+            REGISTRATE.standardFluid("sap",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().sapTransparencyMultiplier.getF()))
+                    .lang("sap")
+                    .properties(b -> b.viscosity(1500)
+                            .density(1400))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.SAP.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/sap"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> CHROMATIC_WASTE =
+            REGISTRATE.standardFluid("chromatic_waste",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().chromatic_wasteTransparencyMultiplier.getF()))
+                    .lang("chromatic_waste")
+                    .properties(b -> b.viscosity(6000)
+                            .density(3000))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(25)
+                            .slopeFindDistance(3)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.CHROMATIC_WASTE.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/chromatic_waste"))
+                    .build()
+                    .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> SHIMMER =
+            REGISTRATE.standardFluid("shimmer",
+                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                                    () -> 1f / 4f * DesiresConfigs.client().shimmerTransparencyMultiplier.getF()))
+                    .lang("shimmer")
+                    .properties(b -> b.viscosity(6000)
+                            .density(50))
+                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .tickRate(20)
+                            .slopeFindDistance(0)
+                            .explosionResistance(100f)
+                    )
+                    .tag(DesiresTags.AllFluidTags.SHIMMER.tag)
+                    .source(ForgeFlowingFluid.Source::new)
+                    .block()
+                    .build()
+                    .bucket()
+                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                    .tag(DesiresTags.forgeItemTag("buckets/shimmer"))
+                    .build()
+                    .register();
 
 	// Load this class
 
@@ -83,122 +387,44 @@ public class DesiresFluids {
 		return null;
 	}
 
-	public static abstract class TintedFluidType extends FluidType {
+    private static class SolidRenderedPlaceableFluidType extends AllFluids.TintedFluidType {
 
-		protected static final int NO_TINT = 0xffffffff;
-		private ResourceLocation stillTexture;
-		private ResourceLocation flowingTexture;
+        private Vector3f fogColor;
+        private Supplier<Float> fogDistance;
 
-		public TintedFluidType(Properties properties, ResourceLocation stillTexture, ResourceLocation flowingTexture) {
-			super(properties);
-			this.stillTexture = stillTexture;
-			this.flowingTexture = flowingTexture;
-		}
+        public static FluidTypeFactory create(int fogColor, Supplier<Float> fogDistance) {
+            return (p, s, f) -> {
+                DesiresFluids.SolidRenderedPlaceableFluidType fluidType = new DesiresFluids.SolidRenderedPlaceableFluidType(p, s, f);
+                fluidType.fogColor = new Color(fogColor, false).asVectorF();
+                fluidType.fogDistance = fogDistance;
+                return fluidType;
+            };
+        }
 
-		@Override
-		public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
-			consumer.accept(new IClientFluidTypeExtensions() {
+        private SolidRenderedPlaceableFluidType(Properties properties, ResourceLocation stillTexture,
+                                                ResourceLocation flowingTexture) {
+            super(properties, stillTexture, flowingTexture);
+        }
 
-				@Override
-				public ResourceLocation getStillTexture() {
-					return stillTexture;
-				}
+        @Override
+        protected int getTintColor(FluidStack stack) {
+            return NO_TINT;
+        }
 
-				@Override
-				public ResourceLocation getFlowingTexture() {
-					return flowingTexture;
-				}
+        @Override
+        public int getTintColor(FluidState state, BlockAndTintGetter world, BlockPos pos) {
+            return NO_TINT;
+        }
 
-				@Override
-				public int getTintColor(FluidStack stack) {
-					return TintedFluidType.this.getTintColor(stack);
-				}
+        @Override
+        protected Vector3f getCustomFogColor() {
+            return fogColor;
+        }
 
-				@Override
-				public int getTintColor(FluidState state, BlockAndTintGetter getter, BlockPos pos) {
-					return TintedFluidType.this.getTintColor(state, getter, pos);
-				}
-				
-				@Override
-				public @NotNull Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level,
-														int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
-					Vector3f customFogColor = TintedFluidType.this.getCustomFogColor();
-					return customFogColor == null ? fluidFogColor : customFogColor;
-				}
+        @Override
+        protected float getFogDistanceModifier() {
+            return fogDistance.get();
+        }
 
-				@Override
-				public void modifyFogRender(Camera camera, FogMode mode, float renderDistance, float partialTick,
-					float nearDistance, float farDistance, FogShape shape) {
-					float modifier = TintedFluidType.this.getFogDistanceModifier();
-					float baseWaterFog = 96.0f;
-					if (modifier != 1f) {
-						RenderSystem.setShaderFogShape(FogShape.CYLINDER);
-						RenderSystem.setShaderFogStart(-8);
-						RenderSystem.setShaderFogEnd(baseWaterFog * modifier);
-					}
-				}
-
-			});
-		}
-
-		protected abstract int getTintColor(FluidStack stack);
-
-		protected abstract int getTintColor(FluidState state, BlockAndTintGetter getter, BlockPos pos);
-		
-		protected Vector3f getCustomFogColor() {
-			return null;
-		}
-		
-		protected float getFogDistanceModifier() {
-			return 1f;
-		}
-
-	}
-
-	private static class SolidRenderedPlaceableFluidType extends TintedFluidType {
-
-		private Vector3f fogColor;
-		private Supplier<Float> fogDistance;
-
-		public static FluidTypeFactory create(int fogColor, Supplier<Float> fogDistance) {
-			return (p, s, f) -> {
-				SolidRenderedPlaceableFluidType fluidType = new SolidRenderedPlaceableFluidType(p, s, f);
-				fluidType.fogColor = new Color(fogColor, false).asVectorF();
-				fluidType.fogDistance = fogDistance;
-				return fluidType;
-			};
-		}
-
-		private SolidRenderedPlaceableFluidType(Properties properties, ResourceLocation stillTexture,
-			ResourceLocation flowingTexture) {
-			super(properties, stillTexture, flowingTexture);
-		}
-
-		@Override
-		protected int getTintColor(FluidStack stack) {
-			return NO_TINT;
-		}
-
-		/*
-		 * Removing alpha from tint prevents optifine from forcibly applying biome
-		 * colors to modded fluids (this workaround only works for fluids in the solid
-		 * render layer)
-		 */
-		@Override
-		public int getTintColor(FluidState state, BlockAndTintGetter world, BlockPos pos) {
-			return 0x00ffffff;
-		}
-		
-		@Override
-		protected Vector3f getCustomFogColor() {
-			return fogColor;
-		}
-		
-		@Override
-		protected float getFogDistanceModifier() {
-			return fogDistance.get();
-		}
-
-	}
-
+    }
 }

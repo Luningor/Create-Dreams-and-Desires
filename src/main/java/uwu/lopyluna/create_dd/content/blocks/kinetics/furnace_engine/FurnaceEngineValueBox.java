@@ -1,8 +1,6 @@
 package uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
-import dev.engine_room.flywheel.lib.transform.TransformStack;
 import net.createmod.catnip.math.AngleHelper;
 import net.createmod.catnip.math.Pointing;
 import net.createmod.catnip.math.VecHelper;
@@ -58,27 +56,6 @@ public class FurnaceEngineValueBox extends ValueBoxTransform.Sided {
 		local = VecHelper.rotateCentered(local, verticalAngle, Axis.X);
 
 		return local;
-	}
-
-	@Override
-	public void rotate(LevelAccessor level, BlockPos pos, BlockState state, PoseStack ms) {
-		Direction facing = FurnaceEngineBlock.getFacing(state);
-
-		if (facing.getAxis() == Axis.Y) {
-			super.rotate(level, pos, state, ms);
-			return;
-		}
-
-		float roll = 0;
-		for (Pointing p : Pointing.values())
-			if (p.getCombinedDirection(facing) == getSide())
-				roll = p.getXRotation();
-
-		float yRot = AngleHelper.horizontalAngle(facing) + (facing == Direction.DOWN ? 180 : 0);
-		TransformStack.of(ms)
-				.rotateY(yRot)
-				.rotateX(facing == Direction.DOWN ? -90 : 90)
-				.rotateY(roll);
 	}
 
 	@Override

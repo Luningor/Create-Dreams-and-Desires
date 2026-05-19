@@ -1,10 +1,8 @@
 package uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear;
 
-import com.simibubi.create.CreateClient;
+import uwu.lopyluna.create_dd.registry.helper.Lang;
 import net.createmod.catnip.data.Pair;
 import net.createmod.catnip.outliner.Outliner;
-import uwu.lopyluna.create_dd.DesiresCreate;
-import uwu.lopyluna.create_dd.registry.helper.Lang;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

@@ -1,4 +1,5 @@
 {
+	"render_type": "minecraft:translucent",
 	"credit": "Made with Blockbench",
 	"textures": {
 		"axis_top": "create:block/axis_top",
