@@ -30,6 +30,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -62,6 +63,7 @@ import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidRese
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileBlock;
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileCTBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileItem;
+import uwu.lopyluna.create_dd.content.blocks.magic.*;
 
 import java.util.function.Consumer;
 
@@ -76,6 +78,246 @@ import static uwu.lopyluna.create_dd.registry.DesiresPaletteBlocks.rubberDecorTa
 
 @SuppressWarnings({"unused", "removal", "all"})
 public class DesiresBlocks {
+
+    public static final BlockEntry<Block> TIN_ORE = REGISTRATE.block("tin_ore", Block::new)
+            .initialProperties(() -> Blocks.STONE)
+            .properties(p -> p.mapColor(MapColor.STONE))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .properties(p -> p.strength(3f,3f))
+            .lang("Tin Ore")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> DEEPSLATE_TIN_ORE = REGISTRATE.block("deepslate_tin_ore", Block::new)
+            .initialProperties(() -> Blocks.DEEPSLATE_GOLD_ORE)
+            .properties(p -> p.mapColor(MapColor.DEEPSLATE))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))
+            .properties(p -> p.strength(4.5f,3f))
+            .lang("Deepslate Tin Ore")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> RAW_TIN_BLOCK = REGISTRATE.block("raw_tin_block", Block::new)
+            .initialProperties(() -> Blocks.STONE)
+            .properties(p -> p.mapColor(MapColor.COLOR_LIGHT_GRAY))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .properties(p -> p.strength(1f,1.6f))
+            .lang("Block of Raw Tin")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> TIN_BLOCK = REGISTRATE.block("tin_block", Block::new)
+            .initialProperties(() -> Blocks.STONE)
+            .properties(p -> p.mapColor(MapColor.QUARTZ))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.METAL))
+            .properties(p -> p.strength(3f,6f))
+            .lang("Block of Tin")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> LEATHER_BLOCK = REGISTRATE.block("leather_block", Block::new)
+            .initialProperties(() -> Blocks.HAY_BLOCK)
+            .properties(p -> p.mapColor(MapColor.COLOR_ORANGE))
+            .properties(p -> p.sound(SoundType.WOOL))
+            .properties(p -> p.strength(0.5f,1f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            //.transform(tagBlockAndItem("storage_blocks/leather"))
+            .lang("Block of Leather")
+            .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> MITHRIL_BLOCK = REGISTRATE.block("mithril_block", Block::new)
+            .initialProperties(SharedProperties::netheriteMetal)
+            .properties(p -> p.mapColor(MapColor.WARPED_NYLIUM))
+            .properties(p -> p.sound(new ForgeSoundType(0.75f, .7f, () -> DesiresSoundEvents.MAGICAL_METAL_BREAK.get(),
+                    () -> DesiresSoundEvents.MAGICAL_METAL_STEP.get(), () -> DesiresSoundEvents.MAGICAL_METAL_PLACE.get(),
+                    () -> DesiresSoundEvents.MAGICAL_METAL_HIT.get(), () -> DesiresSoundEvents.MAGICAL_METAL_FALL.get())))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .properties(p -> p.strength(16f,48f))
+            .lang("Block of Mithril")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> BRONZE_BLOCK = REGISTRATE.block("bronze_block", Block::new)
+            .initialProperties(SharedProperties::netheriteMetal)
+            .properties(p -> p.mapColor(MapColor.COLOR_ORANGE))
+            .properties(p -> p.strength(12f,10f))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .lang("Block of Bronze")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> STEEL_BLOCK = REGISTRATE.block("steel_block", Block::new)
+            .initialProperties(SharedProperties::netheriteMetal)
+            .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK))
+            .properties(p -> p.strength(6f,16f))
+            .lang("Block of Steel")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> INDUSTRIAL_IRON_BLOCK = REGISTRATE.block("industrial_iron_block", Block::new)
+            .initialProperties(SharedProperties::softMetal)
+            .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
+            .properties(p -> p.sound(SoundType.NETHERITE_BLOCK))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .transform(pickaxeOnly())
+            .tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag)
+            .lang("Solid Block of Industrial Iron")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> LAPIS_ALLOY_BLOCK = REGISTRATE.block("lapis_alloy_block", Block::new)
+            .initialProperties(() -> Blocks.ANDESITE)
+            .properties(p -> p.mapColor(MapColor.STONE))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .transform(pickaxeOnly())
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            //.transform(tagBlockAndItem("storage_blocks/lapis_alloy"))
+            .lang("Block of Lapis Alloy")
+            .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> EMBER_ALLOY_BLOCK = REGISTRATE.block("ember_alloy_block", Block::new)
+            .initialProperties(() -> Blocks.BROWN_TERRACOTTA)
+            .properties(p -> p.mapColor(MapColor.STONE))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .transform(pickaxeOnly())
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            //.transform(tagBlockAndItem("storage_blocks/ember_alloy"))
+            .lang("Block of Ember Alloy")
+            .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> CHROMATIC_BLOCK = REGISTRATE.block("chromatic_block", Block::new)
+            .initialProperties(() -> Blocks.NETHERITE_BLOCK)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, 1.2f, () -> SoundEvents.POLISHED_DEEPSLATE_BREAK,
+                    () -> SoundEvents.POLISHED_DEEPSLATE_STEP, () -> SoundEvents.POLISHED_DEEPSLATE_PLACE,
+                    () -> SoundEvents.POLISHED_DEEPSLATE_HIT, () -> SoundEvents.POLISHED_DEEPSLATE_FALL)))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .properties(p -> p.strength(12f,25f))
+            .transform(pickaxeOnly())
+            .lang("Block of Chromatic Compound")
+            .item()
+            .properties(p -> p.rarity(Rarity.UNCOMMON))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<RadiantBlock> REFINED_RADIANCE_BLOCK = REGISTRATE.block("refined_radiance_block", RadiantBlock::new)
+            .initialProperties(() -> Blocks.NETHERITE_BLOCK)
+            .properties(p -> p.mapColor(MapColor.SNOW))
+            .properties(p -> p.sound(new ForgeSoundType(1, 1.25f, () -> SoundEvents.AMETHYST_BLOCK_BREAK,
+                    () -> SoundEvents.AMETHYST_BLOCK_STEP, () -> SoundEvents.AMETHYST_BLOCK_PLACE,
+                    () -> SoundEvents.AMETHYST_BLOCK_HIT, () -> SoundEvents.AMETHYST_BLOCK_FALL)))
+            .properties(p -> p.lightLevel($ -> 12))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .properties(p -> p.strength(16f,48f))
+            .transform(pickaxeOnly())
+            .lang("Block of Refined Radiance")
+            .item()
+            .properties(p -> p.rarity(Rarity.UNCOMMON))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<ShadowBlock> SHADOW_STEEL_BLOCK = REGISTRATE.block("shadow_steel_block", ShadowBlock::new)
+            .initialProperties(() -> Blocks.NETHERITE_BLOCK)
+            .properties(p -> p.mapColor(MapColor.COLOR_BLACK))
+            .properties(p -> p.sound(new ForgeSoundType(1, .25f, () -> SoundEvents.AMETHYST_CLUSTER_BREAK,
+                    () -> SoundEvents.AMETHYST_CLUSTER_STEP, () -> SoundEvents.AMETHYST_CLUSTER_PLACE,
+                    () -> SoundEvents.AMETHYST_CLUSTER_HIT, () -> SoundEvents.AMETHYST_CLUSTER_FALL)))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .properties(p -> p.strength(16f,48f))
+            .transform(pickaxeOnly())
+            .lang("Block of Shadow Steel")
+            .item()
+            .properties(p -> p.rarity(Rarity.UNCOMMON))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<OverchargedAlloyBlock> OVERCHARGED_ALLOY_BLOCK = REGISTRATE.block("overcharged_alloy_block", OverchargedAlloyBlock::new)
+            .initialProperties(() -> Blocks.NETHERITE_BLOCK)
+            .properties(p -> p.mapColor(MapColor.COLOR_LIGHT_BLUE))
+            .properties(p -> p.sound(new ForgeSoundType(1, 1.25f, () -> SoundEvents.AMETHYST_CLUSTER_BREAK,
+                    () -> SoundEvents.AMETHYST_CLUSTER_STEP, () -> SoundEvents.AMETHYST_CLUSTER_PLACE,
+                    () -> SoundEvents.AMETHYST_CLUSTER_HIT, () -> SoundEvents.AMETHYST_CLUSTER_FALL)))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .properties(p -> p.strength(12f,32f))
+            .transform(pickaxeOnly())
+            .item()
+            .properties(p -> p.rarity(Rarity.UNCOMMON))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<BlazeGoldBlock> BLAZE_GOLD_BLOCK = REGISTRATE.block("blaze_gold_block", BlazeGoldBlock::new)
+            .initialProperties(() -> Blocks.NETHERITE_BLOCK)
+            .properties(p -> p.mapColor(MapColor.COLOR_YELLOW))
+            .properties(p -> p.sound(new ForgeSoundType(1, 1f, () -> SoundEvents.AMETHYST_CLUSTER_BREAK,
+                    () -> SoundEvents.AMETHYST_CLUSTER_STEP, () -> SoundEvents.AMETHYST_CLUSTER_PLACE,
+                    () -> SoundEvents.AMETHYST_CLUSTER_HIT, () -> SoundEvents.AMETHYST_CLUSTER_FALL)))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .properties(p -> p.strength(8f,24f))
+            .transform(pickaxeOnly())
+            .item()
+            .properties(p -> p.rarity(Rarity.UNCOMMON))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<StargazeBlock> STARGAZE_SINGULARITY_BLOCK = REGISTRATE.block("stargaze_singularity_block", StargazeBlock::new)
+            .initialProperties(() -> Blocks.NETHERITE_BLOCK)
+            .properties(p -> p.mapColor(MapColor.COLOR_BLACK))
+            .properties(p -> p.sound(new ForgeSoundType(1, .75f, () -> SoundEvents.AMETHYST_CLUSTER_BREAK,
+                    () -> SoundEvents.AMETHYST_CLUSTER_STEP, () -> SoundEvents.AMETHYST_CLUSTER_PLACE,
+                    () -> SoundEvents.AMETHYST_CLUSTER_HIT, () -> SoundEvents.AMETHYST_CLUSTER_FALL)))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .properties(p -> p.strength(32f,512f))
+            .transform(pickaxeOnly())
+            .item()
+            .properties(p -> p.rarity(Rarity.EPIC))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> MOSSY_ANDESITE_ALLOY_BLOCK = REGISTRATE.block("mossy_andesite_alloy_block", Block::new)
+            .initialProperties(() -> Blocks.ANDESITE)
+            .properties(p -> p.mapColor(MapColor.STONE))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .transform(pickaxeOnly())
+            .lang("Mossy Block of Andesite Alloy")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
 	public static final BlockEntry<Block> RAW_RUBBER_BLOCK = REGISTRATE.block("raw_rubber_block", Block::new)
 			.properties(p -> p.mapColor(MapColor.TERRACOTTA_WHITE))
@@ -119,61 +361,13 @@ public class DesiresBlocks {
 			.build()
 			.register();
 
-	public static final BlockEntry<CasingBlock> OVERBURDEN_CASING = REGISTRATE.block("overburden_casing", CasingBlock::new)
-			.transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.OVERBURDEN_CASING))
-			.properties(p -> p.mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
-					.requiresCorrectToolForDrops()
-					.sound(SoundType.NETHERITE_BLOCK))
-			.transform(pickaxeOnly())
-			.lang("Overburden Casing")
-			.item()
-			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-			.build()
-			.register();
-
-    public static final BlockEntry<CasingBlock> HYDRAULIC_CASING = REGISTRATE.block("hydraulic_casing", CasingBlock::new)
-            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.HYDRAULIC_CASING))
-            .properties(p -> p.mapColor(MapColor.COLOR_ORANGE)
+    public static final BlockEntry<CasingBlock> MITHRIL_CASING = REGISTRATE.block("mithril_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.MITHRIL_CASING))
+            .properties(p -> p.mapColor(MapColor.COLOR_CYAN)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.COPPER))
             .transform(pickaxeOnly())
-            .lang("Hydraulic Casing")
-            .item()
-            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-            .build()
-            .register();
-
-    public static final BlockEntry<CasingBlock> INDUSTRIAL_CASING = REGISTRATE.block("industrial_casing", CasingBlock::new)
-            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.INDUSTRIAL_CASING))
-            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.NETHERITE_BLOCK))
-            .transform(pickaxeOnly())
-            .lang("Industrial Casing")
-            .item()
-            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-            .build()
-            .register();
-
-    public static final BlockEntry<CasingBlock> BLAZE_GOLD_CASING = REGISTRATE.block("blaze_gold_casing", CasingBlock::new)
-            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.BLAZE_GOLD_CASING))
-            .properties(p -> p.mapColor(MapColor.COLOR_ORANGE)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.COPPER))
-            .transform(pickaxeOnly())
-            .lang("Blaze Gold Casing")
-            .item()
-            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-            .build()
-            .register();
-
-    public static final BlockEntry<CasingBlock> BRICK_CASING = REGISTRATE.block("brick_casing", CasingBlock::new)
-            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.BRICK_CASING))
-            .properties(p -> p.mapColor(MapColor.NETHER)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.COPPER))
-            .transform(pickaxeOnly())
-            .lang("Brick Casing")
+            .lang("Mithril Casing")
             .item()
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
@@ -191,49 +385,37 @@ public class DesiresBlocks {
             .build()
             .register();
 
-    public static final BlockEntry<CasingBlock> ELEMENTIUM_CASING = REGISTRATE.block("elementium_casing", CasingBlock::new)
-            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.ELEMENTIUM_CASING))
-            .properties(p -> p.mapColor(MapColor.COLOR_CYAN)
+    public static final BlockEntry<CasingBlock> ZINC_CASING = REGISTRATE.block("zinc_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.ZINC_CASING))
+            .properties(p -> p.mapColor(MapColor.COLOR_BROWN)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.COPPER))
             .transform(pickaxeOnly())
-            .lang("Elementium Casing")
+            .lang("Zinc Casing")
             .item()
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
 
-    public static final BlockEntry<CasingBlock> MITHRIL_CASING = REGISTRATE.block("mithril_casing", CasingBlock::new)
-            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.MITHRIL_CASING))
-            .properties(p -> p.mapColor(MapColor.COLOR_CYAN)
+    public static final BlockEntry<CasingBlock> TIN_CASING = REGISTRATE.block("tin_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.TIN_CASING))
+            .properties(p -> p.mapColor(MapColor.COLOR_YELLOW)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.COPPER))
             .transform(pickaxeOnly())
-            .lang("Mithril Casing")
+            .lang("Tin Casing")
             .item()
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
 
-    public static final BlockEntry<CasingBlock> MOSSY_ANDESITE_CASING = REGISTRATE.block("mossy_andesite_casing", CasingBlock::new)
-            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.MOSSY_ANDESITE_CASING))
-            .properties(p -> p.mapColor(MapColor.COLOR_GREEN)
+    public static final BlockEntry<CasingBlock> BLAZE_GOLD_CASING = REGISTRATE.block("blaze_gold_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.BLAZE_GOLD_CASING))
+            .properties(p -> p.mapColor(MapColor.COLOR_ORANGE)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.COPPER))
             .transform(pickaxeOnly())
-            .lang("Mossy Andesite Casing")
-            .item()
-            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-            .build()
-            .register();
-
-    public static final BlockEntry<CasingBlock> NETHER_BRICK_CASING = REGISTRATE.block("nether_brick_casing", CasingBlock::new)
-            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.NETHER_BRICK_CASING))
-            .properties(p -> p.mapColor(MapColor.NETHER)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.COPPER))
-            .transform(pickaxeOnly())
-            .lang("Nether Brick Casing")
+            .lang("Blaze Gold Casing")
             .item()
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
@@ -289,15 +471,99 @@ public class DesiresBlocks {
 
     public static final BlockEntry<CasingBlock> STARGAZE_SINGULARITY_CASING = REGISTRATE.block("stargaze_singularity_casing", CasingBlock::new)
             .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.STARGAZE_SINGULARITY_CASING))
-                    .properties(p -> p.mapColor(MapColor.COLOR_LIGHT_BLUE)
-                            .requiresCorrectToolForDrops()
-                            .sound(SoundType.COPPER))
-                    .transform(pickaxeOnly())
-                    .lang("Stargaze singularity Casing")
-                    .item()
-                    .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-                    .build()
-                    .register();
+            .properties(p -> p.mapColor(MapColor.COLOR_LIGHT_BLUE)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.COPPER))
+            .transform(pickaxeOnly())
+            .lang("Stargaze singularity Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CasingBlock> ELEMENTIUM_CASING = REGISTRATE.block("elementium_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.ELEMENTIUM_CASING))
+            .properties(p -> p.mapColor(MapColor.COLOR_CYAN)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.COPPER))
+            .transform(pickaxeOnly())
+            .lang("Elementium Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CasingBlock> BRICK_CASING = REGISTRATE.block("brick_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.BRICK_CASING))
+            .properties(p -> p.mapColor(MapColor.NETHER)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.COPPER))
+            .transform(pickaxeOnly())
+            .lang("Brick Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CasingBlock> NETHER_BRICK_CASING = REGISTRATE.block("nether_brick_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.NETHER_BRICK_CASING))
+            .properties(p -> p.mapColor(MapColor.NETHER)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.COPPER))
+            .transform(pickaxeOnly())
+            .lang("Nether Brick Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CasingBlock> MOSSY_ANDESITE_CASING = REGISTRATE.block("mossy_andesite_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.MOSSY_ANDESITE_CASING))
+            .properties(p -> p.mapColor(MapColor.COLOR_GREEN)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.COPPER))
+            .transform(pickaxeOnly())
+            .lang("Mossy Andesite Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CasingBlock> HYDRAULIC_CASING = REGISTRATE.block("hydraulic_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.HYDRAULIC_CASING))
+            .properties(p -> p.mapColor(MapColor.COLOR_ORANGE)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.COPPER))
+            .transform(pickaxeOnly())
+            .lang("Hydraulic Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CasingBlock> INDUSTRIAL_CASING = REGISTRATE.block("industrial_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.INDUSTRIAL_CASING))
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK))
+            .transform(pickaxeOnly())
+            .lang("Industrial Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CasingBlock> OVERBURDEN_CASING = REGISTRATE.block("overburden_casing", CasingBlock::new)
+            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.OVERBURDEN_CASING))
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_LIGHT_BLUE)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK))
+            .transform(pickaxeOnly())
+            .lang("Overburden Casing")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
     public static final BlockEntry<CasingBlock> STEEL_CASING = REGISTRATE.block("steel_casing", CasingBlock::new)
             .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.STEEL_CASING))
@@ -318,30 +584,6 @@ public class DesiresBlocks {
                     .sound(SoundType.COPPER))
             .transform(pickaxeOnly())
             .lang("Terrasteel Casing")
-            .item()
-            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-            .build()
-            .register();
-
-    public static final BlockEntry<CasingBlock> TIN_CASING = REGISTRATE.block("tin_casing", CasingBlock::new)
-            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.TIN_CASING))
-            .properties(p -> p.mapColor(MapColor.COLOR_YELLOW)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.COPPER))
-            .transform(pickaxeOnly())
-            .lang("Tin Casing")
-            .item()
-            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-            .build()
-            .register();
-
-    public static final BlockEntry<CasingBlock> ZINC_CASING = REGISTRATE.block("zinc_casing", CasingBlock::new)
-            .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.ZINC_CASING))
-            .properties(p -> p.mapColor(MapColor.COLOR_BROWN)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.COPPER))
-            .transform(pickaxeOnly())
-            .lang("Zinc Casing")
             .item()
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()

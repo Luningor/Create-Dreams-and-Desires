@@ -512,6 +512,17 @@ public class DesiresItems {
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .register();
 
+    public static final ItemEntry<SimpleFoiledItem> FROZEN_EXP_NUGGET = REGISTRATE.item("frozen_nugget", SimpleFoiledItem::new)
+            .model((c, p) -> p.withExistingParent(c.getId().getPath(),
+                    new ResourceLocation("item/generated")).texture("layer0",
+                    new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
+            .tag(Tags.Items.INGOTS)
+            .properties(p -> p.stacksTo(12)
+                .rarity(Rarity.UNCOMMON))
+            .lang("Frozen Nugget of Experience")
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .register();
+
     public static final ItemEntry<ExperienceNuggetItemOne> ONE_EXP_NUGGET = REGISTRATE.item("experience_ingot", ExperienceNuggetItemOne::new)
             .model((c, p) -> p.withExistingParent(c.getId().getPath(),
                     new ResourceLocation("item/generated")).texture("layer0",
