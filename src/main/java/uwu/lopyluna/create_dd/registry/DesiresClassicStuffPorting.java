@@ -5,7 +5,7 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 import static uwu.lopyluna.create_dd.registry.helper.ItemTransformer.itemConversion;
 
 @SuppressWarnings({"removal", "unused", "all"})
-@Deprecated(forRemoval=true)
+//@Deprecated(forRemoval=true)
 public class DesiresClassicStuffPorting {
 //FOR PREV UPDATES OF DNDESIRE TO KEEP OLD ITEMS & CONVERT THEM INTO THE NEW ITEMS
     public static final ItemEntry<uwu.lopyluna.create_dd.content.items.port.ConversionItem>

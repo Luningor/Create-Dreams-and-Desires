@@ -65,8 +65,7 @@ public enum DesiresPaletteStoneTypes {
 
     public static void register(CreateRegistrate registrate) {
         for (DesiresPaletteStoneTypes paletteStoneVariants : values()) {
-            NonNullSupplier<Block> baseBlock = paletteStoneVariants.factory.apply(registrate);
-            paletteStoneVariants.baseBlock = baseBlock;
+            paletteStoneVariants.baseBlock = paletteStoneVariants.factory.apply(registrate);
             String id = Lang.asId(paletteStoneVariants.name());
             paletteStoneVariants.materialTag =
                     DesiresTags.optionalTag(ForgeRegistries.ITEMS, DesiresCreate.asResource("stone_types/" + id));

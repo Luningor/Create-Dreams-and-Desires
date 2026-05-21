@@ -100,7 +100,6 @@ public class DesiresBlockEntityTypes {
 	public static final BlockEntityEntry<GiantGearBlockEntity> GIANT_GEAR = REGISTRATE
 			.blockEntity("giant_gear", GiantGearBlockEntity::new)
 			.validBlocks(DesiresBlocks.GIANT_GEAR)
-			//.renderer(() -> KineticBlockEntityRenderer::new)
 			.renderer(() -> GiantGearBlockRenderer::new)
 			.register();
 

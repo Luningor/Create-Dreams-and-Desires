@@ -380,24 +380,23 @@ public class DesiresPaletteBlocks {
 			PURPLE_RUBBER_BLOCKS = rubber_decor("purple", MapColor.COLOR_PURPLE, Items.PURPLE_DYE),
 			ORANGE_RUBBER_BLOCKS = rubber_decor("orange", MapColor.COLOR_ORANGE, Items.ORANGE_DYE);
 
-	public static final BlockEntry<Block>
-			BLACK_BLUEPRINT_BLOCK = blueprintBlocks("black", "Black", Items.BLACK_DYE, DesiresSpriteShifts.BLACK_BLUEPRINT_BLOCK, MapColor.COLOR_BLACK),
-			WHITE_BLUEPRINT_BLOCK = blueprintBlocks("white", "White", Items.WHITE_DYE, DesiresSpriteShifts.WHITE_BLUEPRINT_BLOCK, MapColor.SNOW),
-			BLUE_BLUEPRINT_BLOCK = blueprintBlocks("", "", Items.BLUE_DYE, DesiresSpriteShifts.BLUE_BLUEPRINT_BLOCK, MapColor.COLOR_BLUE, ""),
-			LIGHT_BLUE_BLUEPRINT_BLOCK = blueprintBlocks("light", "Light", Items.LIGHT_BLUE_DYE, DesiresSpriteShifts.LIGHT_BLUE_BLUEPRINT_BLOCK, MapColor.COLOR_LIGHT_BLUE),
-			RED_BLUEPRINT_BLOCK = blueprintBlocks("red", "Red", Items.RED_DYE, DesiresSpriteShifts.RED_BLUEPRINT_BLOCK, MapColor.COLOR_RED),
-			GREEN_BLUEPRINT_BLOCK = blueprintBlocks("green", "Green", Items.GREEN_DYE, DesiresSpriteShifts.GREEN_BLUEPRINT_BLOCK, MapColor.COLOR_GREEN),
-			LIME_BLUEPRINT_BLOCK = blueprintBlocks("lime", "Lime", Items.LIME_DYE, DesiresSpriteShifts.LIME_BLUEPRINT_BLOCK, MapColor.COLOR_LIGHT_GREEN),
-			PINK_BLUEPRINT_BLOCK = blueprintBlocks("pink", "Pink", Items.PINK_DYE, DesiresSpriteShifts.PINK_BLUEPRINT_BLOCK, MapColor.COLOR_PINK),
-			MAGENTA_BLUEPRINT_BLOCK = blueprintBlocks("magenta", "Magenta", Items.MAGENTA_DYE, DesiresSpriteShifts.MAGENTA_BLUEPRINT_BLOCK, MapColor.COLOR_MAGENTA),
-			YELLOW_BLUEPRINT_BLOCK = blueprintBlocks("yellow", "Yellow", Items.YELLOW_DYE, DesiresSpriteShifts.YELLOW_BLUEPRINT_BLOCK, MapColor.COLOR_YELLOW),
-			GRAY_BLUEPRINT_BLOCK = blueprintBlocks("gray", "Gray", Items.GRAY_DYE, DesiresSpriteShifts.GRAY_BLUEPRINT_BLOCK, MapColor.COLOR_GRAY),
-			LIGHT_GRAY_BLUEPRINT_BLOCK = blueprintBlocks("light_gray", "Light Gray", Items.LIGHT_GRAY_DYE, DesiresSpriteShifts.LIGHT_GRAY_BLUEPRINT_BLOCK, MapColor.COLOR_LIGHT_GRAY),
-			BROWN_BLUEPRINT_BLOCK = blueprintBlocks("brown", "Brown", Items.BROWN_DYE, DesiresSpriteShifts.BROWN_BLUEPRINT_BLOCK, MapColor.COLOR_BROWN),
-			CYAN_BLUEPRINT_BLOCK = blueprintBlocks("cyan", "Cyan", Items.CYAN_DYE, DesiresSpriteShifts.CYAN_BLUEPRINT_BLOCK, MapColor.COLOR_CYAN),
-			PURPLE_BLUEPRINT_BLOCK = blueprintBlocks("purple", "Purple", Items.PURPLE_DYE, DesiresSpriteShifts.PURPLE_BLUEPRINT_BLOCK, MapColor.COLOR_PURPLE),
-			ORANGE_BLUEPRINT_BLOCK = blueprintBlocks("orange", "Orange", Items.ORANGE_DYE, DesiresSpriteShifts.ORANGE_BLUEPRINT_BLOCK, MapColor.COLOR_ORANGE)
-	;
+    public static final BlockEntry<Block>
+            WHITE_BLUEPRINT_BLOCK = blueprintBlocks("white", "White", Items.WHITE_DYE, DesiresSpriteShifts.WHITE_BLUEPRINT_BLOCK, MapColor.SNOW),
+            LIGHT_GRAY_BLUEPRINT_BLOCK = blueprintBlocks("light_gray", "Light Gray", Items.LIGHT_GRAY_DYE, DesiresSpriteShifts.LIGHT_GRAY_BLUEPRINT_BLOCK, MapColor.COLOR_LIGHT_GRAY),
+            GRAY_BLUEPRINT_BLOCK = blueprintBlocks("gray", "Gray", Items.GRAY_DYE, DesiresSpriteShifts.GRAY_BLUEPRINT_BLOCK, MapColor.COLOR_GRAY),
+            BLACK_BLUEPRINT_BLOCK = blueprintBlocks("black", "Black", Items.BLACK_DYE, DesiresSpriteShifts.BLACK_BLUEPRINT_BLOCK, MapColor.COLOR_BLACK),
+            BROWN_BLUEPRINT_BLOCK = blueprintBlocks("brown", "Brown", Items.BROWN_DYE, DesiresSpriteShifts.BROWN_BLUEPRINT_BLOCK, MapColor.COLOR_BROWN),
+            RED_BLUEPRINT_BLOCK = blueprintBlocks("red", "Red", Items.RED_DYE, DesiresSpriteShifts.RED_BLUEPRINT_BLOCK, MapColor.COLOR_RED),
+            ORANGE_BLUEPRINT_BLOCK = blueprintBlocks("orange", "Orange", Items.ORANGE_DYE, DesiresSpriteShifts.ORANGE_BLUEPRINT_BLOCK, MapColor.COLOR_ORANGE),
+            YELLOW_BLUEPRINT_BLOCK = blueprintBlocks("yellow", "Yellow", Items.YELLOW_DYE, DesiresSpriteShifts.YELLOW_BLUEPRINT_BLOCK, MapColor.COLOR_YELLOW),
+            LIME_BLUEPRINT_BLOCK = blueprintBlocks("lime", "Lime", Items.LIME_DYE, DesiresSpriteShifts.LIME_BLUEPRINT_BLOCK, MapColor.COLOR_LIGHT_GREEN),
+            GREEN_BLUEPRINT_BLOCK = blueprintBlocks("green", "Green", Items.GREEN_DYE, DesiresSpriteShifts.GREEN_BLUEPRINT_BLOCK, MapColor.COLOR_GREEN),
+            CYAN_BLUEPRINT_BLOCK = blueprintBlocks("cyan", "Cyan", Items.CYAN_DYE, DesiresSpriteShifts.CYAN_BLUEPRINT_BLOCK, MapColor.COLOR_CYAN),
+            LIGHT_BLUE_BLUEPRINT_BLOCK = blueprintBlocks("light", "Light", Items.LIGHT_BLUE_DYE, DesiresSpriteShifts.LIGHT_BLUE_BLUEPRINT_BLOCK, MapColor.COLOR_LIGHT_BLUE),
+            BLUE_BLUEPRINT_BLOCK = blueprintBlocks("", "", Items.BLUE_DYE, DesiresSpriteShifts.BLUE_BLUEPRINT_BLOCK, MapColor.COLOR_BLUE, ""),
+            MAGENTA_BLUEPRINT_BLOCK = blueprintBlocks("magenta", "Magenta", Items.MAGENTA_DYE, DesiresSpriteShifts.MAGENTA_BLUEPRINT_BLOCK, MapColor.COLOR_MAGENTA),
+            PURPLE_BLUEPRINT_BLOCK = blueprintBlocks("purple", "Purple", Items.PURPLE_DYE, DesiresSpriteShifts.PURPLE_BLUEPRINT_BLOCK, MapColor.COLOR_PURPLE),
+            PINK_BLUEPRINT_BLOCK = blueprintBlocks("pink", "Pink", Items.PINK_DYE, DesiresSpriteShifts.PINK_BLUEPRINT_BLOCK, MapColor.COLOR_PINK);
 
 
 	public static final int COLORED_BLOCKS = generateColorBlocks();

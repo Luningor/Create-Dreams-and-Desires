@@ -1,7 +1,5 @@
 package uwu.lopyluna.create_dd.registry;
 
-import com.simibubi.create.content.decoration.encasing.CasingBlock;
-import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import it.unimi.dsi.fastutil.objects.*;
@@ -28,6 +26,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class DesiresCreativeModeTabs {
 	private static final DeferredRegister<CreativeModeTab> REGISTER =
@@ -118,6 +117,91 @@ public class DesiresCreativeModeTabs {
             return exclusions::contains;
 		}
 
+        @SuppressWarnings({"removal"})
+        private static Predicate<Item> makeBaseInclusionPredicate() {
+            Set<Item> baseInclusions = new ReferenceOpenHashSet<>();
+
+            List<ItemProviderEntry<?>> simpleBaseInclusions = List.of(
+                    DesiresBlocks.CREATIVE_CASING,
+                    DesiresBlocks.OVERBURDEN_CASING,
+                    DesiresBlocks.HYDRAULIC_CASING,
+                    DesiresBlocks.INDUSTRIAL_CASING,
+                    DesiresBlocks.BLAZE_GOLD_CASING,
+                    DesiresBlocks.BRICK_CASING,
+                    DesiresBlocks.BRONZE_CASING,
+                    DesiresBlocks.ELEMENTIUM_CASING,
+                    DesiresBlocks.MITHRIL_CASING,
+                    DesiresBlocks.MOSSY_ANDESITE_CASING,
+                    DesiresBlocks.NETHER_BRICK_CASING,
+                    DesiresBlocks.NETHERITE_CASING,
+                    DesiresBlocks.OVERCHARGED_CASING,
+                    DesiresBlocks.REFINED_RADIANCE_CASING,
+                    DesiresBlocks.SHADOW_STEEL_CASING,
+                    DesiresBlocks.STARGAZE_SINGULARITY_CASING,
+                    DesiresBlocks.STEEL_CASING,
+                    DesiresBlocks.TERRASTEEL_CASING,
+                    DesiresBlocks.TIN_CASING,
+                    DesiresBlocks.ZINC_CASING,
+                    DesiresBlocks.REINFORCEMENT_PLATING,
+                    DesiresBlocks.FAUXVAULT_CASING,
+                    DesiresBlocks.HEAVY_BRASS_CASING,
+                    DesiresBlocks.INDUSTRIAL_BRASS_CASING,
+                    DesiresBlocks.FAUX_INDUSTRIAL_BRASS_CASING,
+                    DesiresBlocks.TECHBRAIN_CASING
+            );
+
+            for (ItemProviderEntry<?> entry : simpleBaseInclusions) {
+                baseInclusions.add(entry.asItem());
+            }
+
+            return baseInclusions::contains;
+        }
+
+        @SuppressWarnings({"removal"})
+        private static Predicate<Item> makePaletteInclusionPredicate() {
+            Set<Item> paletteInclusions = new ReferenceOpenHashSet<>();
+
+            List<ItemProviderEntry<?>> simplePaletteInclusions = List.of(
+                    DesiresPaletteBlocks.WHITE_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.LIGHT_GRAY_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.GRAY_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.BLACK_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.BROWN_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.RED_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.ORANGE_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.YELLOW_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.LIME_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.GREEN_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.CYAN_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.LIGHT_BLUE_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.BLUE_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.PURPLE_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.MAGENTA_BLUEPRINT_BLOCK,
+                    DesiresPaletteBlocks.PINK_BLUEPRINT_BLOCK
+            );
+
+            for (ItemProviderEntry<?> entry : simplePaletteInclusions) {
+                paletteInclusions.add(entry.asItem());
+            }
+
+            return paletteInclusions::contains;
+        }
+
+        @SuppressWarnings({"removal"})
+        private static Predicate<Item> makeBetaInclusionPredicate() {
+            Set<Item> betaInclusions = new ReferenceOpenHashSet<>();
+
+            List<ItemProviderEntry<?>> simpleBetaInclusions = List.of(
+                    DesiresBlocks.GIANT_GEAR
+            );
+
+            for (ItemProviderEntry<?> entry : simpleBetaInclusions) {
+                betaInclusions.add(entry.asItem());
+            }
+
+            return betaInclusions::contains;
+        }
+
 		private static List<RegistrateDisplayItemsGenerator.ItemOrdering> makeOrderings() {
             return new ReferenceArrayList<>();
 		}
@@ -127,10 +211,7 @@ public class DesiresCreativeModeTabs {
 
 			return item -> {
 				Function<Item, ItemStack> factory = factories.get(item);
-				if (factory != null) {
-					return factory.apply(item);
-				}
-				return new ItemStack(item);
+                return factory != null ? factory.apply(item) : new ItemStack(item);
 			};
 		}
 
@@ -139,10 +220,7 @@ public class DesiresCreativeModeTabs {
 
 			return item -> {
 				CreativeModeTab.TabVisibility visibility = visibilities.get(item);
-				if (visibility != null) {
-					return visibility;
-				}
-				return CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS;
+				return visibility != null ? visibility : CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS;
 			};
 		}
 
@@ -157,8 +235,10 @@ public class DesiresCreativeModeTabs {
 			if (addItems) {
 				items.addAll(collectItems(exclusionPredicate.or(IS_ITEM_3D_PREDICATE.negate())));
 			}
+
 			items.addAll(collectBlocks(exclusionPredicate));
-			if (addItems) {
+
+            if (addItems) {
 				items.addAll(collectItems(exclusionPredicate.or(IS_ITEM_3D_PREDICATE)));
 			}
 
@@ -168,19 +248,36 @@ public class DesiresCreativeModeTabs {
 
 		private List<Item> collectBlocks(Predicate<Item> exclusionPredicate) {
 			List<Item> items = new ReferenceArrayList<>();
-			for (RegistryEntry<Block> entry : DesiresCreate.REGISTRATE.getAll(Registries.BLOCK)) {
-				if (entry.get() instanceof CasingBlock && tabFilter.get() == DesiresCreativeModeTabs.BASE_CREATIVE_TAB.get()) {
-                    Item item = entry.get().asItem();
+            // Make the inclusion lists
+            Predicate<Item> baseInclusionPredicate = makeBaseInclusionPredicate();
+            Predicate<Item> paletteInclusionPredicate = makePaletteInclusionPredicate();
+            Predicate<Item> betaInclusionPredicate = makeBetaInclusionPredicate();
+
+            for (RegistryEntry<Block> entry : DesiresCreate.REGISTRATE.getAll(Registries.BLOCK)) {
+                Item item = entry.get().asItem();
+
+                // Glorified switch for non literals
+                // Has to be made per entry since item changes every time
+                Map<Object, Supplier<Boolean>> isOnTab = Map.of(
+                        // Return bool if a. is <input> tab and b. is on inclusion list of said tab
+                        DesiresCreativeModeTabs.BASE_CREATIVE_TAB.get(), () -> baseInclusionPredicate.test(item),
+
+                        DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.get(), () -> paletteInclusionPredicate.test(item),
+
+                        DesiresCreativeModeTabs.BETA_CREATIVE_TAB.get(), () -> betaInclusionPredicate.test(item)
+                );
+
+                // It's air. Don't add it to the tab.
+                if (item == Items.AIR)
+					continue;
+
+                // It's on the exclusion list
+                if (exclusionPredicate.test(item))
+                    continue;
+
+                // If it's on the corresponding tab inclusion list. If the list doesn't exist defaults to false
+                if (isOnTab.getOrDefault(tabFilter.get(), () -> false).get())
                     items.add(item);
-                }
-                if (!CreateRegistrate.isInCreativeTab(entry, tabFilter)) // Makes sure only in creative tab goes
-					continue;
-				Item item = entry.get()
-                        .asItem();
-				if (item == Items.AIR)
-					continue;
-				if (!exclusionPredicate.test(item))
-					items.add(item);
 			}
 			items = new ReferenceArrayList<>(new ReferenceLinkedOpenHashSet<>(items));
 			return items;
@@ -188,16 +285,43 @@ public class DesiresCreativeModeTabs {
 
 		private List<Item> collectItems(Predicate<Item> exclusionPredicate) {
 			List<Item> items = new ReferenceArrayList<>();
-			for (RegistryEntry<Item> entry : DesiresCreate.REGISTRATE.getAll(Registries.ITEM)) {
-				if (!CreateRegistrate.isInCreativeTab(entry, tabFilter))
-					continue;
-				Item item = entry.get();
-				if (item instanceof BlockItem)
-					continue;
-				if (!exclusionPredicate.test(item))
-					items.add(item);
-			}
-			return items;
+            // Make the inclusion lists
+            Predicate<Item> baseInclusionPredicate = makeBaseInclusionPredicate();
+            Predicate<Item> paletteInclusionPredicate = makePaletteInclusionPredicate();
+            Predicate<Item> betaInclusionPredicate = makeBetaInclusionPredicate();
+
+            for (RegistryEntry<Item> entry : DesiresCreate.REGISTRATE.getAll(Registries.ITEM)) {
+                Item item = entry.get().asItem();
+
+                // Glorified switch for non literals
+                // Has to be made per entry since item changes every time
+                Map<Object, Supplier<Boolean>> isOnTab = Map.of(
+                        // Return bool if a. is <input> tab and b. is on inclusion list of said tab
+                        DesiresCreativeModeTabs.BASE_CREATIVE_TAB.get(), () -> baseInclusionPredicate.test(item),
+
+                        DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.get(), () -> paletteInclusionPredicate.test(item),
+
+                        DesiresCreativeModeTabs.BETA_CREATIVE_TAB.get(), () -> betaInclusionPredicate.test(item)
+                );
+
+                // It's air. Don't add it to the tab.
+                if (item == Items.AIR)
+                    continue;
+
+                // It's the item of a block. We already deal with those.
+                if (item instanceof BlockItem)
+                    continue;
+
+                // It's on the exclusion list
+                if (exclusionPredicate.test(item))
+                    continue;
+
+                // If it's on the corresponding tab inclusion list. If the list doesn't exist defaults to false
+                if (isOnTab.getOrDefault(tabFilter.get(), () -> false).get())
+                    items.add(item);
+            }
+            items = new ReferenceArrayList<>(new ReferenceLinkedOpenHashSet<>(items));
+            return items;
 		}
 
 		private static void applyOrderings(List<Item> items, List<RegistrateDisplayItemsGenerator.ItemOrdering> orderings) {
