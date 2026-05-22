@@ -81,6 +81,8 @@ public class DesiresTags {
 		FAN_PROCESSING_CATALYSTS_SEETHING(NameSpace.MOD, "fan_processing_catalysts/seething"),
 		INDUSTRIAL_FAN_HEATER,
 		INDUSTRIAL_FAN_TRANSPARENT,
+        BRONZE_SAW_IMMUNE,
+        BRONZE_SAW_VALID,
 		BACKPACKS,
 
 		;

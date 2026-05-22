@@ -5,10 +5,12 @@ import com.simibubi.create.content.kinetics.base.*;
 import com.simibubi.create.content.kinetics.transmission.SplitShaftRenderer;
 import com.simibubi.create.content.kinetics.transmission.SplitShaftVisual;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import uwu.lopyluna.create_dd.content.blocks.bronze_saw.BronzeSawBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.bronze_saw.BronzeSawRenderer;
+import uwu.lopyluna.create_dd.content.blocks.bronze_saw.BronzeSawVisual;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankVisual;
-//import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlockRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlockRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press.HydraulicPressVisual;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.industrial_fan_block.IndustrialFanVisual;
@@ -70,6 +72,20 @@ public class DesiresBlockEntityTypes {
 			.validBlocks(DesiresBlocks.FURNACE_ENGINE)
 			.renderer(()-> FurnaceEngineRenderer::new)
 			.register();
+
+    public static final BlockEntityEntry<BronzeSawBlockEntity> BRONZE_SAW = REGISTRATE
+            .blockEntity("bronze_saw", BronzeSawBlockEntity::new)
+            .visual(() -> BronzeSawVisual::new)
+            .validBlocks(DesiresBlocks.BRONZE_SAW)
+            .renderer(() -> BronzeSawRenderer::new)
+            .register();
+
+    /*public static final BlockEntityEntry<BronzeDrillBlockEntity> BRONZE_DRILL = REGISTRATE
+            .blockEntity("bronze_drill", BronzeDrillBlockEntity::new)
+            //.visual(() -> BronzeDrillVisual::new, false)
+            .validBlocks(DesiresBlocks.BRONZE_DRILL)
+            .renderer(() -> BronzeDrillRenderer::new)
+            .register();*/
 
 	public static final BlockEntityEntry<PoweredFlywheelBlockEntity> POWERED_FLYWHEEL = REGISTRATE
 			.blockEntity("powered_flywheel", PoweredFlywheelBlockEntity::new)

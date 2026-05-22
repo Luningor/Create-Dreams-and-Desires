@@ -210,7 +210,9 @@ public class DesiresCreativeModeTabs {
             Set<Item> betaInclusions = new ReferenceOpenHashSet<>();
 
             List<ItemProviderEntry<?>> simpleBetaInclusions = List.of(
-                    DesiresBlocks.GIANT_GEAR
+                    DesiresBlocks.GIANT_GEAR,
+                    DesiresBlocks.PONDER_LIGHT,
+                    DesiresBlocks.PONDER_DARK
             );
 
             for (ItemProviderEntry<?> entry : simpleBetaInclusions) {

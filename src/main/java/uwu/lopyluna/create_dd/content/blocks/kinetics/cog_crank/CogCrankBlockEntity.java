@@ -2,9 +2,7 @@ package uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank;
 
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllSoundEvents;
-import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.crank.HandCrankBlockEntity;
-import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.render.CachedBuffers;
 import net.createmod.catnip.render.SuperByteBuffer;
@@ -14,7 +12,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import uwu.lopyluna.create_dd.registry.DesiresBlocks;

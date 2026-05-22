@@ -39,10 +39,10 @@ public class DRecipes extends ConfigBase {
             DRecipes.Comments.stargaze_singularity_max_height_division);
 
 
-    //public final ConfigBool lumberBulkCutting = b(true, "lumberBulkCutting", Comments.lumberBulkCutting);
+    public final ConfigBool lumberBulkCutting = b(true, "lumberBulkCutting", Comments.lumberBulkCutting);
 	//public final ConfigBool allowShapedSquareInHyPress = b(false, "allowShapedSquareInHyPress", Comments.allowShapedSquareInHyPress);
-	//public final ConfigBool allowStonecuttingOnLumberSaw = b(false, "allowStonecuttingOnLumberSaw", Comments.allowStonecuttingOnLumberSaw);
-	//public final ConfigBool allowWoodcuttingOnLumberSaw = b(true, "allowWoodcuttingOnLumberSaw", Comments.allowWoodcuttingOnLumberSaw);
+	public final ConfigBool allowStonecuttingOnLumberSaw = b(false, "allowStonecuttingOnLumberSaw", Comments.allowStonecuttingOnLumberSaw);
+	public final ConfigBool allowWoodcuttingOnLumberSaw = b(true, "allowWoodcuttingOnLumberSaw", Comments.allowWoodcuttingOnLumberSaw);
 	//public final ConfigBool displayLogStrippingRecipes = b(true, "displayLogStrippingRecipes", Comments.displayLogStrippingRecipes);
 
 	@Override

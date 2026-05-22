@@ -1,0 +1,7 @@
+{
+  "parent": "create_dd:block/bronze_saw/blade_vertical_active",
+  "textures": {
+    "stonecutter_saw": "create_dd:block/bronze_saw_still",
+    "stonecutter_saw_reversed": "create_dd:block/bronze_saw_still"
+  }
+}

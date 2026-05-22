@@ -1,9 +1,6 @@
 package uwu.lopyluna.create_dd.registry;
 
-import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllDisplaySources;
-import com.simibubi.create.AllItems;
-import com.simibubi.create.AllTags;
+import com.simibubi.create.*;
 import com.simibubi.create.api.behaviour.display.DisplaySource;
 import com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType;
 import com.simibubi.create.api.contraption.storage.item.MountedItemStorageType;
@@ -39,6 +36,8 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.ForgeSoundType;
 import uwu.lopyluna.create_dd.DesiresCreate;
+import uwu.lopyluna.create_dd.content.blocks.bronze_saw.BronzeSawBlock;
+import uwu.lopyluna.create_dd.content.blocks.bronze_saw.BronzeSawMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.bore_block.BoreBlock;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.bore_block.BoreBlockMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
@@ -595,7 +594,7 @@ public class DesiresBlocks {
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.COPPER))
             .transform(pickaxeOnly())
-            .lang("Reinforced Plating")
+            .lang("Reinforcement Plating")
             .item()
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
@@ -660,6 +659,57 @@ public class DesiresBlocks {
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
+
+    public static final BlockEntry<Block> PONDER_LIGHT = REGISTRATE.block("pondering_block_light", Block::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_GRAY))
+            .properties(p -> p.sound(new ForgeSoundType(1, 2f, () -> SoundEvents.AMETHYST_BLOCK_BREAK,
+                    () -> SoundEvents.SNOW_STEP, () -> SoundEvents.DEEPSLATE_BRICKS_PLACE,
+                    () -> SoundEvents.NETHERITE_BLOCK_HIT, () -> SoundEvents.NETHERITE_BLOCK_FALL)))
+            .properties(p -> p.strength(1f,5000f))
+            .lang("Light pondering block")
+            .item()
+            .tab(DesiresCreativeModeTabs.BETA_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> PONDER_DARK = REGISTRATE.block("pondering_block_dark", Block::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_GRAY))
+            .properties(p -> p.sound(new ForgeSoundType(1, 2f, () -> SoundEvents.AMETHYST_BLOCK_BREAK,
+                    () -> SoundEvents.SNOW_STEP, () -> SoundEvents.DEEPSLATE_BRICKS_PLACE,
+                    () -> SoundEvents.NETHERITE_BLOCK_HIT, () -> SoundEvents.NETHERITE_BLOCK_FALL)))
+            .properties(p -> p.strength(1f,5000f))
+            .lang("Dark pondering block")
+            .item()
+            .tab(DesiresCreativeModeTabs.BETA_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<BronzeSawBlock> BRONZE_SAW = REGISTRATE.block("bronze_saw", BronzeSawBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .properties(p -> p.mapColor(MapColor.PODZOL))
+            .transform(axeOrPickaxe())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 12.0))
+            .onRegister(movementBehaviour(new BronzeSawMovementBehaviour()))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    // Check definitions and update
+    /*public static final BlockEntry<BronzeDrillBlock> BRONZE_DRILL =
+            REGISTRATE.block("bronze_drill", BronzeDrillBlock::new)
+                    .initialProperties(SharedProperties::stone)
+                    .properties(p -> p.mapColor(MapColor.PODZOL))
+                    .transform(axeOrPickaxe())
+                    .blockstate(BlockStateGen.directionalBlockProvider(true))
+                    .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 12.0))
+                    .onRegister(movementBehaviour(new BronzeDrillMovementBehaviour()))
+                    .simpleItem()
+                    .register();*/
 
 	public static final BlockEntry<IndustrialFanBlock> INDUSTRIAL_FAN = REGISTRATE.block("industrial_fan", IndustrialFanBlock::new)
 			.initialProperties(SharedProperties::stone)
