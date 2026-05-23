@@ -36,10 +36,16 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.ForgeSoundType;
 import uwu.lopyluna.create_dd.DesiresCreate;
-import uwu.lopyluna.create_dd.content.blocks.bronze_saw.BronzeSawBlock;
-import uwu.lopyluna.create_dd.content.blocks.bronze_saw.BronzeSawMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.bore_block.BoreBlock;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.bore_block.BoreBlockMovementBehaviour;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw.BronzeSawBlock;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw.BronzeSawMovementBehaviour;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.bronze.BronzeDrillBlock;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.bronze.BronzeDrillMovementBehaviour;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.radiant.RadiantDrillBlock;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.radiant.RadiantDrillMovementBehaviour;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.shadow.ShadowDrillBlock;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.shadow.ShadowDrillMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.multimeter.MultiMeterBlock;
@@ -53,7 +59,6 @@ import uwu.lopyluna.create_dd.content.blocks.functional.FanSailBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.FurnaceEngineBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.FurnaceEngineGenerator;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.PoweredFlywheelBlock;
-//import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlock;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlock;
@@ -689,7 +694,7 @@ public class DesiresBlocks {
     public static final BlockEntry<BronzeSawBlock> BRONZE_SAW = REGISTRATE.block("bronze_saw", BronzeSawBlock::new)
             .initialProperties(SharedProperties::stone)
             .addLayer(() -> RenderType::cutoutMipped)
-            .properties(p -> p.mapColor(MapColor.PODZOL))
+            .properties(p -> p.mapColor(MapColor.COLOR_ORANGE))
             .transform(axeOrPickaxe())
             .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 12.0))
             .onRegister(movementBehaviour(new BronzeSawMovementBehaviour()))
@@ -700,16 +705,45 @@ public class DesiresBlocks {
             .register();
 
     // Check definitions and update
-    /*public static final BlockEntry<BronzeDrillBlock> BRONZE_DRILL =
-            REGISTRATE.block("bronze_drill", BronzeDrillBlock::new)
-                    .initialProperties(SharedProperties::stone)
-                    .properties(p -> p.mapColor(MapColor.PODZOL))
-                    .transform(axeOrPickaxe())
-                    .blockstate(BlockStateGen.directionalBlockProvider(true))
-                    .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 12.0))
-                    .onRegister(movementBehaviour(new BronzeDrillMovementBehaviour()))
-                    .simpleItem()
-                    .register();*/
+    public static final BlockEntry<BronzeDrillBlock> BRONZE_DRILL = REGISTRATE.block("bronze_drill", BronzeDrillBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.mapColor(MapColor.COLOR_ORANGE))
+            .transform(axeOrPickaxe())
+            .blockstate(BlockStateGen.directionalBlockProvider(true))
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 12.0))
+            .onRegister(movementBehaviour(new BronzeDrillMovementBehaviour()))
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<RadiantDrillBlock> RADIANT_DRILL = REGISTRATE.block("radiant_drill", RadiantDrillBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_WHITE))
+            .addLayer(() -> RenderType::translucent)
+            .transform(axeOrPickaxe())
+            .blockstate(BlockStateGen.directionalBlockProvider(true))
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 16.0))
+            .onRegister(movementBehaviour(new RadiantDrillMovementBehaviour()))
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<ShadowDrillBlock> SHADOW_DRILL = REGISTRATE.block("shadow_drill", ShadowDrillBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BLACK))
+            .transform(axeOrPickaxe())
+            .blockstate(BlockStateGen.directionalBlockProvider(true))
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 16.0))
+            .onRegister(movementBehaviour(new ShadowDrillMovementBehaviour()))
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
+            .transform(customItemModel())
+            .register();
 
 	public static final BlockEntry<IndustrialFanBlock> INDUSTRIAL_FAN = REGISTRATE.block("industrial_fan", IndustrialFanBlock::new)
 			.initialProperties(SharedProperties::stone)

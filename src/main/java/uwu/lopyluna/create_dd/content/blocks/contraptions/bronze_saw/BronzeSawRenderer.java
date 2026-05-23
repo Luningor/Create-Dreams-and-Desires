@@ -1,4 +1,4 @@
-package uwu.lopyluna.create_dd.content.blocks.bronze_saw;
+package uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw;
 
 import com.simibubi.create.content.kinetics.saw.SawBlock;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;

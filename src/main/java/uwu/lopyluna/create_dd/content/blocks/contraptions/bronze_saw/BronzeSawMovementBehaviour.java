@@ -1,5 +1,6 @@
-package uwu.lopyluna.create_dd.content.blocks.bronze_saw;
+package uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw;
 
+import com.simibubi.create.content.contraptions.render.ActorVisual;
 import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld;
 import com.simibubi.create.content.contraptions.behaviour.MovementContext;
 import com.simibubi.create.content.contraptions.mounted.MountedContraption;
@@ -9,6 +10,8 @@ import com.simibubi.create.content.trains.entity.CarriageContraption;
 import com.simibubi.create.foundation.damageTypes.CreateDamageSources;
 import com.simibubi.create.foundation.utility.AbstractBlockBreakQueue;
 import com.simibubi.create.content.kinetics.saw.TreeCutter;
+import dev.engine_room.flywheel.api.visualization.VisualizationContext;
+import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import net.createmod.catnip.math.VecHelper;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.BlockPos;
@@ -24,7 +27,10 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemHandlerHelper;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.bronze.BronzeDrillActorVisual;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.bronze.BronzeDrillRenderer;
 
+import javax.annotation.Nullable;
 import java.util.Optional;
 
 public class BronzeSawMovementBehaviour extends BlockBreakingMovementBehaviour {
@@ -41,6 +47,25 @@ public class BronzeSawMovementBehaviour extends BlockBreakingMovementBehaviour {
         return Vec3.atLowerCornerOf(context.state.getValue(BronzeSawBlock.FACING)
                         .getNormal())
                 .scale(.65f);
+    }
+
+    @Override
+    public boolean disableBlockEntityRendering() {
+        return true;
+    }
+
+    @Override
+    @OnlyIn(value = Dist.CLIENT)
+    public void renderInContraption(MovementContext context, VirtualRenderWorld renderWorld,
+                                    ContraptionMatrices matrices, MultiBufferSource buffer) {
+        if (!VisualizationManager.supportsVisualization(context.world))
+            BronzeDrillRenderer.renderInContraption(context, renderWorld, matrices, buffer);
+    }
+
+    @Nullable
+    @Override
+    public ActorVisual createVisual(VisualizationContext visualizationContext, VirtualRenderWorld simulationWorld, MovementContext movementContext) {
+        return new BronzeDrillActorVisual(visualizationContext, simulationWorld, movementContext);
     }
 
     @Override
@@ -93,16 +118,10 @@ public class BronzeSawMovementBehaviour extends BlockBreakingMovementBehaviour {
     }
 
     @Override
-    @OnlyIn(value = Dist.CLIENT)
-    public void renderInContraption(MovementContext context, VirtualRenderWorld renderWorld,
-                                    ContraptionMatrices matrices, MultiBufferSource buffer) {
-        BronzeSawRenderer.renderInContraption(context, renderWorld, matrices, buffer);
-    }
-
-    @Override
     protected boolean shouldDestroyStartBlock(BlockState stateToBreak) {
         return !TreeCutter.canDynamicTreeCutFrom(stateToBreak.getBlock());
     }
+
     @Override
     protected DamageSource getDamageSource(Level level) {
         return CreateDamageSources.saw(level);

@@ -1,12 +1,10 @@
-package uwu.lopyluna.create_dd.content.blocks.bronze_saw;
+package uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw;
 
 import java.util.function.Consumer;
 
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityVisual;
 import com.simibubi.create.content.kinetics.base.RotatingInstance;
-import com.simibubi.create.content.kinetics.saw.SawBlock;
-import com.simibubi.create.content.kinetics.saw.SawBlockEntity;
 import com.simibubi.create.foundation.render.AllInstanceTypes;
 
 import dev.engine_room.flywheel.api.instance.Instance;
@@ -43,7 +41,7 @@ public class BronzeSawVisual extends KineticBlockEntityVisual<BronzeSawBlockEnti
         } else {
             return instancerProvider.instancer(AllInstanceTypes.ROTATING, Models.partial(AllPartialModels.SHAFT))
                     .createInstance()
-                    .rotateToFace(state.getValue(SawBlock.AXIS_ALONG_FIRST_COORDINATE) ? Axis.X : Axis.Z);
+                    .rotateToFace(state.getValue(BronzeSawBlock.AXIS_ALONG_FIRST_COORDINATE) ? Axis.X : Axis.Z);
         }
     }
 
