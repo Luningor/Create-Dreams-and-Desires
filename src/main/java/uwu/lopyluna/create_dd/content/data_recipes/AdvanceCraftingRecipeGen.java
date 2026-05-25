@@ -21,7 +21,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.UnaryOperator;
 
 @ParametersAreNonnullByDefault
-@SuppressWarnings({"unused", "all"})
+@SuppressWarnings({"unused", "deprecation", "all"})
 public class AdvanceCraftingRecipeGen extends BaseRecipeProvider {
 
     GeneratedRecipe

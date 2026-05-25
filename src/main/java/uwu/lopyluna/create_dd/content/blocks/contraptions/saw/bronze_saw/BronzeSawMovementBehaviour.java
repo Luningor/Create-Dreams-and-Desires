@@ -1,4 +1,4 @@
-package uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw;
+package uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw;
 
 import com.simibubi.create.content.contraptions.render.ActorVisual;
 import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld;

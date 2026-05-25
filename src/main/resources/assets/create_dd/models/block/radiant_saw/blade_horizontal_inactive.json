@@ -1,0 +1,7 @@
+{
+  "parent": "create_dd:block/radiant_saw/blade_horizontal_active",
+  "textures": {
+    "stonecutter_saw": "create_dd:block/radiant_saw_still",
+    "stonecutter_saw_reversed": "create_dd:block/radiant_saw_still"
+  }
+}

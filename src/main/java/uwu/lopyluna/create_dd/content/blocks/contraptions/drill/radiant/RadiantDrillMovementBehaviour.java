@@ -106,7 +106,6 @@ public class RadiantDrillMovementBehaviour extends BlockBreakingMovementBehaviou
         data.putInt("Progress", destroyProgress);
     }
 
-
     protected void radiantDestroyBlock(MovementContext context, BlockPos breakingPos) {
         fortunedestroyBlock(context.world, breakingPos, 1f, stack -> this.dropItem(context, stack));
     }

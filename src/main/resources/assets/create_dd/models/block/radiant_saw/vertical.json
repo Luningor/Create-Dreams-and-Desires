@@ -1,10 +1,12 @@
 {
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
 	"textures": {
-		"gearbox_top": "create_dd:block/bronze_gearbox_top",
-		"gearbox": "create_dd:block/bronze_gearbox",
-		"andesite_casing_short": "create_dd:block/bronze_casing_short",
-		"particle": "create_dd:block/bronze_mechanical_saw_top",
-		"mechanical_saw_top": "create_dd:block/bronze_mechanical_saw_top"
+		"gearbox_top": "create_dd:block/radiant_gearbox_top",
+		"gearbox": "create_dd:block/radiant_gearbox",
+		"andesite_casing_short": "create_dd:block/radiant_casing_short",
+		"particle": "create_dd:block/radiant_mechanical_saw_top",
+		"mechanical_saw_top": "create_dd:block/radiant_mechanical_saw_top"
 	},
 	"elements": [
 		{

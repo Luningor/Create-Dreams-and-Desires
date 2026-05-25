@@ -1,0 +1,29 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"stonecutter_saw": "create_dd:block/radiant_saw"
+	},
+	"elements": [
+		{
+			"name": "Blade",
+			"from": [1, 6, 11],
+			"to": [15, 6.062, 18],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -2, 0]},
+			"faces": {
+				"up": {"uv": [1, 9, 15, 16], "rotation": 180, "texture": "#stonecutter_saw"},
+				"down": {"uv": [15, 9, 1, 16], "texture": "#stonecutter_saw"}
+			}
+		},
+		{
+			"name": "Blade",
+			"from": [1, 10, 11],
+			"to": [15, 10.062, 18],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 0]},
+			"faces": {
+				"up": {"uv": [1, 9, 15, 16], "rotation": 180, "texture": "#stonecutter_saw"},
+				"down": {"uv": [15, 9, 1, 16], "texture": "#stonecutter_saw"}
+			}
+		}
+	]
+}

@@ -1,4 +1,4 @@
-package uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw;
+package uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw;
 
 import com.google.common.collect.ImmutableList;
 import com.simibubi.create.AllRecipeTypes;
@@ -26,9 +26,13 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -46,11 +50,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static com.simibubi.create.foundation.utility.BlockHelper.destroyBlockAs;
+
 @SuppressWarnings({"all"})
-public class BronzeSawBlockEntity extends SawBlockEntity {
+public class RadiantSawBlockEntity extends SawBlockEntity {
 
     private static final Object cuttingRecipesKey = new Object();
     private int recipeIndex;
@@ -59,7 +66,7 @@ public class BronzeSawBlockEntity extends SawBlockEntity {
 
     private ItemStack playEvent;
 
-    public BronzeSawBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    public RadiantSawBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
         inventory = new ProcessingInventory(this::start).withSlotLimit(!DesiresConfigs.server().recipes.lumberBulkCutting.get());
         inventory.remainingTime = -1;
@@ -138,7 +145,7 @@ public class BronzeSawBlockEntity extends SawBlockEntity {
             return;
         }
 
-        float processingSpeed = Mth.clamp(Math.abs(getSpeed()) / 24, 1, 128);
+        float processingSpeed = Mth.clamp(Math.abs(getSpeed()) / 12, 1, 256);
         inventory.remainingTime -= processingSpeed;
 
         if (inventory.remainingTime > 0)
@@ -238,10 +245,39 @@ public class BronzeSawBlockEntity extends SawBlockEntity {
     }
 
     @Override
-    protected BlockPos getBreakingPos() {return getBlockPos().relative(getBlockState().getValue(BronzeSawBlock.FACING));}
+    protected BlockPos getBreakingPos() {return getBlockPos().relative(getBlockState().getValue(RadiantSawBlock.FACING));}
+
+    public static void fortunedestroyBlock(Level world, BlockPos pos, float effectChance,
+                                           Consumer<ItemStack> droppedItemCallback) {
+        ItemStack iStack = Items.MILK_BUCKET.getDefaultInstance();
+        iStack.enchant(Enchantments.BLOCK_FORTUNE, 4);
+        destroyBlockAs(world, pos, null, iStack, effectChance, droppedItemCallback);
+    }
+
+    public void onBlockBroken(BlockState stateToBreak) {
+        assert level != null;
+        Vec3 vec = VecHelper.offsetRandomly(VecHelper.getCenterOf(breakingPos), level.random, .05f);
+        fortunedestroyBlock(level, breakingPos, 1f, (stack) -> {
+            if (stack.isEmpty())
+                return;
+            if (!level.getGameRules()
+                    .getBoolean(GameRules.RULE_DOBLOCKDROPS))
+                return;
+            if (level.restoringBlockSnapshots)
+                return;
+
+            ItemEntity itementity = new ItemEntity(level, vec.x, vec.y, vec.z, stack);
+            itementity.setDefaultPickUpDelay();
+            itementity.setDeltaMovement(Vec3.ZERO);
+            itementity.setInvulnerable(true);
+            itementity.setNoGravity(true);
+            level.addFreshEntity(itementity);
+
+        });
+    }
 
     @Override
-    protected float getBreakSpeed() {return Math.abs(getSpeed() / 35f);}
+    protected float getBreakSpeed() {return Math.abs(getSpeed() / 20f);}
 
     @Override
     public boolean canBreak(BlockState stateToBreak, float blockHardness) {
@@ -362,9 +398,9 @@ public class BronzeSawBlockEntity extends SawBlockEntity {
             return true;
         if (TreeCutter.canDynamicTreeCutFrom(block))
             return true;
-        if (stateToBreak.is(DesiresTags.AllBlockTags.BRONZE_SAW_IMMUNE.tag))
+        if (stateToBreak.is(DesiresTags.AllBlockTags.RADIANT_SAW_IMMUNE.tag))
             return false;
-        if (stateToBreak.is(DesiresTags.AllBlockTags.BRONZE_SAW_VALID.tag))
+        if (stateToBreak.is(DesiresTags.AllBlockTags.RADIANT_SAW_VALID.tag))
             return true;
         return false;
     }

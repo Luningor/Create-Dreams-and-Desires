@@ -1,4 +1,4 @@
-package uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw;
+package uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw;
 
 import java.util.function.Consumer;
 
@@ -16,11 +16,11 @@ import net.minecraft.core.Direction.Axis;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-public class BronzeSawVisual extends KineticBlockEntityVisual<BronzeSawBlockEntity> {
+public class ShadowSawVisual extends KineticBlockEntityVisual<ShadowSawBlockEntity> {
 
     protected final RotatingInstance rotatingModel;
 
-    public BronzeSawVisual(VisualizationContext context, BronzeSawBlockEntity blockEntity, float partialTick) {
+    public ShadowSawVisual(VisualizationContext context, ShadowSawBlockEntity blockEntity, float partialTick) {
         super(context, blockEntity, partialTick);
         rotatingModel = shaft(instancerProvider(), blockState)
                 .setup(blockEntity)
@@ -41,7 +41,7 @@ public class BronzeSawVisual extends KineticBlockEntityVisual<BronzeSawBlockEnti
         } else {
             return instancerProvider.instancer(AllInstanceTypes.ROTATING, Models.partial(AllPartialModels.SHAFT))
                     .createInstance()
-                    .rotateToFace(state.getValue(BronzeSawBlock.AXIS_ALONG_FIRST_COORDINATE) ? Axis.X : Axis.Z);
+                    .rotateToFace(state.getValue(ShadowSawBlock.AXIS_ALONG_FIRST_COORDINATE) ? Axis.X : Axis.Z);
         }
     }
 

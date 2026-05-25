@@ -13,10 +13,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 import uwu.lopyluna.create_dd.DesiresCreate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -35,12 +37,12 @@ public abstract class DesireProcessingRecipeGen extends BaseRecipeProvider {
 
         gen.addProvider(true, new DataProvider() {
             @Override
-            public String getName() {
+            public @NotNull String getName() {
                 return DesiresCreate.NAME + " Processing Recipes";
             }
 
             @Override
-            public CompletableFuture<?> run(CachedOutput dc) {
+            public @NotNull CompletableFuture<?> run(@NotNull CachedOutput dc) {
                 return CompletableFuture.allOf(GENERATORS.stream()
                         .map(gen -> gen.run(dc))
                         .toArray(CompletableFuture[]::new));
@@ -59,7 +61,7 @@ public abstract class DesireProcessingRecipeGen extends BaseRecipeProvider {
         return register(c -> {
             ItemLike itemLike = singleIngredient.get();
             transform.apply(new ProcessingRecipeBuilder<>(serializer.getFactory(),
-                            new ResourceLocation(namespace, ForgeRegistries.ITEMS.getKey(itemLike.asItem()).getPath()))
+                            new ResourceLocation(namespace, Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(itemLike.asItem())).getPath()))
                             .withItemIngredients(Ingredient.of(itemLike)))
                     .build(c);
         });
@@ -96,6 +98,7 @@ public abstract class DesireProcessingRecipeGen extends BaseRecipeProvider {
     protected Supplier<ResourceLocation> idWithSuffix(Supplier<ItemLike> item, String suffix) {
         return () -> {
             ResourceLocation registryName = ForgeRegistries.ITEMS.getKey(item.get().asItem());
+            assert registryName != null;
             return DesiresCreate.asResource(registryName.getPath() + suffix);
         };
     }

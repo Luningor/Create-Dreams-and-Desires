@@ -1,11 +1,13 @@
 {
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
 	"parent": "create:block/block",
 	"textures": {
-		"slit": "create_dd:block/bronze_mechanical_saw_top_no_slot",
-		"particle": "create_dd:block/bronze_gearbox_top",
-		"gearbox_top": "create_dd:block/bronze_gearbox_top",
-		"gearbox": "create_dd:block/bronze_gearbox",
-		"andesite_casing_short": "create_dd:block/bronze_casing_short"
+		"slit": "create_dd:block/shadow_mechanical_saw_top_no_slot",
+		"particle": "create_dd:block/shadow_gearbox_top",
+		"gearbox_top": "create_dd:block/shadow_gearbox_top",
+		"gearbox": "create_dd:block/shadow_gearbox",
+		"andesite_casing_short": "create_dd:block/shadow_casing_short"
 	},
 	"elements": [
 		{

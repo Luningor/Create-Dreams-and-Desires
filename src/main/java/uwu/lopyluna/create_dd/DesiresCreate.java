@@ -112,6 +112,7 @@ public class DesiresCreate
     }
 
     public static void init(final FMLCommonSetupEvent event) {
+        DesiresFluids.registerFluidInteractions();
     }
 
     public static ResourceLocation asResource(String path) {

@@ -5,15 +5,21 @@ import com.simibubi.create.content.kinetics.base.*;
 import com.simibubi.create.content.kinetics.transmission.SplitShaftRenderer;
 import com.simibubi.create.content.kinetics.transmission.SplitShaftVisual;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
-import uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw.BronzeSawBlockEntity;
-import uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw.BronzeSawRenderer;
-import uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw.BronzeSawVisual;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw.BronzeSawBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw.BronzeSawRenderer;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw.BronzeSawVisual;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.bronze.BronzeDrillBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.bronze.BronzeDrillRenderer;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.radiant.RadiantDrillBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.radiant.RadiantDrillRenderer;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.shadow.ShadowDrillBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.shadow.ShadowDrillRenderer;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw.RadiantSawBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw.RadiantSawRenderer;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw.RadiantSawVisual;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawRenderer;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawVisual;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankVisual;
@@ -83,6 +89,20 @@ public class DesiresBlockEntityTypes {
             .visual(() -> BronzeSawVisual::new)
             .validBlocks(DesiresBlocks.BRONZE_SAW)
             .renderer(() -> BronzeSawRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<RadiantSawBlockEntity> RADIANT_SAW = REGISTRATE
+            .blockEntity("radiant_saw", RadiantSawBlockEntity::new)
+            .visual(() -> RadiantSawVisual::new)
+            .validBlocks(DesiresBlocks.RADIANT_SAW)
+            .renderer(() -> RadiantSawRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<ShadowSawBlockEntity> SHADOW_SAW = REGISTRATE
+            .blockEntity("shadow_saw", ShadowSawBlockEntity::new)
+            .visual(() -> ShadowSawVisual::new)
+            .validBlocks(DesiresBlocks.SHADOW_SAW)
+            .renderer(() -> ShadowSawRenderer::new)
             .register();
 
     public static final BlockEntityEntry<BronzeDrillBlockEntity> BRONZE_DRILL = REGISTRATE

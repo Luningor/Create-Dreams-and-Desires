@@ -365,15 +365,22 @@ public class DesiresFluids {
 		FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new InteractionInformation(
 				SAP.get().getFluidType(),
 				fluidState -> {
-					if (fluidState.isSource()) {
+					if (fluidState.isSource())
 						return Blocks.OBSIDIAN.defaultBlockState();
-					} else {
+					else
 						return DesiresPaletteStoneTypes.GABBRO.getBaseBlock()
 								.get()
 								.defaultBlockState();
-					}
 				}
 		));
+
+        FluidInteractionRegistry.addInteraction(DesiresFluids.CHROMATIC_WASTE.getType(), new FluidInteractionRegistry.InteractionInformation(
+                ForgeMod.WATER_TYPE.get(),
+                fluidState -> Blocks.OBSIDIAN.defaultBlockState()));
+
+        FluidInteractionRegistry.addInteraction(DesiresFluids.CHROMATIC_WASTE.getType(), new FluidInteractionRegistry.InteractionInformation(
+                ForgeMod.LAVA_TYPE.get(),
+                fluidState -> Blocks.CRYING_OBSIDIAN.defaultBlockState()));
 
 	}
 

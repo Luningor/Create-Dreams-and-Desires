@@ -1,4 +1,4 @@
-package uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw;
+package uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw;
 
 import com.simibubi.create.content.kinetics.saw.SawBlock;
 import net.createmod.catnip.placement.IPlacementHelper;
@@ -29,7 +29,7 @@ import java.util.function.Predicate;
 public class BronzeSawBlock extends SawBlock {
     public static final BooleanProperty FLIPPED = BooleanProperty.create("flipped");
 
-    public static final int placementHelperId = PlacementHelpers.register(new BronzeSawBlock.PlacementHelper());
+    public static final int placementHelperId = PlacementHelpers.register(new uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw.BronzeSawBlock.PlacementHelper());
 
     public BronzeSawBlock(Properties properties) {
         super(properties);

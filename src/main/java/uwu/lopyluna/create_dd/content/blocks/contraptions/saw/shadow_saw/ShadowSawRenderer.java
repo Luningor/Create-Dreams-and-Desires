@@ -1,4 +1,4 @@
-package uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw;
+package uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw;
 
 import com.simibubi.create.content.kinetics.saw.SawBlock;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;
@@ -36,13 +36,13 @@ import uwu.lopyluna.create_dd.registry.DesiresPartialModels;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING;
 
 @SuppressWarnings({"unused"})
-public class BronzeSawRenderer extends SafeBlockEntityRenderer<BronzeSawBlockEntity> {
+public class ShadowSawRenderer extends SafeBlockEntityRenderer<ShadowSawBlockEntity> {
 
-    public BronzeSawRenderer(BlockEntityRendererProvider.Context context) {
+    public ShadowSawRenderer(BlockEntityRendererProvider.Context context) {
     }
 
     @Override
-    protected void renderSafe(BronzeSawBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light,
+    protected void renderSafe(ShadowSawBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light,
                               int overlay) {
         renderBlade(be, ms, buffer, light);
         renderItems(be, partialTicks, ms, buffer, light, overlay);
@@ -54,7 +54,7 @@ public class BronzeSawRenderer extends SafeBlockEntityRenderer<BronzeSawBlockEnt
         renderShaft(be, ms, buffer, light, overlay);
     }
 
-    protected void renderBlade(BronzeSawBlockEntity be, PoseStack ms, MultiBufferSource buffer, int light) {
+    protected void renderBlade(ShadowSawBlockEntity be, PoseStack ms, MultiBufferSource buffer, int light) {
         BlockState blockState = be.getBlockState();
         PartialModel partial;
         float speed = be.getSpeed();
@@ -62,19 +62,19 @@ public class BronzeSawRenderer extends SafeBlockEntityRenderer<BronzeSawBlockEnt
 
         if (SawBlock.isHorizontal(blockState)) {
             if (speed > 0) {
-                partial = DesiresPartialModels.BRONZE_SAW_BLADE_HORIZONTAL_ACTIVE;
+                partial = DesiresPartialModels.SHADOW_SAW_BLADE_HORIZONTAL_ACTIVE;
             } else if (speed < 0) {
-                partial = DesiresPartialModels.BRONZE_SAW_BLADE_HORIZONTAL_REVERSED;
+                partial = DesiresPartialModels.SHADOW_SAW_BLADE_HORIZONTAL_REVERSED;
             } else {
-                partial = DesiresPartialModels.BRONZE_SAW_BLADE_HORIZONTAL_INACTIVE;
+                partial = DesiresPartialModels.SHADOW_SAW_BLADE_HORIZONTAL_INACTIVE;
             }
         } else {
             if (speed > 0) {
-                partial = DesiresPartialModels.BRONZE_SAW_BLADE_VERTICAL_ACTIVE;
+                partial = DesiresPartialModels.SHADOW_SAW_BLADE_VERTICAL_ACTIVE;
             } else if (speed < 0) {
-                partial = DesiresPartialModels.BRONZE_SAW_BLADE_VERTICAL_REVERSED;
+                partial = DesiresPartialModels.SHADOW_SAW_BLADE_VERTICAL_REVERSED;
             } else {
-                partial = DesiresPartialModels.BRONZE_SAW_BLADE_VERTICAL_INACTIVE;
+                partial = DesiresPartialModels.SHADOW_SAW_BLADE_VERTICAL_INACTIVE;
             }
 
             if (blockState.getValue(SawBlock.AXIS_ALONG_FIRST_COORDINATE))
@@ -90,18 +90,18 @@ public class BronzeSawRenderer extends SafeBlockEntityRenderer<BronzeSawBlockEnt
                 .renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()));
     }
 
-    protected void renderShaft(BronzeSawBlockEntity be, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
+    protected void renderShaft(ShadowSawBlockEntity be, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
         KineticBlockEntityRenderer.renderRotatingBuffer(be, getRotatedModel(be), ms,
                 buffer.getBuffer(RenderType.solid()), light);
     }
 
-    protected void renderItems(BronzeSawBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
+    protected void renderItems(ShadowSawBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
                                int light, int overlay) {
         boolean processingMode = be.getBlockState()
-                .getValue(BronzeSawBlock.FACING) == Direction.UP;
+                .getValue(ShadowSawBlock.FACING) == Direction.UP;
         if (processingMode && !be.inventory.isEmpty()) {
             boolean alongZ = !be.getBlockState()
-                    .getValue(BronzeSawBlock.AXIS_ALONG_FIRST_COORDINATE);
+                    .getValue(ShadowSawBlock.AXIS_ALONG_FIRST_COORDINATE);
             ms.pushPose();
 
             float offset = getOffset(be, partialTicks, alongZ);
@@ -130,7 +130,7 @@ public class BronzeSawRenderer extends SafeBlockEntityRenderer<BronzeSawBlockEnt
         }
     }
 
-    private static float getOffset(BronzeSawBlockEntity be, float partialTicks, boolean alongZ) {
+    private static float getOffset(ShadowSawBlockEntity be, float partialTicks, boolean alongZ) {
         boolean moving = be.inventory.recipeDuration != 0;
         float offset = moving ? (be.inventory.remainingTime) / be.inventory.recipeDuration : 0;
         float processingSpeed = Mth.clamp(Math.abs(be.getSpeed()) / 32, 1, 128);
@@ -167,9 +167,9 @@ public class BronzeSawRenderer extends SafeBlockEntityRenderer<BronzeSawBlockEnt
     public static void renderInContraption(MovementContext context, VirtualRenderWorld renderWorld,
                                            ContraptionMatrices matrices, MultiBufferSource buffer) {
         BlockState state = context.state;
-        Direction facing = state.getValue(BronzeSawBlock.FACING);
+        Direction facing = state.getValue(ShadowSawBlock.FACING);
 
-        Vec3 facingVec = Vec3.atLowerCornerOf(context.state.getValue(BronzeSawBlock.FACING)
+        Vec3 facingVec = Vec3.atLowerCornerOf(context.state.getValue(ShadowSawBlock.FACING)
                 .getNormal());
         facingVec = context.rotation.apply(facingVec);
 
@@ -183,16 +183,16 @@ public class BronzeSawRenderer extends SafeBlockEntityRenderer<BronzeSawBlockEnt
                 (context.contraption.stalled && horizontal) || (!context.contraption.stalled && !backwards && moving);
 
         SuperByteBuffer superBuffer;
-        if (BronzeSawBlock.isHorizontal(state)) {
+        if (ShadowSawBlock.isHorizontal(state)) {
             if (shouldAnimate)
-                superBuffer = CachedBuffers.partial(DesiresPartialModels.BRONZE_SAW_BLADE_HORIZONTAL_ACTIVE, state);
+                superBuffer = CachedBuffers.partial(DesiresPartialModels.SHADOW_SAW_BLADE_HORIZONTAL_ACTIVE, state);
             else
-                superBuffer = CachedBuffers.partial(DesiresPartialModels.BRONZE_SAW_BLADE_HORIZONTAL_INACTIVE, state);
+                superBuffer = CachedBuffers.partial(DesiresPartialModels.SHADOW_SAW_BLADE_HORIZONTAL_INACTIVE, state);
         } else {
             if (shouldAnimate)
-                superBuffer = CachedBuffers.partial(DesiresPartialModels.BRONZE_SAW_BLADE_VERTICAL_ACTIVE, state);
+                superBuffer = CachedBuffers.partial(DesiresPartialModels.SHADOW_SAW_BLADE_VERTICAL_ACTIVE, state);
             else
-                superBuffer = CachedBuffers.partial(DesiresPartialModels.BRONZE_SAW_BLADE_VERTICAL_INACTIVE, state);
+                superBuffer = CachedBuffers.partial(DesiresPartialModels.SHADOW_SAW_BLADE_VERTICAL_INACTIVE, state);
         }
 
         superBuffer.transform(matrices.getModel())
@@ -200,8 +200,8 @@ public class BronzeSawRenderer extends SafeBlockEntityRenderer<BronzeSawBlockEnt
                 .rotateYDegrees(AngleHelper.horizontalAngle(facing))
                 .rotateXDegrees(AngleHelper.verticalAngle(facing));
 
-        if (!BronzeSawBlock.isHorizontal(state)) {
-            superBuffer.rotateZDegrees(state.getValue(BronzeSawBlock.AXIS_ALONG_FIRST_COORDINATE) ? 90 : 0);
+        if (!ShadowSawBlock.isHorizontal(state)) {
+            superBuffer.rotateZDegrees(state.getValue(ShadowSawBlock.AXIS_ALONG_FIRST_COORDINATE) ? 90 : 0);
         }
 
         superBuffer.uncenter()

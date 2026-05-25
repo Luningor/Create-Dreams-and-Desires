@@ -38,14 +38,18 @@ import net.minecraftforge.common.util.ForgeSoundType;
 import uwu.lopyluna.create_dd.DesiresCreate;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.bore_block.BoreBlock;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.bore_block.BoreBlockMovementBehaviour;
-import uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw.BronzeSawBlock;
-import uwu.lopyluna.create_dd.content.blocks.contraptions.bronze_saw.BronzeSawMovementBehaviour;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw.BronzeSawBlock;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw.BronzeSawMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.bronze.BronzeDrillBlock;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.bronze.BronzeDrillMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.radiant.RadiantDrillBlock;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.radiant.RadiantDrillMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.shadow.ShadowDrillBlock;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.drill.shadow.ShadowDrillMovementBehaviour;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw.RadiantSawBlock;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw.RadiantSawMovementBehaviour;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawBlock;
+import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.multimeter.MultiMeterBlock;
@@ -704,7 +708,32 @@ public class DesiresBlocks {
             .build()
             .register();
 
-    // Check definitions and update
+    public static final BlockEntry<RadiantSawBlock> RADIANT_SAW = REGISTRATE.block("radiant_saw", RadiantSawBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_WHITE))
+            .transform(axeOrPickaxe())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 12.0))
+            .onRegister(movementBehaviour(new RadiantSawMovementBehaviour()))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<ShadowSawBlock> SHADOW_SAW = REGISTRATE.block("shadow_saw", ShadowSawBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .properties(p -> p.mapColor(MapColor.COLOR_BLACK))
+            .transform(axeOrPickaxe())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 12.0))
+            .onRegister(movementBehaviour(new ShadowSawMovementBehaviour()))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
     public static final BlockEntry<BronzeDrillBlock> BRONZE_DRILL = REGISTRATE.block("bronze_drill", BronzeDrillBlock::new)
             .initialProperties(SharedProperties::stone)
             .properties(p -> p.mapColor(MapColor.COLOR_ORANGE))
