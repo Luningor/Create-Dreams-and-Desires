@@ -195,7 +195,23 @@ public class DesiresCreativeModeTabs {
                     DesiresPaletteBlocks.BLUE_BLUEPRINT_BLOCK,
                     DesiresPaletteBlocks.PURPLE_BLUEPRINT_BLOCK,
                     DesiresPaletteBlocks.MAGENTA_BLUEPRINT_BLOCK,
-                    DesiresPaletteBlocks.PINK_BLUEPRINT_BLOCK
+                    DesiresPaletteBlocks.PINK_BLUEPRINT_BLOCK,
+                    DesiresBlocks.TRAIN_SCAFFOLD,
+                    DesiresBlocks.HYDRAULIC_SCAFFOLD,
+                    DesiresBlocks.OVERBURDEN_SCAFFOLD,
+                    DesiresBlocks.INDUSTRIAL_SCAFFOLD,
+                    DesiresBlocks.MITHRIL_SCAFFOLD,
+                    DesiresBlocks.MOSSY_ANDESITE_SCAFFOLD,
+                    DesiresBlocks.ZINC_SCAFFOLD,
+                    DesiresBlocks.TIN_SCAFFOLD,
+                    DesiresBlocks.BRONZE_SCAFFOLD,
+                    DesiresBlocks.STEEL_SCAFFOLD,
+                    DesiresBlocks.SHADOW_SCAFFOLD,
+                    DesiresBlocks.RADIANT_SCAFFOLD,
+                    DesiresBlocks.STARGAZE_SINGULARITY_SCAFFOLD,
+                    DesiresBlocks.BLAZE_GOLD_SCAFFOLD,
+                    DesiresBlocks.OVERCHARGED_SCAFFOLD,
+                    DesiresBlocks.NETHERITE_SCAFFOLD
             );
 
             for (ItemProviderEntry<?> entry : simplePaletteInclusions) {

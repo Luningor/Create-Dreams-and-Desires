@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "create_dd:weathered_limestone",
     "create_dd:gabbro",

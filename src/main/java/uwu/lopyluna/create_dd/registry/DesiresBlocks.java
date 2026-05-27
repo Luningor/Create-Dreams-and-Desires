@@ -6,12 +6,14 @@ import com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType
 import com.simibubi.create.api.contraption.storage.item.MountedItemStorageType;
 import com.simibubi.create.api.registry.CreateRegistries;
 import com.simibubi.create.api.stress.BlockStressValues;
+import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.kinetics.gauge.GaugeGenerator;
 import com.simibubi.create.content.kinetics.motor.CreativeMotorGenerator;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
+import com.simibubi.create.AllTags;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;
@@ -23,6 +25,7 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
@@ -92,8 +95,12 @@ public class DesiresBlocks {
             .properties(p -> p.mapColor(MapColor.STONE))
             .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
             .properties(p -> p.strength(3f,3f))
+            .tag(Tags.Blocks.ORES)
+            .tag(AllTags.forgeBlockTag("ores/tin"))
             .lang("Tin Ore")
             .item()
+            .tag(Tags.Items.ORES)
+            .tag(AllTags.forgeItemTag("ores/tin"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -103,8 +110,12 @@ public class DesiresBlocks {
             .properties(p -> p.mapColor(MapColor.DEEPSLATE))
             .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))
             .properties(p -> p.strength(4.5f,3f))
+            .tag(Tags.Blocks.ORES)
+            .tag(AllTags.forgeBlockTag("ores/tin"))
             .lang("Deepslate Tin Ore")
             .item()
+            .tag(Tags.Items.ORES)
+            .tag(AllTags.forgeItemTag("ores/tin"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -114,8 +125,12 @@ public class DesiresBlocks {
             .properties(p -> p.mapColor(MapColor.COLOR_LIGHT_GRAY))
             .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
             .properties(p -> p.strength(1f,1.6f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/raw_tin"))
             .lang("Block of Raw Tin")
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/raw_tin"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -125,8 +140,12 @@ public class DesiresBlocks {
             .properties(p -> p.mapColor(MapColor.QUARTZ))
             .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.METAL))
             .properties(p -> p.strength(3f,6f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/tin"))
             .lang("Block of Tin")
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/raw_tin"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -137,10 +156,11 @@ public class DesiresBlocks {
             .properties(p -> p.sound(SoundType.WOOL))
             .properties(p -> p.strength(0.5f,1f))
             .tag(Tags.Blocks.STORAGE_BLOCKS)
-            //.transform(tagBlockAndItem("storage_blocks/leather"))
+            .tag(AllTags.forgeBlockTag("storage_blocks/leather"))
             .lang("Block of Leather")
             .item()
             .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/leather"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -153,8 +173,12 @@ public class DesiresBlocks {
                     () -> DesiresSoundEvents.MAGICAL_METAL_HIT.get(), () -> DesiresSoundEvents.MAGICAL_METAL_FALL.get())))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
             .properties(p -> p.strength(16f,48f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/mithril"))
             .lang("Block of Mithril")
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/mithril"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -164,8 +188,12 @@ public class DesiresBlocks {
             .properties(p -> p.mapColor(MapColor.COLOR_ORANGE))
             .properties(p -> p.strength(12f,10f))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/bronze"))
             .lang("Block of Bronze")
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/bronze"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -175,8 +203,12 @@ public class DesiresBlocks {
             .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
             .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK))
             .properties(p -> p.strength(6f,16f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/steel"))
             .lang("Block of Steel")
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/steel"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -186,10 +218,14 @@ public class DesiresBlocks {
             .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
             .properties(p -> p.sound(SoundType.NETHERITE_BLOCK))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
-            .transform(pickaxeOnly())
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/industrial_iron"))
             .tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag)
+            .transform(pickaxeOnly())
             .lang("Solid Block of Industrial Iron")
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/industrial_iron"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -200,10 +236,11 @@ public class DesiresBlocks {
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
             .transform(pickaxeOnly())
             .tag(Tags.Blocks.STORAGE_BLOCKS)
-            //.transform(tagBlockAndItem("storage_blocks/lapis_alloy"))
+            .tag(AllTags.forgeBlockTag("storage_blocks/lapis_alloy"))
             .lang("Block of Lapis Alloy")
             .item()
             .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/lapis_alloy"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -212,12 +249,13 @@ public class DesiresBlocks {
             .initialProperties(() -> Blocks.BROWN_TERRACOTTA)
             .properties(p -> p.mapColor(MapColor.STONE))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
-            .transform(pickaxeOnly())
             .tag(Tags.Blocks.STORAGE_BLOCKS)
-            //.transform(tagBlockAndItem("storage_blocks/ember_alloy"))
+            .tag(AllTags.forgeBlockTag("storage_blocks/ember_alloy"))
+            .transform(pickaxeOnly())
             .lang("Block of Ember Alloy")
             .item()
             .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/ember_alloy"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -230,9 +268,13 @@ public class DesiresBlocks {
                     () -> SoundEvents.POLISHED_DEEPSLATE_HIT, () -> SoundEvents.POLISHED_DEEPSLATE_FALL)))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
             .properties(p -> p.strength(12f,25f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/chromatic_compound"))
             .transform(pickaxeOnly())
             .lang("Block of Chromatic Compound")
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/chromatic_compound"))
             .properties(p -> p.rarity(Rarity.UNCOMMON))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
@@ -247,9 +289,13 @@ public class DesiresBlocks {
             .properties(p -> p.lightLevel($ -> 12))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
             .properties(p -> p.strength(16f,48f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/refined_radiance"))
             .transform(pickaxeOnly())
             .lang("Block of Refined Radiance")
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/refined_radiance"))
             .properties(p -> p.rarity(Rarity.UNCOMMON))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
@@ -263,9 +309,13 @@ public class DesiresBlocks {
                     () -> SoundEvents.AMETHYST_CLUSTER_HIT, () -> SoundEvents.AMETHYST_CLUSTER_FALL)))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
             .properties(p -> p.strength(16f,48f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/shadow_steel"))
             .transform(pickaxeOnly())
             .lang("Block of Shadow Steel")
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/shadow_steel"))
             .properties(p -> p.rarity(Rarity.UNCOMMON))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
@@ -279,8 +329,12 @@ public class DesiresBlocks {
                     () -> SoundEvents.AMETHYST_CLUSTER_HIT, () -> SoundEvents.AMETHYST_CLUSTER_FALL)))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
             .properties(p -> p.strength(12f,32f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/overcharged_alloy"))
             .transform(pickaxeOnly())
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/overcharged_alloy"))
             .properties(p -> p.rarity(Rarity.UNCOMMON))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
@@ -294,8 +348,12 @@ public class DesiresBlocks {
                     () -> SoundEvents.AMETHYST_CLUSTER_HIT, () -> SoundEvents.AMETHYST_CLUSTER_FALL)))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
             .properties(p -> p.strength(8f,24f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/blaze_gold"))
             .transform(pickaxeOnly())
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/blaze_gold"))
             .properties(p -> p.rarity(Rarity.UNCOMMON))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
@@ -309,8 +367,12 @@ public class DesiresBlocks {
                     () -> SoundEvents.AMETHYST_CLUSTER_HIT, () -> SoundEvents.AMETHYST_CLUSTER_FALL)))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
             .properties(p -> p.strength(32f,512f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/stargaze_singularity"))
             .transform(pickaxeOnly())
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/stargaze_singularity"))
             .properties(p -> p.rarity(Rarity.EPIC))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
@@ -320,9 +382,13 @@ public class DesiresBlocks {
             .initialProperties(() -> Blocks.ANDESITE)
             .properties(p -> p.mapColor(MapColor.STONE))
             .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/mossy_andesite"))
             .transform(pickaxeOnly())
             .lang("Mossy Block of Andesite Alloy")
             .item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/mossy_andesite"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
             .register();
@@ -333,8 +399,12 @@ public class DesiresBlocks {
 					() -> SoundEvents.STEM_STEP, () -> DesiresSoundEvents.RUBBER_PLACE.get(),
 					() -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
 			.properties(p -> p.strength(0.5f,1.5f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/raw_rubber"))
 			.lang("Block of Raw Rubber")
 			.item()
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/raw_rubber"))
 			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
 			.tag(rawRubberDecorTag)
 			.build()
@@ -346,10 +416,14 @@ public class DesiresBlocks {
 					() -> SoundEvents.STEM_STEP, () -> DesiresSoundEvents.RUBBER_PLACE.get(),
 					() -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
 			.properties(p -> p.strength(0.5f,1.5f))
+            .tag(Tags.Blocks.STORAGE_BLOCKS)
+            .tag(AllTags.forgeBlockTag("storage_blocks/rubber"))
 			.lang("Block of Rubber")
 			.item()
-			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-			.tag(rubberDecorTag)
+            .tag(rubberDecorTag)
+            .tag(Tags.Items.STORAGE_BLOCKS)
+            .tag(AllTags.forgeItemTag("storage_blocks/rubber"))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
 			.build()
 			.register();
 
@@ -1052,149 +1126,255 @@ public class DesiresBlocks {
 			.register();
 
 
-	public static final BlockEntry<FanSailBlock> SPLASHING_SAIL =
-			REGISTRATE.block("splashing_sail", FanSailBlock::sail)
-					.initialProperties(SharedProperties::wooden)
-					.properties(p -> p.mapColor(MapColor.DIRT))
-					.properties(p -> p.sound(SoundType.SCAFFOLDING)
-							.noOcclusion())
-					.transform(axeOnly())
-					.blockstate(BlockStateGen.directionalBlockProvider(false))
-					.tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
-					.tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
-					.tag(AllTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_SPLASHING.tag)
-					.recipe((c, p) -> fanSailCrafting(c.get(), Items.WATER_BUCKET, p, c))
-					.lang("Splashing Catalyst Sail")
-					.item()
-					.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-					.build()
-					.register();
+	public static final BlockEntry<FanSailBlock> SPLASHING_SAIL = REGISTRATE.block("splashing_sail", FanSailBlock::sail)
+            .initialProperties(SharedProperties::wooden)
+            .properties(p -> p.mapColor(MapColor.DIRT))
+            .properties(p -> p.sound(SoundType.SCAFFOLDING)
+                    .noOcclusion())
+            .transform(axeOnly())
+            .blockstate(BlockStateGen.directionalBlockProvider(false))
+            .tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
+            .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
+            .tag(AllTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_SPLASHING.tag)
+            .recipe((c, p) -> fanSailCrafting(c.get(), Items.WATER_BUCKET, p, c))
+            .lang("Splashing Catalyst Sail")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
-	public static final BlockEntry<FanSailBlock> HAUNTING_SAIL =
-			REGISTRATE.block("haunting_sail", FanSailBlock::sail)
-					.initialProperties(SharedProperties::wooden)
-					.properties(p -> p.mapColor(MapColor.DIRT))
-					.properties(p -> p.sound(SoundType.SCAFFOLDING)
-							.noOcclusion())
-					.properties(p -> p.lightLevel(s -> 8))
-					.transform(axeOnly())
-					.blockstate(BlockStateGen.directionalBlockProvider(false))
-					.tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
-					.tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
-					.tag(AllTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_HAUNTING.tag)
-					.recipe((c, p) -> fanSailCrafting(c.get(), Items.SOUL_CAMPFIRE, p, c))
-					.lang("Haunting Catalyst Sail")
-					.item()
-					.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-					.build()
-					.register();
+	public static final BlockEntry<FanSailBlock> HAUNTING_SAIL = REGISTRATE.block("haunting_sail", FanSailBlock::sail)
+            .initialProperties(SharedProperties::wooden)
+            .properties(p -> p.mapColor(MapColor.DIRT))
+            .properties(p -> p.sound(SoundType.SCAFFOLDING)
+                    .noOcclusion())
+            .properties(p -> p.lightLevel(s -> 8))
+            .transform(axeOnly())
+            .blockstate(BlockStateGen.directionalBlockProvider(false))
+            .tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
+            .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
+            .tag(AllTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_HAUNTING.tag)
+            .recipe((c, p) -> fanSailCrafting(c.get(), Items.SOUL_CAMPFIRE, p, c))
+            .lang("Haunting Catalyst Sail")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
-	public static final BlockEntry<FanSailBlock> SMOKING_SAIL =
-			REGISTRATE.block("smoking_sail", FanSailBlock::sail)
-					.initialProperties(SharedProperties::wooden)
-					.properties(p -> p.mapColor(MapColor.DIRT))
-					.properties(p -> p.sound(SoundType.SCAFFOLDING)
-							.noOcclusion())
-					.properties(p -> p.lightLevel(s -> 8))
-					.transform(axeOnly())
-					.blockstate(BlockStateGen.directionalBlockProvider(false))
-					.tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
-					.tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
-					.tag(AllTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_SMOKING.tag)
-					.recipe((c, p) -> fanSailCrafting(c.get(), Items.CAMPFIRE, p, c))
-					.lang("Smoking Catalyst Sail")
-					.item()
-					.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-					.build()
-					.register();
+	public static final BlockEntry<FanSailBlock> SMOKING_SAIL = REGISTRATE.block("smoking_sail", FanSailBlock::sail)
+            .initialProperties(SharedProperties::wooden)
+            .properties(p -> p.mapColor(MapColor.DIRT))
+            .properties(p -> p.sound(SoundType.SCAFFOLDING)
+                    .noOcclusion())
+            .properties(p -> p.lightLevel(s -> 8))
+            .transform(axeOnly())
+            .blockstate(BlockStateGen.directionalBlockProvider(false))
+            .tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
+            .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
+            .tag(AllTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_SMOKING.tag)
+            .recipe((c, p) -> fanSailCrafting(c.get(), Items.CAMPFIRE, p, c))
+            .lang("Smoking Catalyst Sail")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
-	public static final BlockEntry<FanSailBlock> BLASTING_SAIL =
-			REGISTRATE.block("blasting_sail", FanSailBlock::sail)
-					.initialProperties(SharedProperties::wooden)
-					.properties(p -> p.mapColor(MapColor.DIRT))
-					.properties(p -> p.sound(SoundType.SCAFFOLDING)
-							.noOcclusion())
-					.properties(p -> p.lightLevel(s -> 12))
-					.transform(axeOnly())
-					.blockstate(BlockStateGen.directionalBlockProvider(false))
-					.tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
-					.tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
-					.tag(AllTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_BLASTING.tag)
-					.recipe((c, p) -> fanSailCrafting(c.get(), Items.LAVA_BUCKET, p, c))
-					.lang("Blasting Catalyst Sail")
-					.item()
-					.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-					.build()
-					.register();
+	public static final BlockEntry<FanSailBlock> BLASTING_SAIL = REGISTRATE.block("blasting_sail", FanSailBlock::sail)
+            .initialProperties(SharedProperties::wooden)
+            .properties(p -> p.mapColor(MapColor.DIRT))
+            .properties(p -> p.sound(SoundType.SCAFFOLDING)
+                    .noOcclusion())
+            .properties(p -> p.lightLevel(s -> 12))
+            .transform(axeOnly())
+            .blockstate(BlockStateGen.directionalBlockProvider(false))
+            .tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
+            .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
+            .tag(AllTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_BLASTING.tag)
+            .recipe((c, p) -> fanSailCrafting(c.get(), Items.LAVA_BUCKET, p, c))
+            .lang("Blasting Catalyst Sail")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
-	public static final BlockEntry<FanSailBlock> SEETHING_SAIL =
-			REGISTRATE.block("seething_sail", FanSailBlock::sail)
-					.initialProperties(SharedProperties::wooden)
-					.properties(p -> p.mapColor(MapColor.DIRT))
-					.properties(p -> p.sound(SoundType.SCAFFOLDING)
-							.noOcclusion())
-					.properties(p -> p.lightLevel(s -> 15))
-					.transform(axeOnly())
-					.blockstate(BlockStateGen.directionalBlockProvider(false))
-					.tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
-					.tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
-					.tag(DesiresTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_SEETHING.tag)
-					.tag(DesiresTags.AllBlockTags.INDUSTRIAL_FAN_HEATER.tag)
-					.lang("Seething Catalyst Sail")
-					.item()
-					.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-					.build()
-					.register();
+	public static final BlockEntry<FanSailBlock> SEETHING_SAIL = REGISTRATE.block("seething_sail", FanSailBlock::sail)
+            .initialProperties(SharedProperties::wooden)
+            .properties(p -> p.mapColor(MapColor.DIRT))
+            .properties(p -> p.sound(SoundType.SCAFFOLDING)
+                    .noOcclusion())
+            .properties(p -> p.lightLevel(s -> 15))
+            .transform(axeOnly())
+            .blockstate(BlockStateGen.directionalBlockProvider(false))
+            .tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
+            .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
+            .tag(DesiresTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_SEETHING.tag)
+            .tag(DesiresTags.AllBlockTags.INDUSTRIAL_FAN_HEATER.tag)
+            .lang("Seething Catalyst Sail")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
-	public static final BlockEntry<FanSailBlock> FREEZING_SAIL =
-			REGISTRATE.block("freezing_sail", FanSailBlock::sail)
-					.initialProperties(SharedProperties::wooden)
-					.properties(p -> p.mapColor(MapColor.DIRT))
-					.properties(p -> p.sound(SoundType.SCAFFOLDING)
-							.noOcclusion())
-					.transform(axeOnly())
-					.blockstate(BlockStateGen.directionalBlockProvider(false))
-					.tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
-					.tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
-					.tag(DesiresTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_FREEZING.tag)
-					.recipe((c, p) -> fanSailCrafting(c.get(), Items.POWDER_SNOW_BUCKET, p, c))
-					.lang("Freezing Catalyst Sail")
-					.item()
-					.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-					.build()
-					.register();
+	public static final BlockEntry<FanSailBlock> FREEZING_SAIL = REGISTRATE.block("freezing_sail", FanSailBlock::sail)
+            .initialProperties(SharedProperties::wooden)
+            .properties(p -> p.mapColor(MapColor.DIRT))
+            .properties(p -> p.sound(SoundType.SCAFFOLDING)
+                    .noOcclusion())
+            .transform(axeOnly())
+            .blockstate(BlockStateGen.directionalBlockProvider(false))
+            .tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
+            .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
+            .tag(DesiresTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_FREEZING.tag)
+            .recipe((c, p) -> fanSailCrafting(c.get(), Items.POWDER_SNOW_BUCKET, p, c))
+            .lang("Freezing Catalyst Sail")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
-	public static final BlockEntry<FanSailBlock> SANDING_SAIL =
-			REGISTRATE.block("sanding_sail", FanSailBlock::sail)
-					.initialProperties(SharedProperties::wooden)
-					.properties(p -> p.mapColor(MapColor.DIRT))
-					.properties(p -> p.sound(SoundType.SCAFFOLDING)
-							.noOcclusion())
-					.transform(axeOnly())
-					.blockstate(BlockStateGen.directionalBlockProvider(false))
-					.tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
-					.tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
-					.tag(DesiresTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_SANDING.tag)
-					.recipe((c, p) -> fanSailCrafting(c.get(), Items.SAND, p, c))
-					.lang("Sanding Catalyst Sail")
-					.item()
-					.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-					.build()
-					.register();
+	public static final BlockEntry<FanSailBlock> SANDING_SAIL = REGISTRATE.block("sanding_sail", FanSailBlock::sail)
+            .initialProperties(SharedProperties::wooden)
+            .properties(p -> p.mapColor(MapColor.DIRT))
+            .properties(p -> p.sound(SoundType.SCAFFOLDING)
+                    .noOcclusion())
+            .transform(axeOnly())
+            .blockstate(BlockStateGen.directionalBlockProvider(false))
+            .tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
+            .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
+            .tag(DesiresTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_SANDING.tag)
+            .recipe((c, p) -> fanSailCrafting(c.get(), Items.SAND, p, c))
+            .lang("Sanding Catalyst Sail")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
 
-	public static void fanSailCrafting(ItemLike itemLike, ItemLike cataylst, Consumer<FinishedRecipe> pFinishedRecipeConsumer, DataGenContext c) {
-		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, itemLike, 4)
-				.pattern("SCS")
-				.pattern("CRC")
-				.pattern("SCS")
-				.define('S', AllBlocks.SAIL_FRAME.get())
-				.define('R', DesiresBlocks.RUBBER_BLOCK.get())
-				.define('C', cataylst)
-				.unlockedBy("has_cataylst", has(cataylst))
-				.save(pFinishedRecipeConsumer, DesiresCreate.asResource("crafting/fan_catalyst/" + c.getName()));
-	}
+    public static final BlockEntry<MetalScaffoldingBlock> TRAIN_SCAFFOLD = REGISTRATE.block("train_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("train",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("plates/obsidian")), MapColor.COLOR_BLACK,
+                    DesiresSpriteShifts.TRAIN_SCAFFOLD, DesiresSpriteShifts.TRAIN_SCAFFOLD_INSIDE, AllSpriteShifts.RAILWAY_CASING))
+            .lang("Train Scaffolding")
+            .register();
 
-	// Load this class
+    public static final BlockEntry<MetalScaffoldingBlock> HYDRAULIC_SCAFFOLD = REGISTRATE.block("hydraulic_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("hydraulic",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/copper")), MapColor.TERRACOTTA_YELLOW,
+                    DesiresSpriteShifts.HYDRAULIC_SCAFFOLD, DesiresSpriteShifts.HYDRAULIC_SCAFFOLD_INSIDE, DesiresSpriteShifts.HYDRAULIC_CASING))
+            //.lang("Hydraulic Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> OVERBURDEN_SCAFFOLD = REGISTRATE.block("overburden_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("overburden",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/lapis_alloy")), MapColor.TERRACOTTA_YELLOW,
+                    DesiresSpriteShifts.OVERBURDEN_SCAFFOLD, DesiresSpriteShifts.OVERBURDEN_SCAFFOLD_INSIDE, DesiresSpriteShifts.OVERBURDEN_CASING))
+            .lang("Overburden Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> INDUSTRIAL_SCAFFOLD = REGISTRATE.block("industrial_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("industrial",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/industrial_iron")), MapColor.TERRACOTTA_YELLOW,
+                    DesiresSpriteShifts.INDUSTRIAL_SCAFFOLD, DesiresSpriteShifts.INDUSTRIAL_SCAFFOLD_INSIDE, DesiresSpriteShifts.INDUSTRIAL_CASING))
+            .lang("Industrial Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> MITHRIL_SCAFFOLD = REGISTRATE.block("mithril_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("mithril",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/mithril")), MapColor.TERRACOTTA_YELLOW,
+                    DesiresSpriteShifts.MITHRIL_SCAFFOLD, DesiresSpriteShifts.MITHRIL_SCAFFOLD_INSIDE, DesiresSpriteShifts.MITHRIL_CASING))
+            .lang("Mithril Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> MOSSY_ANDESITE_SCAFFOLD = REGISTRATE.block("mossy_andesite_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("mossy_andesite",
+                    () -> DataIngredient.items(AllItems.ANDESITE_ALLOY.get()),
+                    MapColor.STONE, DesiresSpriteShifts.MOSSY_ANDESITE_SCAFFOLD, DesiresSpriteShifts.MOSSY_ANDESITE_SCAFFOLD_INSIDE, DesiresSpriteShifts.MOSSY_ANDESITE_CASING))
+            .lang("Mossy Andesite Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> ZINC_SCAFFOLD = REGISTRATE.block("zinc_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("zinc",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/zinc")), MapColor.TERRACOTTA_YELLOW,
+                    DesiresSpriteShifts.ZINC_SCAFFOLD, DesiresSpriteShifts.ZINC_SCAFFOLD_INSIDE, DesiresSpriteShifts.ZINC_CASING))
+            .lang("Zinc Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> TIN_SCAFFOLD = REGISTRATE.block("tin_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("tin",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/tin")), MapColor.TERRACOTTA_YELLOW,
+                    DesiresSpriteShifts.TIN_SCAFFOLD, DesiresSpriteShifts.TIN_SCAFFOLD_INSIDE, DesiresSpriteShifts.TIN_CASING))
+            .lang("Tin Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> BRONZE_SCAFFOLD = REGISTRATE.block("bronze_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("bronze",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/bronze")), MapColor.TERRACOTTA_YELLOW,
+                    DesiresSpriteShifts.BRONZE_SCAFFOLD, DesiresSpriteShifts.BRONZE_SCAFFOLD_INSIDE, DesiresSpriteShifts.BRONZE_CASING))
+            .lang("Bronze Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> STEEL_SCAFFOLD = REGISTRATE.block("steel_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("steel",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/steel")), MapColor.TERRACOTTA_YELLOW,
+                    DesiresSpriteShifts.STEEL_SCAFFOLD, DesiresSpriteShifts.STEEL_SCAFFOLD_INSIDE, DesiresSpriteShifts.STEEL_CASING))
+            .lang("Steel Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> SHADOW_SCAFFOLD = REGISTRATE.block("shadow_steel_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("shadow_steel",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/shadow_steel")), MapColor.COLOR_BLACK,
+                    DesiresSpriteShifts.SHADOW_STEEL_SCAFFOLD, DesiresSpriteShifts.SHADOW_STEEL_SCAFFOLD_INSIDE, DesiresSpriteShifts.SHADOW_STEEL_CASING))
+            .lang("Shadow Steel Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> RADIANT_SCAFFOLD = REGISTRATE.block("refined_radiance_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("refined_radiance",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/refined_radiance")), MapColor.SNOW,
+                    DesiresSpriteShifts.REFINED_RADIANCE_SCAFFOLD, DesiresSpriteShifts.REFINED_RADIANCE_SCAFFOLD_INSIDE, DesiresSpriteShifts.REFINED_RADIANCE_CASING))
+            .lang("Radiant Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> STARGAZE_SINGULARITY_SCAFFOLD = REGISTRATE.block("stargaze_singularity_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("stargaze_singularity",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/stargaze_singularity")), MapColor.TERRACOTTA_BLACK,
+                    DesiresSpriteShifts.STARGAZE_SINGULARITY_SCAFFOLD, DesiresSpriteShifts.STARGAZE_SINGULARITY_SCAFFOLD_INSIDE, DesiresSpriteShifts.STARGAZE_SINGULARITY_CASING))
+            .lang("Stargaze Singularity Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> BLAZE_GOLD_SCAFFOLD = REGISTRATE.block("blaze_gold_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("blaze_gold",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/blaze_gold")), MapColor.COLOR_RED,
+                    DesiresSpriteShifts.BLAZE_GOLD_SCAFFOLD, DesiresSpriteShifts.BLAZE_GOLD_SCAFFOLD_INSIDE, DesiresSpriteShifts.BLAZE_GOLD_CASING))
+            .lang("Blaze Gold Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> OVERCHARGED_SCAFFOLD = REGISTRATE.block("overcharged_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("overcharge",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/overcharge")), MapColor.COLOR_LIGHT_BLUE,
+                    DesiresSpriteShifts.OVERCHARGED_SCAFFOLD, DesiresSpriteShifts.OVERCHARGED_SCAFFOLD_INSIDE, DesiresSpriteShifts.OVERCHARGED_CASING))
+            .lang("Overcharged Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> NETHERITE_SCAFFOLD = REGISTRATE.block("netherite_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("netherite",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/netherite")), MapColor.COLOR_LIGHT_BLUE,
+                    DesiresSpriteShifts.NETHERITE_SCAFFOLD, DesiresSpriteShifts.NETHERITE_SCAFFOLD_INSIDE, DesiresSpriteShifts.NETHERITE_CASING))
+            .lang("Netherite Scaffolding")
+            .register();
+
+    public static void fanSailCrafting(ItemLike itemLike, ItemLike cataylst, Consumer<FinishedRecipe> pFinishedRecipeConsumer, DataGenContext c) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, itemLike, 4)
+                .pattern("SCS")
+                .pattern("CRC")
+                .pattern("SCS")
+                .define('S', AllBlocks.SAIL_FRAME.get())
+                .define('R', DesiresBlocks.RUBBER_BLOCK.get())
+                .define('C', cataylst)
+                .unlockedBy("has_cataylst", has(cataylst))
+                .save(pFinishedRecipeConsumer, DesiresCreate.asResource("crafting/fan_catalyst/" + c.getName()));
+    }
+
+
+    // Load this class
 
 	public static void register() {}
 
