@@ -23,16 +23,14 @@ public class DesiresSpriteShifts {
 			KEG_SIDE = reservoir("side"),
 			KEG_BOTTOM = reservoir("bottom");
 
-	//public static final CTSpriteShiftEntry
-	//	HYDRAULIC_SCAFFOLD = horizontal("scaffold/hydraulic_scaffold");
-//
-	//public static final CTSpriteShiftEntry
-	//	HYDRAULIC_SCAFFOLD_INSIDE = horizontal("scaffold/hydraulic_scaffold_inside");
-//
-	//public static final CTSpriteShiftEntry
-	//	ORNATE_IRON_GLASS = getCT(AllCTTypes.OMNIDIRECTIONAL, "palettes/ornate_iron_glass", "palettes/ornate_iron_glass"),
-	//	ORNATE_IRON_GLASS_SIDE = getCT(AllCTTypes.OMNIDIRECTIONAL, "palettes/ornate_iron_glass_side", "palettes/ornate_iron_glass_side");
-//
+	public static final CTSpriteShiftEntry
+            VERTICAL_FRAMED_SPLIT_GLASS = getCT(AllCTTypes.OMNIDIRECTIONAL, "palettes/vertical_framed_split_glass"),
+            HORIZONTAL_FRAMED_SPLIT_GLASS = getCT(AllCTTypes.OMNIDIRECTIONAL, "palettes/horizontal_framed_split_glass"),
+            FRAMED_SPLIT_GLASS = getCT(AllCTTypes.OMNIDIRECTIONAL, "palettes/framed_split_glass"),
+            ORNATE_IRON_GLASS = getCT(AllCTTypes.OMNIDIRECTIONAL, "palettes/ornate_iron_glass"),
+            ORNATE_IRON_GLASS_TOP = getCT(AllCTTypes.OMNIDIRECTIONAL, "palettes/ornate_iron_glass_top"),
+            ORNATE_IRON_GLASS_SIDE = getCT(AllCTTypes.OMNIDIRECTIONAL, "palettes/ornate_iron_glass_side", "palettes/ornate_iron_glass_side");
+
 	public static final CTSpriteShiftEntry
 			HAZARD_BLOCK = omni("hazard_block"),
 			DARK_METAL_PLATING = omni("dark_metal_plating"),

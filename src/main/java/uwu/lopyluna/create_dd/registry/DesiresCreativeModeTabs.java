@@ -211,7 +211,15 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.STARGAZE_SINGULARITY_SCAFFOLD,
                     DesiresBlocks.BLAZE_GOLD_SCAFFOLD,
                     DesiresBlocks.OVERCHARGED_SCAFFOLD,
-                    DesiresBlocks.NETHERITE_SCAFFOLD
+                    DesiresBlocks.NETHERITE_SCAFFOLD,
+                    DesiresBlocks.VERTICAL_FRAMED_SPLIT_GLASS,
+                    DesiresBlocks.HORIZONTAL_FRAMED_SPLIT_GLASS,
+                    DesiresBlocks.FRAMED_SPLIT_GLASS,
+                    DesiresBlocks.ORNATE_IRON_GLASS,
+                    DesiresBlocks.VERTICAL_FRAMED_SPLIT_GLASS_PANE,
+                    DesiresBlocks.HORIZONTAL_FRAMED_SPLIT_GLASS_PANE,
+                    DesiresBlocks.FRAMED_SPLIT_GLASS_PANE,
+                    DesiresBlocks.ORNATE_IRON_GLASS_PANE
             );
 
             for (ItemProviderEntry<?> entry : simplePaletteInclusions) {

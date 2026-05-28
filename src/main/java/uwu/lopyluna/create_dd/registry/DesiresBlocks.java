@@ -8,6 +8,7 @@ import com.simibubi.create.api.registry.CreateRegistries;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
+import com.simibubi.create.content.decoration.palettes.ConnectedGlassPaneBlock;
 import com.simibubi.create.content.kinetics.gauge.GaugeGenerator;
 import com.simibubi.create.content.kinetics.motor.CreativeMotorGenerator;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
@@ -31,6 +32,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.GlassBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -75,6 +77,7 @@ import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockp
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileCTBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileItem;
 import uwu.lopyluna.create_dd.content.blocks.magic.*;
+import uwu.lopyluna.create_dd.registry.helper.BuilderTransgender;
 
 import java.util.function.Consumer;
 
@@ -1260,7 +1263,7 @@ public class DesiresBlocks {
             .transform(BuilderTransformers.scaffold("hydraulic",
                     () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/copper")), MapColor.TERRACOTTA_YELLOW,
                     DesiresSpriteShifts.HYDRAULIC_SCAFFOLD, DesiresSpriteShifts.HYDRAULIC_SCAFFOLD_INSIDE, DesiresSpriteShifts.HYDRAULIC_CASING))
-            //.lang("Hydraulic Scaffolding")
+            .lang("Hydraulic Scaffolding")
             .register();
 
     public static final BlockEntry<MetalScaffoldingBlock> OVERBURDEN_SCAFFOLD = REGISTRATE.block("overburden_scaffolding", MetalScaffoldingBlock::new)
@@ -1359,6 +1362,84 @@ public class DesiresBlocks {
                     () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/netherite")), MapColor.COLOR_LIGHT_BLUE,
                     DesiresSpriteShifts.NETHERITE_SCAFFOLD, DesiresSpriteShifts.NETHERITE_SCAFFOLD_INSIDE, DesiresSpriteShifts.NETHERITE_CASING))
             .lang("Netherite Scaffolding")
+            .register();
+
+    public static final BlockEntry<GlassBlock> VERTICAL_FRAMED_SPLIT_GLASS = REGISTRATE.block("vertical_framed_split_glass", GlassBlock::new)
+            .transform(BuilderTransgender.block(() -> DesiresSpriteShifts.VERTICAL_FRAMED_SPLIT_GLASS))
+            .initialProperties(() -> Blocks.GLASS)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<GlassBlock> HORIZONTAL_FRAMED_SPLIT_GLASS = REGISTRATE.block("horizontal_framed_split_glass", GlassBlock::new)
+            .transform(BuilderTransgender.block(() -> DesiresSpriteShifts.HORIZONTAL_FRAMED_SPLIT_GLASS))
+            .initialProperties(() -> Blocks.GLASS)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<GlassBlock> FRAMED_SPLIT_GLASS = REGISTRATE.block("framed_split_glass", GlassBlock::new)
+            .transform(BuilderTransgender.block(() -> DesiresSpriteShifts.FRAMED_SPLIT_GLASS))
+            .initialProperties(() -> Blocks.GLASS)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<GlassBlock> ORNATE_IRON_GLASS = REGISTRATE.block("ornate_iron_glass", GlassBlock::new)
+            .transform(BuilderTransgender.blockv2(() -> DesiresSpriteShifts.ORNATE_IRON_GLASS, () -> DesiresSpriteShifts.ORNATE_IRON_GLASS_TOP))
+            .initialProperties(() -> Blocks.GLASS)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<ConnectedGlassPaneBlock> VERTICAL_FRAMED_SPLIT_GLASS_PANE = REGISTRATE.block("vertical_framed_split_glass_pane", ConnectedGlassPaneBlock::new)
+            .transform(BuilderTransgender.block(() -> DesiresSpriteShifts.VERTICAL_FRAMED_SPLIT_GLASS))
+            .initialProperties(() -> Blocks.GLASS)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<ConnectedGlassPaneBlock> HORIZONTAL_FRAMED_SPLIT_GLASS_PANE = REGISTRATE.block("horizontal_framed_split_glass_pane", ConnectedGlassPaneBlock::new)
+            .transform(BuilderTransgender.block(() -> DesiresSpriteShifts.HORIZONTAL_FRAMED_SPLIT_GLASS))
+            .initialProperties(() -> Blocks.GLASS)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<ConnectedGlassPaneBlock> FRAMED_SPLIT_GLASS_PANE = REGISTRATE.block("framed_split_glass_pane", ConnectedGlassPaneBlock::new)
+            .transform(BuilderTransgender.block(() -> DesiresSpriteShifts.FRAMED_SPLIT_GLASS))
+            .initialProperties(() -> Blocks.GLASS)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<ConnectedGlassPaneBlock> ORNATE_IRON_GLASS_PANE = REGISTRATE.block("ornate_iron_glass_pane", ConnectedGlassPaneBlock::new)
+            .transform(BuilderTransgender.block(() -> DesiresSpriteShifts.ORNATE_IRON_GLASS))
+            .initialProperties(() -> Blocks.GLASS)
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
             .register();
 
     public static void fanSailCrafting(ItemLike itemLike, ItemLike cataylst, Consumer<FinishedRecipe> pFinishedRecipeConsumer, DataGenContext c) {
