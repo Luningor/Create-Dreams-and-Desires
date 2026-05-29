@@ -19,14 +19,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.client.model.generators.ModelFile;
-//import uwu.lopyluna.create_dd.block.BlockProperties.door.YIPPEESlidingDoorBlock;
-//import uwu.lopyluna.create_dd.block.BlockProperties.wood.HazardBlock;
+import uwu.lopyluna.create_dd.content.blocks.door.YIPPEESlidingDoorBlock;
+import uwu.lopyluna.create_dd.content.blocks.wood.HazardBlock;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.Supplier;
 
-//import static com.simibubi.create.AllInteractionBehaviours.interactionBehaviour;
-//import static com.simibubi.create.AllMovementBehaviours.movementBehaviour;
+import static com.simibubi.create.api.behaviour.interaction.MovingInteractionBehaviour.interactionBehaviour;
+import static com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour;
 import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnectivity;
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
@@ -37,7 +37,7 @@ import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 @MethodsReturnNonnullByDefault
 public class BuilderTransgender {
 
-    /*public static <B extends HazardBlock> NonNullUnaryOperator<BlockBuilder<B, CreateRegistrate>> hazard(
+    public static <B extends HazardBlock> NonNullUnaryOperator<BlockBuilder<B, CreateRegistrate>> hazard(
             Supplier<CTSpriteShiftEntry> ct) {
         return b -> b.initialProperties(SharedProperties::stone)
                 .properties(p -> p.sound(SoundType.NETHERITE_BLOCK))
@@ -49,7 +49,7 @@ public class BuilderTransgender {
                 .item()
                 .tag(AllTags.AllItemTags.CASING.tag)
                 .build();
-    }*/
+    }
 
     public static <B extends Block> NonNullUnaryOperator<BlockBuilder<B, CreateRegistrate>> block(
             Supplier<CTSpriteShiftEntry> ct) {
@@ -75,7 +75,7 @@ public class BuilderTransgender {
                 .build();
     }
 
-    /*public static <B extends YIPPEESlidingDoorBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> slidingDoor(String type) {
+    public static <B extends YIPPEESlidingDoorBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> slidingDoor(String type) {
         return b -> b.initialProperties(() -> Blocks.OAK_DOOR) // for villager AI..
                 .properties(p -> p.strength(3.0F, 6.0F))
                 .blockstate((c, p) -> {
@@ -95,6 +95,6 @@ public class BuilderTransgender {
                 .tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
                 .model((c, p) -> p.blockSprite(c, p.modLoc("item/" + type + "_door")))
                 .build();
-    }*/
+    }
 
 }

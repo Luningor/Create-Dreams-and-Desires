@@ -30,12 +30,10 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.GlassBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.Tags;
@@ -55,6 +53,7 @@ import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw.Radian
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw.RadiantSawMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawBlock;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawMovementBehaviour;
+import uwu.lopyluna.create_dd.content.blocks.door.YIPPEESlidingDoorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.multimeter.MultiMeterBlock;
@@ -77,6 +76,8 @@ import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockp
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileCTBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileItem;
 import uwu.lopyluna.create_dd.content.blocks.magic.*;
+import uwu.lopyluna.create_dd.content.blocks.wood.*;
+import uwu.lopyluna.create_dd.content.worldgen.Features.RubberTreeGrower;
 import uwu.lopyluna.create_dd.registry.helper.BuilderTransgender;
 
 import java.util.function.Consumer;
@@ -1454,9 +1455,561 @@ public class DesiresBlocks {
                 .save(pFinishedRecipeConsumer, DesiresCreate.asResource("crafting/fan_catalyst/" + c.getName()));
     }
 
+    //WOODSET BLOCKS
+
+
+    //ROSE WOODSET
+
+    public static final BlockEntry<CanBurnRotatedBlockPillar> ROSE_LOG = REGISTRATE.block("rose_log", CanBurnRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.OAK_LOG)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Rose Log")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnRotatedBlockPillar> STRIPPED_ROSE_LOG = REGISTRATE.block("stripped_rose_log", CanBurnRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.STRIPPED_OAK_LOG)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Stripped Rose Log")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnRotatedBlockPillar> ROSE_WOOD = REGISTRATE.block("rose_wood", CanBurnRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.OAK_WOOD)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Rose Wood")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnRotatedBlockPillar> STRIPPED_ROSE_WOOD = REGISTRATE.block("stripped_rose_wood", CanBurnRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.STRIPPED_OAK_WOOD)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Stripped Rose Wood")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnBlock> ROSE_PLANKS = REGISTRATE.block("rose_planks", CanBurnBlock::new)
+            .initialProperties(() -> Blocks.OAK_PLANKS)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Rose Planks")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnSlabBlock> ROSE_SLAB = REGISTRATE.block("rose_slab", CanBurnSlabBlock::new)
+            .initialProperties(() -> Blocks.OAK_SLAB)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Rose Slab")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<StairBlock> ROSE_STAIRS = REGISTRATE.block("rose_stairs", p -> new StairBlock(DesiresBlocks.ROSE_PLANKS::getDefaultState, p))
+            .initialProperties(() -> Blocks.OAK_STAIRS)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Rose Stairs")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnFenceBlock> ROSE_FENCE = REGISTRATE.block("rose_fence", CanBurnFenceBlock::new)
+            .initialProperties(() -> Blocks.OAK_FENCE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Rose Fence")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnFenceGateBlock> ROSE_FENCE_GATE = REGISTRATE.block("rose_fence_gate", p -> new CanBurnFenceGateBlock(p, WoodType.MANGROVE))
+            .initialProperties(() -> Blocks.OAK_FENCE_GATE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Rose Fence Gate")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<YIPPEESlidingDoorBlock> ROSE_DOOR =
+            REGISTRATE.block("rose_door", p -> new YIPPEESlidingDoorBlock(p, YIPPEESlidingDoorBlock.ROSE_SET_TYPE.get(), true))
+                    .initialProperties(() -> Blocks.OAK_DOOR)
+                    .transform(BuilderTransgender.slidingDoor("rose"))
+                    .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED)
+                            .sound(SoundType.WOOD)
+                            .noOcclusion())
+                    .register();
+
+    public static final BlockEntry<CanBurnTrapDoorBlock> ROSE_TRAPDOOR = REGISTRATE.block("rose_trapdoor", p -> new CanBurnTrapDoorBlock(p, YIPPEESlidingDoorBlock.RUBBER_SET_TYPE.get()))
+            .initialProperties(() -> Blocks.OAK_TRAPDOOR)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED)
+                    .noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
+            .lang("Rose Trapdoor")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<ButtonBlock> ROSE_BUTTON = REGISTRATE.block("rose_button", p -> new ButtonBlock(p, YIPPEESlidingDoorBlock.ROSE_SET_TYPE.get() , 1 ,true))
+            .initialProperties(() -> Blocks.OAK_BUTTON)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Rose Button")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnPressurePlateBlock> ROSE_PRESSURE_PLATE = REGISTRATE.block("rose_pressure_plate", p -> new CanBurnPressurePlateBlock(CanBurnPressurePlateBlock.Sensitivity.EVERYTHING, p, YIPPEESlidingDoorBlock.ROSE_SET_TYPE.get()))
+            .initialProperties(() -> Blocks.OAK_PRESSURE_PLATE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_RED))
+            .lang("Rose Pressure Plate")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+
+
+    //SMOKED WOODSET
+
+    public static final BlockEntry<CanBurnRotatedBlockPillar> SMOKED_LOG = REGISTRATE.block("smoked_log", CanBurnRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.OAK_LOG)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Smoked Log")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnRotatedBlockPillar> STRIPPED_SMOKED_LOG = REGISTRATE.block("stripped_smoked_log", CanBurnRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.STRIPPED_OAK_LOG)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Stripped Smoked Log")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnRotatedBlockPillar> SMOKED_WOOD = REGISTRATE.block("smoked_wood", CanBurnRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.OAK_WOOD)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Smoked Wood")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnRotatedBlockPillar> STRIPPED_SMOKED_WOOD = REGISTRATE.block("stripped_smoked_wood", CanBurnRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.STRIPPED_OAK_WOOD)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Stripped Smoked Wood")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnBlock> SMOKED_PLANKS = REGISTRATE.block("smoked_planks", CanBurnBlock::new)
+            .initialProperties(() -> Blocks.OAK_PLANKS)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Smoked Planks")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<StairBlock> SMOKED_STAIRS = REGISTRATE.block("smoked_stairs", p -> new StairBlock(DesiresBlocks.SMOKED_PLANKS::getDefaultState, p))
+            .initialProperties(() -> Blocks.OAK_STAIRS)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Smoked Stairs")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnSlabBlock> SMOKED_SLAB = REGISTRATE.block("smoked_slab", CanBurnSlabBlock::new)
+            .initialProperties(() -> Blocks.OAK_SLAB)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Smoked Slab")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnFenceBlock> SMOKED_FENCE = REGISTRATE.block("smoked_fence", CanBurnFenceBlock::new)
+            .initialProperties(() -> Blocks.OAK_FENCE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Smoked Fence")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnFenceGateBlock> SMOKED_FENCE_GATE = REGISTRATE.block("smoked_fence_gate", p -> new CanBurnFenceGateBlock(p, WoodType.SPRUCE))
+            .initialProperties(() -> Blocks.OAK_FENCE_GATE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Smoked Fence Gate")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<YIPPEESlidingDoorBlock> SMOKED_DOOR =
+            REGISTRATE.block("smoked_door", p -> new YIPPEESlidingDoorBlock(p, YIPPEESlidingDoorBlock.SMOKED_SET_TYPE.get(), true))
+                    .initialProperties(() -> Blocks.OAK_DOOR)
+                    .transform(BuilderTransgender.slidingDoor("smoked"))
+                    .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN)
+                            .sound(SoundType.WOOD)
+                            .noOcclusion())
+                    .register();
+
+    public static final BlockEntry<CanBurnTrapDoorBlock> SMOKED_TRAPDOOR = REGISTRATE.block("smoked_trapdoor", p -> new CanBurnTrapDoorBlock(p, YIPPEESlidingDoorBlock.SMOKED_SET_TYPE.get()))
+            .initialProperties(() -> Blocks.OAK_TRAPDOOR)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN)
+                    .noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
+            .lang("Smoked Trapdoor")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<ButtonBlock> SMOKED_BUTTON = REGISTRATE.block("smoked_button", p -> new ButtonBlock(p, YIPPEESlidingDoorBlock.SMOKED_SET_TYPE.get(), 1, true))
+            .initialProperties(() -> Blocks.OAK_BUTTON)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Smoked Button")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<CanBurnPressurePlateBlock> SMOKED_PRESSURE_PLATE = REGISTRATE.block("smoked_pressure_plate", p -> new CanBurnPressurePlateBlock(CanBurnPressurePlateBlock.Sensitivity.EVERYTHING, p, YIPPEESlidingDoorBlock.SMOKED_SET_TYPE.get()))
+            .initialProperties(() -> Blocks.OAK_PRESSURE_PLATE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_BROWN))
+            .lang("Smoked Pressure Plate")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+
+    //SPIRIT WOODSET
+
+    public static final BlockEntry<NormalLogRotatedBlockPillar> SPIRIT_LOG = REGISTRATE.block("spirit_log", NormalLogRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.WARPED_STEM)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Spirit Log")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<NormalLogRotatedBlockPillar> STRIPPED_SPIRIT_LOG = REGISTRATE.block("stripped_spirit_log", NormalLogRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.STRIPPED_WARPED_STEM)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Stripped Spirit Log")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<NormalLogRotatedBlockPillar> SPIRIT_WOOD = REGISTRATE.block("spirit_wood", NormalLogRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.WARPED_HYPHAE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Spirit Wood")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<NormalLogRotatedBlockPillar> STRIPPED_SPIRIT_WOOD = REGISTRATE.block("stripped_spirit_wood", NormalLogRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.STRIPPED_WARPED_HYPHAE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Stripped Spirit Wood")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> SPIRIT_PLANKS = REGISTRATE.block("spirit_planks", Block::new)
+            .initialProperties(() -> Blocks.WARPED_PLANKS)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Spirit Planks")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<StairBlock> SPIRIT_STAIRS = REGISTRATE.block("spirit_stairs", p -> new StairBlock(DesiresBlocks.SPIRIT_PLANKS::getDefaultState, p))
+            .initialProperties(() -> Blocks.WARPED_STAIRS)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Spirit Stairs")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<SlabBlock> SPIRIT_SLAB = REGISTRATE.block("spirit_slab", SlabBlock::new)
+            .initialProperties(() -> Blocks.WARPED_SLAB)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Spirit Slab")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<FenceBlock> SPIRIT_FENCE = REGISTRATE.block("spirit_fence", FenceBlock::new)
+            .initialProperties(() -> Blocks.WARPED_FENCE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Spirit Fence")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<FenceGateBlock> SPIRIT_FENCE_GATE = REGISTRATE.block("spirit_fence_gate", p -> new FenceGateBlock(p, WoodType.WARPED))
+            .initialProperties(() -> Blocks.WARPED_FENCE_GATE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Spirit Fence Gate")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<YIPPEESlidingDoorBlock> SPIRIT_DOOR =
+            REGISTRATE.block("spirit_door", p -> new YIPPEESlidingDoorBlock(p, YIPPEESlidingDoorBlock.SPIRIT_SET_TYPE.get(), true))
+                    .initialProperties(() -> Blocks.WARPED_DOOR)
+                    .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                            () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                            () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+                    .transform(BuilderTransgender.slidingDoor("spirit"))
+                    .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE)
+                            .noOcclusion())
+                    .register();
+
+    public static final BlockEntry<TrapDoorBlock> SPIRIT_TRAPDOOR = REGISTRATE.block("spirit_trapdoor", p -> new TrapDoorBlock(p, YIPPEESlidingDoorBlock.SPIRIT_SET_TYPE.get()))
+            .initialProperties(() -> Blocks.WARPED_TRAPDOOR)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE)
+                    .noOcclusion())
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .lang("Spirit Trapdoor")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+
+    public static final BlockEntry<ButtonBlock> SPIRIT_BUTTON = REGISTRATE.block("spirit_button", p -> new ButtonBlock(p, YIPPEESlidingDoorBlock.RUBBER_SET_TYPE.get(), 1, true))
+            .initialProperties(() -> Blocks.WARPED_BUTTON)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Spirit Button")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<PressurePlateBlock> SPIRIT_PRESSURE_PLATE = REGISTRATE.block("spirit_pressure_plate", p -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p, YIPPEESlidingDoorBlock.RUBBER_SET_TYPE.get()))
+            .initialProperties(() -> Blocks.WARPED_PRESSURE_PLATE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE))
+            .properties(p -> p.sound(new ForgeSoundType(1, .7f, () -> SoundEvents.WOOD_BREAK,
+                    () -> SoundEvents.STEM_STEP, () -> SoundEvents.WOOD_PLACE,
+                    () -> SoundEvents.STEM_HIT, () -> SoundEvents.STEM_FALL)))
+            .lang("Spirit Pressure Plate")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+
+    //RUBBER WOODSET
+
+    public static final BlockEntry<SaplingBlock> RUBBER_SAPLING = REGISTRATE.block("rubber_sapling", p -> new SaplingBlock(new RubberTreeGrower(), p))
+            .initialProperties(() -> Blocks.OAK_SAPLING)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Sapling")
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+
+    public static final BlockEntry<RubberLeavesBlock> RUBBER_LEAVES = REGISTRATE.block("rubber_leaves", RubberLeavesBlock::new)
+            .initialProperties(() -> Blocks.AZALEA_LEAVES)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Leaves")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+
+    public static final BlockEntry<NormalLogRotatedBlockPillar> RUBBER_LOG = REGISTRATE.block("rubber_log", NormalLogRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.OAK_LOG)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Log")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<NormalLogRotatedBlockPillar> STRIPPED_RUBBER_LOG = REGISTRATE.block("stripped_rubber_log", NormalLogRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.STRIPPED_OAK_LOG)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Stripped Rubber Log")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<NormalLogRotatedBlockPillar> RUBBER_WOOD = REGISTRATE.block("rubber_wood", NormalLogRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.OAK_WOOD)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Wood")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<NormalLogRotatedBlockPillar> STRIPPED_RUBBER_WOOD = REGISTRATE.block("stripped_rubber_wood", NormalLogRotatedBlockPillar::new)
+            .initialProperties(() -> Blocks.STRIPPED_OAK_WOOD)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Stripped Rubber Wood")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> RUBBER_PLANKS = REGISTRATE.block("rubber_planks", Block::new)
+            .initialProperties(() -> Blocks.OAK_PLANKS)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Planks")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<SlabBlock> RUBBER_SLAB = REGISTRATE.block("rubber_slab", SlabBlock::new)
+            .initialProperties(() -> Blocks.OAK_SLAB)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Slab")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<StairBlock> RUBBER_STAIRS = REGISTRATE.block("rubber_stairs", p -> new StairBlock(DesiresBlocks.RUBBER_PLANKS::getDefaultState, p))
+            .initialProperties(() -> Blocks.OAK_STAIRS)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Stairs")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<FenceBlock> RUBBER_FENCE = REGISTRATE.block("rubber_fence", FenceBlock::new)
+            .initialProperties(() -> Blocks.OAK_FENCE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Fence")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<FenceGateBlock> RUBBER_FENCE_GATE = REGISTRATE.block("rubber_fence_gate", p -> new FenceGateBlock(p, WoodType.ACACIA))
+            .initialProperties(() -> Blocks.OAK_FENCE_GATE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Fence Gate")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<DoorBlock> RUBBER_DOOR = REGISTRATE.block("rubber_door", p -> new DoorBlock(p, YIPPEESlidingDoorBlock.RUBBER_SET_TYPE.get()))
+            .initialProperties(() -> Blocks.OAK_DOOR)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<TrapDoorBlock> RUBBER_TRAPDOOR = REGISTRATE.block("rubber_trapdoor", p -> new TrapDoorBlock(p, YIPPEESlidingDoorBlock.RUBBER_SET_TYPE.get()))
+            .initialProperties(() -> Blocks.OAK_TRAPDOOR)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN)
+                    .noOcclusion())
+            .addLayer(() -> RenderType::cutoutMipped)
+            .lang("Rubber Trapdoor")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<ButtonBlock> RUBBER_BUTTON = REGISTRATE.block("rubber_button", p -> new ButtonBlock(p, YIPPEESlidingDoorBlock.RUBBER_SET_TYPE.get(), 1, true))
+            .initialProperties(() -> Blocks.OAK_BUTTON)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Button")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<PressurePlateBlock> RUBBER_PRESSURE_PLATE = REGISTRATE.block("rubber_pressure_plate", p -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, p, YIPPEESlidingDoorBlock.RUBBER_SET_TYPE.get()))
+            .initialProperties(() -> Blocks.OAK_PRESSURE_PLATE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN))
+            .lang("Rubber Pressure Plate")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+
 
     // Load this class
-
 	public static void register() {}
-
 }

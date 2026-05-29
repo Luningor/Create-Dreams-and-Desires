@@ -20,6 +20,8 @@ import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw.Radian
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawRenderer;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawVisual;
+import uwu.lopyluna.create_dd.content.blocks.door.YIPPEESlidingDoorBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.door.YIPPEESlidingDoorRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankVisual;
@@ -167,6 +169,12 @@ public class DesiresBlockEntityTypes {
 			.validBlocks(DesiresBlocks.REDSTONE_DIVIDER)
 			.renderer(() -> SplitShaftRenderer::new)
 			.register();
+
+    public static final BlockEntityEntry<YIPPEESlidingDoorBlockEntity> SLIDING_DOOR =
+            REGISTRATE.blockEntity("sliding_door", YIPPEESlidingDoorBlockEntity::new)
+                    .renderer(() -> YIPPEESlidingDoorRenderer::new)
+                    .validBlocks(DesiresBlocks.ROSE_DOOR, DesiresBlocks.SMOKED_DOOR, DesiresBlocks.SPIRIT_DOOR)
+                    .register();
 
 	public static void register() {}
 }
