@@ -94,6 +94,8 @@ import static uwu.lopyluna.create_dd.registry.DesiresPaletteBlocks.rubberDecorTa
 @SuppressWarnings({"unused", "removal", "all"})
 public class DesiresBlocks {
 
+    // VALUABLES
+
     public static final BlockEntry<Block> TIN_ORE = REGISTRATE.block("tin_ore", Block::new)
             .initialProperties(() -> Blocks.STONE)
             .properties(p -> p.mapColor(MapColor.STONE))
@@ -431,6 +433,8 @@ public class DesiresBlocks {
 			.build()
 			.register();
 
+    // CASINGS
+
 	public static final BlockEntry<CasingBlock> CREATIVE_CASING = REGISTRATE.block("creative_casing", CasingBlock::new)
 			.transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.CREATIVE_CASING))
             .properties(p -> p.mapColor(MapColor.COLOR_BLACK)
@@ -747,6 +751,8 @@ public class DesiresBlocks {
             .build()
             .register();
 
+    // KINETICS
+
     public static final BlockEntry<Block> PONDER_LIGHT = REGISTRATE.block("pondering_block_light", Block::new)
             .initialProperties(SharedProperties::stone)
             .properties(p -> p.mapColor(MapColor.TERRACOTTA_GRAY))
@@ -756,7 +762,7 @@ public class DesiresBlocks {
             .properties(p -> p.strength(1f,5000f))
             .lang("Light pondering block")
             .item()
-            .tab(DesiresCreativeModeTabs.BETA_CREATIVE_TAB.getKey())
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
             .build()
             .register();
 
@@ -769,7 +775,7 @@ public class DesiresBlocks {
             .properties(p -> p.strength(1f,5000f))
             .lang("Dark pondering block")
             .item()
-            .tab(DesiresCreativeModeTabs.BETA_CREATIVE_TAB.getKey())
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
             .build()
             .register();
 
@@ -1129,6 +1135,7 @@ public class DesiresBlocks {
 			.build()
 			.register();
 
+    // CATALYST SAILS
 
 	public static final BlockEntry<FanSailBlock> SPLASHING_SAIL = REGISTRATE.block("splashing_sail", FanSailBlock::sail)
             .initialProperties(SharedProperties::wooden)
@@ -1253,6 +1260,8 @@ public class DesiresBlocks {
             .build()
             .register();
 
+    // COBBLES
+
     public static final BlockEntry<Block> POTASSIC_COBBLE =
             REGISTRATE.block("potassic_cobble", Block::new)
                     .initialProperties(() -> Blocks.DEEPSLATE)
@@ -1310,6 +1319,8 @@ public class DesiresBlocks {
                     .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
                     .build()
                     .register();
+
+    // SCAFFOLDS
 
     public static final BlockEntry<MetalScaffoldingBlock> TRAIN_SCAFFOLD = REGISTRATE.block("train_scaffolding", MetalScaffoldingBlock::new)
             .transform(BuilderTransformers.scaffold("train",
@@ -1423,6 +1434,8 @@ public class DesiresBlocks {
             .lang("Netherite Scaffolding")
             .register();
 
+    // GLASSES
+
     public static final BlockEntry<GlassBlock> VERTICAL_FRAMED_SPLIT_GLASS = REGISTRATE.block("vertical_framed_split_glass", GlassBlock::new)
             .transform(BuilderTransgender.block(() -> DesiresSpriteShifts.VERTICAL_FRAMED_SPLIT_GLASS))
             .initialProperties(() -> Blocks.GLASS)
@@ -1514,7 +1527,6 @@ public class DesiresBlocks {
     }
 
     //WOODSET BLOCKS
-
 
     //ROSE WOODSET
 
@@ -2066,7 +2078,399 @@ public class DesiresBlocks {
             .build()
             .register();
 
+    // ASPHALTS
 
+    public static final BlockEntry<Block> ANDESITE_ASPHALT_BLOCK = REGISTRATE.block("andesite_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.STONE))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> ASURINE_ASPHALT_BLOCK = REGISTRATE.block("asurine_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.COLOR_BLUE))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> CALCITE_ASPHALT_BLOCK = REGISTRATE.block("calcite_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.TERRACOTTA_WHITE))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.CALCITE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> CRIMSITE_ASPHALT_BLOCK = REGISTRATE.block("crimsite_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.COLOR_RED))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> DEEPSLATE_ASPHALT_BLOCK = REGISTRATE.block("deepslate_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.DEEPSLATE))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> DIORITE_ASPHALT_BLOCK = REGISTRATE.block("diorite_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.QUARTZ))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> DRIPSTONE_ASPHALT_BLOCK = REGISTRATE.block("dripstone_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.TERRACOTTA_BROWN))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.DRIPSTONE_BLOCK))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> GABBRO_ASPHALT_BLOCK = REGISTRATE.block("gabbro_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.TUFF))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> GRANITE_ASPHALT_BLOCK = REGISTRATE.block("granite_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.TERRACOTTA_CYAN))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> LIMESTONE_ASPHALT_BLOCK = REGISTRATE.block("limestone_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.SAND))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> OCHRUM_ASPHALT_BLOCK = REGISTRATE.block("ochrum_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.TERRACOTTA_YELLOW))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.CALCITE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> POTASSIC_ASPHALT_BLOCK = REGISTRATE.block("potassic_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.TERRACOTTA_BLUE))
+            .properties(p -> p.sound(new ForgeSoundType(0.8f, 0.85f, () -> DesiresSoundEvents.ORE_STONE_BREAK.get(),
+                    () -> DesiresSoundEvents.ORE_STONE_STEP.get(), () -> DesiresSoundEvents.ORE_STONE_PLACE.get(),
+                    () -> DesiresSoundEvents.ORE_STONE_HIT.get(), () -> DesiresSoundEvents.ORE_STONE_FALL.get())))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> AETHERSITE_ASPHALT_BLOCK = REGISTRATE.block("aethersite_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.TERRACOTTA_BLUE))
+            .properties(p -> p.sound(new ForgeSoundType(0.8f, 1.5f, () -> DesiresSoundEvents.ORE_STONE_BREAK.get(),
+                    () -> DesiresSoundEvents.ORE_STONE_STEP.get(), () -> DesiresSoundEvents.ORE_STONE_PLACE.get(),
+                    () -> DesiresSoundEvents.ORE_STONE_HIT.get(), () -> DesiresSoundEvents.ORE_STONE_FALL.get())))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> SCORCHIA_ASPHALT_BLOCK = REGISTRATE.block("scorchia_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.TERRACOTTA_GRAY))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> SCORIA_ASPHALT_BLOCK = REGISTRATE.block("scoria_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.COLOR_BROWN))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> TUFF_ASPHALT_BLOCK = REGISTRATE.block("tuff_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.TERRACOTTA_GRAY))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.TUFF))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> VERIDIUM_ASPHALT_BLOCK = REGISTRATE.block("veridium_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.WARPED_NYLIUM))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.TUFF))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> WEATHERED_LIMESTONE_ASPHALT_BLOCK = REGISTRATE.block("weathered_limestone_asphalt_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(1.2F)
+                    .jumpFactor(1.2F)
+                    .friction(0.6F)
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    // MOSSY VARIANTS
+
+    public static final BlockEntry<Block> ANDESITE_MOSSY_BRICKS = REGISTRATE.block("andesite_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.STONE))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> ASURINE_MOSSY_BRICKS = REGISTRATE.block("asurine_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.COLOR_BLUE))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> CALCITE_MOSSY_BRICKS = REGISTRATE.block("calcite_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.TERRACOTTA_WHITE))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.CALCITE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> CRIMSITE_MOSSY_BRICKS = REGISTRATE.block("crimsite_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.COLOR_RED))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> DEEPSLATE_MOSSY_BRICKS = REGISTRATE.block("deepslate_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.DEEPSLATE))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> DIORITE_MOSSY_BRICKS = REGISTRATE.block("diorite_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.QUARTZ))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> DRIPSTONE_MOSSY_BRICKS = REGISTRATE.block("dripstone_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.TERRACOTTA_BROWN))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.DRIPSTONE_BLOCK))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> GABBRO_MOSSY_BRICKS = REGISTRATE.block("gabbro_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.TUFF))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> GRANITE_MOSSY_BRICKS = REGISTRATE.block("granite_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.TERRACOTTA_CYAN))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> LIMESTONE_MOSSY_BRICKS = REGISTRATE.block("limestone_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.SAND))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> OCHRUM_MOSSY_BRICKS = REGISTRATE.block("ochrum_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.TERRACOTTA_YELLOW))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.CALCITE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> POTASSIC_MOSSY_BRICKS = REGISTRATE.block("potassic_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.TERRACOTTA_BLUE))
+            .properties(p -> p.sound(new ForgeSoundType(0.8f, 0.85f, () -> DesiresSoundEvents.ORE_STONE_BREAK.get(),
+                    () -> DesiresSoundEvents.ORE_STONE_STEP.get(), () -> DesiresSoundEvents.ORE_STONE_PLACE.get(),
+                    () -> DesiresSoundEvents.ORE_STONE_HIT.get(), () -> DesiresSoundEvents.ORE_STONE_FALL.get())))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> AETHERSITE_MOSSY_BRICKS = REGISTRATE.block("aethersite_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.TERRACOTTA_BLUE))
+            .properties(p -> p.sound(new ForgeSoundType(0.8f, 1.5f, () -> DesiresSoundEvents.ORE_STONE_BREAK.get(),
+                    () -> DesiresSoundEvents.ORE_STONE_STEP.get(), () -> DesiresSoundEvents.ORE_STONE_PLACE.get(),
+                    () -> DesiresSoundEvents.ORE_STONE_HIT.get(), () -> DesiresSoundEvents.ORE_STONE_FALL.get())))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> SCORCHIA_MOSSY_BRICKS = REGISTRATE.block("scorchia_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.TERRACOTTA_GRAY))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> SCORIA_MOSSY_BRICKS = REGISTRATE.block("scoria_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.COLOR_BROWN))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> TUFF_MOSSY_BRICKS = REGISTRATE.block("tuff_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.TERRACOTTA_GRAY))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.TUFF))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> VERIDIUM_MOSSY_BRICKS = REGISTRATE.block("veridium_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.WARPED_NYLIUM))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.TUFF))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> WEATHERED_LIMESTONE_MOSSY_BRICKS = REGISTRATE.block("weathered_limestone_mossy_bricks", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .mapColor(MapColor.COLOR_LIGHT_GRAY))
+            .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.STONE))
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    // TILED AND POLISHED
 
     // Load this class
 	public static void register() {}

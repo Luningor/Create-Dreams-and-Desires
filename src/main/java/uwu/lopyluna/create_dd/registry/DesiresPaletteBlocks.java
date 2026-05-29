@@ -48,6 +48,8 @@ public class DesiresPaletteBlocks {
 	public static TagKey<Block> slabsBlockTag = optionalTag(ForgeRegistries.BLOCKS, new ResourceLocation("minecraft", "slabs"));
 	public static TagKey<Item> slabsItemTag = optionalTag(ForgeRegistries.ITEMS, new ResourceLocation("minecraft", "slabs"));
 
+    // HAZARD BLOCKS
+
 	public static final BlockEntry<Block> HAZARD_BLOCK = REGISTRATE.block("hazard_block", Block::new)
 			.properties(p -> p.destroyTime(1.25f)
 					.speedFactor(0.8F)
@@ -60,10 +62,69 @@ public class DesiresPaletteBlocks {
 			.transform(pickaxeOnly())
 			.recipe((c, p) -> p.stonecutting(DataIngredient.tag(asphaltBlocks), RecipeCategory.BUILDING_BLOCKS, c, 2))
 			.tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag)
+            .lang("Hazard Block")
 			.item()
 			.tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
 			.build()
 			.register();
+
+    public static final BlockEntry<Block> HORIZONTAL_HAZARD_BLOCK = REGISTRATE.block("horizontal_hazard_block", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(0.8F)
+                    .jumpFactor(0.8F)
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .sound(SoundType.POLISHED_DEEPSLATE))
+            .blockstate((c, p) -> p.simpleBlock(c.get()))
+            .onRegister(connectedTextures(() -> new EncasedCTBehaviour(DesiresSpriteShifts.HORIZONTAL_HAZARD)))
+            .onRegister(casingConnectivity((block, cc) -> cc.make(block, DesiresSpriteShifts.HORIZONTAL_HAZARD)))
+            .transform(pickaxeOnly())
+            .recipe((c, p) -> p.stonecutting(DataIngredient.tag(asphaltBlocks), RecipeCategory.BUILDING_BLOCKS, c, 2))
+            .tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag)
+            .lang("Horizontal Hazard Block")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+
+    public static final BlockEntry<Block> HAZARD_BLOCK_R = REGISTRATE.block("hazard_block_r", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(0.8F)
+                    .jumpFactor(0.8F)
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .sound(SoundType.POLISHED_DEEPSLATE))
+            .blockstate((c, p) -> p.simpleBlock(c.get()))
+            .onRegister(connectedTextures(() -> new EncasedCTBehaviour(DesiresSpriteShifts.HAZARD_R)))
+            .onRegister(casingConnectivity((block, cc) -> cc.make(block, DesiresSpriteShifts.HAZARD_R)))
+            .transform(pickaxeOnly())
+            .recipe((c, p) -> p.stonecutting(DataIngredient.tag(asphaltBlocks), RecipeCategory.BUILDING_BLOCKS, c, 2))
+            .tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag)
+            .lang("Hazard Block")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+
+    public static final BlockEntry<Block> HORIZONTAL_HAZARD_BLOCK_R = REGISTRATE.block("horizontal_hazard_block_r", Block::new)
+            .properties(p -> p.destroyTime(1.25f)
+                    .speedFactor(0.8F)
+                    .jumpFactor(0.8F)
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .sound(SoundType.POLISHED_DEEPSLATE))
+            .blockstate((c, p) -> p.simpleBlock(c.get()))
+            .onRegister(connectedTextures(() -> new EncasedCTBehaviour(DesiresSpriteShifts.HORIZONTAL_HAZARD_R)))
+            .onRegister(casingConnectivity((block, cc) -> cc.make(block, DesiresSpriteShifts.HORIZONTAL_HAZARD_R)))
+            .transform(pickaxeOnly())
+            .recipe((c, p) -> p.stonecutting(DataIngredient.tag(asphaltBlocks), RecipeCategory.BUILDING_BLOCKS, c, 2))
+            .tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag)
+            .lang("Horizontal Hazard Block")
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    // DARK METAL
 
 	public static final BlockEntry<Block> DARK_METAL_BLOCK = REGISTRATE.block("dark_metal_block", Block::new)
 			.properties(p -> p.mapColor(MapColor.COLOR_BLACK)
@@ -234,6 +295,8 @@ public class DesiresPaletteBlocks {
 			.tag(darkMetalDecorTag, stairsItemTag)
 			.build()
 			.register();
+
+    // PADDED RUBBER
 
 	public static final BlockEntry<Block> PADDED_RUBBER = REGISTRATE.block("padded_rubber", Block::new)
 			.properties(p -> p.mapColor(MapColor.TERRACOTTA_GRAY))

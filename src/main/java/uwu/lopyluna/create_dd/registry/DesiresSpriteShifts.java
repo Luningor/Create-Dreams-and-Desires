@@ -33,6 +33,10 @@ public class DesiresSpriteShifts {
 
 	public static final CTSpriteShiftEntry
 			HAZARD_BLOCK = omni("hazard_block"),
+            HORIZONTAL_HAZARD = omni("horizontal_hazard_block"),
+            HAZARD_R = omni("hazard_block_r"),
+            HORIZONTAL_HAZARD_R = omni("horizontal_hazard_block_r"),
+
 			DARK_METAL_PLATING = omni("dark_metal_plating"),
 			CREATIVE_CASING = omni("creative_casing"),
             OVERBURDEN_CASING = omni("overburden_casing"),
@@ -91,8 +95,6 @@ public class DesiresSpriteShifts {
 			 CYAN_BLUEPRINT_BLOCK = omniBlueprint("cyan"),
 			 PURPLE_BLUEPRINT_BLOCK = omniBlueprint("purple"),
 			 ORANGE_BLUEPRINT_BLOCK = omniBlueprint("orange");
-
-
 
     public static final CTSpriteShiftEntry
             TRAIN_SCAFFOLD = horizontal("train_scaffold"),
