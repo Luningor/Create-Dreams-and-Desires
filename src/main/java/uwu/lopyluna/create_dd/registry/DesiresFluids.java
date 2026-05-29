@@ -1,6 +1,7 @@
 package uwu.lopyluna.create_dd.registry;
 
 import com.simibubi.create.AllFluids;
+import com.simibubi.create.content.decoration.palettes.AllPaletteStoneTypes;
 import com.tterrag.registrate.builders.FluidBuilder.FluidTypeFactory;
 import com.tterrag.registrate.util.entry.FluidEntry;
 import net.createmod.catnip.theme.Color;
@@ -18,6 +19,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import org.joml.Vector3f;
 import uwu.lopyluna.create_dd.infrastructure.config.DesiresConfigs;
+import uwu.lopyluna.create_dd.registry.DesiresPaletteStoneTypes;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -381,6 +383,132 @@ public class DesiresFluids {
         FluidInteractionRegistry.addInteraction(DesiresFluids.CHROMATIC_WASTE.getType(), new FluidInteractionRegistry.InteractionInformation(
                 ForgeMod.LAVA_TYPE.get(),
                 fluidState -> Blocks.CRYING_OBSIDIAN.defaultBlockState()));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                SHIMMER.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return DesiresPaletteStoneTypes.AETHERSITE.getBaseBlock().get().defaultBlockState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                VANILLA.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return AllPaletteStoneTypes.DEEPSLATE.getBaseBlock().get().defaultBlockState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                VANILLA_MILKSHAKE.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return DesiresBlocks.POTASSIC_COBBLE.getDefaultState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                STRAWBERRY.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return DesiresPaletteStoneTypes.GABBRO.getBaseBlock().get().defaultBlockState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                STRAWBERRY_MILKSHAKE.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return DesiresBlocks.CRIMSITE_COBBLE.getDefaultState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                GLOWBERRY.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return AllPaletteStoneTypes.DRIPSTONE.getBaseBlock().get().defaultBlockState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                GLOWBERRY_MILKSHAKE.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return DesiresBlocks.OCHRUM_COBBLE.getDefaultState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                CARAMEL.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return Blocks.BLACKSTONE.defaultBlockState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                CARAMEL_MILKSHAKE.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return DesiresBlocks.VERIDIUM_COBBLE.getDefaultState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                CONDENSE_MILK.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return AllPaletteStoneTypes.CALCITE.getBaseBlock().get().defaultBlockState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                CREAM.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return DesiresBlocks.ASURINE_COBBLE.getDefaultState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                HOT_CHOCOLATE.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return AllPaletteStoneTypes.SCORCHIA.getBaseBlock().get().defaultBlockState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                CHOCOLATE_MILKSHAKE.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return AllPaletteStoneTypes.SCORIA.getBaseBlock().get().defaultBlockState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                SAP.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return Blocks.BASALT.defaultBlockState();
+                    }}));
 
 	}
 

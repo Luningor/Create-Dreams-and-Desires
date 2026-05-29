@@ -196,7 +196,6 @@ public class DesiresCreativeModeTabs {
                     DesiresPaletteBlocks.PURPLE_BLUEPRINT_BLOCK,
                     DesiresPaletteBlocks.MAGENTA_BLUEPRINT_BLOCK,
                     DesiresPaletteBlocks.PINK_BLUEPRINT_BLOCK,
-                    DesiresBlocks.TRAIN_SCAFFOLD,
                     DesiresBlocks.HYDRAULIC_SCAFFOLD,
                     DesiresBlocks.OVERBURDEN_SCAFFOLD,
                     DesiresBlocks.INDUSTRIAL_SCAFFOLD,
@@ -220,6 +219,12 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.HORIZONTAL_FRAMED_SPLIT_GLASS_PANE,
                     DesiresBlocks.FRAMED_SPLIT_GLASS_PANE,
                     DesiresBlocks.ORNATE_IRON_GLASS_PANE,
+                    DesiresBlocks.POTASSIC_COBBLE,
+                    DesiresBlocks.ASURINE_COBBLE,
+                    DesiresBlocks.CRIMSITE_COBBLE,
+                    DesiresBlocks.OCHRUM_COBBLE,
+                    DesiresBlocks.VERIDIUM_COBBLE,
+                    DesiresBlocks.TRAIN_SCAFFOLD,
                     DesiresBlocks.ROSE_LOG,
                     DesiresBlocks.STRIPPED_ROSE_LOG,
                     DesiresBlocks.ROSE_WOOD,
@@ -276,9 +281,10 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.RUBBER_PRESSURE_PLATE
             );
 
-            for (ItemProviderEntry<?> entry : simplePaletteInclusions) {
+            for (ItemProviderEntry<?> entry : simplePaletteInclusions)
                 paletteInclusions.add(entry.asItem());
-            }
+
+            paletteInclusions.addAll(DesiresPaletteStoneTypes.getAllPaletteItems());
 
             return paletteInclusions::contains;
         }

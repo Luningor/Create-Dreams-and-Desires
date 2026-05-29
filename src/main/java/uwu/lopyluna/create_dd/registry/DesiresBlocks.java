@@ -1253,6 +1253,64 @@ public class DesiresBlocks {
             .build()
             .register();
 
+    public static final BlockEntry<Block> POTASSIC_COBBLE =
+            REGISTRATE.block("potassic_cobble", Block::new)
+                    .initialProperties(() -> Blocks.DEEPSLATE)
+                    .properties(p -> p.destroyTime(2.25f).mapColor(MapColor.TERRACOTTA_BLUE))
+                    .properties(p -> p.sound(new ForgeSoundType(0.8f, 0.85f, () -> DesiresSoundEvents.ORE_STONE_BREAK.get(),
+                            () -> DesiresSoundEvents.ORE_STONE_STEP.get(), () -> DesiresSoundEvents.ORE_STONE_PLACE.get(),
+                            () -> DesiresSoundEvents.ORE_STONE_HIT.get(), () -> DesiresSoundEvents.ORE_STONE_FALL.get())))
+                    .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+                    .transform(pickaxeOnly())
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<Block> ASURINE_COBBLE =
+            REGISTRATE.block("asurine_cobble", Block::new)
+                    .initialProperties(() -> Blocks.DEEPSLATE)
+                    .properties(p -> p.destroyTime(2.25f).mapColor(MapColor.COLOR_BLUE))
+                    .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+                    .transform(pickaxeOnly())
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<Block> CRIMSITE_COBBLE =
+            REGISTRATE.block("crimsite_cobble", Block::new)
+                    .initialProperties(() -> Blocks.DEEPSLATE)
+                    .properties(p -> p.destroyTime(2.25f).mapColor(MapColor.COLOR_RED))
+                    .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+                    .transform(pickaxeOnly())
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<Block> OCHRUM_COBBLE =
+            REGISTRATE.block("ochrum_cobble", Block::new)
+                    .initialProperties(() -> Blocks.CALCITE)
+                    .properties(p -> p.destroyTime(2.25f).mapColor(MapColor.TERRACOTTA_YELLOW))
+                    .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+                    .transform(pickaxeOnly())
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<Block> VERIDIUM_COBBLE =
+            REGISTRATE.block("veridium_cobble", Block::new)
+                    .initialProperties(() -> Blocks.TUFF)
+                    .properties(p -> p.destroyTime(2.25f).mapColor(MapColor.WARPED_NYLIUM))
+                    .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+                    .transform(pickaxeOnly())
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
     public static final BlockEntry<MetalScaffoldingBlock> TRAIN_SCAFFOLD = REGISTRATE.block("train_scaffolding", MetalScaffoldingBlock::new)
             .transform(BuilderTransformers.scaffold("train",
                     () -> DataIngredient.tag(AllTags.forgeItemTag("plates/obsidian")), MapColor.COLOR_BLACK,
