@@ -170,11 +170,11 @@ public class DesiresBlockEntityTypes {
 			.renderer(() -> SplitShaftRenderer::new)
 			.register();
 
-    public static final BlockEntityEntry<YIPPEESlidingDoorBlockEntity> SLIDING_DOOR =
-            REGISTRATE.blockEntity("sliding_door", YIPPEESlidingDoorBlockEntity::new)
-                    .renderer(() -> YIPPEESlidingDoorRenderer::new)
-                    .validBlocks(DesiresBlocks.ROSE_DOOR, DesiresBlocks.SMOKED_DOOR, DesiresBlocks.SPIRIT_DOOR)
-                    .register();
+    public static final BlockEntityEntry<YIPPEESlidingDoorBlockEntity> SLIDING_DOOR = REGISTRATE
+            .blockEntity("sliding_door", YIPPEESlidingDoorBlockEntity::new)
+            .renderer(() -> YIPPEESlidingDoorRenderer::new)
+            .validBlocks(DesiresBlocks.ROSE_DOOR, DesiresBlocks.SMOKED_DOOR, DesiresBlocks.SPIRIT_DOOR)
+            .register();
 
 	public static void register() {}
 }

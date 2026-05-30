@@ -26,7 +26,6 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
@@ -54,6 +53,7 @@ import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw.Radian
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawBlock;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.door.YIPPEESlidingDoorBlock;
+import uwu.lopyluna.create_dd.content.blocks.functional.SpectralRubyLampBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.multimeter.MultiMeterBlock;
@@ -153,6 +153,37 @@ public class DesiresBlocks {
             .tag(Tags.Items.STORAGE_BLOCKS)
             .tag(AllTags.forgeItemTag("storage_blocks/raw_tin"))
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<RotatedPillarBlock> SPECTRAL_RUBY_BLOCK = REGISTRATE.block("spectral_ruby_block", RotatedPillarBlock::new)
+            .initialProperties(() -> Blocks.AMETHYST_BLOCK)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_MAGENTA)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.DEEPSLATE))
+            .transform(pickaxeOnly())
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> SPECTRAL_RUBY_TILES = REGISTRATE.block("spectral_ruby_tiles", Block::new)
+            .initialProperties(() -> Blocks.DEEPSLATE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_MAGENTA))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .transform(pickaxeOnly())
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> SMALL_SPECTRAL_RUBY_TILES = REGISTRATE.block("small_spectral_ruby_tiles", Block::new)
+            .initialProperties(() -> Blocks.DEEPSLATE)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_MAGENTA))
+            .properties(BlockBehaviour.Properties::requiresCorrectToolForDrops)
+            .transform(pickaxeOnly())
+            .item()
+            .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
             .build()
             .register();
 
@@ -856,6 +887,17 @@ public class DesiresBlocks {
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
             .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<SpectralRubyLampBlock> SPECTRAL_RUBY_LAMP = REGISTRATE.block("spectral_ruby_lamp", SpectralRubyLampBlock::new)
+            .initialProperties(() -> Blocks.REDSTONE_LAMP)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_PINK)
+                    .noOcclusion()
+                    .lightLevel(s -> s.getValue(SpectralRubyLampBlock.POWER)))
+            .transform(pickaxeOnly())
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
             .register();
 
 	public static final BlockEntry<IndustrialFanBlock> INDUSTRIAL_FAN = REGISTRATE.block("industrial_fan", IndustrialFanBlock::new)
@@ -2471,6 +2513,183 @@ public class DesiresBlocks {
             .register();
 
     // TILED AND POLISHED
+
+    public static final BlockEntry<Block> POLISHED_BRONZE_BLOCK =
+            REGISTRATE.block("bronze_polished_block", Block::new)
+                    .initialProperties(SharedProperties::netheriteMetal)
+                    .properties(p -> p.mapColor(MapColor.COLOR_ORANGE))
+                    .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK))
+                    .properties(p -> p.strength(6f,5f))
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<StairBlock> POLISHED_BRONZE_STAIRS =
+            REGISTRATE.block("bronze_polished_stairs", p -> new StairBlock(DesiresBlocks.POLISHED_BRONZE_BLOCK::getDefaultState, p))
+                    .initialProperties(DesiresBlocks.POLISHED_BRONZE_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<SlabBlock> POLISHED_BRONZE_SLAB =
+            REGISTRATE.block("bronze_polished_slab", SlabBlock::new)
+                    .initialProperties(DesiresBlocks.POLISHED_BRONZE_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<Block> TILED_BRONZE_BLOCK =
+            REGISTRATE.block("bronze_tiled_block", Block::new)
+                    .initialProperties(DesiresBlocks.POLISHED_BRONZE_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<StairBlock> TILED_BRONZE_STAIRS =
+            REGISTRATE.block("bronze_tiled_stairs", p -> new StairBlock(DesiresBlocks.TILED_BRONZE_BLOCK::getDefaultState, p))
+                    .initialProperties(DesiresBlocks.POLISHED_BRONZE_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<SlabBlock> TILED_BRONZE_SLAB =
+            REGISTRATE.block("bronze_tiled_slab", SlabBlock::new)
+                    .initialProperties(DesiresBlocks.POLISHED_BRONZE_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+
+    public static final BlockEntry<Block> POLISHED_STEEL_BLOCK =
+            REGISTRATE.block("steel_polished_block", Block::new)
+                    .initialProperties(SharedProperties::netheriteMetal)
+                    .properties(p -> p.mapColor(MapColor.COLOR_GRAY))
+                    .properties(p -> p.requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK))
+                    .properties(p -> p.strength(3f,8f))
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<StairBlock> POLISHED_STEEL_STAIRS =
+            REGISTRATE.block("steel_polished_stairs", p -> new StairBlock(DesiresBlocks.POLISHED_STEEL_BLOCK::getDefaultState, p))
+                    .initialProperties(DesiresBlocks.POLISHED_STEEL_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<SlabBlock> POLISHED_STEEL_SLAB =
+            REGISTRATE.block("steel_polished_slab", SlabBlock::new)
+                    .initialProperties(DesiresBlocks.POLISHED_STEEL_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<Block> TILED_STEEL_BLOCK =
+            REGISTRATE.block("steel_tiled_block", Block::new)
+                    .initialProperties(DesiresBlocks.POLISHED_STEEL_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<StairBlock> TILED_STEEL_STAIRS =
+            REGISTRATE.block("steel_tiled_stairs", p -> new StairBlock(DesiresBlocks.TILED_STEEL_BLOCK::getDefaultState, p))
+                    .initialProperties(DesiresBlocks.POLISHED_STEEL_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<SlabBlock> TILED_STEEL_SLAB =
+            REGISTRATE.block("steel_tiled_slab", SlabBlock::new)
+                    .initialProperties(DesiresBlocks.POLISHED_STEEL_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+
+    public static final BlockEntry<Block> POLISHED_ZINC_BLOCK =
+            REGISTRATE.block("zinc_polished_block", Block::new)
+                    .initialProperties(() -> Blocks.IRON_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<StairBlock> POLISHED_ZINC_STAIRS =
+            REGISTRATE.block("zinc_polished_stairs", p -> new StairBlock(DesiresBlocks.POLISHED_ZINC_BLOCK::getDefaultState, p))
+                    .initialProperties(() -> Blocks.IRON_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<SlabBlock> POLISHED_ZINC_SLAB =
+            REGISTRATE.block("zinc_polished_slab", SlabBlock::new)
+                    .initialProperties(() -> Blocks.IRON_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<Block> TILED_ZINC_BLOCK =
+            REGISTRATE.block("zinc_tiled_block", Block::new)
+                    .initialProperties(() -> Blocks.IRON_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<StairBlock> TILED_ZINC_STAIRS =
+            REGISTRATE.block("zinc_tiled_stairs", p -> new StairBlock(DesiresBlocks.TILED_ZINC_BLOCK::getDefaultState, p))
+                    .initialProperties(() -> Blocks.IRON_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<SlabBlock> TILED_ZINC_SLAB =
+            REGISTRATE.block("zinc_tiled_slab", SlabBlock::new)
+                    .initialProperties(() -> Blocks.IRON_BLOCK)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+
+    public static final BlockEntry<Block> POLISHED_ANDESITE_ALLOY_BLOCK =
+            REGISTRATE.block("andesite_alloy_polished_block", Block::new)
+                    .initialProperties(() -> Blocks.ANDESITE)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<StairBlock> POLISHED_ANDESITE_ALLOY_STAIRS =
+            REGISTRATE.block("andesite_alloy_polished_stairs", p -> new StairBlock(DesiresBlocks.POLISHED_ANDESITE_ALLOY_BLOCK::getDefaultState, p))
+                    .initialProperties(() -> Blocks.ANDESITE)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<SlabBlock> POLISHED_ANDESITE_ALLOY_SLAB =
+            REGISTRATE.block("andesite_alloy_polished_slab", SlabBlock::new)
+                    .initialProperties(() -> Blocks.ANDESITE)
+                    .item()
+                    .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                    .build()
+                    .register();
 
     // Load this class
 	public static void register() {}
