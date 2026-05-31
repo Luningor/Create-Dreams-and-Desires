@@ -54,6 +54,7 @@ public class DesiresConfigs {
 
 	public static void register(ModLoadingContext context) {
 		client = register(DClient::new, ModConfig.Type.CLIENT);
+        common = register(DCommon::new, ModConfig.Type.COMMON);
 		server = register(DServer::new, ModConfig.Type.SERVER);
 
 		for (Entry<ModConfig.Type, ConfigBase> pair : CONFIGS.entrySet()) {

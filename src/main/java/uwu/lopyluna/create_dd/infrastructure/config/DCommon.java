@@ -1,6 +1,7 @@
 package uwu.lopyluna.create_dd.infrastructure.config;
 
 import net.createmod.catnip.config.ConfigBase;
+import org.jetbrains.annotations.NotNull;
 import uwu.lopyluna.create_dd.DesiresCreate;
 
 public class DCommon extends ConfigBase {
@@ -8,7 +9,7 @@ public class DCommon extends ConfigBase {
     public final DWorldGen worldGen = nested(0, DWorldGen::new, DCommon.Comments.worldGen);
 
     @Override
-    public String getName() {
+    public @NotNull String getName() {
         return "common";
     }
 

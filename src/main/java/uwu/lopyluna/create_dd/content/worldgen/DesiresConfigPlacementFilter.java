@@ -1,6 +1,7 @@
 package uwu.lopyluna.create_dd.content.worldgen;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.placement.PlacementContext;
@@ -8,6 +9,10 @@ import net.minecraft.world.level.levelgen.placement.PlacementFilter;
 import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import uwu.lopyluna.create_dd.infrastructure.config.DesiresConfigs;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class DesiresConfigPlacementFilter extends PlacementFilter {
     public static final DesiresConfigPlacementFilter INSTANCE = new DesiresConfigPlacementFilter();
     public static final Codec<DesiresConfigPlacementFilter> CODEC = Codec.unit(() -> INSTANCE);
