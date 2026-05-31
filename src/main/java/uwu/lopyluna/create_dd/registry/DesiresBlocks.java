@@ -79,6 +79,7 @@ import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockp
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileCTBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileItem;
 import uwu.lopyluna.create_dd.content.blocks.magic.*;
+import uwu.lopyluna.create_dd.content.blocks.ponder_box.PonderBoxBlock;
 import uwu.lopyluna.create_dd.content.blocks.wood.*;
 import uwu.lopyluna.create_dd.content.worldgen.Features.RubberTreeGrower;
 import uwu.lopyluna.create_dd.registry.helper.BuilderTransgender;
@@ -811,6 +812,18 @@ public class DesiresBlocks {
             .item()
             .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
             .build()
+            .register();
+
+    public static final BlockEntry<PonderBoxBlock> PONDER_IN_A_BOX = REGISTRATE.block("ponder_in_a_box", PonderBoxBlock::new)
+            .initialProperties(SharedProperties::netheriteMetal)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_GRAY))
+            .properties(p -> p.noOcclusion()
+                    .noCollission())
+            .properties(p -> p.sound(new ForgeSoundType(1, 1.5f, () -> SoundEvents.AMETHYST_BLOCK_BREAK,
+                    () -> SoundEvents.AMETHYST_BLOCK_CHIME, () -> SoundEvents.SMALL_AMETHYST_BUD_PLACE,
+                    () -> SoundEvents.AMETHYST_CLUSTER_STEP, () -> SoundEvents.AMETHYST_BLOCK_CHIME)))
+            .properties(p -> p.strength(50f,5000f))
+            .simpleItem()
             .register();
 
     public static final BlockEntry<BronzeSawBlock> BRONZE_SAW = REGISTRATE.block("bronze_saw", BronzeSawBlock::new)

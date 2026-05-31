@@ -25,6 +25,8 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import uwu.lopyluna.create_dd.compat.contraption.DesiresContraptionCompat;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.FurnaceEngineBlock;
+import uwu.lopyluna.create_dd.content.worldgen.ponder_dim.PonderPOI;
+import uwu.lopyluna.create_dd.content.worldgen.ponder_dim.Pondering;
 import uwu.lopyluna.create_dd.infrastructure.config.DesiresConfigs;
 import uwu.lopyluna.create_dd.infrastructure.data.DesiresDatagen;
 import uwu.lopyluna.create_dd.registry.*;
@@ -93,6 +95,8 @@ public class DesiresCreate
         DesiresPackets.registerPackets();
         DesiresMountedStorageTypes.register(modEventBus);
         DesiresContraptionCompat.register();
+        Pondering.register();
+        PonderPOI.register(modEventBus);
 
         //if (DesiresMods.CREATECASING.isLoaded()) {
         //    EncasedCompat.register();

@@ -52,6 +52,8 @@ import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divi
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.ponder_box.PonderBoxBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.ponder_box.PonderBoxRenderer;
 
 import static uwu.lopyluna.create_dd.DesiresCreate.REGISTRATE;
 
@@ -184,6 +186,13 @@ public class DesiresBlockEntityTypes {
             .renderer(() -> YIPPEESlidingDoorRenderer::new)
             .validBlocks(DesiresBlocks.ROSE_DOOR, DesiresBlocks.SMOKED_DOOR, DesiresBlocks.SPIRIT_DOOR)
             .register();
+
+    public static final BlockEntityEntry<PonderBoxBlockEntity> PONDER_IN_A_BOX = REGISTRATE
+            .blockEntity("ponder_in_a_box", PonderBoxBlockEntity::new)
+            .renderer(() -> PonderBoxRenderer::new)
+            .validBlocks(DesiresBlocks.PONDER_IN_A_BOX)
+            .register();
+
 
     public static final BlockEntityEntry<TwoBladeFanBlockEntity> TWO_BLADE_FAN = REGISTRATE
             .blockEntity("2_blade_fan", TwoBladeFanBlockEntity::new)

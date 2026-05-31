@@ -20,11 +20,16 @@ public class DesiresConfigs {
 	private static final Map<ModConfig.Type, ConfigBase> CONFIGS = new EnumMap<>(ModConfig.Type.class);
 
 	private static DClient client;
+    private static DCommon common;
 	private static DServer server;
 
 	public static DClient client() {
 		return client;
 	}
+
+    public static DCommon common() {
+        return common;
+    }
 
 	public static DServer server() {
 		return server;
