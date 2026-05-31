@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "minecraft:lapis_lazuli"
+      "item": "create_dd:lapis_alloy"
     },
     {
       "item": "create:crushed_raw_iron"
@@ -12,7 +12,7 @@
       "item": "create:crushed_raw_iron"
     },
     {
-      "item": "minecraft:lapis_lazuli"
+      "item": "create_dd:lapis_alloy"
     }
   ],
   "result": {

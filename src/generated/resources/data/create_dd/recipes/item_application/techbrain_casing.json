@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create_dd:faux_industrial_brass_casing"
+    },
+    {
+      "item": "create_dd:bury_blend"
+    }
+  ],
+  "results": [
+    {
+      "item": "create_dd:techbrain_casing"
+    }
+  ]
+}

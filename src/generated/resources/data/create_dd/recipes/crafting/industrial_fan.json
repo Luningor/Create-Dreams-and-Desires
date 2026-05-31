@@ -1,23 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "building",
+  "pattern": [
+    "A",
+    "B",
+    "C"
+  ],
   "key": {
-    "C": {
-      "item": "create:cogwheel"
-    },
-    "I": {
-      "item": "create_dd:industrial_casing"
-    },
-    "P": {
+    "A": {
       "item": "create:propeller"
+    },
+    "B": {
+      "tag": "create:casing/industrial"
+    },
+    "C": {
+      "item": "create_dd:infernal_mechanism"
     }
   },
-  "pattern": [
-    "CIP"
-  ],
   "result": {
-    "count": 4,
-    "item": "create_dd:industrial_fan"
-  },
-  "show_notification": true
+    "item": "create_dd:industrial_fan",
+    "count": 1
+  }
 }

@@ -19,12 +19,15 @@
     },
     "S": {
       "tag": "forge:plates/brass"
+    },
+    "M": {
+      "item": "create_dd:infernal_mechanism"
     }
   },
   "pattern": [
-    " S S ",
+    " SBS ",
     " ACA ",
-    "NOBON"
+    "NOMON"
   ],
   "result": {
     "item": "create_dd:furnace_engine"

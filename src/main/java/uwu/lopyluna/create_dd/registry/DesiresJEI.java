@@ -31,6 +31,7 @@ import uwu.lopyluna.create_dd.content.recipes.SandingRecipe;
 import uwu.lopyluna.create_dd.content.recipes.SeethingRecipe;
 import uwu.lopyluna.create_dd.infrastructure.config.DRecipes;
 import uwu.lopyluna.create_dd.infrastructure.config.DesiresConfigs;
+import uwu.lopyluna.create_dd.registry.helper.MysteriousConversion;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -81,7 +82,13 @@ public class DesiresJEI implements IModPlugin {
 				.catalystStack(DProcessingViaFanCategory.getFan("fan_seething"))
 				.doubleItemIcon(AllItems.PROPELLER.get(), AllItems.BLAZE_CAKE.get())
 				.emptyBackground(178, 72)
-				.build("fan_seething", FanSeethingCategory::new);
+				.build("fan_seething", FanSeethingCategory::new),
+
+        also_mysteryConversion = builder(ConversionRecipe.class)
+                .addRecipes(() -> MysteriousConversion.RECIPES)
+                .itemIcon(DesiresItems.CHROMATIC_COMPOUND.get())
+                .emptyBackground(177, 50)
+                .build("also_mystery_conversion", MysteriousConversion::new);
 
 	}
 
@@ -100,6 +107,28 @@ public class DesiresJEI implements IModPlugin {
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
 		allCategories.forEach(c -> c.registerCatalysts(registration));
+
+        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "pressing")).ifPresent(type ->
+                registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.HYDRAULIC_PRESS.get()), type));
+
+        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "sawing")).ifPresent(type ->
+                registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.BRONZE_SAW.get()), type));
+        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "block_cutting")).ifPresent(type ->
+                registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.BRONZE_SAW.get()), type));
+        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "wood_cutting")).ifPresent(type ->
+                registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.BRONZE_SAW.get()), type));
+        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "sawing")).ifPresent(type ->
+                registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.RADIANT_SAW.get()), type));
+        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "block_cutting")).ifPresent(type ->
+                registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.RADIANT_SAW.get()), type));
+        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "wood_cutting")).ifPresent(type ->
+                registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.RADIANT_SAW.get()), type));
+        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "sawing")).ifPresent(type ->
+                registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.SHADOW_SAW.get()), type));
+        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "block_cutting")).ifPresent(type ->
+                registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.SHADOW_SAW.get()), type));
+        registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "wood_cutting")).ifPresent(type ->
+                registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.SHADOW_SAW.get()), type));
 
 		registration.getJeiHelpers().getRecipeType(new ResourceLocation("create", "fan_washing")).ifPresent(type ->
 				registration.addRecipeCatalyst(new ItemStack(DesiresBlocks.INDUSTRIAL_FAN.get()), type));

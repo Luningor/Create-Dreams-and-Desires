@@ -41,11 +41,12 @@ import static uwu.lopyluna.create_dd.registry.DesiresTags.optionalTag;
 public class DesiresItems {
 
 	public static final ItemEntry<SequencedAssemblyItem>
+            INCOMPLETE_STARGAZE_SINGULARITY = sequencedItem("incomplete_stargaze_singularity"),
             INCOMPLETE_INTEGRATED_CIRCUIT = sequencedItem("incomplete_integrated_circuit"),
-            INCOMPLETE_KINETIC_MECHANISM = sequencedItem("incomplete_kinetic_mechanism"),
             INCOMPLETE_INTEGRATED_MECHANISM = sequencedItem("incomplete_integrated_mechanism"),
             INCOMPLETE_ABSTRUSE_MECHANISM = sequencedItem("incomplete_abstruse_mechanism"),
             INCOMPLETE_CALCULATION_MECHANISM = sequencedItem("incomplete_calculation_mechanism"),
+            INCOMPLETE_KINETIC_MECHANISM = sequencedItem("incomplete_kinetic_mechanism"),
             INCOMPLETE_INFERNAL_MECHANISM = sequencedItem("incomplete_infernal_mechanism"),
             INCOMPLETE_SEALED_MECHANISM = sequencedItem("incomplete_sealed_mechanism");
     ;

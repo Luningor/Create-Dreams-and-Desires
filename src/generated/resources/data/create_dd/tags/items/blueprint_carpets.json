@@ -1,0 +1,20 @@
+{
+  "values": [
+    "create_dd:black_blueprint_carpet",
+    "create_dd:white_blueprint_carpet",
+    "create_dd:blueprint_carpet",
+    "create_dd:light_blueprint_carpet",
+    "create_dd:red_blueprint_carpet",
+    "create_dd:green_blueprint_carpet",
+    "create_dd:lime_blueprint_carpet",
+    "create_dd:pink_blueprint_carpet",
+    "create_dd:magenta_blueprint_carpet",
+    "create_dd:yellow_blueprint_carpet",
+    "create_dd:gray_blueprint_carpet",
+    "create_dd:light_gray_blueprint_carpet",
+    "create_dd:brown_blueprint_carpet",
+    "create_dd:cyan_blueprint_carpet",
+    "create_dd:purple_blueprint_carpet",
+    "create_dd:orange_blueprint_carpet"
+  ]
+}
