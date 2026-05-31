@@ -1,5 +1,5 @@
 {
-  "type": "create_dd:superheating",
+  "type": "create_dd:seething",
   "ingredients": [
     {
       "item": "create_dd:spectral_ruby"

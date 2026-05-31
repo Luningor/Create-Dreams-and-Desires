@@ -1,0 +1,13 @@
+{
+  "type": "create_dd:seething",
+  "ingredients": [
+    {
+      "item": "create_dd:asurine_cobble"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:asurine"
+    }
+  ]
+}

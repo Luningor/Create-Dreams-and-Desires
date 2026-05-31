@@ -1,0 +1,13 @@
+{
+  "type": "create_dd:seething",
+  "ingredients": [
+    {
+      "item": "create_dd:crimsite_cobble"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:crimsite"
+    }
+  ]
+}

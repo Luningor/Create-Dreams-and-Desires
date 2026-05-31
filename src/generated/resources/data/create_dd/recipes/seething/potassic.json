@@ -2,12 +2,12 @@
   "type": "create_dd:seething",
   "ingredients": [
     {
-      "item": "minecraft:netherrack"
+      "item": "create_dd:potassic_cobble"
     }
   ],
   "results": [
     {
-      "item": "minecraft:magma_block"
+      "item": "create_dd:potassic"
     }
   ]
 }

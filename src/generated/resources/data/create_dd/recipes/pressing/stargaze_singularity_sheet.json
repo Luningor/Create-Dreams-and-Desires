@@ -1,16 +1,13 @@
 {
-  "type": "create:deploying",
+  "type": "create:pressing",
   "ingredients": [
-    {
-      "item": "minecraft:ice"
-    },
     {
       "item": "create_dd:stargaze_singularity"
     }
   ],
   "results": [
     {
-      "item": "create_dd:infaice"
+      "item": "create_dd:stargaze_singularity_sheet"
     }
   ]
 }
