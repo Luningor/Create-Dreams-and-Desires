@@ -11,6 +11,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
@@ -185,6 +186,73 @@ public class BlockTransformer {
                 .register();
     }
 
+    public static BlockEntry<CarpetBlock> blueprintCarpets( String colorId, String colorLang, Item dye, CTSpriteShiftEntry connectedTexture, MapColor mapColor ) {
+        TagKey<Item> blueprintDecorTag = optionalTag(ForgeRegistries.ITEMS, new ResourceLocation("create_dd", "blueprints"));
+        TagKey<Block> blueprintDecorBlockTag = optionalTag(ForgeRegistries.BLOCKS, new ResourceLocation("create_dd", "blueprints"));
+        TagKey<Item> blueprintDecorCarpetsTag = optionalTag(ForgeRegistries.ITEMS, new ResourceLocation("create_dd", "blueprint_carpets"));
+        TagKey<Block> blueprintDecorCarpetsBlockTag = optionalTag(ForgeRegistries.BLOCKS, new ResourceLocation("create_dd", "blueprint_carpets"));
+        return REGISTRATE.block(colorId + "_blueprint_carpet", CarpetBlock::new)
+                .transform(BlockTransformer.block(() -> connectedTexture))
+                .initialProperties(() -> Blocks.HAY_BLOCK)
+                .tag(blueprintDecorCarpetsBlockTag)
+                .recipe((c, p) -> {
+                    ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 1)
+                            .requires(blueprintDecorTag)
+                            .requires(dye)
+                            .unlockedBy("has_dyed_item", has(dye))
+                            .save(p, DesiresCreate.asResource("crafting/decor/" + c.getName() + "_from_" + getItemName(dye)));
+                    ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, c.get(), 4)
+                            .pattern("CC")
+                            .define('C', blueprintDecorTag)
+                            .unlockedBy("has_dyed_item", has(dye))
+                            .save(p, DesiresCreate.asResource("crafting/decor/" + c.getName()));
+                })
+                .properties(p -> p.mapColor(mapColor))
+                .properties(p -> p.sound(new ForgeSoundType(1, 0.85f, () -> SoundEvents.PAINTING_BREAK,
+                        () -> SoundEvents.MOSS_STEP, () -> SoundEvents.PAINTING_PLACE,
+                        () -> SoundEvents.BAMBOO_HIT, () -> SoundEvents.MOSS_STEP)))
+                .properties(p -> p.strength(0.025f,0.25f))
+                .lang(colorLang + " Blueprint Carpet")
+                .item()
+                .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                .tag(blueprintDecorCarpetsTag)
+                .build()
+                .register();
+    }
+
+    public static BlockEntry<CarpetBlock> blueprintCarpets( String colorId, String colorLang, Item dye, CTSpriteShiftEntry connectedTexture, MapColor mapColor, String no_underscore ) {
+        TagKey<Item> blueprintDecorTag = optionalTag(ForgeRegistries.ITEMS, new ResourceLocation("create_dd", "blueprints"));
+        TagKey<Block> blueprintDecorBlockTag = optionalTag(ForgeRegistries.BLOCKS, new ResourceLocation("create_dd", "blueprints"));
+        TagKey<Item> blueprintDecorCarpetsTag = optionalTag(ForgeRegistries.ITEMS, new ResourceLocation("create_dd", "blueprint_carpets"));
+        TagKey<Block> blueprintDecorBlockCarpetsTag = optionalTag(ForgeRegistries.BLOCKS, new ResourceLocation("create_dd", "blueprint_carpets"));
+        return REGISTRATE.block(colorId + "blueprint_carpet", CarpetBlock::new)
+                .transform(BlockTransformer.block(() -> connectedTexture))
+                .initialProperties(() -> Blocks.HAY_BLOCK)
+                .tag(blueprintDecorBlockCarpetsTag)
+                .recipe((c, p) -> {
+                    ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 1)
+                            .requires(blueprintDecorTag)
+                            .requires(dye)
+                            .unlockedBy("has_dyed_item", has(dye))
+                            .save(p, DesiresCreate.asResource("crafting/decor/" + c.getName() + "_from_" + getItemName(dye)));
+                    ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, c.get(), 4)
+                            .pattern("CC")
+                            .define('C', blueprintDecorTag)
+                            .unlockedBy("has_dyed_item", has(dye))
+                            .save(p, DesiresCreate.asResource("crafting/decor/" + c.getName()));
+                })
+                .properties(p -> p.mapColor(mapColor))
+                .properties(p -> p.sound(new ForgeSoundType(1, 0.85f, () -> SoundEvents.PAINTING_BREAK,
+                        () -> SoundEvents.MOSS_STEP, () -> SoundEvents.PAINTING_PLACE,
+                        () -> SoundEvents.BAMBOO_HIT, () -> SoundEvents.MOSS_STEP)))
+                .properties(p -> p.strength(0.025f,0.25f))
+                .lang(colorLang + "Blueprint Carpet")
+                .item()
+                .tab(DesiresCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+                .tag(blueprintDecorCarpetsTag)
+                .build()
+                .register();
+    }
 
     public static <B extends Block> NonNullUnaryOperator<BlockBuilder<B, CreateRegistrate>> block( Supplier<CTSpriteShiftEntry> ct ) {
         return b -> b.initialProperties(SharedProperties::stone)

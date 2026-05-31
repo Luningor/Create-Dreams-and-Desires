@@ -53,6 +53,9 @@ import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw.Radian
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawBlock;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawMovementBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.door.YIPPEESlidingDoorBlock;
+import uwu.lopyluna.create_dd.content.blocks.fan.eight_blade.EightBladeFanBlock;
+import uwu.lopyluna.create_dd.content.blocks.fan.four_blade.FourBladeFanBlock;
+import uwu.lopyluna.create_dd.content.blocks.fan.two_blade.TwoBladeFanBlock;
 import uwu.lopyluna.create_dd.content.blocks.functional.SpectralRubyLampBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlock;
@@ -1075,21 +1078,20 @@ public class DesiresBlocks {
 			.transform(customItemModel())
 			.register();
 
-	public static final BlockEntry<FurnaceEngineBlock> FURNACE_ENGINE =
-			REGISTRATE.block("furnace_engine", FurnaceEngineBlock::new)
-					.initialProperties(SharedProperties::softMetal)
-					.properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN)
-							.sound(SoundType.NETHERITE_BLOCK))
-					.properties(BlockBehaviour.Properties::noOcclusion)
-					.transform(pickaxeOnly())
-					.tag(AllTags.AllBlockTags.BRITTLE.tag)
-					.blockstate(new FurnaceEngineGenerator()::generate)
-					.onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 256.0))
-					.onRegister(block -> BlockStressValues.RPM.register(block, new BlockStressValues.GeneratedRpm(32, true)))
-					.item()
-					.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-					.transform(ModelGen.customItemModel())
-					.register();
+	public static final BlockEntry<FurnaceEngineBlock> FURNACE_ENGINE = REGISTRATE.block("furnace_engine", FurnaceEngineBlock::new)
+            .initialProperties(SharedProperties::softMetal)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_CYAN)
+                    .sound(SoundType.NETHERITE_BLOCK))
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .transform(pickaxeOnly())
+            .tag(AllTags.AllBlockTags.BRITTLE.tag)
+            .blockstate(new FurnaceEngineGenerator()::generate)
+            .onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 256.0))
+            .onRegister(block -> BlockStressValues.RPM.register(block, new BlockStressValues.GeneratedRpm(32, true)))
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(ModelGen.customItemModel())
+            .register();
 
 	public static final BlockEntry<PoweredFlywheelBlock> POWERED_FLYWHEEL = REGISTRATE.block("powered_flywheel", PoweredFlywheelBlock::new)
             .initialProperties(SharedProperties::softMetal)
@@ -1097,6 +1099,42 @@ public class DesiresBlocks {
             .transform(pickaxeOnly())
             .blockstate(BlockStateGen.axisBlockProvider(false))
             .loot((lt, block) -> lt.dropOther(block, AllBlocks.FLYWHEEL.get()))
+            .register();
+
+    public static final BlockEntry<TwoBladeFanBlock> TWO_BLADE_FAN = REGISTRATE.block("2_blade_fan", TwoBladeFanBlock::new)
+            .initialProperties(SharedProperties::softMetal)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW))
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .transform(axeOrPickaxe())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
+            .blockstate(BlockStateGen.axisBlockProvider(true))
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<FourBladeFanBlock> FOUR_BLADE_FAN = REGISTRATE.block("4_blade_fan", FourBladeFanBlock::new)
+            .initialProperties(SharedProperties::softMetal)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW))
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .transform(axeOrPickaxe())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
+            .blockstate(BlockStateGen.axisBlockProvider(true))
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<EightBladeFanBlock> EIGHT_BLADE_FAN = REGISTRATE.block("8_blade_fan", EightBladeFanBlock::new)
+            .initialProperties(SharedProperties::softMetal)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW))
+            .properties(BlockBehaviour.Properties::noOcclusion)
+            .transform(axeOrPickaxe())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
+            .blockstate(BlockStateGen.axisBlockProvider(true))
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
             .register();
 
 	public static final BlockEntry<GiantGearBlock> GIANT_GEAR = REGISTRATE.block("giant_gear", GiantGearBlock::new)

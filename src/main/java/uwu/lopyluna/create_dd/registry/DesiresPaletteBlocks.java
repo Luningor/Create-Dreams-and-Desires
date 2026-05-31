@@ -14,10 +14,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.ForgeSoundType;
@@ -30,8 +27,7 @@ import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
 import static uwu.lopyluna.create_dd.DesiresCreate.REGISTRATE;
 import static uwu.lopyluna.create_dd.registry.DesiresTags.optionalTag;
-import static uwu.lopyluna.create_dd.registry.helper.BlockTransformer.blueprintBlocks;
-import static uwu.lopyluna.create_dd.registry.helper.BlockTransformer.rubber_decor;
+import static uwu.lopyluna.create_dd.registry.helper.BlockTransformer.*;
 
 @SuppressWarnings({"unused", "deprecation",  "all"})
 public class DesiresPaletteBlocks {
@@ -460,6 +456,24 @@ public class DesiresPaletteBlocks {
             MAGENTA_BLUEPRINT_BLOCK = blueprintBlocks("magenta", "Magenta", Items.MAGENTA_DYE, DesiresSpriteShifts.MAGENTA_BLUEPRINT_BLOCK, MapColor.COLOR_MAGENTA),
             PURPLE_BLUEPRINT_BLOCK = blueprintBlocks("purple", "Purple", Items.PURPLE_DYE, DesiresSpriteShifts.PURPLE_BLUEPRINT_BLOCK, MapColor.COLOR_PURPLE),
             PINK_BLUEPRINT_BLOCK = blueprintBlocks("pink", "Pink", Items.PINK_DYE, DesiresSpriteShifts.PINK_BLUEPRINT_BLOCK, MapColor.COLOR_PINK);
+
+    public static final BlockEntry<CarpetBlock>
+            WHITE_BLUEPRINT_CARPET = blueprintCarpets("white", "White", Items.WHITE_DYE, DesiresSpriteShifts.WHITE_BLUEPRINT_BLOCK, MapColor.SNOW),
+            LIGHT_GRAY_BLUEPRINT_CARPET = blueprintCarpets("light_gray", "Light Gray", Items.LIGHT_GRAY_DYE, DesiresSpriteShifts.LIGHT_GRAY_BLUEPRINT_BLOCK, MapColor.COLOR_LIGHT_GRAY),
+            GRAY_BLUEPRINT_CARPET = blueprintCarpets("gray", "Gray", Items.GRAY_DYE, DesiresSpriteShifts.GRAY_BLUEPRINT_BLOCK, MapColor.COLOR_GRAY),
+            BLACK_BLUEPRINT_CARPET = blueprintCarpets("black", "Black", Items.BLACK_DYE, DesiresSpriteShifts.BLACK_BLUEPRINT_BLOCK, MapColor.COLOR_BLACK),
+            BROWN_BLUEPRINT_CARPET = blueprintCarpets("brown", "Brown", Items.BROWN_DYE, DesiresSpriteShifts.BROWN_BLUEPRINT_BLOCK, MapColor.COLOR_BROWN),
+            RED_BLUEPRINT_CARPET = blueprintCarpets("red", "Red", Items.RED_DYE, DesiresSpriteShifts.RED_BLUEPRINT_BLOCK, MapColor.COLOR_RED),
+            ORANGE_BLUEPRINT_CARPET = blueprintCarpets("orange", "Orange", Items.ORANGE_DYE, DesiresSpriteShifts.ORANGE_BLUEPRINT_BLOCK, MapColor.COLOR_ORANGE),
+            YELLOW_BLUEPRINT_CARPET = blueprintCarpets("yellow", "Yellow", Items.YELLOW_DYE, DesiresSpriteShifts.YELLOW_BLUEPRINT_BLOCK, MapColor.COLOR_YELLOW),
+            LIME_BLUEPRINT_CARPET = blueprintCarpets("lime", "Lime", Items.LIME_DYE, DesiresSpriteShifts.LIME_BLUEPRINT_BLOCK, MapColor.COLOR_LIGHT_GREEN),
+            GREEN_BLUEPRINT_CARPET = blueprintCarpets("green", "Green", Items.GREEN_DYE, DesiresSpriteShifts.GREEN_BLUEPRINT_BLOCK, MapColor.COLOR_GREEN),
+            CYAN_BLUEPRINT_CARPET = blueprintCarpets("cyan", "Cyan", Items.CYAN_DYE, DesiresSpriteShifts.CYAN_BLUEPRINT_BLOCK, MapColor.COLOR_CYAN),
+            LIGHT_BLUE_BLUEPRINT_CARPET = blueprintCarpets("light", "Light", Items.LIGHT_BLUE_DYE, DesiresSpriteShifts.LIGHT_BLUE_BLUEPRINT_BLOCK, MapColor.COLOR_LIGHT_BLUE),
+            BLUE_BLUEPRINT_CARPET = blueprintCarpets("", "", Items.BLUE_DYE, DesiresSpriteShifts.BLUE_BLUEPRINT_BLOCK, MapColor.COLOR_BLUE, ""),
+            MAGENTA_BLUEPRINT_CARPET = blueprintCarpets("magenta", "Magenta", Items.MAGENTA_DYE, DesiresSpriteShifts.MAGENTA_BLUEPRINT_BLOCK, MapColor.COLOR_MAGENTA),
+            PURPLE_BLUEPRINT_CARPET = blueprintCarpets("purple", "Purple", Items.PURPLE_DYE, DesiresSpriteShifts.PURPLE_BLUEPRINT_BLOCK, MapColor.COLOR_PURPLE),
+            PINK_BLUEPRINT_CARPET = blueprintCarpets("pink", "Pink", Items.PINK_DYE, DesiresSpriteShifts.PINK_BLUEPRINT_BLOCK, MapColor.COLOR_PINK);
 
 
 	public static final int COLORED_BLOCKS = generateColorBlocks();

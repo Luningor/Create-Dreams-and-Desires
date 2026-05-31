@@ -22,6 +22,15 @@ import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowS
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.shadow_saw.ShadowSawVisual;
 import uwu.lopyluna.create_dd.content.blocks.door.YIPPEESlidingDoorBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.door.YIPPEESlidingDoorRenderer;
+import uwu.lopyluna.create_dd.content.blocks.fan.eight_blade.EightBladeFanBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.fan.eight_blade.EightBladeFanBlockRenderer;
+import uwu.lopyluna.create_dd.content.blocks.fan.eight_blade.EightBladeFanBlockVisual;
+import uwu.lopyluna.create_dd.content.blocks.fan.four_blade.FourBladeFanBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.fan.four_blade.FourBladeFanBlockRenderer;
+import uwu.lopyluna.create_dd.content.blocks.fan.four_blade.FourBladeFanBlockVisual;
+import uwu.lopyluna.create_dd.content.blocks.fan.two_blade.TwoBladeFanBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.fan.two_blade.TwoBladeFanBlockRenderer;
+import uwu.lopyluna.create_dd.content.blocks.fan.two_blade.TwoBladeFanBlockVisual;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankVisual;
@@ -174,6 +183,27 @@ public class DesiresBlockEntityTypes {
             .blockEntity("sliding_door", YIPPEESlidingDoorBlockEntity::new)
             .renderer(() -> YIPPEESlidingDoorRenderer::new)
             .validBlocks(DesiresBlocks.ROSE_DOOR, DesiresBlocks.SMOKED_DOOR, DesiresBlocks.SPIRIT_DOOR)
+            .register();
+
+    public static final BlockEntityEntry<TwoBladeFanBlockEntity> TWO_BLADE_FAN = REGISTRATE
+            .blockEntity("2_blade_fan", TwoBladeFanBlockEntity::new)
+            .visual(() -> TwoBladeFanBlockVisual::new)
+            .validBlocks(DesiresBlocks.TWO_BLADE_FAN)
+            .renderer(() -> TwoBladeFanBlockRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<FourBladeFanBlockEntity> FOUR_BLADE_FAN = REGISTRATE
+            .blockEntity("4_blade_fan", FourBladeFanBlockEntity::new)
+            .visual(() -> FourBladeFanBlockVisual::new)
+            .validBlocks(DesiresBlocks.FOUR_BLADE_FAN)
+            .renderer(() -> FourBladeFanBlockRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<EightBladeFanBlockEntity> EIGHT_BLADE_FAN = REGISTRATE
+            .blockEntity("8_blade_fan", EightBladeFanBlockEntity::new)
+            .visual(() -> EightBladeFanBlockVisual::new)
+            .validBlocks(DesiresBlocks.EIGHT_BLADE_FAN)
+            .renderer(() -> EightBladeFanBlockRenderer::new)
             .register();
 
 	public static void register() {}

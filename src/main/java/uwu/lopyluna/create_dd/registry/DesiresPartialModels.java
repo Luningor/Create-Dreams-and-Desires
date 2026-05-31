@@ -54,11 +54,13 @@ public class DesiresPartialModels {
         POTATO_TURRET_CONNECTOR = block("potato_turret/connector"),
         POTATO_TURRET_SINGLE_BARREL = block("potato_turret/single_barrel"),
 
-		//WEAKENED_HARVESTER_BLADE = block("weakened_harvester/blade"),
-
 		ENGINE_PISTON = block("furnace_engine/piston"),
 		ENGINE_LINKAGE = block("furnace_engine/linkage"),
-		ENGINE_CONNECTOR = block("furnace_engine/shaft_connector");
+		ENGINE_CONNECTOR = block("furnace_engine/shaft_connector"),
+
+        TWO_BLADE_FAN = block("2_blade_fan/block"),
+        FOUR_BLADE_FAN = block("4_blade_fan/block"),
+        EIGHT_BLADE_FAN = block("8_blade_fan/block");
 	;
 
     public static final Map<ResourceLocation, Couple<PartialModel>> FOLDING_DOORS = new HashMap<>();
