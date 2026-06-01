@@ -34,7 +34,12 @@ import uwu.lopyluna.create_dd.content.blocks.fan.two_blade.TwoBladeFanBlockVisua
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankVisual;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.creative_gear_motor.CreativeGearMotorBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.creative_gear_motor.GearMotorRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlockRenderer;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.golden_mixer.GoldenMixerBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.golden_mixer.GoldenMixerRenderer;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.golden_mixer.GoldenMixerVisual;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.hydraulic_press.HydraulicPressVisual;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.industrial_fan_block.IndustrialFanVisual;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorRenderer;
@@ -48,6 +53,9 @@ import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankBlockEnt
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.*;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_gearbox.OmniGearboxBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_gearbox.OmniGearboxRenderer;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_speed_controller.OmniSpeedControllerBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlockEntity;
@@ -70,6 +78,13 @@ public class DesiresBlockEntityTypes {
 			.validBlocks(DesiresBlocks.HYDRAULIC_PRESS)
 			.renderer(() -> HydraulicPressRenderer::new)
 			.register();
+
+    public static final BlockEntityEntry<GoldenMixerBlockEntity> GOLDEN_MIXER = REGISTRATE
+            .blockEntity("gold_mixer", GoldenMixerBlockEntity::new)
+            .visual(() -> GoldenMixerVisual::new)
+            .validBlocks(DesiresBlocks.GOLDEN_MIXER)
+            .renderer(() -> GoldenMixerRenderer::new)
+            .register();
 
 	public static final BlockEntityEntry<CogCrankBlockEntity> COG_CRANK = REGISTRATE
 			.blockEntity("cog_crank", CogCrankBlockEntity::new)
@@ -94,6 +109,25 @@ public class DesiresBlockEntityTypes {
 			.validBlocks(DesiresBlocks.FURNACE_ENGINE)
 			.renderer(()-> FurnaceEngineRenderer::new)
 			.register();
+
+    public static final BlockEntityEntry<OmniGearboxBlockEntity> GEARBOX = REGISTRATE
+            .blockEntity("gearbox", OmniGearboxBlockEntity::new)
+            .validBlocks(DesiresBlocks.OMNI_GEARBOX)
+            .renderer(() -> OmniGearboxRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<OmniSpeedControllerBlockEntity> OMNI_SPEED_CONTROLLER = REGISTRATE
+            .blockEntity("omni_speed_controller", OmniSpeedControllerBlockEntity::new)
+            .visual(() -> SplitShaftVisual::new, false)
+            .validBlocks(DesiresBlocks.OMNI_SPEED_CONTROLLER)
+            .renderer(() -> SplitShaftRenderer::new)
+            .register();
+
+    /*public static final BlockEntityEntry<RollTableBlockEntity> ROLL_TABLE = REGISTRATE
+            .blockEntity("roll_table", RollTableBlockEntity::new)
+            .validBlocks(DesiresBlocks.ROLL_TABLE)
+            .renderer(() -> RollTableRenderer::new)
+            .register();*/
 
     public static final BlockEntityEntry<BronzeSawBlockEntity> BRONZE_SAW = REGISTRATE
             .blockEntity("bronze_saw", BronzeSawBlockEntity::new)
@@ -148,7 +182,7 @@ public class DesiresBlockEntityTypes {
 			.register();
 
     public static final BlockEntityEntry<KineticMotorBlockEntity> KINETIC_MOTOR = REGISTRATE
-            .blockEntity("motor", KineticMotorBlockEntity::new)
+            .blockEntity("kinetic_motor", KineticMotorBlockEntity::new)
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
             .validBlocks(DesiresBlocks.KINETIC_MOTOR)
             .renderer(() -> KineticMotorRenderer::new).register();
@@ -158,6 +192,13 @@ public class DesiresBlockEntityTypes {
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
             .validBlocks(DesiresBlocks.ACCELERATOR_MOTOR)
             .renderer(() -> AcceleratorMotorRenderer::new).register();
+
+    public static final BlockEntityEntry<CreativeGearMotorBlockEntity> CREATIVE_GEAR_MOTOR = REGISTRATE
+            .blockEntity("motor", CreativeGearMotorBlockEntity::new)
+            .visual(() -> SingleAxisRotatingVisual.ofZ(AllPartialModels.MECHANICAL_PUMP_COG))
+            .validBlocks(DesiresBlocks.CREATIVE_GEAR_MOTOR)
+            .renderer(() -> GearMotorRenderer::new)
+            .register();
 
 	public static final BlockEntityEntry<GiantGearBlockEntity> GIANT_GEAR = REGISTRATE
 			.blockEntity("giant_gear", GiantGearBlockEntity::new)
@@ -171,6 +212,12 @@ public class DesiresBlockEntityTypes {
 			.validBlocks(DesiresBlocks.MULTIMETER)
 			.renderer(() -> ShaftRenderer::new)
 			.register();
+
+    /*public static final BlockEntityEntry<SmartHopperBlockEntity> SMART_HOPPER = REGISTRATE
+            .blockEntity("smart_hopper", SmartHopperBlockEntity::new)
+            .validBlocks(DesiresBlocks.SMART_HOPPER)
+            .renderer(() -> SmartBlockEntityRenderer::new)
+            .register();*/
 
 	public static final BlockEntityEntry<RedstoneDividerBlockEntity> REDSTONE_DIVIDER = REGISTRATE
 			.blockEntity("redstone_divider", RedstoneDividerBlockEntity::new)

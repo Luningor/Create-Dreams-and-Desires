@@ -59,6 +59,18 @@ public class DesiresItems {
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .register();
 
+    public static final ItemEntry<Item> GOLDEN_WHISK = REGISTRATE.item("gold_whisk", Item::new)
+            .model((c, p) -> p.withExistingParent(c.getId().getPath(),
+                    new ResourceLocation("item/generated")).texture("layer0", DesiresCreate.asResource("item/" + c.getId().getPath())))
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern(" A ").pattern("GAG").pattern("GGG")
+                    .define('A', AllItems.ANDESITE_ALLOY)
+                    .define('G', DesiresTags.forgeItemTag("plates/gold"))
+                    .unlockedBy("has_" + c.getName(), has(c.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName()))).lang("Golden Whisk")
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .register();
+
     public static final ItemEntry<Item> INTEGRATED_CIRCUIT = REGISTRATE.item("integrated_circuit", Item::new)
             .model((c, p) -> p.withExistingParent(c.getId().getPath(),
                     new ResourceLocation("item/generated")).texture("layer0",

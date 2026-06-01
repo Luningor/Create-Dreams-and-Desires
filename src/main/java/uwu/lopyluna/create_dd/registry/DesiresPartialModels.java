@@ -60,7 +60,21 @@ public class DesiresPartialModels {
 
         TWO_BLADE_FAN = block("2_blade_fan/block"),
         FOUR_BLADE_FAN = block("4_blade_fan/block"),
-        EIGHT_BLADE_FAN = block("8_blade_fan/block");
+        EIGHT_BLADE_FAN = block("8_blade_fan/block"),
+
+        TOP_PANEL = block("omni_gearbox/panels/top"),
+        BOTTOM_PANEL = block("omni_gearbox/panels/bottom"),
+        NORTH_PANEL = block("omni_gearbox/panels/north"),
+        EAST_PANEL = block("omni_gearbox/panels/east"),
+        SOUTH_PANEL = block("omni_gearbox/panels/south"),
+        WEST_PANEL = block("omni_gearbox/panels/west"),
+
+        GOLDEN_MIXER_POLE = block("gold_mixer/pole"),
+        GOLDEN_MIXER_HEAD = block("gold_mixer/head"),
+
+        SPUD_BASE = block("spud_sentry/base"),
+        SPUD_CANNON = block("spud_sentry/cannon"),
+        SPUD_GEAR = block("spud_sentry/gear")
 	;
 
     public static final Map<ResourceLocation, Couple<PartialModel>> FOLDING_DOORS = new HashMap<>();

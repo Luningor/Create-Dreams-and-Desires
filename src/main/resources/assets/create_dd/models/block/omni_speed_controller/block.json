@@ -1,0 +1,9 @@
+{
+	"parent": "create:block/gearshift/block",
+    "textures": {
+        "0": "create_dd:block/omni_speed_controller",
+        "1": "create:block/brass_gearbox",
+        "2": "create:block/funnel/brass_funnel_frame",
+		"particle": "create_dd:block/omni_speed_controller"
+    }
+}

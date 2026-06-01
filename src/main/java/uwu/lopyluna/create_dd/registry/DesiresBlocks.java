@@ -58,6 +58,8 @@ import uwu.lopyluna.create_dd.content.blocks.fan.four_blade.FourBladeFanBlock;
 import uwu.lopyluna.create_dd.content.blocks.fan.two_blade.TwoBladeFanBlock;
 import uwu.lopyluna.create_dd.content.blocks.functional.SpectralRubyLampBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.creative_gear_motor.CreativeGearMotorBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.golden_mixer.GoldenMixerBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.multimeter.MultiMeterBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlock;
@@ -70,6 +72,8 @@ import uwu.lopyluna.create_dd.content.blocks.functional.FanSailBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.FurnaceEngineBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.FurnaceEngineGenerator;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.PoweredFlywheelBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_gearbox.OmniGearboxBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_speed_controller.OmniSpeedControllerBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlock;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlock;
@@ -86,6 +90,7 @@ import uwu.lopyluna.create_dd.registry.helper.BuilderTransgender;
 import java.util.function.Consumer;
 
 import static com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour;
+import static com.simibubi.create.foundation.data.BlockStateGen.simpleBlock;
 import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.*;
@@ -942,6 +947,27 @@ public class DesiresBlocks {
 			.transform(customItemModel())
 			.register();
 
+    public static final BlockEntry<GoldenMixerBlock> GOLDEN_MIXER = REGISTRATE
+            .block("gold_mixer", GoldenMixerBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.noOcclusion().mapColor(MapColor.STONE))
+            .transform(axeOrPickaxe())
+            .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern("A").pattern("B").pattern("C")
+                    .define('A', AllItems.PRECISION_MECHANISM.get())
+                    .define('B', AllBlocks.BRASS_CASING.get())
+                    .define('C', DesiresItems.GOLDEN_WHISK.get())
+                    .unlockedBy("has_" + c.getName(), has(c.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .item(AssemblyOperatorBlockItem::new)
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .lang("Golden Mixer")
+            .register();
+
 	public static final BlockEntry<BoreBlock> BORE_BLOCK = REGISTRATE.block("bore_block", BoreBlock::new)
 			.initialProperties(SharedProperties::stone)
 			.properties(p -> p.mapColor(MapColor.STONE))
@@ -1026,7 +1052,45 @@ public class DesiresBlocks {
 			.transform(customItemModel())
 			.register();
 
-	public static final BlockEntry<KineticMotorBlock> KINETIC_MOTOR = REGISTRATE
+    public static final BlockEntry<OmniGearboxBlock> OMNI_GEARBOX = REGISTRATE
+            .block("omni_gearbox", OmniGearboxBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.lightLevel($ -> 2).noOcclusion().mapColor(MapColor.TERRACOTTA_CYAN))
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
+            .transform(axeOrPickaxe())
+            .blockstate((c, p) -> simpleBlock(c, p, $ -> AssetLookup.partialBaseModel(c, p)))
+            .item()
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 2)
+                    .pattern(" V ").pattern("HCH").pattern(" V ")
+                    .define('V', AllItems.VERTICAL_GEARBOX.get())
+                    .define('H', AllBlocks.GEARBOX.get())
+                    .define('C', AllBlocks.BRASS_CASING.get())
+                    .unlockedBy("has_casing", has(AllBlocks.BRASS_CASING.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<OmniSpeedControllerBlock> OMNI_SPEED_CONTROLLER = REGISTRATE
+            .block("omni_speed_controller", OmniSpeedControllerBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.noOcclusion().mapColor(MapColor.TERRACOTTA_BROWN))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 0.0))
+            .transform(axeOrPickaxe())
+            .blockstate(BlockStateGen.axisBlockProvider(true))
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern("CBC")
+                    .define('C', AllBlocks.LARGE_COGWHEEL.get())
+                    .define('B', AllBlocks.ROTATION_SPEED_CONTROLLER.get())
+                    .unlockedBy("has_" + c.getName(), has(c.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<KineticMotorBlock> KINETIC_MOTOR = REGISTRATE
 			.block("kinetic_motor", KineticMotorBlock::new)
 			.initialProperties(SharedProperties::stone)
 			.properties(p -> p.mapColor(MapColor.COLOR_GRAY))
@@ -1059,7 +1123,22 @@ public class DesiresBlocks {
 			.transform(customItemModel())
 			.register();
 
-	public static final BlockEntry<CogCrankBlock> COG_CRANK = REGISTRATE.block("cog_crank", CogCrankBlock::new)
+    public static final BlockEntry<CreativeGearMotorBlock> CREATIVE_GEAR_MOTOR = REGISTRATE
+            .block("creative_gear_motor", CreativeGearMotorBlock::new)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.mapColor(MapColor.COLOR_PURPLE).forceSolidOn())
+            .tag(AllTags.AllBlockTags.SAFE_NBT.tag)
+            .transform(pickaxeOnly())
+            .blockstate(BlockStateGen.directionalBlockProviderIgnoresWaterlogged(true))
+            .onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 16384.0))
+            .onRegister(BlockStressValues.setGeneratorSpeed(256, true))
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .properties(p -> p.rarity(Rarity.EPIC))
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<CogCrankBlock> COG_CRANK = REGISTRATE.block("cog_crank", CogCrankBlock::new)
 			.initialProperties(SharedProperties::wooden)
 			.properties(p -> p.mapColor(MapColor.PODZOL))
 			.transform(axeOrPickaxe())
