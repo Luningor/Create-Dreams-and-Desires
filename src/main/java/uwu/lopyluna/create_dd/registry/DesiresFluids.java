@@ -19,7 +19,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import org.joml.Vector3f;
 import uwu.lopyluna.create_dd.infrastructure.config.DesiresConfigs;
-import uwu.lopyluna.create_dd.registry.DesiresPaletteStoneTypes;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -31,7 +30,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> CONDENSE_MILK =
             REGISTRATE.standardFluid("condense_milk",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xfaeccc,
                                     () -> 1f / 4f * DesiresConfigs.client().condense_milkTransparencyMultiplier.getF()))
                     .lang("condense_milk")
                     .properties(b -> b.viscosity(1500)
@@ -53,7 +52,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> CREAM =
             REGISTRATE.standardFluid("cream",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xfff3cf,
                                     () -> 1f / 4f * DesiresConfigs.client().creamTransparencyMultiplier.getF()))
                     .lang("cream")
                     .properties(b -> b.viscosity(1500)
@@ -75,7 +74,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> VANILLA =
             REGISTRATE.standardFluid("vanilla",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xfefff4,
                                     () -> 1f / 4f * DesiresConfigs.client().vanillaTransparencyMultiplier.getF()))
                     .lang("vanilla")
                     .properties(b -> b.viscosity(1500)
@@ -97,7 +96,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> VANILLA_MILKSHAKE =
             REGISTRATE.standardFluid("vanilla_milkshake",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xfefff4,
                                     () -> 1f / 4f * DesiresConfigs.client().vanilla_milkshakeTransparencyMultiplier.getF()))
                     .lang("vanilla_milkshake")
                     .properties(b -> b.viscosity(1500)
@@ -119,7 +118,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> STRAWBERRY =
             REGISTRATE.standardFluid("strawberry",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xf898d9,
                                     () -> 1f / 4f * DesiresConfigs.client().strawberryTransparencyMultiplier.getF()))
                     .lang("strawberry")
                     .properties(b -> b.viscosity(1500)
@@ -141,7 +140,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> STRAWBERRY_MILKSHAKE =
             REGISTRATE.standardFluid("strawberry_milkshake",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xf48ccc,
                                     () -> 1f / 4f * DesiresConfigs.client().strawberry_milkshakeTransparencyMultiplier.getF()))
                     .lang("strawberry_milkshake")
                     .properties(b -> b.viscosity(1500)
@@ -163,7 +162,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> GLOWBERRY =
             REGISTRATE.standardFluid("glowberry",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xffca79,
                                     () -> 1f / 4f * DesiresConfigs.client().glowberryTransparencyMultiplier.getF()))
                     .lang("glowberry")
                     .properties(b -> b.viscosity(1500)
@@ -185,7 +184,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> GLOWBERRY_MILKSHAKE =
             REGISTRATE.standardFluid("glowberry_milkshake",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xffdb8a,
                                     () -> 1f / 4f * DesiresConfigs.client().glowberry_milkshakeTransparencyMultiplier.getF()))
                     .lang("glowberry_milkshake")
                     .properties(b -> b.viscosity(1500)
@@ -207,7 +206,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> CARAMEL =
             REGISTRATE.standardFluid("caramel",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xef9967,
                                     () -> 1f / 4f * DesiresConfigs.client().caramelTransparencyMultiplier.getF()))
                     .lang("caramel")
                     .properties(b -> b.viscosity(1500)
@@ -229,7 +228,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> CARAMEL_MILKSHAKE =
             REGISTRATE.standardFluid("caramel_milkshake",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xf3a872,
                                     () -> 1f / 4f * DesiresConfigs.client().caramel_milkshakeTransparencyMultiplier.getF()))
                     .lang("caramel_milkshake")
                     .properties(b -> b.viscosity(1500)
@@ -251,7 +250,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> HOT_CHOCOLATE =
             REGISTRATE.standardFluid("hot_chocolate",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0x833730,
                                     () -> 1f / 4f * DesiresConfigs.client().hot_chocolateTransparencyMultiplier.getF()))
                     .lang("hot_chocolate")
                     .properties(b -> b.viscosity(1500)
@@ -273,7 +272,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> CHOCOLATE_MILKSHAKE =
             REGISTRATE.standardFluid("chocolate_milkshake",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0x9f493b,
                                     () -> 1f / 4f * DesiresConfigs.client().chocolate_milkshakeTransparencyMultiplier.getF()))
                     .lang("chocolate_milkshake")
                     .properties(b -> b.viscosity(1500)
@@ -295,7 +294,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> SAP =
             REGISTRATE.standardFluid("sap",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0xd38c59,
                                     () -> 1f / 4f * DesiresConfigs.client().sapTransparencyMultiplier.getF()))
                     .lang("sap")
                     .properties(b -> b.viscosity(1500)
@@ -317,7 +316,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> CHROMATIC_WASTE =
             REGISTRATE.standardFluid("chromatic_waste",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0x6e294e,
                                     () -> 1f / 4f * DesiresConfigs.client().chromatic_wasteTransparencyMultiplier.getF()))
                     .lang("chromatic_waste")
                     .properties(b -> b.viscosity(6000)
@@ -339,7 +338,7 @@ public class DesiresFluids {
 
     public static final FluidEntry<ForgeFlowingFluid.Flowing> SHIMMER =
             REGISTRATE.standardFluid("shimmer",
-                            SolidRenderedPlaceableFluidType.create(0xEAAE2F,
+                            SolidRenderedPlaceableFluidType.create(0x5cfc7a,
                                     () -> 1f / 4f * DesiresConfigs.client().shimmerTransparencyMultiplier.getF()))
                     .lang("shimmer")
                     .properties(b -> b.viscosity(6000)

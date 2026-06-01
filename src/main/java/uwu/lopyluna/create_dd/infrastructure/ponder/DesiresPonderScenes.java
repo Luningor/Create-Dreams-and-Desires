@@ -1,0 +1,95 @@
+package uwu.lopyluna.create_dd.infrastructure.ponder;
+
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.foundation.ponder.*;
+import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
+import com.simibubi.create.infrastructure.ponder.scenes.*;
+import com.tterrag.registrate.util.entry.ItemProviderEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
+import net.minecraft.resources.ResourceLocation;
+import uwu.lopyluna.create_dd.registry.DesiresBlocks;
+import uwu.lopyluna.create_dd.registry.DesiresItems;
+
+public class DesiresPonderScenes {
+
+    public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper) {
+        PonderSceneRegistrationHelper<ItemProviderEntry<?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
+
+        HELPER.forComponents(DesiresBlocks.HYDRAULIC_PRESS).addStoryBoard("hydraulic_press", DesiresProcessingScenes::bulkPressing, AllCreatePonderTags.KINETIC_APPLIANCES);
+        HELPER.forComponents(DesiresBlocks.BRONZE_SAW).addStoryBoard("bronze_saw", DesiresProcessingScenes::processing, AllCreatePonderTags.KINETIC_APPLIANCES);
+        HELPER.forComponents(AllBlocks.FLYWHEEL).addStoryBoard("furnace_engine", DesiresProcessingScenes::flywheel);
+        HELPER.forComponents(DesiresBlocks.FURNACE_ENGINE).addStoryBoard("furnace_engine", DesiresProcessingScenes::furnaceEngine);
+        HELPER.forComponents(DesiresBlocks.BLASTING_SAIL).addStoryBoard("fan_sails", DesiresProcessingScenes::fanSails);
+        HELPER.forComponents(DesiresBlocks.SMOKING_SAIL).addStoryBoard("fan_sails", DesiresProcessingScenes::fanSails);
+        HELPER.forComponents(DesiresBlocks.HAUNTING_SAIL).addStoryBoard("fan_sails", DesiresProcessingScenes::fanSails);
+        HELPER.forComponents(DesiresBlocks.SPLASHING_SAIL).addStoryBoard("fan_sails", DesiresProcessingScenes::fanSails);
+        HELPER.forComponents(DesiresBlocks.SEETHING_SAIL).addStoryBoard("fan_sails", DesiresProcessingScenes::fanSails);
+        HELPER.forComponents(DesiresBlocks.FREEZING_SAIL).addStoryBoard("fan_sails", DesiresProcessingScenes::fanSails);
+        HELPER.forComponents(DesiresBlocks.ACCELERATOR_MOTOR).addStoryBoard("accelerator_motor", DesiresProcessingScenes::motors, AllCreatePonderTags.KINETIC_SOURCES);
+        HELPER.forComponents(DesiresBlocks.KINETIC_MOTOR).addStoryBoard("kinetic_motor", DesiresProcessingScenes::motors, AllCreatePonderTags.KINETIC_SOURCES);
+        HELPER.forComponents(DesiresBlocks.COG_CRANK).addStoryBoard("cog_crank", DesiresProcessingScenes::cogCrank, AllCreatePonderTags.KINETIC_SOURCES);
+        HELPER.forComponents(DesiresBlocks.INDUSTRIAL_FAN).addStoryBoard("industrial_fan_source", DesiresProcessingScenes::industrialFanSource, AllCreatePonderTags.KINETIC_SOURCES);
+
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/blue_ice", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/caramel", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/caramel_milkshake", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/chocolate", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/chocolate_milk", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/chromatic_waste", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/condence_milk", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/cream", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/glowberry", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/glowberry_milkshake", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/honey", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/hot_chocolate", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/sap", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/shimmer", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/strawberry", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/strawberry_milkshake", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/vanilla", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/vanilla_milkshake", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/water", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+        HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/water_chroma", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
+
+        ////////////////////// Create = below |||| Create DD = Above
+
+        HELPER.forComponents(DesiresBlocks.BRONZE_SAW)
+                .addStoryBoard("mechanical_saw/breaker", MechanicalSawScenes::treeCutting)
+                .addStoryBoard("mechanical_saw/contraption", MechanicalSawScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+        HELPER.forComponents(DesiresBlocks.RADIANT_SAW)
+                .addStoryBoard("mechanical_saw/breaker", MechanicalSawScenes::treeCutting)
+                .addStoryBoard("mechanical_saw/contraption", MechanicalSawScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+        HELPER.forComponents(DesiresBlocks.SHADOW_SAW)
+                .addStoryBoard("mechanical_saw/breaker", MechanicalSawScenes::treeCutting)
+                .addStoryBoard("mechanical_saw/contraption", MechanicalSawScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+        HELPER.forComponents(DesiresBlocks.BRONZE_DRILL)
+                .addStoryBoard("mechanical_drill/breaker", MechanicalDrillScenes::breaker, AllCreatePonderTags.KINETIC_APPLIANCES)
+                .addStoryBoard("mechanical_drill/contraption", MechanicalDrillScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+        HELPER.forComponents(DesiresBlocks.RADIANT_DRILL)
+                .addStoryBoard("mechanical_drill/breaker", MechanicalDrillScenes::breaker, AllCreatePonderTags.KINETIC_APPLIANCES)
+                .addStoryBoard("mechanical_drill/contraption", MechanicalDrillScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+        HELPER.forComponents(DesiresBlocks.SHADOW_DRILL)
+                .addStoryBoard("mechanical_drill/breaker", MechanicalDrillScenes::breaker, AllCreatePonderTags.KINETIC_APPLIANCES)
+                .addStoryBoard("mechanical_drill/contraption", MechanicalDrillScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+
+        HELPER.forComponents(DesiresBlocks.INDUSTRIAL_FAN)
+                .addStoryBoard("fan/direction", FanScenes::direction, AllCreatePonderTags.KINETIC_APPLIANCES)
+                .addStoryBoard("fan/processing", FanScenes::processing);
+
+        HELPER.addStoryBoard(DesiresBlocks.INVERSE_BOX, "gearshift", KineticsScenes::gearshift, AllCreatePonderTags.KINETIC_RELAYS);
+
+        HELPER.forComponents(DesiresBlocks.BLASTING_SAIL)
+                .addStoryBoard("sail", BearingScenes::sail);
+        HELPER.forComponents(DesiresBlocks.SMOKING_SAIL)
+                .addStoryBoard("sail", BearingScenes::sail);
+        HELPER.forComponents(DesiresBlocks.HAUNTING_SAIL)
+                .addStoryBoard("sail", BearingScenes::sail);
+        HELPER.forComponents(DesiresBlocks.SPLASHING_SAIL)
+                .addStoryBoard("sail", BearingScenes::sail);
+        HELPER.forComponents(DesiresBlocks.SEETHING_SAIL)
+                .addStoryBoard("sail", BearingScenes::sail);
+        HELPER.forComponents(DesiresBlocks.FREEZING_SAIL)
+                .addStoryBoard("sail", BearingScenes::sail);
+    }
+}

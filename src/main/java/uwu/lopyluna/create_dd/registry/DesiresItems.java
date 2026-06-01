@@ -51,6 +51,14 @@ public class DesiresItems {
             INCOMPLETE_SEALED_MECHANISM = sequencedItem("incomplete_sealed_mechanism");
     ;
 
+    public static final ItemEntry<Item> PONDER_STONE_GENERATION = REGISTRATE.item("ponder_stone_generation", Item::new)
+            .model((c, p) -> p.withExistingParent(c.getId().getPath(),
+                    new ResourceLocation("item/generated")).texture("layer0",
+                    new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
+            .lang("Stone generation ponders")
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .register();
+
     public static final ItemEntry<Item> INTEGRATED_CIRCUIT = REGISTRATE.item("integrated_circuit", Item::new)
             .model((c, p) -> p.withExistingParent(c.getId().getPath(),
                     new ResourceLocation("item/generated")).texture("layer0",
