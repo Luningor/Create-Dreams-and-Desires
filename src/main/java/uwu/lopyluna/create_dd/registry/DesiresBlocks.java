@@ -74,6 +74,7 @@ import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.FurnaceEngi
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.PoweredFlywheelBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_gearbox.OmniGearboxBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_speed_controller.OmniSpeedControllerBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.SpudSentryBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlock;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlock;
@@ -1196,6 +1197,30 @@ public class DesiresBlocks {
             .item()
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .build()
+            .register();
+
+    public static final BlockEntry<SpudSentryBlock> SPUD_SENTRY = REGISTRATE
+            .block("spud_sentry", SpudSentryBlock::new)
+            .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.noOcclusion().mapColor(MapColor.COLOR_ORANGE))
+            .transform(pickaxeOnly())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 16.0))
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern("AII")
+                    .pattern("P  ")
+                    .pattern("BC ")
+                    .define('C', AllBlocks.COPPER_CASING.get())
+                    .define('P', AllItems.POTATO_CANNON.get())
+                    .define('A', AllItems.ANDESITE_ALLOY.get())
+                    .define('B', Items.COPPER_BLOCK)
+                    .define('I', Items.COPPER_INGOT)
+                    .unlockedBy("has_" + c.getName(), has(c.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
             .register();
 
     public static final BlockEntry<TwoBladeFanBlock> TWO_BLADE_FAN = REGISTRATE.block("2_blade_fan", TwoBladeFanBlock::new)

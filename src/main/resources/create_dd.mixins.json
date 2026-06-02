@@ -14,7 +14,8 @@
     "MixinGearshiftBlock",
     "MixinGearshiftBlockEntity",
     "MixinKineticNetwork",
-    "MixinRotatedPillarKineticBlock"
+    "MixinRotatedPillarKineticBlock",
+    "PotatoProjectileAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -57,6 +57,8 @@ import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotor
 import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_gearbox.OmniGearboxBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_gearbox.OmniGearboxRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_speed_controller.OmniSpeedControllerBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.SpudSentryBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.SpudSentryRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlockEntity;
@@ -131,6 +133,13 @@ public class DesiresBlockEntityTypes {
             .blockEntity("roll_table", RollTableBlockEntity::new)
             .validBlocks(DesiresBlocks.ROLL_TABLE)
             .renderer(() -> RollTableRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<SpudSentryBlockEntity> SPUD_SENTRY = REGISTRATE
+            .blockEntity("spud_sentry", SpudSentryBlockEntity::new)
+            .visual(() -> SingleAxisRotatingVisual.of(DesiresPartialModels.SPUD_GEAR), true)
+            .validBlocks(DesiresBlocks.SPUD_SENTRY)
+            .renderer(() -> SpudSentryRenderer::new)
             .register();
 
     public static final BlockEntityEntry<BronzeSawBlockEntity> BRONZE_SAW = REGISTRATE

@@ -1,6 +1,12 @@
 package uwu.lopyluna.create_dd.registry;
 
+import net.createmod.catnip.lang.LangBuilder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+
 import java.util.function.BiConsumer;
+
+import static uwu.lopyluna.create_dd.DesiresCreate.MOD_ID;
 
 @SuppressWarnings({"unused"})
 public class DesiresLangPartial {
@@ -16,6 +22,11 @@ public class DesiresLangPartial {
         consume(consumer, "itemGroup.create_dd.beta", "DnDesires Beta Stuff");
         consume(consumer, "itemGroup.create_dd.classic", "DnDesires Classic Stuff");
 
+    }
+
+    public static MutableComponent translateDirect(String key, Object... args) {
+        Object[] args1 = LangBuilder.resolveBuilders(args);
+        return Component.translatable(MOD_ID + "." + key, args1);
     }
 
     private static void consume(BiConsumer<String, String> consumer, String key, String enUS) {
