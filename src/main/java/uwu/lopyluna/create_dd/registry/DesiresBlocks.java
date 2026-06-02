@@ -82,6 +82,8 @@ import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidRese
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileBlock;
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileCTBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileItem;
+import uwu.lopyluna.create_dd.content.blocks.logistics.roll_table.RollTableBlock;
+import uwu.lopyluna.create_dd.content.blocks.logistics.smart_hopper.SmartHopperBlock;
 import uwu.lopyluna.create_dd.content.blocks.magic.*;
 import uwu.lopyluna.create_dd.content.blocks.wood.*;
 import uwu.lopyluna.create_dd.content.worldgen.Features.RubberTreeGrower;
@@ -1180,6 +1182,22 @@ public class DesiresBlocks {
             .loot((lt, block) -> lt.dropOther(block, AllBlocks.FLYWHEEL.get()))
             .register();
 
+    public static final BlockEntry<RollTableBlock> ROLL_TABLE = REGISTRATE
+            .block("roll_table", RollTableBlock::new)
+            .initialProperties(SharedProperties::netheriteMetal)
+            .transform(pickaxeOnly())
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern("A").pattern("B")
+                    .define('A', DesiresTags.forgeItemTag("plates/iron"))
+                    .define('B', AllBlocks.DEPOT.get())
+                    .unlockedBy("has_" + c.getName(), has(c.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .blockstate((c, p) -> p.simpleBlock(c.get(), AssetLookup.standardModel(c, p)))
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
     public static final BlockEntry<TwoBladeFanBlock> TWO_BLADE_FAN = REGISTRATE.block("2_blade_fan", TwoBladeFanBlock::new)
             .initialProperties(SharedProperties::softMetal)
             .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW))
@@ -1236,6 +1254,46 @@ public class DesiresBlocks {
 			.lang("Giant Gear")
 			.register();
 
+    public static final BlockEntry<SmartHopperBlock> SMART_HOPPER = REGISTRATE
+            .block("smart_hopper", SmartHopperBlock::new)
+            .initialProperties(SharedProperties::softMetal)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK))
+            .transform(pickaxeOnly())
+            .addLayer(() -> RenderType::cutoutMipped)
+            .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                    .forAllStates(state -> {
+                        boolean powered = state.getValue(SmartHopperBlock.POWERED);
+                        Direction facing = state.getValue(SmartHopperBlock.FACING);
+
+                        String suffix = getHopperSuffix(facing);
+                        String power = powered ? "_powered" : "";
+                        return ConfiguredModel.builder()
+                                .modelFile(p.models().getExistingFile(
+                                        p.modLoc("block/smart_hopper/block" + power + suffix)
+                                ))
+                                .build();
+                    })
+            )
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern("A").pattern("B").pattern("C")
+                    .define('A', DesiresTags.forgeItemTag("plates/brass"))
+                    .define('B', Items.HOPPER)
+                    .define('C', AllItems.ELECTRON_TUBE.get())
+                    .unlockedBy("has_hopper", has(Items.HOPPER))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName()))).item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel("_", "block"))
+            .register();
+
+    public static String getHopperSuffix(Direction dir) {
+        return switch (dir) {
+            case NORTH -> "north";
+            case SOUTH -> "south";
+            case WEST -> "west";
+            case EAST -> "east";
+            default -> "";
+        };
+    }
 
 	public static final BlockEntry<ItemStockpileBlock> ITEM_STOCKPILE = REGISTRATE.block("item_stockpile", ItemStockpileBlock::new)
 			.initialProperties(SharedProperties::softMetal)

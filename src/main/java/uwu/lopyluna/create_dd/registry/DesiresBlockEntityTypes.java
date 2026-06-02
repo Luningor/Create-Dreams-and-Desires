@@ -4,6 +4,7 @@ import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.kinetics.base.*;
 import com.simibubi.create.content.kinetics.transmission.SplitShaftRenderer;
 import com.simibubi.create.content.kinetics.transmission.SplitShaftVisual;
+import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw.BronzeSawBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw.BronzeSawRenderer;
@@ -60,6 +61,9 @@ import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divi
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.logistics.roll_table.RollTableBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.logistics.roll_table.RollTableRenderer;
+import uwu.lopyluna.create_dd.content.blocks.logistics.smart_hopper.SmartHopperBlockEntity;
 
 import static uwu.lopyluna.create_dd.DesiresCreate.REGISTRATE;
 
@@ -123,11 +127,11 @@ public class DesiresBlockEntityTypes {
             .renderer(() -> SplitShaftRenderer::new)
             .register();
 
-    /*public static final BlockEntityEntry<RollTableBlockEntity> ROLL_TABLE = REGISTRATE
+    public static final BlockEntityEntry<RollTableBlockEntity> ROLL_TABLE = REGISTRATE
             .blockEntity("roll_table", RollTableBlockEntity::new)
             .validBlocks(DesiresBlocks.ROLL_TABLE)
             .renderer(() -> RollTableRenderer::new)
-            .register();*/
+            .register();
 
     public static final BlockEntityEntry<BronzeSawBlockEntity> BRONZE_SAW = REGISTRATE
             .blockEntity("bronze_saw", BronzeSawBlockEntity::new)
@@ -213,11 +217,11 @@ public class DesiresBlockEntityTypes {
 			.renderer(() -> ShaftRenderer::new)
 			.register();
 
-    /*public static final BlockEntityEntry<SmartHopperBlockEntity> SMART_HOPPER = REGISTRATE
+    public static final BlockEntityEntry<SmartHopperBlockEntity> SMART_HOPPER = REGISTRATE
             .blockEntity("smart_hopper", SmartHopperBlockEntity::new)
             .validBlocks(DesiresBlocks.SMART_HOPPER)
             .renderer(() -> SmartBlockEntityRenderer::new)
-            .register();*/
+            .register();
 
 	public static final BlockEntityEntry<RedstoneDividerBlockEntity> REDSTONE_DIVIDER = REGISTRATE
 			.blockEntity("redstone_divider", RedstoneDividerBlockEntity::new)
