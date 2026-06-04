@@ -7,12 +7,16 @@ import com.tterrag.registrate.util.entry.FluidEntry;
 import net.createmod.catnip.theme.Color;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.common.SoundActions;
 import net.minecraftforge.fluids.FluidInteractionRegistry;
 import net.minecraftforge.fluids.FluidInteractionRegistry.InteractionInformation;
 import net.minecraftforge.fluids.FluidStack;
@@ -166,7 +170,8 @@ public class DesiresFluids {
                                     () -> 1f / 4f * DesiresConfigs.client().glowberryTransparencyMultiplier.getF()))
                     .lang("glowberry")
                     .properties(b -> b.viscosity(1500)
-                            .density(1400))
+                            .density(1400)
+                            .lightLevel(12))
                     .fluidProperties(p -> p.levelDecreasePerBlock(2)
                             .tickRate(25)
                             .slopeFindDistance(3)
@@ -188,7 +193,8 @@ public class DesiresFluids {
                                     () -> 1f / 4f * DesiresConfigs.client().glowberry_milkshakeTransparencyMultiplier.getF()))
                     .lang("glowberry_milkshake")
                     .properties(b -> b.viscosity(1500)
-                            .density(1400))
+                            .density(1400)
+                            .lightLevel(12))
                     .fluidProperties(p -> p.levelDecreasePerBlock(2)
                             .tickRate(25)
                             .slopeFindDistance(3)
@@ -320,7 +326,11 @@ public class DesiresFluids {
                                     () -> 1f / 4f * DesiresConfigs.client().chromatic_wasteTransparencyMultiplier.getF()))
                     .lang("chromatic_waste")
                     .properties(b -> b.viscosity(6000)
-                            .density(3000))
+                            .density(3000)
+                            .lightLevel(8)
+                            .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
+                            .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA)
+                            .lightLevel(8))
                     .fluidProperties(p -> p.levelDecreasePerBlock(2)
                             .tickRate(25)
                             .slopeFindDistance(3)
@@ -342,11 +352,25 @@ public class DesiresFluids {
                                     () -> 1f / 4f * DesiresConfigs.client().shimmerTransparencyMultiplier.getF()))
                     .lang("shimmer")
                     .properties(b -> b.viscosity(6000)
-                            .density(50))
-                    .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                            .density(50)
+                            .canSwim(false)
+                            .canDrown(true)
+                            .canHydrate(false)
+                            .rarity(Rarity.EPIC)
+                            .lightLevel(15)
+                            .temperature(-1000)
+                            .motionScale(-1.25)
+                            .supportsBoating(false)
+                            .canExtinguish(false)
+                            .canConvertToSource(true)
+                            .pathType(BlockPathTypes.LAVA)
+                            .sound(SoundActions.BUCKET_FILL, DesiresSoundEvents.SHIMMER_FILL.get())
+                            .sound(SoundActions.BUCKET_EMPTY, DesiresSoundEvents.SHIMMER_EMPTY.get())
+                            .adjacentPathType(null))
+            .fluidProperties(p -> p.levelDecreasePerBlock(2)
                             .tickRate(20)
                             .slopeFindDistance(0)
-                            .explosionResistance(100f)
+                            .explosionResistance(10000f)
                     )
                     .tag(DesiresTags.AllFluidTags.SHIMMER.tag)
                     .source(ForgeFlowingFluid.Source::new)

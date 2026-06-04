@@ -575,8 +575,13 @@ public class DesiresBlocks {
     public static final BlockEntry<CasingBlock> OVERCHARGED_CASING = REGISTRATE.block("overcharged_casing", CasingBlock::new)
             .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.OVERCHARGED_CASING))
             .properties(p -> p.mapColor(MapColor.COLOR_CYAN)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.COPPER))
+                    .requiresCorrectToolForDrops())
+            .properties(p -> p.sound(new ForgeSoundType(1f, .4f,
+                    () -> DesiresSoundEvents.MAGIC_CASING_BREAK.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_STEP.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_PLACE.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_HIT.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_FALL.get())))
             .transform(pickaxeOnly())
             .lang("Overcharged Casing")
             .item()
@@ -587,8 +592,13 @@ public class DesiresBlocks {
     public static final BlockEntry<CasingBlock> REFINED_RADIANCE_CASING = REGISTRATE.block("refined_radiance_casing", CasingBlock::new)
             .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.REFINED_RADIANCE_CASING))
             .properties(p -> p.mapColor(MapColor.TERRACOTTA_WHITE)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.COPPER))
+                    .requiresCorrectToolForDrops())
+            .properties(p -> p.sound(new ForgeSoundType(1f, .4f,
+                    () -> DesiresSoundEvents.MAGIC_CASING_BREAK.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_STEP.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_PLACE.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_HIT.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_FALL.get())))
             .transform(pickaxeOnly())
             .lang("Refined Radiance Casing")
             .item()
@@ -599,8 +609,13 @@ public class DesiresBlocks {
     public static final BlockEntry<CasingBlock> SHADOW_STEEL_CASING = REGISTRATE.block("shadow_steel_casing", CasingBlock::new)
             .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.SHADOW_STEEL_CASING))
             .properties(p -> p.mapColor(MapColor.COLOR_BLACK)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.COPPER))
+                    .requiresCorrectToolForDrops())
+            .properties(p -> p.sound(new ForgeSoundType(1f, .4f,
+                    () -> DesiresSoundEvents.MAGIC_CASING_BREAK.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_STEP.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_PLACE.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_HIT.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_FALL.get())))
             .transform(pickaxeOnly())
             .lang("Shadow Steel Casing")
             .item()
@@ -611,8 +626,13 @@ public class DesiresBlocks {
     public static final BlockEntry<CasingBlock> STARGAZE_SINGULARITY_CASING = REGISTRATE.block("stargaze_singularity_casing", CasingBlock::new)
             .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.STARGAZE_SINGULARITY_CASING))
             .properties(p -> p.mapColor(MapColor.COLOR_LIGHT_BLUE)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.COPPER))
+                    .requiresCorrectToolForDrops())
+            .properties(p -> p.sound(new ForgeSoundType(1f, .4f,
+                    () -> DesiresSoundEvents.MAGIC_CASING_BREAK.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_STEP.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_PLACE.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_HIT.get(),
+                    () -> DesiresSoundEvents.MAGIC_CASING_FALL.get())))
             .transform(pickaxeOnly())
             .lang("Stargaze singularity Casing")
             .item()
