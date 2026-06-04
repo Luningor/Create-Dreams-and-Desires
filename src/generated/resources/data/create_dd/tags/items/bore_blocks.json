@@ -1,0 +1,21 @@
+{
+  "values": [
+    "create_dd:bore_block",
+    "create_dd:white_bore_block",
+    "create_dd:orange_bore_block",
+    "create_dd:magenta_bore_block",
+    "create_dd:light_blue_bore_block",
+    "create_dd:yellow_bore_block",
+    "create_dd:lime_bore_block",
+    "create_dd:pink_bore_block",
+    "create_dd:gray_bore_block",
+    "create_dd:light_gray_bore_block",
+    "create_dd:cyan_bore_block",
+    "create_dd:purple_bore_block",
+    "create_dd:blue_bore_block",
+    "create_dd:brown_bore_block",
+    "create_dd:green_bore_block",
+    "create_dd:red_bore_block",
+    "create_dd:black_bore_block"
+  ]
+}

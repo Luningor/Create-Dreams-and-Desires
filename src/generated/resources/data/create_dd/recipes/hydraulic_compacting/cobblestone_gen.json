@@ -1,0 +1,21 @@
+{
+  "type": "create_dd:hydraulic_compacting",
+  "ingredients": [
+    {
+      "type": "forge:tag",
+      "amount": 100,
+      "tag": "forge:lava"
+    },
+    {
+      "type": "forge:tag",
+      "amount": 500,
+      "tag": "forge:water"
+    }
+  ],
+  "results": [
+    {
+      "count": 10,
+      "item": "minecraft:cobblestone"
+    }
+  ]
+}

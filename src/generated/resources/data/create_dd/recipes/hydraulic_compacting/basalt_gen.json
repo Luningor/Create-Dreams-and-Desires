@@ -1,0 +1,29 @@
+{
+  "type": "create_dd:hydraulic_compacting",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "minecraft:blue_ice"
+    },
+    {
+      "item": "minecraft:soul_soil"
+    },
+    {
+      "type": "forge:tag",
+      "amount": 100,
+      "tag": "forge:lava"
+    }
+  ],
+  "results": [
+    {
+      "count": 10,
+      "item": "minecraft:basalt"
+    },
+    {
+      "item": "minecraft:blue_ice"
+    },
+    {
+      "item": "minecraft:soul_soil"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "create_dd:stone_types/breccia"
+  },
+  "result": "create_dd:breccia",
+  "count": 1
+}

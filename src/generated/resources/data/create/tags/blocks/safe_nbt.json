@@ -1,5 +1,7 @@
 {
   "values": [
-    "create_dd:kinetic_motor"
+    "create_dd:accelerator_motor",
+    "create_dd:kinetic_motor",
+    "create_dd:creative_gear_motor"
   ]
 }

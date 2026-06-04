@@ -172,6 +172,22 @@ public class DesiresItems {
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .register();
 
+    public static final ItemEntry<CombustibleItem> BURNER_STOCK = REGISTRATE.item("burner_stock", CombustibleItem::new)
+            .onRegister(i -> i.setBurnTime(200))
+            .model((c, p) -> p.withExistingParent(c.getId().getPath(),
+                    new ResourceLocation("item/generated")).texture("layer0",
+                    new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern("AB")
+                    .pattern("BA")
+                    .define('A', Items.NETHERITE_SCRAP)
+                    .define('B', DesiresTags.forgeItemTag("ingots/zinc"))
+                    .unlockedBy("has_" + c.getName(), has(c.get()))
+                    .save(p, DesiresCreate.asResource(  "crafting/" + c.getName())))
+            .lang("Burner Stock")
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .register();
+
     public static final ItemEntry<Item> MITHRIL_NUGGET = REGISTRATE.item("mithril_nugget", Item::new)
             .model((c, p) -> p.withExistingParent(c.getId().getPath(),
                     new ResourceLocation("item/generated")).texture("layer0",
@@ -214,6 +230,71 @@ public class DesiresItems {
                     new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
             .tag(forgeItemTag("nuggets/industrial_iron"))
             .lang("Industrial iron nugget")
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .register();
+
+    public static final ItemEntry<Item> LAPIS_LAZULI_SHARD = REGISTRATE.item("lapis_lazuli_shard", Item::new)
+            .model((c, p) -> p.withExistingParent(c.getId().getPath(),
+                    new ResourceLocation("item/generated")).texture("layer0",
+                    new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
+            .tag(forgeItemTag("nuggets/lapis"), forgeItemTag("nuggets"))
+            .recipe((c, p) -> {
+                Item output = Items.LAPIS_LAZULI;
+                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 1)
+                        .pattern("CC")
+                        .pattern("CC")
+                        .define('C', c.get())
+                        .unlockedBy("has_" + getItemName(output), has(output))
+                        .save(p, DesiresCreate.asResource("crafting/" + getItemName(output) + "_from_" + c.getName()));
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 4)
+                        .requires(output)
+                        .unlockedBy("has_" + c.getName(), has(c.get()))
+                        .save(p, DesiresCreate.asResource("crafting/" + c.getName() + "_from_" + getItemName(output)));
+            })
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .register();
+
+    public static final ItemEntry<Item> DIAMOND_SHARD = REGISTRATE.item("diamond_shard", Item::new)
+            .model((c, p) -> p.withExistingParent(c.getId().getPath(),
+                    new ResourceLocation("item/generated")).texture("layer0",
+                    new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
+            .tag(forgeItemTag("nuggets/diamond"), forgeItemTag("nuggets"))
+            .recipe((c, p) -> {
+                Item output = Items.DIAMOND;
+                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 1)
+                        .pattern("CC")
+                        .pattern("CC")
+                        .define('C', c.get())
+                        .unlockedBy("has_" + getItemName(output), has(output))
+                        .save(p, DesiresCreate.asResource("crafting/" + getItemName(output) + "_from_" + c.getName()));
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 4)
+                        .requires(output)
+                        .unlockedBy("has_" + c.getName(), has(c.get()))
+                        .save(p, DesiresCreate.asResource("crafting/" + c.getName() + "_from_" + getItemName(output)));
+            })
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .register();
+
+    public static final ItemEntry<CombustibleItem> COAL_PIECE = REGISTRATE.item("coal_piece", CombustibleItem::new)
+            .onRegister(i -> i.setBurnTime(200))
+            .model((c, p) -> p.withExistingParent(c.getId().getPath(),
+                    new ResourceLocation("item/generated")).texture("layer0",
+                    new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
+            .tag(forgeItemTag("nuggets/coal"), forgeItemTag("nuggets"))
+            .recipe((c, p) -> {
+                Item output = Items.COAL;
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1)
+                        .requires(c.get()).requires(c.get())
+                        .requires(c.get()).requires(c.get())
+                        .requires(c.get()).requires(c.get())
+                        .requires(c.get()).requires(c.get())
+                        .unlockedBy("has_" + getItemName(output), has(output))
+                        .save(p, DesiresCreate.asResource("crafting/" + getItemName(output) + "_from_" + c.getName()));
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 8)
+                        .requires(output)
+                        .unlockedBy("has_" + c.getName(), has(c.get()))
+                        .save(p, DesiresCreate.asResource("crafting/" + c.getName() + "_from_" + getItemName(output)));
+            })
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .register();
 
@@ -565,71 +646,6 @@ public class DesiresItems {
             .lang("Mass of Experience")
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .register();
-
-    public static final ItemEntry<Item> LAPIS_LAZULI_SHARD = REGISTRATE.item("lapis_lazuli_shard", Item::new)
-			.model((c, p) -> p.withExistingParent(c.getId().getPath(),
-					new ResourceLocation("item/generated")).texture("layer0",
-					new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
-			.tag(forgeItemTag("nuggets/lapis"), forgeItemTag("nuggets"))
-			.recipe((c, p) -> {
-				Item output = Items.LAPIS_LAZULI;
-				ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 1)
-						.pattern("CC")
-						.pattern("CC")
-						.define('C', c.get())
-						.unlockedBy("has_" + getItemName(output), has(output))
-						.save(p, DesiresCreate.asResource("crafting/" + getItemName(output) + "_from_" + c.getName()));
-				ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 4)
-						.requires(output)
-						.unlockedBy("has_" + c.getName(), has(c.get()))
-						.save(p, DesiresCreate.asResource("crafting/" + c.getName() + "_from_" + getItemName(output)));
-			})
-			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-			.register();
-
-	public static final ItemEntry<Item> DIAMOND_SHARD = REGISTRATE.item("diamond_shard", Item::new)
-			.model((c, p) -> p.withExistingParent(c.getId().getPath(),
-					new ResourceLocation("item/generated")).texture("layer0",
-					new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
-			.tag(forgeItemTag("nuggets/diamond"), forgeItemTag("nuggets"))
-			.recipe((c, p) -> {
-				Item output = Items.DIAMOND;
-				ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 1)
-					.pattern("CC")
-					.pattern("CC")
-						.define('C', c.get())
-						.unlockedBy("has_" + getItemName(output), has(output))
-						.save(p, DesiresCreate.asResource("crafting/" + getItemName(output) + "_from_" + c.getName()));
-				ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 4)
-						.requires(output)
-						.unlockedBy("has_" + c.getName(), has(c.get()))
-						.save(p, DesiresCreate.asResource("crafting/" + c.getName() + "_from_" + getItemName(output)));
-			})
-			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-			.register();
-
-	public static final ItemEntry<CombustibleItem> COAL_PIECE = REGISTRATE.item("coal_piece", CombustibleItem::new)
-			.onRegister(i -> i.setBurnTime(200))
-			.model((c, p) -> p.withExistingParent(c.getId().getPath(),
-					new ResourceLocation("item/generated")).texture("layer0",
-					new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
-			.tag(forgeItemTag("nuggets/coal"), forgeItemTag("nuggets"))
-			.recipe((c, p) -> {
-				Item output = Items.COAL;
-				ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output, 1)
-						.requires(c.get()).requires(c.get())
-						.requires(c.get()).requires(c.get())
-						.requires(c.get()).requires(c.get())
-						.requires(c.get()).requires(c.get())
-						.unlockedBy("has_" + getItemName(output), has(output))
-						.save(p, DesiresCreate.asResource("crafting/" + getItemName(output) + "_from_" + c.getName()));
-				ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, c.get(), 8)
-						.requires(output)
-						.unlockedBy("has_" + c.getName(), has(c.get()))
-						.save(p, DesiresCreate.asResource("crafting/" + c.getName() + "_from_" + getItemName(output)));
-			})
-			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-			.register();
 
     public static final ItemEntry<CombustibleItem> SEETHING_ABLAZE_ROD = REGISTRATE.item("seething_ablaze_rod", CombustibleItem::new)
             .tag(AllTags.AllItemTags.BLAZE_BURNER_FUEL_SPECIAL.tag)

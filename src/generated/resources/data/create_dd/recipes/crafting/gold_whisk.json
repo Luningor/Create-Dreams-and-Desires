@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "create:andesite_alloy"
+    },
+    "G": {
+      "tag": "forge:plates/gold"
+    }
+  },
+  "pattern": [
+    " A ",
+    "GAG",
+    "GGG"
+  ],
+  "result": {
+    "count": 1,
+    "item": "create_dd:gold_whisk"
+  }
+}

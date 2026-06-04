@@ -1,0 +1,28 @@
+{
+  "type": "create_dd:hydraulic_compacting",
+  "heat_requirement": "superheated",
+  "ingredients": [
+    {
+      "item": "minecraft:granite"
+    },
+    {
+      "item": "minecraft:granite"
+    },
+    {
+      "type": "forge:tag",
+      "amount": 500,
+      "tag": "forge:lava"
+    },
+    {
+      "type": "forge:single",
+      "amount": 100,
+      "fluid": "create_dd:chocolate_milkshake"
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "create:veridium"
+    }
+  ]
+}

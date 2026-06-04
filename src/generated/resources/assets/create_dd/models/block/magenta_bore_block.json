@@ -1,0 +1,6 @@
+{
+  "parent": "create_dd:block/bore_block",
+  "textures": {
+    "all": "create_dd:block/bore_block/magenta"
+  }
+}

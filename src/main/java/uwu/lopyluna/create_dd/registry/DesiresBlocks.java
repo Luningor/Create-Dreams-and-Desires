@@ -12,6 +12,7 @@ import com.simibubi.create.content.decoration.palettes.ConnectedGlassPaneBlock;
 import com.simibubi.create.content.kinetics.gauge.GaugeGenerator;
 import com.simibubi.create.content.kinetics.motor.CreativeMotorGenerator;
 import com.simibubi.create.content.processing.AssemblyOperatorBlockItem;
+import com.simibubi.create.foundation.block.DyedBlockList;
 import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
 import com.simibubi.create.AllTags;
@@ -26,6 +27,8 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
@@ -1030,6 +1033,8 @@ public class DesiresBlocks {
             .transform(customItemModel("_", "block_closed"))
             .register();
 
+    public static final TagKey<Item> BORE_BLOCKS = DesiresTags.forgeItemTag("bore_blocks");
+
 	public static final BlockEntry<BoreBlock> BORE_BLOCK = REGISTRATE.block("bore_block", BoreBlock::new)
 			.initialProperties(SharedProperties::stone)
 			.properties(p -> p.mapColor(MapColor.STONE))
@@ -1050,9 +1055,40 @@ public class DesiresBlocks {
 						.save(p, DesiresCreate.asResource("crafting/" + c.getName()));
 			})
 			.item()
+            .tag(BORE_BLOCKS)
 			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
 			.build()
 			.register();
+
+    public static final DyedBlockList<BoreBlock> DYED_BORE_BLOCK = new DyedBlockList<>(color -> {
+        String colorName = color.getSerializedName();
+        return REGISTRATE.block(colorName + "_bore_block", BoreBlock::new)
+                .initialProperties(SharedProperties::netheriteMetal)
+                .properties(p -> p
+                        .mapColor(color.getMapColor())
+                        .sound(new ForgeSoundType(0.9f, 1.25f, () -> SoundEvents.NETHERITE_BLOCK_BREAK,
+                                () -> SoundEvents.NETHERITE_BLOCK_STEP, () -> SoundEvents.NETHERITE_BLOCK_PLACE,
+                                () -> SoundEvents.NETHERITE_BLOCK_HIT, () -> SoundEvents.NETHERITE_BLOCK_FALL)))
+                .onRegister(movementBehaviour(new BoreBlockMovementBehaviour()))
+                .transform(pickaxeOnly())
+                .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 8)
+                        .pattern("AAA").pattern("ABA").pattern("AAA")
+                        .define('A', BORE_BLOCKS)
+                        .define('B', color.getTag())
+                        .unlockedBy("has_" + c.getName(), has(c.get()))
+                        .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+                .tag(DesiresTags.AllBlockTags.DYED_BLOCKS.tag)
+                .blockstate((c, p) -> {
+                    var model = p.models().withExistingParent(colorName + "_bore_block", p.modLoc("block/bore_block"))
+                            .texture("all", p.modLoc("block/bore_block/" + colorName));
+                    p.simpleBlockWithItem(c.get(), model);
+                })
+                .item()
+                .tag(DesiresTags.AllItemTags.DYED_BLOCKS.tag, BORE_BLOCKS)
+                .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                .build()
+                .register();
+    });
 
 	public static final BlockEntry<MultiMeterBlock> MULTIMETER = REGISTRATE.block("multimeter", MultiMeterBlock::new)
 			.initialProperties(SharedProperties::wooden)

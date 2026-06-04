@@ -7,6 +7,8 @@
     "create_dd:seething_sail",
     "create_dd:freezing_sail",
     "create_dd:sanding_sail",
+    "create_dd:dragon_breathing_sail",
+    "#create_dd:fan_processing_catalysts/dragon_breathing",
     "#create_dd:fan_processing_catalysts/sanding",
     "#create_dd:fan_processing_catalysts/freezing",
     "#create_dd:fan_processing_catalysts/seething"

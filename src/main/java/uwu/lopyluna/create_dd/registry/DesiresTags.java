@@ -76,11 +76,13 @@ public class DesiresTags {
 
 	public enum AllBlockTags {
 
+        FAN_PROCESSING_CATALYSTS_DRAGON_BREATHING(NameSpace.MOD, "fan_processing_catalysts/dragon_breathing"),
 		FAN_PROCESSING_CATALYSTS_SANDING(NameSpace.MOD, "fan_processing_catalysts/sanding"),
 		FAN_PROCESSING_CATALYSTS_FREEZING(NameSpace.MOD, "fan_processing_catalysts/freezing"),
 		FAN_PROCESSING_CATALYSTS_SEETHING(NameSpace.MOD, "fan_processing_catalysts/seething"),
 		INDUSTRIAL_FAN_HEATER,
 		INDUSTRIAL_FAN_TRANSPARENT,
+        DYED_BLOCKS,
         BRONZE_SAW_IMMUNE,
         BRONZE_SAW_VALID,
         RADIANT_SAW_IMMUNE,
@@ -147,6 +149,7 @@ public class DesiresTags {
 		SANDABLE,
 		FREEZABLE,
 		ADDITIONAL_DROPS_TOOL,
+        DYED_BLOCKS,
 		MAGNET_IGNORE,
 		SWORD(FORGE, "tools/sword"),
 		PICKAXE(FORGE, "tools/pickaxe"),
@@ -208,6 +211,7 @@ public class DesiresTags {
 
 	public enum AllFluidTags {
 
+        FAN_PROCESSING_CATALYSTS_DRAGON_BREATHING(NameSpace.MOD, "fan_processing_catalysts/dragon_breathing"),
 		FAN_PROCESSING_CATALYSTS_SANDING(NameSpace.MOD, "fan_processing_catalysts/sanding"),
 		FAN_PROCESSING_CATALYSTS_FREEZING(NameSpace.MOD, "fan_processing_catalysts/freezing"),
 		FAN_PROCESSING_CATALYSTS_SEETHING(NameSpace.MOD, "fan_processing_catalysts/seething"),

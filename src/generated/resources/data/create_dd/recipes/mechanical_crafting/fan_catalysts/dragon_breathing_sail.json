@@ -1,0 +1,24 @@
+{
+  "type": "create:mechanical_crafting",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:dragon_head"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/cardboard"
+    },
+    "S": {
+      "item": "create:sail_frame"
+    }
+  },
+  "pattern": [
+    "SCS",
+    "CRC",
+    "SCS"
+  ],
+  "result": {
+    "count": 4,
+    "id": "create_dd:dragon_breathing_sail"
+  }
+}

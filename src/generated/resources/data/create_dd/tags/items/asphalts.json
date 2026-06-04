@@ -1,0 +1,21 @@
+{
+  "values": [
+    "create_dd:asphalt",
+    "create_dd:white_asphalt",
+    "create_dd:orange_asphalt",
+    "create_dd:magenta_asphalt",
+    "create_dd:light_blue_asphalt",
+    "create_dd:yellow_asphalt",
+    "create_dd:lime_asphalt",
+    "create_dd:pink_asphalt",
+    "create_dd:gray_asphalt",
+    "create_dd:light_gray_asphalt",
+    "create_dd:cyan_asphalt",
+    "create_dd:purple_asphalt",
+    "create_dd:blue_asphalt",
+    "create_dd:brown_asphalt",
+    "create_dd:green_asphalt",
+    "create_dd:red_asphalt",
+    "create_dd:black_asphalt"
+  ]
+}
