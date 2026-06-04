@@ -74,6 +74,10 @@ import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.FurnaceEngi
 import uwu.lopyluna.create_dd.content.blocks.kinetics.furnace_engine.PoweredFlywheelBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_gearbox.OmniGearboxBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_speed_controller.OmniSpeedControllerBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.double_barrel.DualPotatoTurretBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.quad_barrel.QuadPotatoTurretBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.single_barrel.PotatoTurretBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.triple_barrel.TriplePotatoTurretBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.SpudSentryBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlock;
@@ -1214,6 +1218,102 @@ public class DesiresBlocks {
                     .define('A', AllItems.ANDESITE_ALLOY.get())
                     .define('B', Items.COPPER_BLOCK)
                     .define('I', Items.COPPER_INGOT)
+                    .unlockedBy("has_" + c.getName(), has(c.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<PotatoTurretBlock> POTATO_TURRET = REGISTRATE
+            .block("potato_turret", PotatoTurretBlock::new)
+            .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.noOcclusion().mapColor(MapColor.COLOR_BLUE))
+            .transform(pickaxeOnly())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 16.0))
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern("AII")
+                    .pattern("P  ")
+                    .pattern("BC ")
+                    .define('C', DesiresBlocks.OVERBURDEN_CASING.get())
+                    .define('P', AllItems.POTATO_CANNON.get())
+                    .define('A', AllItems.ANDESITE_ALLOY.get())
+                    .define('B', DesiresBlocks.LAPIS_ALLOY_BLOCK)
+                    .define('I', DesiresItems.LAPIS_ALLOY)
+                    .unlockedBy("has_" + c.getName(), has(c.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<DualPotatoTurretBlock> DUAL_POTATO_TURRET = REGISTRATE
+            .block("dual_potato_turret", DualPotatoTurretBlock::new)
+            .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.noOcclusion().mapColor(MapColor.COLOR_BLUE))
+            .transform(pickaxeOnly())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 16.0))
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern("AII")
+                    .pattern("PP ")
+                    .pattern("BC ")
+                    .define('C', DesiresBlocks.OVERBURDEN_CASING.get())
+                    .define('P', AllItems.POTATO_CANNON.get())
+                    .define('A', AllItems.ANDESITE_ALLOY.get())
+                    .define('B', DesiresBlocks.LAPIS_ALLOY_BLOCK)
+                    .define('I', DesiresItems.LAPIS_ALLOY)
+                    .unlockedBy("has_" + c.getName(), has(c.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<TriplePotatoTurretBlock> TRIPLE_POTATO_TURRET = REGISTRATE
+            .block("triple_potato_turret", TriplePotatoTurretBlock::new)
+            .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.noOcclusion().mapColor(MapColor.COLOR_BLUE))
+            .transform(pickaxeOnly())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 16.0))
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern("AII")
+                    .pattern("PP ")
+                    .pattern("BC ")
+                    .define('C', DesiresBlocks.OVERBURDEN_CASING.get())
+                    .define('P', AllItems.POTATO_CANNON.get())
+                    .define('A', AllItems.ANDESITE_ALLOY.get())
+                    .define('B', DesiresBlocks.LAPIS_ALLOY_BLOCK)
+                    .define('I', DesiresItems.LAPIS_ALLOY)
+                    .unlockedBy("has_" + c.getName(), has(c.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))
+            .addLayer(() -> RenderType::cutoutMipped)
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<QuadPotatoTurretBlock> QUAD_POTATO_TURRET = REGISTRATE
+            .block("quad_potato_turret", QuadPotatoTurretBlock::new)
+            .initialProperties(SharedProperties::copperMetal)
+            .properties(p -> p.noOcclusion().mapColor(MapColor.COLOR_BLUE))
+            .transform(pickaxeOnly())
+            .onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 16.0))
+            .recipe((c, p) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get(), 1)
+                    .pattern("AII")
+                    .pattern("PP ")
+                    .pattern("BC ")
+                    .define('C', DesiresBlocks.OVERBURDEN_CASING.get())
+                    .define('P', AllItems.POTATO_CANNON.get())
+                    .define('A', AllItems.ANDESITE_ALLOY.get())
+                    .define('B', DesiresBlocks.LAPIS_ALLOY_BLOCK)
+                    .define('I', DesiresItems.LAPIS_ALLOY)
                     .unlockedBy("has_" + c.getName(), has(c.get()))
                     .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
             .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.partialBaseModel(c, p)))

@@ -1,4 +1,4 @@
-package uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry;
+package uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.triple_barrel;
 
 import com.google.common.collect.ImmutableList;
 import com.simibubi.create.AllEntityTypes;
@@ -61,7 +61,7 @@ import java.util.function.BiFunction;
 
 import static uwu.lopyluna.create_dd.DesiresCreate.MOD_ID;
 
-public class SpudSentryBlockEntity extends KineticBlockEntity implements Clearable {
+public class TriplePotatoTurretBlockEntity extends KineticBlockEntity implements Clearable {
     public static final BiFunction<Player, Integer, TargetingConditions> SELECTOR = (owner, radius) -> TargetingConditions.forCombat().range(radius).selector(
             living -> !living.is(owner)
                     && living.isAttackable()
@@ -72,7 +72,7 @@ public class SpudSentryBlockEntity extends KineticBlockEntity implements Clearab
                     && !(living instanceof ArmorStand)
     );
 
-    public SentryItemHandler inputInv;
+    public PotatoTripleItemHandler inputInv;
     private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> inputInv);
     public UUID ownerUUID;
     public Player owner;
@@ -102,11 +102,11 @@ public class SpudSentryBlockEntity extends KineticBlockEntity implements Clearab
     protected ScrollOptionBehaviour<TargetMode> targetMode;
     protected ScrollOptionBehaviour<FilterMode> filterMode;
 
-    public SpudSentryBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
+    public TriplePotatoTurretBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
-        inputInv = new SentryItemHandler(this);
-        radius = 50;
-        centerPos = pos.above().getCenter();
+        inputInv = new PotatoTripleItemHandler(this);
+        radius = 30;
+        centerPos = pos.above().getCenter().add(0, 2f/16f, 0);
     }
 
     @Override
@@ -378,13 +378,13 @@ public class SpudSentryBlockEntity extends KineticBlockEntity implements Clearab
         if (ammoStack.isEmpty()) return;
         PotatoCannonProjectileType projectileType = ammo.type();
         //timer = projectileType.reloadTicks();
-        timer = projectileType.reloadTicks() * 8;
+        timer = projectileType.reloadTicks() * 3;
 
         Vec3 lookVec = getLookAngle();
         Vec3 origin = centerPos;
 
 
-        Vec3 barrelPos = origin.add(lookVec.normalize().scale(2+8/16f)).subtract(0, 2/16f, 0);
+        Vec3 barrelPos = origin.add(lookVec.normalize().scale(1+8/16f)).subtract(0, 2/16f, 0);
         Vec3 correction = barrelPos.subtract(origin);
 
         Vec3 motion = lookVec.add(correction).normalize().scale(2).scale(projectileType.velocityMultiplier());

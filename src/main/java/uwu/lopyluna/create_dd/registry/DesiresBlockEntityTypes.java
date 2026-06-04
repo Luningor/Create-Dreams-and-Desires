@@ -57,6 +57,14 @@ import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotor
 import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_gearbox.OmniGearboxBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_gearbox.OmniGearboxRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.omni_speed_controller.OmniSpeedControllerBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.double_barrel.DualPotatoTurretBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.double_barrel.DualPotatoTurretRenderer;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.quad_barrel.QuadPotatoTurretBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.quad_barrel.QuadPotatoTurretRenderer;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.single_barrel.PotatoTurretBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.single_barrel.PotatoTurretRenderer;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.triple_barrel.TriplePotatoTurretBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.triple_barrel.TriplePotatoTurretRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.SpudSentryBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.SpudSentryRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlockEntity;
@@ -140,6 +148,34 @@ public class DesiresBlockEntityTypes {
             .visual(() -> SingleAxisRotatingVisual.of(DesiresPartialModels.SPUD_GEAR), true)
             .validBlocks(DesiresBlocks.SPUD_SENTRY)
             .renderer(() -> SpudSentryRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<PotatoTurretBlockEntity> POTATO_TURRET = REGISTRATE
+            .blockEntity("potato_turret_single", PotatoTurretBlockEntity::new)
+            .visual(() -> SingleAxisRotatingVisual.of(DesiresPartialModels.SPUD_GEAR), true)
+            .validBlocks(DesiresBlocks.POTATO_TURRET)
+            .renderer(() -> PotatoTurretRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<DualPotatoTurretBlockEntity> DUAL_POTATO_TURRET = REGISTRATE
+            .blockEntity("potato_turret_dual", DualPotatoTurretBlockEntity::new)
+            .visual(() -> SingleAxisRotatingVisual.of(DesiresPartialModels.SPUD_GEAR), true)
+            .validBlocks(DesiresBlocks.DUAL_POTATO_TURRET)
+            .renderer(() -> DualPotatoTurretRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<TriplePotatoTurretBlockEntity> TRIPLE_POTATO_TURRET = REGISTRATE
+            .blockEntity("potato_turret_triple", TriplePotatoTurretBlockEntity::new)
+            .visual(() -> SingleAxisRotatingVisual.of(DesiresPartialModels.SPUD_GEAR), true)
+            .validBlocks(DesiresBlocks.TRIPLE_POTATO_TURRET)
+            .renderer(() -> TriplePotatoTurretRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<QuadPotatoTurretBlockEntity> QUAD_POTATO_TURRET = REGISTRATE
+            .blockEntity("potato_turret_quad", QuadPotatoTurretBlockEntity::new)
+            .visual(() -> SingleAxisRotatingVisual.of(DesiresPartialModels.SPUD_GEAR), true)
+            .validBlocks(DesiresBlocks.QUAD_POTATO_TURRET)
+            .renderer(() -> QuadPotatoTurretRenderer::new)
             .register();
 
     public static final BlockEntityEntry<BronzeSawBlockEntity> BRONZE_SAW = REGISTRATE

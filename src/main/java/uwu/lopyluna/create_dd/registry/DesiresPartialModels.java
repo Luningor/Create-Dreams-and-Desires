@@ -50,10 +50,6 @@ public class DesiresPartialModels {
         RADIANT_DRILL_HEAD = block("radiant_drill/head"),
         SHADOW_DRILL_HEAD = block("shadow_drill/head"),
 
-        POTATO_TURRET_COG = block("potato_turret/cog"),
-        POTATO_TURRET_CONNECTOR = block("potato_turret/connector"),
-        POTATO_TURRET_SINGLE_BARREL = block("potato_turret/single_barrel"),
-
 		ENGINE_PISTON = block("furnace_engine/piston"),
 		ENGINE_LINKAGE = block("furnace_engine/linkage"),
 		ENGINE_CONNECTOR = block("furnace_engine/shaft_connector"),
@@ -72,10 +68,17 @@ public class DesiresPartialModels {
         GOLDEN_MIXER_POLE = block("gold_mixer/pole"),
         GOLDEN_MIXER_HEAD = block("gold_mixer/head"),
 
+        POTATO_TURRET_BASE = block("potato_turret/connector"),
+        //POTATO_TURRET_GEAR = block("potato_turret/cog"),
+        POTATO_TURRET_SINGLE_BARREL = block("potato_turret/single_barrel"),
+        POTATO_TURRET_DUAL_BARREL = block("potato_turret/double_barrel"),
+        POTATO_TURRET_TRIPLE_BARREL = block("potato_turret/triple_barrel"),
+        POTATO_TURRET_QUAD_BARREL = block("potato_turret/quad_barrel"),
+
         SPUD_BASE = block("spud_sentry/base"),
-        SPUD_CANNON = block("spud_sentry/cannon"),
-        SPUD_GEAR = block("spud_sentry/gear")
-	;
+        SPUD_GEAR = block("spud_sentry/gear"),
+        SPUD_CANNON = block("spud_sentry/cannon")
+    ;
 
     public static final Map<ResourceLocation, Couple<PartialModel>> FOLDING_DOORS = new HashMap<>();
     static {
