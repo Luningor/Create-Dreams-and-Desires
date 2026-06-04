@@ -119,8 +119,9 @@ public class RollTableBlock extends Block implements IWrenchable, IBE<RollTableB
         return DesiresBlockEntityTypes.ROLL_TABLE.get();
     }
 
+    @Override
     @ParametersAreNonnullByDefault
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+    public boolean isPathfindable(BlockState state, BlockGetter reader, BlockPos pos, PathComputationType type) {
         return false;
     }
 }

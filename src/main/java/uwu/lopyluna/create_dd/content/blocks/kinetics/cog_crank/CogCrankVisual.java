@@ -1,11 +1,9 @@
 package uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank;
 
-import java.util.function.Consumer;
-
-import org.joml.Quaternionf;
-
+import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityVisual;
-
+import com.simibubi.create.content.kinetics.base.RotatingInstance;
+import com.simibubi.create.foundation.render.AllInstanceTypes;
 import dev.engine_room.flywheel.api.instance.Instance;
 import dev.engine_room.flywheel.api.visual.DynamicVisual;
 import dev.engine_room.flywheel.api.visualization.VisualizationContext;
@@ -15,22 +13,27 @@ import dev.engine_room.flywheel.lib.model.Models;
 import dev.engine_room.flywheel.lib.visual.SimpleDynamicVisual;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.joml.Quaternionf;
 import uwu.lopyluna.create_dd.registry.DesiresPartialModels;
 
+import java.util.function.Consumer;
+
 public class CogCrankVisual extends KineticBlockEntityVisual<CogCrankBlockEntity> implements SimpleDynamicVisual {
-    private final TransformedInstance cog;
+    private final RotatingInstance rotatingModel;
     private final TransformedInstance crank;
 
-    public CogCrankVisual(VisualizationContext context, CogCrankBlockEntity blockEntity, float partialTick) {
-        super(context, blockEntity, partialTick);
+    public CogCrankVisual(VisualizationContext modelManager, CogCrankBlockEntity be, float partialTick) {
+        super(modelManager, be, partialTick);
+        var isLarge = be.isLarge();
 
-        cog = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(DesiresPartialModels.COG_CRANK_COG))
-                .createInstance();
-
-        crank = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(DesiresPartialModels.COG_CRANK_HANDLE))
-                .createInstance();
-
+        crank = instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(DesiresPartialModels.COG_CRANK_HANDLE)).createInstance();
         rotateCrank(partialTick);
+
+        rotatingModel = instancerProvider().instancer(AllInstanceTypes.ROTATING, Models.partial(isLarge ? AllPartialModels.SHAFTLESS_LARGE_COGWHEEL : AllPartialModels.SHAFTLESS_COGWHEEL)).createInstance();
+        rotatingModel.setup(blockEntity)
+                .setPosition(getVisualPosition())
+                .rotateToFace(blockState.getValue(BlockStateProperties.AXIS))
+                .setChanged();
     }
 
     @Override
@@ -39,46 +42,41 @@ public class CogCrankVisual extends KineticBlockEntityVisual<CogCrankBlockEntity
     }
 
     private void rotateCrank(float pt) {
-        Direction facing = blockState.getValue(BlockStateProperties.FACING);
-        float angle = blockEntity.getIndependentAngle(pt);
-        float networkAngle = blockEntity.getRotationAngle(pt);
+        var axis = blockState.getValue(BlockStateProperties.AXIS);
+        var facing = Direction.get(Direction.AxisDirection.POSITIVE, axis);
+        var angle = blockEntity.getIndependentAngle(pt);
 
         crank.setIdentityTransform()
                 .translate(getVisualPosition())
                 .center()
-                .rotate(angle, Direction.get(Direction.AxisDirection.POSITIVE, facing.getAxis()))
-                .rotate(new Quaternionf().rotateTo(0, 0, -1, facing.getStepX(), facing.getStepY(), facing.getStepZ()))
-                .uncenter()
-                .setChanged();
-
-        cog.setIdentityTransform()
-                .translate(getVisualPosition())
-                .center()
-                .rotate(networkAngle, Direction.get(Direction.AxisDirection.POSITIVE, facing.getAxis()))
+                .rotate(angle, facing)
                 .rotate(new Quaternionf().rotateTo(0, 0, -1, facing.getStepX(), facing.getStepY(), facing.getStepZ()))
                 .uncenter()
                 .setChanged();
     }
+
+
 
     @Override
     protected void _delete() {
         crank.delete();
-        cog.delete();
+        rotatingModel.delete();
     }
 
     @Override
     public void update(float pt) {
+        rotatingModel.setup(blockEntity)
+                .setChanged();
     }
 
     @Override
     public void updateLight(float partialTick) {
-        relight(crank);
-        relight(cog);
+        relight(crank, rotatingModel);
     }
 
     @Override
     public void collectCrumblingInstances(Consumer<Instance> consumer) {
         consumer.accept(crank);
-        consumer.accept(cog);
+        consumer.accept(rotatingModel);
     }
 }

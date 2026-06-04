@@ -2,7 +2,10 @@ package uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank;
 
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllSoundEvents;
-import com.simibubi.create.content.kinetics.crank.HandCrankBlockEntity;
+import com.simibubi.create.content.kinetics.base.GeneratingKineticBlockEntity;
+import com.simibubi.create.content.kinetics.base.IRotate;
+import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.render.CachedBuffers;
 import net.createmod.catnip.render.SuperByteBuffer;
@@ -17,8 +20,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import uwu.lopyluna.create_dd.registry.DesiresBlocks;
 import uwu.lopyluna.create_dd.registry.DesiresPartialModels;
 
-public class CogCrankBlockEntity extends HandCrankBlockEntity {
+import java.util.List;
 
+public class CogCrankBlockEntity extends GeneratingKineticBlockEntity {
     public int inUse;
     public boolean backwards;
     public float independentAngle;
@@ -28,32 +32,38 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
         super(type, pos, state);
     }
 
-    @Override
-    public void turn(boolean back) {
-        boolean update = getGeneratedSpeed() == 0 || back != backwards;
-
-        inUse = 10;
-        this.backwards = back;
-        if (update) {
-            assert level != null;
-            if (!level.isClientSide) updateGeneratedRotation();
-        }
+    public boolean isLarge() {
+        return getBlockState().getBlock() instanceof CogCrankBlock block && block.isLarge;
     }
 
-    @Override
+    public BlockEntry<CogCrankBlock> getBlockEntry() {
+        return isLarge() ? DesiresBlocks.LARGE_COG_CRANK : DesiresBlocks.COG_CRANK;
+    }
+
+    public Direction facing(Direction.Axis axis) {
+        return Direction.fromAxisAndDirection(axis, Direction.AxisDirection.POSITIVE);
+    }
+
+    public void turn(boolean back) {
+        assert level != null;
+        var update = getGeneratedSpeed() == 0 || back != backwards;
+        inUse = 10;
+        backwards = back;
+        if (update && !level.isClientSide) updateGeneratedRotation();
+    }
+
     public float getIndependentAngle(float partialTicks) {
         return (independentAngle + partialTicks * chasingVelocity) / 360;
     }
 
     @Override
     public float getGeneratedSpeed() {
-        Block block = getBlockState().getBlock();
-        if (!(block instanceof CogCrankBlock crank))
-            return 0;
-        return (inUse == 0 ? 0 : clockwise() ? -1 : 1) * crank.getRotationSpeed();
+        var state = getBlockState();
+        if (state.getBlock() instanceof CogCrankBlock crank)
+            return convertToDirection((inUse == 0 ? 0 : clockwise() ? -1 : 1) * crank.getRotationSpeed(), facing(state.getValue(CogCrankBlock.AXIS)));
+        return 0;
     }
 
-    @Override
     protected boolean clockwise() {
         return backwards;
     }
@@ -75,31 +85,23 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
     @Override
     public void tick() {
         super.tick();
+        assert level != null;
 
-        float actualSpeed = getSpeed();
+        var actualSpeed = getSpeed();
         chasingVelocity += ((actualSpeed * 10 / 3f) - chasingVelocity) * .25f;
         independentAngle += chasingVelocity;
 
-        if (inUse > 0) {
-            inUse--;
-
-            if (inUse == 0) {
-                assert level != null;
-                if (!level.isClientSide) {
-                    sequenceContext = null;
-                    updateGeneratedRotation();
-                }
-            }
+        if (inUse > 0 && --inUse == 0 && !level.isClientSide) {
+            sequenceContext = null;
+            updateGeneratedRotation();
         }
     }
 
-    @Override
     @OnlyIn(Dist.CLIENT)
     public SuperByteBuffer getRenderedHandle() {
-        BlockState blockState = getBlockState();
-        Direction facing = blockState.getOptionalValue(CogCrankBlock.FACING)
-                .orElse(Direction.UP);
-        return CachedBuffers.partialFacing(DesiresPartialModels.COG_CRANK_COG, blockState, facing.getOpposite());
+        var blockState = getBlockState();
+        var axis = blockState.getOptionalValue(CogCrankBlock.AXIS).orElse(Direction.Axis.Y);
+        return CachedBuffers.partialFacing(DesiresPartialModels.COG_CRANK_HANDLE, blockState, facing(axis));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -108,15 +110,9 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public boolean shouldRenderShaft() {
-        return false;
-    }
-
-    @Override
     protected Block getStressConfigKey() {
-        return DesiresBlocks.COG_CRANK.has(getBlockState()) ? DesiresBlocks.COG_CRANK.get()
-                : AllBlocks.COPPER_VALVE_HANDLE.get();
+        var entry = getBlockEntry();
+        return entry.has(getBlockState()) ? entry.get() : AllBlocks.COPPER_VALVE_HANDLE.get();
     }
 
     @Override
@@ -124,13 +120,31 @@ public class CogCrankBlockEntity extends HandCrankBlockEntity {
     public void tickAudio() {
         super.tickAudio();
         if (inUse > 0 && AnimationTickHolder.getTicks() % 10 == 0) {
-            if (!DesiresBlocks.COG_CRANK.has(getBlockState()))
-                return;
+            var entry = getBlockEntry();
+            if (!entry.has(getBlockState())) return;
             AllSoundEvents.CRANKING.playAt(level, worldPosition, (inUse) / 2.5f, .65f + (10 - inUse) / 10f, true);
         }
     }
 
-    public float getRotationAngle(float pt) {
-        return CogCrankRenderer.getAngleForBe(this, worldPosition, getBlockState().getValue(CogCrankBlock.FACING).getAxis());
+    @Override
+    protected boolean canPropagateDiagonally(IRotate block, BlockState state) {
+        return state.getBlock() instanceof ICogWheel || block instanceof ICogWheel;
+    }
+
+    @Override
+    public List<BlockPos> addPropagationLocations(IRotate block, BlockState state, List<BlockPos> neighbours) {
+        if (!canPropagateDiagonally(block, state))
+            return neighbours;
+
+        Direction.Axis axis = block.getRotationAxis(state);
+        BlockPos.betweenClosedStream(new BlockPos(-1, -1, -1), new BlockPos(1, 1, 1))
+                .forEach(offset -> {
+                    if (axis.choose(offset.getX(), offset.getY(), offset.getZ()) != 0)
+                        return;
+                    if (offset.distSqr(BlockPos.ZERO) != 2)
+                        return;
+                    neighbours.add(worldPosition.offset(offset));
+                });
+        return neighbours;
     }
 }

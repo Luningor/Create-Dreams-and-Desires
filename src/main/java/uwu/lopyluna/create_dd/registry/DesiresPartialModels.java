@@ -20,8 +20,11 @@ public class DesiresPartialModels {
 
 		COG_CRANK_HANDLE = block("cog_crank/handle"),
 		COG_CRANK_COG = block("cog_crank/block"),
+		LARGE_COG_CRANK_COG = block("large_cog_crank/block"),
 
 		HYDRAULIC_PRESS_HEAD = block("hydraulic_press/head"),
+
+        GAUGE_NEEDLE = block("fluid_gauge/needle"),
 
         GIANT_GEAR = block("giant_gear/giant_gear"),
 

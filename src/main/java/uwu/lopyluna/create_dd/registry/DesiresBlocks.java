@@ -16,7 +16,6 @@ import com.simibubi.create.foundation.block.ItemUseOverrides;
 import com.simibubi.create.foundation.data.*;
 import com.simibubi.create.AllTags;
 import com.tterrag.registrate.providers.DataGenContext;
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
@@ -26,6 +25,7 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
@@ -58,6 +58,7 @@ import uwu.lopyluna.create_dd.content.blocks.fan.four_blade.FourBladeFanBlock;
 import uwu.lopyluna.create_dd.content.blocks.fan.two_blade.TwoBladeFanBlock;
 import uwu.lopyluna.create_dd.content.blocks.functional.SpectralRubyLampBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.AcceleratorMotorBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankItem;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.creative_gear_motor.CreativeGearMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.golden_mixer.GoldenMixerBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlock;
@@ -81,6 +82,8 @@ import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.potato_turret.
 import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.SpudSentryBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlock;
+import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_gauge.FluidGaugeBlock;
+import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_hatch.FluidHatchBlock;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlock;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirCTBehaviour;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirItem;
@@ -941,19 +944,6 @@ public class DesiresBlocks {
 			.transform(customItemModel())
 			.register();
 
-
-	public static final BlockEntry<HydraulicPressBlock> HYDRAULIC_PRESS = REGISTRATE.block("hydraulic_press", HydraulicPressBlock::new)
-			.initialProperties(SharedProperties::copperMetal)
-			.properties(BlockBehaviour.Properties::noOcclusion)
-			.properties(p -> p.noOcclusion().mapColor(MapColor.TERRACOTTA_ORANGE))
-			.transform(pickaxeOnly())
-			.blockstate(BlockStateGen.horizontalBlockProvider(true))
-			.onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 64.0))
-			.item(AssemblyOperatorBlockItem::new)
-			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-			.transform(customItemModel())
-			.register();
-
     public static final BlockEntry<GoldenMixerBlock> GOLDEN_MIXER = REGISTRATE
             .block("gold_mixer", GoldenMixerBlock::new)
             .initialProperties(SharedProperties::stone)
@@ -973,6 +963,51 @@ public class DesiresBlocks {
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .transform(customItemModel())
             .lang("Golden Mixer")
+            .register();
+
+	public static final BlockEntry<HydraulicPressBlock> HYDRAULIC_PRESS = REGISTRATE.block("hydraulic_press", HydraulicPressBlock::new)
+			.initialProperties(SharedProperties::copperMetal)
+			.properties(BlockBehaviour.Properties::noOcclusion)
+			.properties(p -> p.noOcclusion().mapColor(MapColor.TERRACOTTA_ORANGE))
+			.transform(pickaxeOnly())
+			.blockstate(BlockStateGen.horizontalBlockProvider(true))
+			.onRegister(block -> BlockStressValues.IMPACTS.register(block, () -> 64.0))
+			.item(AssemblyOperatorBlockItem::new)
+			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+			.transform(customItemModel())
+			.register();
+
+    public static final BlockEntry<FluidGaugeBlock> FLUID_GAUGE = REGISTRATE.block("fluid_gauge", FluidGaugeBlock::new)
+            .initialProperties(SharedProperties::softMetal)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_ORANGE).sound(SoundType.COPPER))
+            .transform(pickaxeOnly())
+            .addLayer(() -> RenderType::cutoutMipped)
+            .blockstate((c, p) -> p.horizontalBlock(c.get(),
+                    s -> AssetLookup.partialBaseModel(c, p)))
+            .item()
+            .recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get(), 1)
+                    .requires(Items.COPPER_INGOT).requires(Items.COMPASS)
+                    .unlockedBy("has_copper", has(Items.COPPER_INGOT))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel("_", "block"))
+            .register();
+
+    public static final BlockEntry<FluidHatchBlock> FLUID_HATCH = REGISTRATE.block("fluid_hatch", FluidHatchBlock::new)
+            .initialProperties(SharedProperties::softMetal)
+            .properties(p -> p.mapColor(MapColor.TERRACOTTA_ORANGE).sound(SoundType.COPPER))
+            .transform(pickaxeOnly())
+            .addLayer(() -> RenderType::cutoutMipped)
+            .blockstate((c, p) -> p.horizontalBlock(c.get(),
+                    s -> AssetLookup.partialBaseModel(c, p, s.getValue(FluidHatchBlock.OPEN) ? "open" : "closed")))
+            .item()
+            .recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get(), 1)
+                    .requires(AllItems.ANDESITE_ALLOY.get())
+                    .requires(Items.COPPER_INGOT)
+                    .unlockedBy("has_andesite_alloy", has(AllItems.ANDESITE_ALLOY.get()))
+                    .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel("_", "block_closed"))
             .register();
 
 	public static final BlockEntry<BoreBlock> BORE_BLOCK = REGISTRATE.block("bore_block", BoreBlock::new)
@@ -1145,24 +1180,50 @@ public class DesiresBlocks {
             .transform(customItemModel())
             .register();
 
-    public static final BlockEntry<CogCrankBlock> COG_CRANK = REGISTRATE.block("cog_crank", CogCrankBlock::new)
-			.initialProperties(SharedProperties::wooden)
-			.properties(p -> p.mapColor(MapColor.PODZOL))
-			.transform(axeOrPickaxe())
-			.blockstate(BlockStateGen.directionalBlockProvider(true))
-			.onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 8.0))
-			.onRegister(block -> BlockStressValues.RPM.register(block, new BlockStressValues.GeneratedRpm(32, false)))
-			.tag(AllTags.AllBlockTags.BRITTLE.tag)
-			.recipe((ctx, prov) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ctx.getEntry(), 1)
-					.requires(AllBlocks.HAND_CRANK.get())
-					.requires(AllBlocks.COGWHEEL.get())
-					.unlockedBy("has_item", RegistrateRecipeProvider.has(ctx.get()))
-					.save(prov))
-			.onRegister(ItemUseOverrides::addBlock)
-			.item()
-			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
-			.transform(customItemModel())
-			.register();
+    public static final BlockEntry<CogCrankBlock> COG_CRANK = REGISTRATE.block("cog_crank", CogCrankBlock::small)
+            .initialProperties(SharedProperties::stone)
+            .properties(p -> p.sound(SoundType.WOOD).mapColor(MapColor.DIRT))
+            .transform(axeOrPickaxe())
+            .blockstate(BlockStateGen.axisBlockProvider(true))
+            .onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 8.0))
+            .onRegister(BlockStressValues.setGeneratorSpeed(32))
+            .tag(AllTags.AllBlockTags.BRITTLE.tag)
+            .recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get(), 1)
+                    .requires(AllBlocks.HAND_CRANK.get())
+                    .requires(AllBlocks.COGWHEEL.get())
+                    .unlockedBy("has_cog", has(AllBlocks.COGWHEEL.get()))
+                    .save(p, DesiresCreate.asResource("crafting/cog_crank")))
+            .onRegister(ItemUseOverrides::addBlock)
+            .item(CogCrankItem::new)
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .register();
+
+    public static final BlockEntry<CogCrankBlock> LARGE_COG_CRANK  = REGISTRATE.block("large_cog_crank", CogCrankBlock::large)
+            .initialProperties(SharedProperties::wooden)
+            .properties(p -> p.mapColor(MapColor.PODZOL))
+            .transform(axeOrPickaxe())
+            .blockstate(BlockStateGen.axisBlockProvider(true))
+            .onRegister(block -> BlockStressValues.CAPACITIES.register(block, () -> 8.0))
+            .onRegister(BlockStressValues.setGeneratorSpeed(16))
+            .tag(AllTags.AllBlockTags.BRITTLE.tag)
+            .recipe((c, p) -> {
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get(), 1)
+                        .requires(AllBlocks.HAND_CRANK.get())
+                        .requires(AllBlocks.LARGE_COGWHEEL.get())
+                        .unlockedBy("has_cog", has(AllBlocks.COGWHEEL.get()))
+                        .save(p, DesiresCreate.asResource("crafting/large_cog_crank"));
+                ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get(), 1)
+                        .requires(COG_CRANK.get())
+                        .requires(ItemTags.PLANKS)
+                        .unlockedBy("has_cog", has(AllBlocks.COGWHEEL.get()))
+                        .save(p, DesiresCreate.asResource("crafting/cog_crank_to_large"));
+            })
+            .onRegister(ItemUseOverrides::addBlock)
+            .item(CogCrankItem::new)
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .transform(customItemModel())
+            .register();
 
 	public static final BlockEntry<FurnaceEngineBlock> FURNACE_ENGINE = REGISTRATE.block("furnace_engine", FurnaceEngineBlock::new)
             .initialProperties(SharedProperties::softMetal)

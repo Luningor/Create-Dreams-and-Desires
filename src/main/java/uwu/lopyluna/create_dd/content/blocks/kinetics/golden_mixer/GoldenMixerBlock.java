@@ -91,7 +91,9 @@ public class GoldenMixerBlock extends KineticBlock implements IBE<GoldenMixerBlo
         return DesiresBlockEntityTypes.GOLDEN_MIXER.get();
     }
 
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+    @Override
+    @ParametersAreNonnullByDefault
+    public boolean isPathfindable(BlockState state, BlockGetter reader, BlockPos pos, PathComputationType type) {
         return false;
     }
 }

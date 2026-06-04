@@ -69,6 +69,9 @@ import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.SpudSentryBloc
 import uwu.lopyluna.create_dd.content.blocks.kinetics.spud_sentry.SpudSentryRenderer;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.redstone_divider.RedstoneDividerBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.transmission.InverseBoxBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_gauge.FluidGaugeBlockEntity;
+import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_gauge.FluidGaugeRenderer;
+import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_hatch.FluidHatchBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.logistics.fluid_reservoir.FluidReservoirBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.logistics.item_stockpile.ItemStockpileBlockEntity;
 import uwu.lopyluna.create_dd.content.blocks.logistics.roll_table.RollTableBlockEntity;
@@ -86,13 +89,6 @@ public class DesiresBlockEntityTypes {
 			.renderer(() -> IndustrialFanRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<HydraulicPressBlockEntity> HYDRAULIC_PRESS = REGISTRATE
-			.blockEntity("hydraulic_press", HydraulicPressBlockEntity::new)
-			.visual(() -> HydraulicPressVisual::new)
-			.validBlocks(DesiresBlocks.HYDRAULIC_PRESS)
-			.renderer(() -> HydraulicPressRenderer::new)
-			.register();
-
     public static final BlockEntityEntry<GoldenMixerBlockEntity> GOLDEN_MIXER = REGISTRATE
             .blockEntity("gold_mixer", GoldenMixerBlockEntity::new)
             .visual(() -> GoldenMixerVisual::new)
@@ -100,12 +96,31 @@ public class DesiresBlockEntityTypes {
             .renderer(() -> GoldenMixerRenderer::new)
             .register();
 
-	public static final BlockEntityEntry<CogCrankBlockEntity> COG_CRANK = REGISTRATE
-			.blockEntity("cog_crank", CogCrankBlockEntity::new)
-			.visual(() -> CogCrankVisual::new)
-			.validBlocks(DesiresBlocks.COG_CRANK)
-			.renderer(() -> CogCrankRenderer::new)
+	public static final BlockEntityEntry<HydraulicPressBlockEntity> HYDRAULIC_PRESS = REGISTRATE
+			.blockEntity("hydraulic_press", HydraulicPressBlockEntity::new)
+			.visual(() -> HydraulicPressVisual::new)
+			.validBlocks(DesiresBlocks.HYDRAULIC_PRESS)
+			.renderer(() -> HydraulicPressRenderer::new)
 			.register();
+
+    public static final BlockEntityEntry<FluidGaugeBlockEntity> FLUID_GAUGE = REGISTRATE
+            .blockEntity("fluid_gauge", FluidGaugeBlockEntity::new)
+            .validBlocks(DesiresBlocks.FLUID_GAUGE)
+            .renderer(() -> FluidGaugeRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<FluidHatchBlockEntity> FLUID_HATCH = REGISTRATE
+            .blockEntity("fluid_hatch", FluidHatchBlockEntity::new)
+            .validBlocks(DesiresBlocks.FLUID_HATCH)
+            .renderer(() -> SmartBlockEntityRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<CogCrankBlockEntity> COG_CRANK = REGISTRATE
+            .blockEntity("cog_crank", CogCrankBlockEntity::new)
+            .visual(() -> CogCrankVisual::new)
+            .validBlocks(DesiresBlocks.COG_CRANK, DesiresBlocks.LARGE_COG_CRANK)
+            .renderer(() -> CogCrankRenderer::new)
+            .register();
 
 	public static final BlockEntityEntry<ItemStockpileBlockEntity> ITEM_STOCKPILE = REGISTRATE
 			.blockEntity("item_stockpile", ItemStockpileBlockEntity::new)
