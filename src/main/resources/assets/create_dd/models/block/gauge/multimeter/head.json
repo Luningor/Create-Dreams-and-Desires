@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "dndesires:block/multimeter",
+		"1": "create_dd:block/multimeter",
 		"2": "create:block/gauge",
-		"particle": "dndesires:block/multimeter"
+		"particle": "create_dd:block/multimeter"
 	},
 	"elements": [
 		{
