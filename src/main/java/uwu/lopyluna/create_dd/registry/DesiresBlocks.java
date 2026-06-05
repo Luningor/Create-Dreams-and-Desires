@@ -1719,6 +1719,26 @@ public class DesiresBlocks {
             .build()
             .register();
 
+    public static final BlockEntry<FanSailBlock> DRAGON_BREATHING_SAIL = REGISTRATE.block("dragon_breathing_sail", FanSailBlock::sail)
+            .initialProperties(SharedProperties::wooden)
+            .properties(p -> p.mapColor(MapColor.DIRT))
+            .properties(p -> p.sound(SoundType.SCAFFOLDING).noOcclusion())
+            .transform(axeOnly())
+            .blockstate((c, p) -> {
+                var model = p.models().withExistingParent(c.getName(), Create.asResource("block/white_sail"))
+                        .texture("0", p.modLoc("block/sail/dragon_breathing"));
+                p.directionalBlock(c.get(), model);
+                p.simpleBlockItem(c.get(), model);
+            }).tag(AllTags.AllBlockTags.WINDMILL_SAILS.tag)
+            .tag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
+            .tag(DesiresTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_DRAGON_BREATHING.tag)
+            .recipe((c, p) -> fanSailCrafting(c.get(), Items.DRAGON_HEAD, p, c))
+            .lang("Dragon Breathing Catalyst Sail")
+            .item()
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .build()
+            .register();
+
     // COBBLES
 
     public static final BlockEntry<Block> POTASSIC_COBBLE =

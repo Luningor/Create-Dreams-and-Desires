@@ -4,6 +4,7 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder.Pro
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeSerializer;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.minecraft.core.registries.Registries;
+import uwu.lopyluna.create_dd.content.recipes.*;
 import uwu.lopyluna.create_dd.registry.helper.Lang;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
@@ -15,15 +16,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 import uwu.lopyluna.create_dd.DesiresCreate;
-import uwu.lopyluna.create_dd.content.recipes.FreezingRecipe;
-import uwu.lopyluna.create_dd.content.recipes.SandingRecipe;
-import uwu.lopyluna.create_dd.content.recipes.SeethingRecipe;
 
 import java.util.Optional;
 import java.util.function.Supplier;
 
 public enum DesiresRecipeTypes implements IRecipeTypeInfo {
 
+    HYDRAULIC_COMPACTING(HydraulicRecipe::new),
+    DRAGON_BREATHING(DragonBreathingRecipe::new),
 	SANDING(SandingRecipe::new),
 	FREEZING(FreezingRecipe::new),
 	SEETHING(SeethingRecipe::new);

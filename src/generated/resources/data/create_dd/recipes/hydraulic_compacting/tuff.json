@@ -1,6 +1,6 @@
 {
   "type": "create_dd:hydraulic_compacting",
-  "heat_requirement": "superheated",
+  "heatRequirement": "superheated",
   "ingredients": [
     {
       "item": "minecraft:gravel"
@@ -12,9 +12,8 @@
       "item": "minecraft:andesite"
     },
     {
-      "type": "forge:tag",
       "amount": 500,
-      "tag": "forge:lava"
+      "fluid": "minecraft:lava"
     }
   ],
   "results": [

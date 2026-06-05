@@ -1,6 +1,6 @@
 {
   "type": "create_dd:hydraulic_compacting",
-  "heat_requirement": "heated",
+  "heatRequirement": "heated",
   "ingredients": [
     {
       "item": "minecraft:bone_block"

@@ -2,18 +2,19 @@ package uwu.lopyluna.create_dd.registry;
 
 import com.simibubi.create.api.registry.CreateRegistries;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
-//import com.simibubi.create.content.kinetics.fan.processing.FanProcessingTypeRegistry;
 import com.simibubi.create.content.processing.burner.BlazeBurnerBlock;
 import com.simibubi.create.content.trains.CubeParticleData;
 import com.simibubi.create.foundation.recipe.RecipeApplier;
 import net.createmod.catnip.math.VecHelper;
 import net.createmod.catnip.theme.Color;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -24,7 +25,11 @@ import net.minecraft.world.entity.animal.SnowGolem;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.WallSkullBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -35,6 +40,7 @@ import org.joml.Vector3f;
 import uwu.lopyluna.create_dd.DesiresCreate;
 import uwu.lopyluna.create_dd.content.entities.inert_blazeling.InertBlaze;
 import uwu.lopyluna.create_dd.content.entities.seething_ablaze.SeethingBlaze;
+import uwu.lopyluna.create_dd.content.recipes.DragonBreathingRecipe;
 import uwu.lopyluna.create_dd.content.recipes.FreezingRecipe;
 import uwu.lopyluna.create_dd.content.recipes.SandingRecipe;
 import uwu.lopyluna.create_dd.content.recipes.SeethingRecipe;
@@ -42,10 +48,14 @@ import uwu.lopyluna.create_dd.content.recipes.SeethingRecipe;
 import java.util.List;
 import java.util.Optional;
 
+import static net.minecraftforge.event.ForgeEventFactory.onEnderTeleport;
+
 public class DesireFanProcessingTypes {
     public static final DeferredRegister<FanProcessingType> REGISTER =
             DeferredRegister.create(CreateRegistries.FAN_PROCESSING_TYPE, DesiresCreate.MOD_ID);
 
+    public static final RegistryObject<DragonBreathingType> DRAGON_BREATHING =
+            REGISTER.register("dragon_breathing", DragonBreathingType::new);
     public static final RegistryObject<SandingType> SANDING =
             REGISTER.register("sanding", SandingType::new);
     public static final RegistryObject<FreezingType> FREEZING =
@@ -55,6 +65,94 @@ public class DesireFanProcessingTypes {
 
     public static void register(IEventBus bus) {
         REGISTER.register(bus);
+    }
+
+    public static class DragonBreathingType implements FanProcessingType {
+        private static final DragonBreathingRecipe.DragonBreathingWrapper DRAGON_WRAPPER = new DragonBreathingRecipe.DragonBreathingWrapper();
+
+        @Override
+        public boolean isValidAt(Level level, BlockPos pos) {
+            var fluidState = level.getFluidState(pos);
+            if (DesiresTags.AllFluidTags.FAN_PROCESSING_CATALYSTS_DRAGON_BREATHING.matches(fluidState)) return true;
+            var blockState = level.getBlockState(pos);
+            if (DesiresTags.AllBlockTags.FAN_PROCESSING_CATALYSTS_DRAGON_BREATHING.matches(blockState)) {
+                if (blockState.getBlock() instanceof WallSkullBlock skullBlock && skullBlock == Blocks.DRAGON_WALL_HEAD) {
+                    var skullFacing = level.getBlockState(pos).getValue(WallSkullBlock.FACING);
+                    var fanState = level.getBlockState(pos.relative(skullFacing.getOpposite()));
+                    var powered = level.hasNeighborSignal(pos);
+                    var sameDirection = fanState.is(DesiresTags.AllBlockTags.FAN_CATALYSTS_DRAGON_SUPPORT.tag) && fanState.hasProperty(BlockStateProperties.FACING) && fanState.getValue(BlockStateProperties.FACING) == skullFacing;
+                    return powered && sameDirection;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public int getPriority() {
+            return 1500;
+        }
+
+        @Override
+        public boolean canProcess(ItemStack stack, Level level) {
+
+            DRAGON_WRAPPER.setItem(0, stack);
+            Optional<DragonBreathingRecipe> recipe = DesiresRecipeTypes.DRAGON_BREATHING.find(DRAGON_WRAPPER, level);
+            return recipe.isPresent();
+        }
+
+        @Override
+        public @Nullable List<ItemStack> process(ItemStack stack, Level level) {
+            DRAGON_WRAPPER.setItem(0, stack);
+            Optional<DragonBreathingRecipe> recipe = DesiresRecipeTypes.DRAGON_BREATHING.find(DRAGON_WRAPPER, level);
+            return recipe.map(sandingRecipe -> RecipeApplier.applyRecipeOn(level, stack, sandingRecipe, false)).orElse(null);
+        }
+
+        @Override
+        public void spawnProcessingParticles(Level level, Vec3 pos) {
+            if (level.random.nextInt(8) != 0) return;
+            level.addParticle(ParticleTypes.DRAGON_BREATH,
+                    pos.x + (level.random.nextFloat() - .5f) * .5f,
+                    pos.y + .5f,
+                    pos.z + (level.random.nextFloat() - .5f) * .5f, 0, 1 / 8f, 0);
+        }
+
+        @Override
+        public void morphAirFlow(AirFlowParticleAccess particleAccess, RandomSource random) {
+            particleAccess.setColor(Color.mixColors(0xD36FD9, 0xC21BF5, random.nextFloat()));
+            particleAccess.setAlpha(1f);
+            if (random.nextFloat() < 1 / 128f) particleAccess.spawnExtraParticle(ParticleTypes.DRAGON_BREATH, .125f);
+            if (random.nextFloat() < 1 / 32f) particleAccess.spawnExtraParticle(ParticleTypes.WITCH, .125f);
+
+        }
+
+        @SuppressWarnings("deprecation")
+        @Override
+        public void affectEntity(Entity entity, Level level) {
+            if (level.isClientSide) return;
+
+            if (entity instanceof LivingEntity livingEntity) {
+                livingEntity.hurt(livingEntity.damageSources().dragonBreath(), 1);
+                var random = livingEntity.getRandom();
+                double d0 = livingEntity.getX() + (random.nextDouble() - 0.5D) * 32.0D, d1 = livingEntity.getY() + (double)(random.nextInt(32) - 16), d2 = livingEntity.getZ() + (random.nextDouble() - 0.5D) * 32.0D;
+                var pos = new BlockPos.MutableBlockPos(d0, d1, d2);
+                while (pos.getY() > level.getMinBuildHeight() && !level.getBlockState(pos).blocksMotion()) pos = pos.move(Direction.DOWN);
+                var blockstate = level.getBlockState(pos);
+                var flag = blockstate.blocksMotion();
+                var flag1 = !blockstate.getFluidState().is(FluidTags.WATER) && !blockstate.is(Blocks.COBWEB);
+                if (flag && flag1) {
+                    var event = onEnderTeleport(livingEntity, d0, d1, d2);
+                    if (event.isCanceled()) return;
+                    if (livingEntity.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true)) {
+                        level.gameEvent(GameEvent.TELEPORT, livingEntity.position(), GameEvent.Context.of(livingEntity));
+                        if (!livingEntity.isSilent()) {
+                            level.playSound(null, livingEntity.xo, livingEntity.yo, livingEntity.zo, SoundEvents.ENDERMAN_TELEPORT, livingEntity.getSoundSource(), 1.0F, 1.0F);
+                            livingEntity.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public static class SandingType implements FanProcessingType {

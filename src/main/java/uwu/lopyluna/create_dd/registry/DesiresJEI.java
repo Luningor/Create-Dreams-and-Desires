@@ -4,8 +4,11 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.compat.jei.*;
 import com.simibubi.create.compat.jei.category.*;
+import com.simibubi.create.content.processing.basin.BasinRecipe;
 import net.createmod.catnip.config.ConfigBase;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
+import uwu.lopyluna.create_dd.content.jei.*;
+import uwu.lopyluna.create_dd.content.recipes.DragonBreathingRecipe;
 import uwu.lopyluna.create_dd.registry.helper.Lang;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -22,10 +25,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import uwu.lopyluna.create_dd.DesiresCreate;
-import uwu.lopyluna.create_dd.content.jei.DProcessingViaFanCategory;
-import uwu.lopyluna.create_dd.content.jei.FanFreezingCategory;
-import uwu.lopyluna.create_dd.content.jei.FanSandingCategory;
-import uwu.lopyluna.create_dd.content.jei.FanSeethingCategory;
 import uwu.lopyluna.create_dd.content.recipes.FreezingRecipe;
 import uwu.lopyluna.create_dd.content.recipes.SandingRecipe;
 import uwu.lopyluna.create_dd.content.recipes.SeethingRecipe;
@@ -65,6 +64,12 @@ public class DesiresJEI implements IModPlugin {
 
 		CreateRecipeCategory<?>
 
+		dragon_breathing = builder(DragonBreathingRecipe.class)
+				.addTypedRecipes(DesiresRecipeTypes.DRAGON_BREATHING)
+				.catalystStack(DProcessingViaFanCategory.getFan("fan_dragon_breathing"))
+				.doubleItemIcon(AllItems.PROPELLER.get(), Items.DRAGON_HEAD)
+				.emptyBackground(178, 72)
+				.build("fan_dragon_breathing", FanDragonBreathingCategory::new),
 		sanding = builder(SandingRecipe.class)
 				.addTypedRecipes(DesiresRecipeTypes.SANDING)
 				.catalystStack(DProcessingViaFanCategory.getFan("fan_sanding"))
@@ -88,7 +93,15 @@ public class DesiresJEI implements IModPlugin {
                 .addRecipes(() -> MysteriousConversion.RECIPES)
                 .itemIcon(DesiresItems.CHROMATIC_COMPOUND.get())
                 .emptyBackground(177, 50)
-                .build("also_mystery_conversion", MysteriousConversion::new);
+                .build("also_mystery_conversion", MysteriousConversion::new),
+
+        hydraulic_compacting = builder(BasinRecipe.class)
+                .addTypedRecipes(DesiresRecipeTypes.HYDRAULIC_COMPACTING)
+                .catalyst(DesiresBlocks.HYDRAULIC_PRESS::get)
+                .catalyst(AllBlocks.BASIN::get)
+                .doubleItemIcon(DesiresBlocks.HYDRAULIC_PRESS.get(), AllBlocks.BASIN.get())
+                .emptyBackground(177, 103)
+                .build("hydraulic_compacting", HydraulicCategory::new);
 
 	}
 

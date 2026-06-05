@@ -1,6 +1,6 @@
 {
   "type": "create_dd:hydraulic_compacting",
-  "heat_requirement": "superheated",
+  "heatRequirement": "superheated",
   "ingredients": [
     {
       "item": "minecraft:cobbled_deepslate"
@@ -9,12 +9,10 @@
       "item": "minecraft:cobbled_deepslate"
     },
     {
-      "type": "forge:tag",
       "amount": 500,
-      "tag": "forge:lava"
+      "fluid": "minecraft:lava"
     },
     {
-      "type": "forge:single",
       "amount": 100,
       "fluid": "create_dd:strawberry_milkshake"
     }
