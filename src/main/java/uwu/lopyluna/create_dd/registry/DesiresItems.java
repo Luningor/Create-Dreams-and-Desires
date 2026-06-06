@@ -13,6 +13,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
@@ -25,11 +26,11 @@ import uwu.lopyluna.create_dd.content.items.equipment.deforester_saw.ForestRavag
 import uwu.lopyluna.create_dd.content.items.equipment.excavation_drill.ExcavationDrillItem;
 import uwu.lopyluna.create_dd.content.items.equipment.gilded_rose_tools.*;
 import uwu.lopyluna.create_dd.content.items.equipment.magnet.MagnetItem;
+import uwu.lopyluna.create_dd.content.items.equipment.ore_devastator.OreDevastatorItem;
 import uwu.lopyluna.create_dd.content.items.exp.ExperienceNuggetItemOne;
 import uwu.lopyluna.create_dd.content.items.exp.ExperienceNuggetItemTwo;
+import uwu.lopyluna.create_dd.content.items.equipment.gatling_breaker.GatlingBreakerItem;
 import uwu.lopyluna.create_dd.content.items.milkshakes.*;
-//import uwu.lopyluna.create_dd.registry.ItemProperties.compound.*;
-//import uwu.lopyluna.create_dd.registry.ItemProperties.sawtool.ForestRavagerItem;
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.getItemName;
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
@@ -799,9 +800,24 @@ public class DesiresItems {
 	public static final ItemEntry<ExcavationDrillItem> EXCAVATION_DRILL = REGISTRATE.item("excavation_drill", ExcavationDrillItem::new)
 			.model(AssetLookup.itemModelWithPartials())
 			.properties(p -> p.rarity(Rarity.UNCOMMON))
-			.tag(DesiresTags.AllItemTags.PICKAXE.tag)
+            .tag(DesiresTags.AllItemTags.PICKAXE.tag, ItemTags.BREAKS_DECORATED_POTS, Tags.Items.TOOLS)
 			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
 			.register();
+
+    public static final ItemEntry<OreDevastatorItem> HANDHELD_DRILL = REGISTRATE.item("ore_devastator", OreDevastatorItem::new)
+            .model(AssetLookup.itemModelWithPartials())
+            .properties(p -> p.rarity(Rarity.UNCOMMON))
+            .tag(DesiresTags.AllItemTags.PICKAXE.tag, ItemTags.BREAKS_DECORATED_POTS, Tags.Items.TOOLS)
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .register();
+
+    public static final ItemEntry<GatlingBreakerItem> GATLING_BREAKER = REGISTRATE.item("gatling_breaker", GatlingBreakerItem::new)
+            .model(AssetLookup.itemModelWithPartials())
+            .properties(p -> p.rarity(Rarity.UNCOMMON))
+            .tag(DesiresTags.AllItemTags.PICKAXE.tag, ItemTags.BREAKS_DECORATED_POTS, Tags.Items.TOOLS)
+            .lang("Gatling Breaker")
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .register();
 
 	public static final ItemEntry<NameableRecordItem> MUSIC_DISC_WALTZ_OF_THE_FLOWERS = REGISTRATE.item("music_disc_waltz_of_the_flowers",
 					p -> new NameableRecordItem(10, DesiresSoundEvents.MUSIC_DISC_WALTZ_OF_THE_FLOWERS, p, 16600, "Tchaikovsky - Waltz of the Flowers"))

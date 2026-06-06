@@ -93,6 +93,7 @@ public class DesiresTags {
         BRONZE_DRILL_IMMUNE,
         RADIANT_DRILL_IMMUNE,
         SHADOW_DRILL_IMMUNE,
+        MINEABLE_WITH_DRILL,
 		BACKPACKS,
 
 		;

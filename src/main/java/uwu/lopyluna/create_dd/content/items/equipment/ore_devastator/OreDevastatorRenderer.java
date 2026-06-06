@@ -1,4 +1,4 @@
-package uwu.lopyluna.create_dd.content.items.equipment.excavation_drill;
+package uwu.lopyluna.create_dd.content.items.equipment.ore_devastator;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -14,13 +14,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import uwu.lopyluna.create_dd.DesiresCreate;
 
-public class ExcavationDrillRenderer extends CustomRenderedItemModelRenderer {
-    protected static final PartialModel ITEM = PartialModel.of(DesiresCreate.asResource("item/excavation_drill/item"));
-    protected static final PartialModel HEAD = PartialModel.of(DesiresCreate.asResource("item/excavation_drill/head"));
-    protected static final PartialModel GEAR = PartialModel.of(DesiresCreate.asResource("item/excavation_drill/gear"));
+public class OreDevastatorRenderer extends CustomRenderedItemModelRenderer {
+    protected static final PartialModel ITEM = PartialModel.of(DesiresCreate.asResource("item/ore_devastator/item"));
+    protected static final PartialModel HEAD = PartialModel.of(DesiresCreate.asResource("item/ore_devastator/drill"));
+    protected static final PartialModel GEAR = PartialModel.of(DesiresCreate.asResource("item/ore_devastator/cog"));
 
     private static final Vec3 HEAD_ROTATION_OFFSET = new Vec3(0, -4 / 16f, -7 / 16f);
-    private static final Vec3 GEAR_ROTATION_OFFSET = new Vec3(0, -3 / 16f, 1 / 16f);
+    private static final Vec3 GEAR_ROTATION_OFFSET = new Vec3(0, -4 / 16f, 1 / 16f);
 
     @Override
     protected void render(ItemStack stack, CustomRenderedItemModel model, PartialItemModelRenderer renderer,

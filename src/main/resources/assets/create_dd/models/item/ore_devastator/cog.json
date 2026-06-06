@@ -1,0 +1,68 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made by LopyLuna",
+	"parent": "create_dd:item/ore_devastator/item",
+	"texture_size": [32, 32],
+	"textures": {
+		"24": "create_dd:item/ore_devastator/ore_devastator",
+		"particle": "create_dd:item/ore_devastator/ore_devastator"
+	},
+	"elements": [
+		{
+			"name": "Cog",
+			"from": [7, -1, 5],
+			"to": [9, 9, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 4, 8]},
+			"faces": {
+				"north": {"uv": [0.25, 13.25, 2.75, 13.75], "rotation": 90, "texture": "#24"},
+				"east": {"uv": [0.25, 14, 2.75, 15.5], "rotation": 270, "texture": "#24"},
+				"south": {"uv": [0.25, 13.25, 2.75, 13.75], "rotation": 270, "texture": "#24"},
+				"west": {"uv": [0.25, 14, 2.75, 15.5], "rotation": 90, "texture": "#24"},
+				"up": {"uv": [1.75, 12.25, 0.25, 12.75], "rotation": 90, "texture": "#24"},
+				"down": {"uv": [0.25, 12.5, 1.75, 13], "rotation": 90, "texture": "#24"}
+			}
+		},
+		{
+			"name": "Cog",
+			"from": [7, -1, 5],
+			"to": [9, 9, 11],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 4, 8]},
+			"faces": {
+				"north": {"uv": [0.25, 13.25, 2.75, 13.75], "rotation": 90, "texture": "#24"},
+				"east": {"uv": [0.25, 14, 2.75, 15.5], "rotation": 270, "texture": "#24"},
+				"south": {"uv": [0.25, 13.25, 2.75, 13.75], "rotation": 270, "texture": "#24"},
+				"west": {"uv": [0.25, 14, 2.75, 15.5], "rotation": 90, "texture": "#24"},
+				"up": {"uv": [1.75, 12.25, 0.25, 12.75], "rotation": 90, "texture": "#24"},
+				"down": {"uv": [0.25, 12.5, 1.75, 13], "rotation": 90, "texture": "#24"}
+			}
+		},
+		{
+			"name": "Cog",
+			"from": [3, 3, 5],
+			"to": [13, 5, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 4, 8]},
+			"faces": {
+				"north": {"uv": [0.25, 13.25, 2.75, 13.75], "rotation": 180, "texture": "#24"},
+				"east": {"uv": [0.25, 12.5, 1.75, 13], "texture": "#24"},
+				"south": {"uv": [0.25, 13.25, 2.75, 13.75], "rotation": 180, "texture": "#24"},
+				"west": {"uv": [1.75, 12.25, 0.25, 12.75], "texture": "#24"},
+				"up": {"uv": [0.25, 14, 2.75, 15.5], "rotation": 180, "texture": "#24"},
+				"down": {"uv": [0.25, 14, 2.75, 15.5], "texture": "#24"}
+			}
+		},
+		{
+			"name": "Cog",
+			"from": [3, 3, 5],
+			"to": [13, 5, 11],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 4, 8]},
+			"faces": {
+				"north": {"uv": [0.25, 13.25, 2.75, 13.75], "rotation": 180, "texture": "#24"},
+				"east": {"uv": [0.25, 12.5, 1.75, 13], "texture": "#24"},
+				"south": {"uv": [0.25, 13.25, 2.75, 13.75], "rotation": 180, "texture": "#24"},
+				"west": {"uv": [1.75, 12.25, 0.25, 12.75], "texture": "#24"},
+				"up": {"uv": [0.25, 14, 2.75, 15.5], "rotation": 180, "texture": "#24"},
+				"down": {"uv": [0.25, 14, 2.75, 15.5], "texture": "#24"}
+			}
+		}
+	]
+}

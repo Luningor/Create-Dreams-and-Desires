@@ -37,8 +37,8 @@ public class BackTankPickaxeItem extends PickaxeItem {
     @Override
     public boolean mineBlock(ItemStack pStack, Level pLevel, BlockState pState, BlockPos pPos, LivingEntity pEntityLiving) {
         if (!BacktankUtil.canAbsorbDamage(pEntityLiving, getUses) && !pLevel.isClientSide && pState.getDestroySpeed(pLevel, pPos) != 0.0F) {
-            pStack.hurtAndBreak(1, pEntityLiving, (p_40992_) -> {
-                p_40992_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+            pStack.hurtAndBreak(1, pEntityLiving, (livingEntity) -> {
+                livingEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
             });
         }
 
