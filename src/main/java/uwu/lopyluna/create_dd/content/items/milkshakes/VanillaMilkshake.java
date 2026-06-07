@@ -50,17 +50,17 @@ public class VanillaMilkshake extends Item {
         return stack;
     }
 
-    public int getUseDuration(ItemStack p_77626_1_) {
+    public int getUseDuration(ItemStack stack) {
         return 42;
     }
 
-    public UseAnim getUseAnimation(ItemStack p_77661_1_) {
+    public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.DRINK;
     }
 
-    public InteractionResultHolder<ItemStack> use(Level p_77659_1_, Player p_77659_2_, InteractionHand p_77659_3_) {
-        p_77659_2_.startUsingItem(p_77659_3_);
-        return InteractionResultHolder.success(p_77659_2_.getItemInHand(p_77659_3_));
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand hand) {
+        pPlayer.startUsingItem(hand);
+        return InteractionResultHolder.success(pPlayer.getItemInHand(hand));
     }
 
 }

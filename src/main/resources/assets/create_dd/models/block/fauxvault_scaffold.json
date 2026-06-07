@@ -1,0 +1,10 @@
+{
+  "parent": "create:block/scaffold/block",
+  "textures": {
+    "top": "create_dd:block/scaffold/fauxvault_scaffold_frame",
+    "inside": "create_dd:block/scaffold/fauxvault_scaffold_inside",
+    "side": "create_dd:block/scaffold/fauxvault_scaffold",
+    "casing": "create_dd:block/fauxvault_casing",
+    "particle": "create_dd:block/scaffold/fauxvault_scaffold"
+  }
+}

@@ -59,6 +59,7 @@ public class DesiresSpriteShifts {
             REINFORCEMENT_PLATING = omni("reinforcement_plating"),
 
             FAUXVAULT_CASING = omni("fauxvault_casing"),
+            RADIANT_INDUSTRIAL_CASING = omni("radiant_industrial_casing"),
             TECHBRAIN_CASING = omni("techbrain_casing"),
             FAUX_INDUSTRIAL_BRASS_CASING = omni("faux_industrial_brass_casing"),
             HEAVY_BRASS_CASING = omni("heavy_brass_casing"),
@@ -101,8 +102,8 @@ public class DesiresSpriteShifts {
             MITHRIL_SCAFFOLD = horizontal("mithril_scaffold"),
             BRONZE_SCAFFOLD = horizontal("bronze_scaffold"),
             STEEL_SCAFFOLD = horizontal("steel_scaffold"),
-            ZINC_SCAFFOLD = horizontal("zinc_scaffold"),
             TIN_SCAFFOLD = horizontal("tin_scaffold"),
+            ZINC_SCAFFOLD = horizontal("zinc_scaffold"),
             NETHERITE_SCAFFOLD = horizontal("netherite_scaffold"),
             MOSSY_ANDESITE_SCAFFOLD = horizontal("mossy_andesite_scaffold"),
             HYDRAULIC_SCAFFOLD = horizontal("hydraulic_scaffold"),
@@ -112,7 +113,8 @@ public class DesiresSpriteShifts {
             OVERCHARGED_SCAFFOLD = horizontal("overcharged_scaffold"),
             OVERBURDEN_SCAFFOLD = horizontal("overburden_scaffold"),
             SHADOW_STEEL_SCAFFOLD = horizontal("shadow_steel_scaffold"),
-            REFINED_RADIANCE_SCAFFOLD = horizontal("refined_radiance_scaffold");
+            REFINED_RADIANCE_SCAFFOLD = horizontal("refined_radiance_scaffold"),
+            FAUXVAULT_SCAFFOLD = horizontal("fauxvault_scaffold");
 
     public static final CTSpriteShiftEntry
             TRAIN_SCAFFOLD_INSIDE = horizontal("train_scaffold_inside"),
@@ -130,7 +132,8 @@ public class DesiresSpriteShifts {
             BLAZE_GOLD_SCAFFOLD_INSIDE = horizontal("blaze_gold_scaffold_inside"),
             OVERCHARGED_SCAFFOLD_INSIDE = horizontal("overcharged_scaffold_inside"),
             SHADOW_STEEL_SCAFFOLD_INSIDE = horizontal("shadow_steel_scaffold_inside"),
-            REFINED_RADIANCE_SCAFFOLD_INSIDE = horizontal("refined_radiance_scaffold_inside");
+            REFINED_RADIANCE_SCAFFOLD_INSIDE = horizontal("refined_radiance_scaffold_inside"),
+            FAUXVAULT_SCAFFOLD_INSIDE = horizontal("fauxvault_scaffold_inside");
 
 	//public static final Map<DyeColor, SpriteShiftEntry> DYED_RUBBER_BELTS = new EnumMap<>(DyeColor.class),
 	//		DYED_OFFSET_RUBBER_BELTS = new EnumMap<>(DyeColor.class), DYED_DIAGONAL_RUBBER_BELTS = new EnumMap<>(DyeColor.class);

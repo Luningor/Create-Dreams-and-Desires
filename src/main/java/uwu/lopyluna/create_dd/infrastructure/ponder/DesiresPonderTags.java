@@ -71,6 +71,8 @@ public class DesiresPonderTags {
                 .add(BuiltInRegistries.ITEM.getKey(DesiresFluids.HOT_CHOCOLATE.get().getBucket()))
                 .add(BuiltInRegistries.ITEM.getKey(DesiresFluids.GLOWBERRY.get().getBucket()))
                 .add(BuiltInRegistries.ITEM.getKey(DesiresFluids.GLOWBERRY_MILKSHAKE.get().getBucket()))
+                .add(BuiltInRegistries.ITEM.getKey(DesiresFluids.PUMPKIN_JUICE.get().getBucket()))
+                .add(BuiltInRegistries.ITEM.getKey(DesiresFluids.PUMPKIN_MILKSHAKE.get().getBucket()))
                 .add(BuiltInRegistries.ITEM.getKey(DesiresFluids.STRAWBERRY.get().getBucket()))
                 .add(BuiltInRegistries.ITEM.getKey(DesiresFluids.STRAWBERRY_MILKSHAKE.get().getBucket()))
                 .add(BuiltInRegistries.ITEM.getKey(DesiresFluids.CREAM.get().getBucket()))

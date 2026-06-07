@@ -210,6 +210,50 @@ public class DesiresFluids {
                     .build()
                     .register();
 
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> PUMPKIN_JUICE =
+            REGISTRATE.standardFluid("pumpkin_juice",
+                            SolidRenderedPlaceableFluidType.create(0xd17a32,
+                                    () -> 1f / 4f * DesiresConfigs.client().pumpkinTransparencyMultiplier.getF()))
+                    .lang("pumpkin_juice")
+                    .properties(b -> b.viscosity(1000)
+                            .density(1400))
+                            .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                                    .tickRate(10)
+                                    .slopeFindDistance(3)
+                                    .explosionResistance(100f)
+                            )
+                            .tag(DesiresTags.AllFluidTags.PUMPKIN_JUICE.tag)
+                            .source(ForgeFlowingFluid.Source::new)
+                            .block()
+                            .build()
+                            .bucket()
+                            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                            .tag(DesiresTags.forgeItemTag("buckets/pumpkin"))
+                            .build()
+                            .register();
+
+    public static final FluidEntry<ForgeFlowingFluid.Flowing> PUMPKIN_MILKSHAKE =
+            REGISTRATE.standardFluid("pumpkin_milkshake",
+                            SolidRenderedPlaceableFluidType.create(0xda8637,
+                                    () -> 1f / 4f * DesiresConfigs.client().pumpkin_milkshakeTransparencyMultiplier.getF()))
+                    .lang("pumpkin_milkshake")
+                    .properties(b -> b.viscosity(1000)
+                            .density(1400))
+                            .fluidProperties(p -> p.levelDecreasePerBlock(2)
+                                    .tickRate(10)
+                                    .slopeFindDistance(3)
+                                    .explosionResistance(100f)
+                            )
+                            .tag(DesiresTags.AllFluidTags.PUMPKIN_MILKSHAKE.tag)
+                            .source(ForgeFlowingFluid.Source::new)
+                            .block()
+                            .build()
+                            .bucket()
+                            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+                            .tag(DesiresTags.forgeItemTag("buckets/pumpkin_milkshake"))
+                            .build()
+                            .register();
+
     public static final FluidEntry<ForgeFlowingFluid.Flowing> CARAMEL =
             REGISTRATE.standardFluid("caramel",
                             SolidRenderedPlaceableFluidType.create(0xef9967,
@@ -468,6 +512,24 @@ public class DesiresFluids {
                         return Blocks.OBSIDIAN.defaultBlockState();
                     } else {
                         return DesiresBlocks.OCHRUM_COBBLE.getDefaultState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                PUMPKIN_JUICE.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return Blocks.TERRACOTTA.defaultBlockState();
+                    }}));
+
+        FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
+                PUMPKIN_MILKSHAKE.get().getFluidType(),
+                fluidState -> {
+                    if (fluidState.isSource()) {
+                        return Blocks.OBSIDIAN.defaultBlockState();
+                    } else {
+                        return DesiresPaletteStoneTypes.BRECCIA.getBaseBlock().get().defaultBlockState();
                     }}));
 
         FluidInteractionRegistry.addInteraction(ForgeMod.LAVA_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(

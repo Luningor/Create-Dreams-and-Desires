@@ -55,41 +55,41 @@ public class DesiresPonderScenes {
         ////////////////////// Create = below |||| Create DD = Above
 
         HELPER.forComponents(DesiresBlocks.BRONZE_SAW)
-                .addStoryBoard("mechanical_saw/breaker", MechanicalSawScenes::treeCutting)
-                .addStoryBoard("mechanical_saw/contraption", MechanicalSawScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+                .addStoryBoard(new ResourceLocation("create:mechanical_saw/breaker"), MechanicalSawScenes::treeCutting)
+                .addStoryBoard(new ResourceLocation("create:mechanical_saw/contraption"), MechanicalSawScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
         HELPER.forComponents(DesiresBlocks.RADIANT_SAW)
-                .addStoryBoard("mechanical_saw/breaker", MechanicalSawScenes::treeCutting)
-                .addStoryBoard("mechanical_saw/contraption", MechanicalSawScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+                .addStoryBoard(new ResourceLocation("create:mechanical_saw/breaker"), MechanicalSawScenes::treeCutting)
+                .addStoryBoard(new ResourceLocation("create:mechanical_saw/contraption"), MechanicalSawScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
         HELPER.forComponents(DesiresBlocks.SHADOW_SAW)
-                .addStoryBoard("mechanical_saw/breaker", MechanicalSawScenes::treeCutting)
-                .addStoryBoard("mechanical_saw/contraption", MechanicalSawScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+                .addStoryBoard(new ResourceLocation("create:mechanical_saw/breaker"), MechanicalSawScenes::treeCutting)
+                .addStoryBoard(new ResourceLocation("create:mechanical_saw/contraption"), MechanicalSawScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
         HELPER.forComponents(DesiresBlocks.BRONZE_DRILL)
-                .addStoryBoard("mechanical_drill/breaker", MechanicalDrillScenes::breaker, AllCreatePonderTags.KINETIC_APPLIANCES)
-                .addStoryBoard("mechanical_drill/contraption", MechanicalDrillScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+                .addStoryBoard(new ResourceLocation("create:mechanical_drill/breaker"), MechanicalDrillScenes::breaker, AllCreatePonderTags.KINETIC_APPLIANCES)
+                .addStoryBoard(new ResourceLocation("create:mechanical_drill/contraption"), MechanicalDrillScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
         HELPER.forComponents(DesiresBlocks.RADIANT_DRILL)
-                .addStoryBoard("mechanical_drill/breaker", MechanicalDrillScenes::breaker, AllCreatePonderTags.KINETIC_APPLIANCES)
-                .addStoryBoard("mechanical_drill/contraption", MechanicalDrillScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+                .addStoryBoard(new ResourceLocation("create:mechanical_drill/breaker"), MechanicalDrillScenes::breaker, AllCreatePonderTags.KINETIC_APPLIANCES)
+                .addStoryBoard(new ResourceLocation("create:mechanical_drill/contraption"), MechanicalDrillScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
         HELPER.forComponents(DesiresBlocks.SHADOW_DRILL)
-                .addStoryBoard("mechanical_drill/breaker", MechanicalDrillScenes::breaker, AllCreatePonderTags.KINETIC_APPLIANCES)
-                .addStoryBoard("mechanical_drill/contraption", MechanicalDrillScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
+                .addStoryBoard(new ResourceLocation("create:mechanical_drill/breaker"), MechanicalDrillScenes::breaker, AllCreatePonderTags.KINETIC_APPLIANCES)
+                .addStoryBoard(new ResourceLocation("create:mechanical_drill/contraption"), MechanicalDrillScenes::contraption, AllCreatePonderTags.CONTRAPTION_ACTOR);
 
         HELPER.forComponents(DesiresBlocks.INDUSTRIAL_FAN)
-                .addStoryBoard("fan/direction", FanScenes::direction, AllCreatePonderTags.KINETIC_APPLIANCES)
-                .addStoryBoard("fan/processing", FanScenes::processing);
+                .addStoryBoard(new ResourceLocation("create:fan/direction"), FanScenes::direction, AllCreatePonderTags.KINETIC_APPLIANCES)
+                .addStoryBoard(new ResourceLocation("create:fan/processing"), FanScenes::processing);
 
-        HELPER.addStoryBoard(DesiresBlocks.INVERSE_BOX, "gearshift", KineticsScenes::gearshift, AllCreatePonderTags.KINETIC_RELAYS);
+        HELPER.forComponents(DesiresBlocks.INVERSE_BOX).addStoryBoard(new ResourceLocation("create:gearshift"), KineticsScenes::gearshift, AllCreatePonderTags.KINETIC_RELAYS);
 
         HELPER.forComponents(DesiresBlocks.BLASTING_SAIL)
-                .addStoryBoard("sail", BearingScenes::sail);
+                .addStoryBoard(new ResourceLocation("create:sail"), BearingScenes::sail);
         HELPER.forComponents(DesiresBlocks.SMOKING_SAIL)
-                .addStoryBoard("sail", BearingScenes::sail);
+                .addStoryBoard(new ResourceLocation("create:sail"), BearingScenes::sail);
         HELPER.forComponents(DesiresBlocks.HAUNTING_SAIL)
-                .addStoryBoard("sail", BearingScenes::sail);
+                .addStoryBoard(new ResourceLocation("create:sail"), BearingScenes::sail);
         HELPER.forComponents(DesiresBlocks.SPLASHING_SAIL)
-                .addStoryBoard("sail", BearingScenes::sail);
+                .addStoryBoard(new ResourceLocation("create:sail"), BearingScenes::sail);
         HELPER.forComponents(DesiresBlocks.SEETHING_SAIL)
-                .addStoryBoard("sail", BearingScenes::sail);
+                .addStoryBoard(new ResourceLocation("create:sail"), BearingScenes::sail);
         HELPER.forComponents(DesiresBlocks.FREEZING_SAIL)
-                .addStoryBoard("sail", BearingScenes::sail);
+                .addStoryBoard(new ResourceLocation("create:sail"), BearingScenes::sail);
     }
 }

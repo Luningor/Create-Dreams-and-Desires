@@ -20,8 +20,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class StrawberryMilkshake extends Item {
-    public StrawberryMilkshake(Properties pProperties) {
+public class PumpkinMilkshake extends Item {
+    public PumpkinMilkshake(Properties pProperties) {
         super(pProperties);
     }
 
@@ -30,10 +30,8 @@ public class StrawberryMilkshake extends Item {
         if (playerentity instanceof ServerPlayer)
             CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayer) playerentity, stack);
 
-        if (!world.isClientSide) {
-            entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 30 * 20, 2, false, false, false));
-            entity.heal(entity.getHealth() * 0.25f);
-        }
+        if (!world.isClientSide)
+            entity.addEffect(new MobEffectInstance(MobEffects.JUMP, 30 * 20, 1, false, false, false));
 
         if (playerentity != null) {
             playerentity.awardStat(Stats.ITEM_USED.get(this));

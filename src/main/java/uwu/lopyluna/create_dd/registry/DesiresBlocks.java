@@ -775,6 +775,18 @@ public class DesiresBlocks {
 			.build()
 			.register();
 
+	public static final BlockEntry<CasingBlock> RADIANT_INDUSTRIAL_CASING = REGISTRATE.block("radiant_industrial_casing", CasingBlock::new)
+			.transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.RADIANT_INDUSTRIAL_CASING))
+			.properties(p -> p.mapColor(MapColor.COLOR_LIGHT_GRAY)
+					.requiresCorrectToolForDrops()
+					.sound(SoundType.NETHERITE_BLOCK))
+			.transform(pickaxeOnly())
+			.lang("Radiant Industrial Casing")
+			.item()
+			.tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+			.build()
+			.register();
+
     public static final BlockEntry<CasingBlock> HEAVY_BRASS_CASING = REGISTRATE.block("heavy_brass_casing", CasingBlock::new)
             .transform(BuilderTransformers.casing(() -> DesiresSpriteShifts.HEAVY_BRASS_CASING))
             .properties(p -> p.mapColor(MapColor.TERRACOTTA_YELLOW)
@@ -1808,27 +1820,6 @@ public class DesiresBlocks {
             .lang("Train Scaffolding")
             .register();
 
-    public static final BlockEntry<MetalScaffoldingBlock> HYDRAULIC_SCAFFOLD = REGISTRATE.block("hydraulic_scaffolding", MetalScaffoldingBlock::new)
-            .transform(BuilderTransformers.scaffold("hydraulic",
-                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/copper")), MapColor.TERRACOTTA_YELLOW,
-                    DesiresSpriteShifts.HYDRAULIC_SCAFFOLD, DesiresSpriteShifts.HYDRAULIC_SCAFFOLD_INSIDE, DesiresSpriteShifts.HYDRAULIC_CASING))
-            .lang("Hydraulic Scaffolding")
-            .register();
-
-    public static final BlockEntry<MetalScaffoldingBlock> OVERBURDEN_SCAFFOLD = REGISTRATE.block("overburden_scaffolding", MetalScaffoldingBlock::new)
-            .transform(BuilderTransformers.scaffold("overburden",
-                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/lapis_alloy")), MapColor.TERRACOTTA_YELLOW,
-                    DesiresSpriteShifts.OVERBURDEN_SCAFFOLD, DesiresSpriteShifts.OVERBURDEN_SCAFFOLD_INSIDE, DesiresSpriteShifts.OVERBURDEN_CASING))
-            .lang("Overburden Scaffolding")
-            .register();
-
-    public static final BlockEntry<MetalScaffoldingBlock> INDUSTRIAL_SCAFFOLD = REGISTRATE.block("industrial_scaffolding", MetalScaffoldingBlock::new)
-            .transform(BuilderTransformers.scaffold("industrial",
-                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/industrial_iron")), MapColor.TERRACOTTA_YELLOW,
-                    DesiresSpriteShifts.INDUSTRIAL_SCAFFOLD, DesiresSpriteShifts.INDUSTRIAL_SCAFFOLD_INSIDE, DesiresSpriteShifts.INDUSTRIAL_CASING))
-            .lang("Industrial Scaffolding")
-            .register();
-
     public static final BlockEntry<MetalScaffoldingBlock> MITHRIL_SCAFFOLD = REGISTRATE.block("mithril_scaffolding", MetalScaffoldingBlock::new)
             .transform(BuilderTransformers.scaffold("mithril",
                     () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/mithril")), MapColor.TERRACOTTA_YELLOW,
@@ -1836,11 +1827,11 @@ public class DesiresBlocks {
             .lang("Mithril Scaffolding")
             .register();
 
-    public static final BlockEntry<MetalScaffoldingBlock> MOSSY_ANDESITE_SCAFFOLD = REGISTRATE.block("mossy_andesite_scaffolding", MetalScaffoldingBlock::new)
-            .transform(BuilderTransformers.scaffold("mossy_andesite",
-                    () -> DataIngredient.items(AllItems.ANDESITE_ALLOY.get()),
-                    MapColor.STONE, DesiresSpriteShifts.MOSSY_ANDESITE_SCAFFOLD, DesiresSpriteShifts.MOSSY_ANDESITE_SCAFFOLD_INSIDE, DesiresSpriteShifts.MOSSY_ANDESITE_CASING))
-            .lang("Mossy Andesite Scaffolding")
+    public static final BlockEntry<MetalScaffoldingBlock> BRONZE_SCAFFOLD = REGISTRATE.block("bronze_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("bronze",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/bronze")), MapColor.TERRACOTTA_YELLOW,
+                    DesiresSpriteShifts.BRONZE_SCAFFOLD, DesiresSpriteShifts.BRONZE_SCAFFOLD_INSIDE, DesiresSpriteShifts.BRONZE_CASING))
+            .lang("Bronze Scaffolding")
             .register();
 
     public static final BlockEntry<MetalScaffoldingBlock> ZINC_SCAFFOLD = REGISTRATE.block("zinc_scaffolding", MetalScaffoldingBlock::new)
@@ -1857,46 +1848,18 @@ public class DesiresBlocks {
             .lang("Tin Scaffolding")
             .register();
 
-    public static final BlockEntry<MetalScaffoldingBlock> BRONZE_SCAFFOLD = REGISTRATE.block("bronze_scaffolding", MetalScaffoldingBlock::new)
-            .transform(BuilderTransformers.scaffold("bronze",
-                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/bronze")), MapColor.TERRACOTTA_YELLOW,
-                    DesiresSpriteShifts.BRONZE_SCAFFOLD, DesiresSpriteShifts.BRONZE_SCAFFOLD_INSIDE, DesiresSpriteShifts.BRONZE_CASING))
-            .lang("Bronze Scaffolding")
-            .register();
-
-    public static final BlockEntry<MetalScaffoldingBlock> STEEL_SCAFFOLD = REGISTRATE.block("steel_scaffolding", MetalScaffoldingBlock::new)
-            .transform(BuilderTransformers.scaffold("steel",
-                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/steel")), MapColor.TERRACOTTA_YELLOW,
-                    DesiresSpriteShifts.STEEL_SCAFFOLD, DesiresSpriteShifts.STEEL_SCAFFOLD_INSIDE, DesiresSpriteShifts.STEEL_CASING))
-            .lang("Steel Scaffolding")
-            .register();
-
-    public static final BlockEntry<MetalScaffoldingBlock> SHADOW_SCAFFOLD = REGISTRATE.block("shadow_steel_scaffolding", MetalScaffoldingBlock::new)
-            .transform(BuilderTransformers.scaffold("shadow_steel",
-                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/shadow_steel")), MapColor.COLOR_BLACK,
-                    DesiresSpriteShifts.SHADOW_STEEL_SCAFFOLD, DesiresSpriteShifts.SHADOW_STEEL_SCAFFOLD_INSIDE, DesiresSpriteShifts.SHADOW_STEEL_CASING))
-            .lang("Shadow Steel Scaffolding")
-            .register();
-
-    public static final BlockEntry<MetalScaffoldingBlock> RADIANT_SCAFFOLD = REGISTRATE.block("refined_radiance_scaffolding", MetalScaffoldingBlock::new)
-            .transform(BuilderTransformers.scaffold("refined_radiance",
-                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/refined_radiance")), MapColor.SNOW,
-                    DesiresSpriteShifts.REFINED_RADIANCE_SCAFFOLD, DesiresSpriteShifts.REFINED_RADIANCE_SCAFFOLD_INSIDE, DesiresSpriteShifts.REFINED_RADIANCE_CASING))
-            .lang("Radiant Scaffolding")
-            .register();
-
-    public static final BlockEntry<MetalScaffoldingBlock> STARGAZE_SINGULARITY_SCAFFOLD = REGISTRATE.block("stargaze_singularity_scaffolding", MetalScaffoldingBlock::new)
-            .transform(BuilderTransformers.scaffold("stargaze_singularity",
-                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/stargaze_singularity")), MapColor.TERRACOTTA_BLACK,
-                    DesiresSpriteShifts.STARGAZE_SINGULARITY_SCAFFOLD, DesiresSpriteShifts.STARGAZE_SINGULARITY_SCAFFOLD_INSIDE, DesiresSpriteShifts.STARGAZE_SINGULARITY_CASING))
-            .lang("Stargaze Singularity Scaffolding")
-            .register();
-
     public static final BlockEntry<MetalScaffoldingBlock> BLAZE_GOLD_SCAFFOLD = REGISTRATE.block("blaze_gold_scaffolding", MetalScaffoldingBlock::new)
             .transform(BuilderTransformers.scaffold("blaze_gold",
                     () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/blaze_gold")), MapColor.COLOR_RED,
                     DesiresSpriteShifts.BLAZE_GOLD_SCAFFOLD, DesiresSpriteShifts.BLAZE_GOLD_SCAFFOLD_INSIDE, DesiresSpriteShifts.BLAZE_GOLD_CASING))
             .lang("Blaze Gold Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> NETHERITE_SCAFFOLD = REGISTRATE.block("netherite_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("netherite",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/netherite")), MapColor.COLOR_LIGHT_BLUE,
+                    DesiresSpriteShifts.NETHERITE_SCAFFOLD, DesiresSpriteShifts.NETHERITE_SCAFFOLD_INSIDE, DesiresSpriteShifts.NETHERITE_CASING))
+            .lang("Netherite Scaffolding")
             .register();
 
     public static final BlockEntry<MetalScaffoldingBlock> OVERCHARGED_SCAFFOLD = REGISTRATE.block("overcharged_scaffolding", MetalScaffoldingBlock::new)
@@ -1906,11 +1869,68 @@ public class DesiresBlocks {
             .lang("Overcharged Scaffolding")
             .register();
 
-    public static final BlockEntry<MetalScaffoldingBlock> NETHERITE_SCAFFOLD = REGISTRATE.block("netherite_scaffolding", MetalScaffoldingBlock::new)
-            .transform(BuilderTransformers.scaffold("netherite",
-                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/netherite")), MapColor.COLOR_LIGHT_BLUE,
-                    DesiresSpriteShifts.NETHERITE_SCAFFOLD, DesiresSpriteShifts.NETHERITE_SCAFFOLD_INSIDE, DesiresSpriteShifts.NETHERITE_CASING))
-            .lang("Netherite Scaffolding")
+    public static final BlockEntry<MetalScaffoldingBlock> RADIANT_SCAFFOLD = REGISTRATE.block("refined_radiance_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("refined_radiance",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/refined_radiance")), MapColor.SNOW,
+                    DesiresSpriteShifts.REFINED_RADIANCE_SCAFFOLD, DesiresSpriteShifts.REFINED_RADIANCE_SCAFFOLD_INSIDE, DesiresSpriteShifts.REFINED_RADIANCE_CASING))
+            .lang("Radiant Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> SHADOW_SCAFFOLD = REGISTRATE.block("shadow_steel_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("shadow_steel",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/shadow_steel")), MapColor.COLOR_BLACK,
+                    DesiresSpriteShifts.SHADOW_STEEL_SCAFFOLD, DesiresSpriteShifts.SHADOW_STEEL_SCAFFOLD_INSIDE, DesiresSpriteShifts.SHADOW_STEEL_CASING))
+            .lang("Shadow Steel Scaffolding")
+            .register();
+
+
+    public static final BlockEntry<MetalScaffoldingBlock> STARGAZE_SINGULARITY_SCAFFOLD = REGISTRATE.block("stargaze_singularity_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("stargaze_singularity",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/stargaze_singularity")), MapColor.TERRACOTTA_BLACK,
+                    DesiresSpriteShifts.STARGAZE_SINGULARITY_SCAFFOLD, DesiresSpriteShifts.STARGAZE_SINGULARITY_SCAFFOLD_INSIDE, DesiresSpriteShifts.STARGAZE_SINGULARITY_CASING))
+            .lang("Stargaze Singularity Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> MOSSY_ANDESITE_SCAFFOLD = REGISTRATE.block("mossy_andesite_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("mossy_andesite",
+                    () -> DataIngredient.items(AllItems.ANDESITE_ALLOY.get()),
+                    MapColor.STONE, DesiresSpriteShifts.MOSSY_ANDESITE_SCAFFOLD, DesiresSpriteShifts.MOSSY_ANDESITE_SCAFFOLD_INSIDE, DesiresSpriteShifts.MOSSY_ANDESITE_CASING))
+            .lang("Mossy Andesite Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> HYDRAULIC_SCAFFOLD = REGISTRATE.block("hydraulic_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("hydraulic",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/copper")), MapColor.COLOR_ORANGE,
+                    DesiresSpriteShifts.HYDRAULIC_SCAFFOLD, DesiresSpriteShifts.HYDRAULIC_SCAFFOLD_INSIDE, DesiresSpriteShifts.HYDRAULIC_CASING))
+            .lang("Hydraulic Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> INDUSTRIAL_SCAFFOLD = REGISTRATE.block("industrial_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("industrial",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/industrial_iron")), MapColor.COLOR_GRAY,
+                    DesiresSpriteShifts.INDUSTRIAL_SCAFFOLD, DesiresSpriteShifts.INDUSTRIAL_SCAFFOLD_INSIDE, DesiresSpriteShifts.INDUSTRIAL_CASING))
+            .lang("Industrial Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> OVERBURDEN_SCAFFOLD = REGISTRATE.block("overburden_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("overburden",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/lapis_alloy")), MapColor.TERRACOTTA_BLUE,
+                    DesiresSpriteShifts.OVERBURDEN_SCAFFOLD, DesiresSpriteShifts.OVERBURDEN_SCAFFOLD_INSIDE, DesiresSpriteShifts.OVERBURDEN_CASING))
+            .lang("Overburden Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> STEEL_SCAFFOLD = REGISTRATE.block("steel_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("steel",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("ingots/steel")), MapColor.COLOR_GRAY,
+                    DesiresSpriteShifts.STEEL_SCAFFOLD, DesiresSpriteShifts.STEEL_SCAFFOLD_INSIDE, DesiresSpriteShifts.STEEL_CASING))
+            .lang("Steel Scaffolding")
+            .register();
+
+    public static final BlockEntry<MetalScaffoldingBlock> FAUXVAULT_SCAFFOLD = REGISTRATE.block("fauxvault_scaffolding", MetalScaffoldingBlock::new)
+            .transform(BuilderTransformers.scaffold("fauxvault",
+                    () -> DataIngredient.tag(AllTags.forgeItemTag("lapis_alloy")), MapColor.COLOR_BLUE,
+                    DesiresSpriteShifts.FAUXVAULT_SCAFFOLD, DesiresSpriteShifts.FAUXVAULT_SCAFFOLD_INSIDE, DesiresSpriteShifts.FAUXVAULT_CASING))
+            .lang("Steel Scaffolding")
             .register();
 
     // GLASSES

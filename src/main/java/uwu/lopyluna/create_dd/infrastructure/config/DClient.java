@@ -26,6 +26,10 @@ public class DClient extends ConfigBase {
             f(1, .125f, 128, "glowberry", Comments.glowberryTransparencyMultiplier);
     public final ConfigFloat glowberry_milkshakeTransparencyMultiplier =
             f(1, .125f, 128, "glowberry_milkshake", Comments.glowberry_milkshakeTransparencyMultiplier);
+    public final ConfigFloat pumpkinTransparencyMultiplier =
+            f(1, .125f, 128, "glowberry", Comments.glowberryTransparencyMultiplier);
+    public final ConfigFloat pumpkin_milkshakeTransparencyMultiplier =
+            f(1, .125f, 128, "glowberry_milkshake", Comments.glowberry_milkshakeTransparencyMultiplier);
     public final ConfigFloat caramelTransparencyMultiplier =
             f(1, .125f, 128, "caramel", Comments.caramelTransparencyMultiplier);
     public final ConfigFloat caramel_milkshakeTransparencyMultiplier =

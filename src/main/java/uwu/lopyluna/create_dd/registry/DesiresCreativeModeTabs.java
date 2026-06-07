@@ -165,6 +165,7 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.HEAVY_BRASS_CASING,
                     DesiresBlocks.INDUSTRIAL_BRASS_CASING,
                     DesiresBlocks.FAUX_INDUSTRIAL_BRASS_CASING,
+                    DesiresBlocks.RADIANT_INDUSTRIAL_CASING,
                     DesiresBlocks.TECHBRAIN_CASING,
                     DesiresBlocks.SPECTRAL_RUBY_LAMP
             );
@@ -213,34 +214,41 @@ public class DesiresCreativeModeTabs {
                     DesiresPaletteBlocks.MAGENTA_BLUEPRINT_CARPET,
                     DesiresPaletteBlocks.PURPLE_BLUEPRINT_CARPET,
                     DesiresPaletteBlocks.PINK_BLUEPRINT_CARPET,
+
                     DesiresBlocks.POTASSIC_COBBLE,
                     DesiresBlocks.ASURINE_COBBLE,
                     DesiresBlocks.CRIMSITE_COBBLE,
                     DesiresBlocks.OCHRUM_COBBLE,
                     DesiresBlocks.VERIDIUM_COBBLE,
+
                     DesiresBlocks.PONDER_LIGHT,
                     DesiresBlocks.PONDER_DARK,
+
                     DesiresBlocks.POLISHED_BRONZE_BLOCK,
                     DesiresBlocks.POLISHED_BRONZE_STAIRS,
                     DesiresBlocks.POLISHED_BRONZE_SLAB,
                     DesiresBlocks.TILED_BRONZE_BLOCK,
                     DesiresBlocks.TILED_BRONZE_STAIRS,
                     DesiresBlocks.TILED_BRONZE_SLAB,
+
                     DesiresBlocks.POLISHED_STEEL_BLOCK,
                     DesiresBlocks.POLISHED_STEEL_STAIRS,
                     DesiresBlocks.POLISHED_STEEL_SLAB,
                     DesiresBlocks.TILED_STEEL_BLOCK,
                     DesiresBlocks.TILED_STEEL_STAIRS,
                     DesiresBlocks.TILED_STEEL_SLAB,
+
                     DesiresBlocks.POLISHED_ZINC_BLOCK,
                     DesiresBlocks.POLISHED_ZINC_STAIRS,
                     DesiresBlocks.POLISHED_ZINC_SLAB,
                     DesiresBlocks.TILED_ZINC_BLOCK,
                     DesiresBlocks.TILED_ZINC_STAIRS,
                     DesiresBlocks.TILED_ZINC_SLAB,
+
                     DesiresBlocks.POLISHED_ANDESITE_ALLOY_BLOCK,
                     DesiresBlocks.POLISHED_ANDESITE_ALLOY_STAIRS,
                     DesiresBlocks.POLISHED_ANDESITE_ALLOY_SLAB,
+
                     DesiresPaletteBlocks.DARK_METAL_BLOCK,
                     DesiresPaletteBlocks.DARK_METAL_PLATING,
                     DesiresPaletteBlocks.DARK_METAL_SLAB,
@@ -248,6 +256,7 @@ public class DesiresCreativeModeTabs {
                     DesiresPaletteBlocks.DARK_METAL_BRICKS,
                     DesiresPaletteBlocks.DARK_METAL_BRICK_SLAB,
                     DesiresPaletteBlocks.DARK_METAL_BRICK_STAIRS,
+
                     DesiresBlocks.ANDESITE_ASPHALT_BLOCK,
                     DesiresBlocks.ASURINE_ASPHALT_BLOCK,
                     DesiresBlocks.CALCITE_ASPHALT_BLOCK,
@@ -266,6 +275,7 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.TUFF_ASPHALT_BLOCK,
                     DesiresBlocks.VERIDIUM_ASPHALT_BLOCK,
                     DesiresBlocks.WEATHERED_LIMESTONE_ASPHALT_BLOCK,
+
                     DesiresBlocks.ANDESITE_MOSSY_BRICKS,
                     DesiresBlocks.ASURINE_MOSSY_BRICKS,
                     DesiresBlocks.CALCITE_MOSSY_BRICKS,
@@ -284,6 +294,7 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.TUFF_MOSSY_BRICKS,
                     DesiresBlocks.VERIDIUM_MOSSY_BRICKS,
                     DesiresBlocks.WEATHERED_LIMESTONE_MOSSY_BRICKS,
+
                     DesiresBlocks.HYDRAULIC_SCAFFOLD,
                     DesiresBlocks.OVERBURDEN_SCAFFOLD,
                     DesiresBlocks.INDUSTRIAL_SCAFFOLD,
@@ -299,6 +310,9 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.BLAZE_GOLD_SCAFFOLD,
                     DesiresBlocks.OVERCHARGED_SCAFFOLD,
                     DesiresBlocks.NETHERITE_SCAFFOLD,
+                    DesiresBlocks.TRAIN_SCAFFOLD,
+                    DesiresBlocks.FAUXVAULT_SCAFFOLD,
+
                     DesiresBlocks.VERTICAL_FRAMED_SPLIT_GLASS,
                     DesiresBlocks.HORIZONTAL_FRAMED_SPLIT_GLASS,
                     DesiresBlocks.FRAMED_SPLIT_GLASS,
@@ -307,7 +321,7 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.HORIZONTAL_FRAMED_SPLIT_GLASS_PANE,
                     DesiresBlocks.FRAMED_SPLIT_GLASS_PANE,
                     DesiresBlocks.ORNATE_IRON_GLASS_PANE,
-                    DesiresBlocks.TRAIN_SCAFFOLD,
+
                     DesiresBlocks.ROSE_LOG,
                     DesiresBlocks.STRIPPED_ROSE_LOG,
                     DesiresBlocks.ROSE_WOOD,
@@ -321,6 +335,7 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.ROSE_TRAPDOOR,
                     DesiresBlocks.ROSE_BUTTON,
                     DesiresBlocks.ROSE_PRESSURE_PLATE,
+
                     DesiresBlocks.SMOKED_LOG,
                     DesiresBlocks.STRIPPED_SMOKED_LOG,
                     DesiresBlocks.SMOKED_WOOD,
@@ -334,6 +349,7 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.SMOKED_TRAPDOOR,
                     DesiresBlocks.SMOKED_BUTTON,
                     DesiresBlocks.SMOKED_PRESSURE_PLATE,
+
                     DesiresBlocks.SPIRIT_LOG,
                     DesiresBlocks.STRIPPED_SPIRIT_LOG,
                     DesiresBlocks.SPIRIT_WOOD,
@@ -347,6 +363,7 @@ public class DesiresCreativeModeTabs {
                     DesiresBlocks.SPIRIT_TRAPDOOR,
                     DesiresBlocks.SPIRIT_BUTTON,
                     DesiresBlocks.SPIRIT_PRESSURE_PLATE,
+
                     DesiresBlocks.RUBBER_SAPLING,
                     DesiresBlocks.RUBBER_LEAVES,
                     DesiresBlocks.RUBBER_LOG,

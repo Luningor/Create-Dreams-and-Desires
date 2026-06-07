@@ -91,14 +91,14 @@ public final class HydraulicRecipeGen extends HydraulicCompactingRecipeGen {
             .require(Items.TERRACOTTA)
             .output(AllPaletteStoneTypes.OCHRUM.getBaseBlock().get(), 2)
     );
-    /*BaseRecipeProvider.GeneratedRecipe BRECCIA_GEN = create("breccia_gen", b -> b
+    BaseRecipeProvider.GeneratedRecipe BRECCIA_GEN = create("breccia_gen", b -> b
             .requiresHeat(HeatCondition.SUPERHEATED)
             .require(Fluids.LAVA, 500)
             .require(DesiresFluids.PUMPKIN_MILKSHAKE.get(), 100)
             .require(AllPaletteStoneTypes.SCORCHIA.getBaseBlock().get())
             .require(AllPaletteStoneTypes.SCORCHIA.getBaseBlock().get())
-            .output(DesiresStoneTypes.BRECCIA.getBaseBlock().get(), 4)
-    );*/
+            .output(DesiresPaletteStoneTypes.BRECCIA.getBaseBlock().get(), 4)
+    );
 
     public HydraulicRecipeGen(PackOutput output) {
         super(output, MOD_ID);

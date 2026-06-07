@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "bottom=false": {
+      "model": "create_dd:block/fauxvault_scaffold"
+    },
+    "bottom=true": {
+      "model": "create_dd:block/fauxvault_scaffold_horizontal"
+    }
+  }
+}

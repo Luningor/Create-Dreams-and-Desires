@@ -66,6 +66,22 @@
       },
       {
         "type": "single",
+        "resource": "create_dd:fluid/pumpkin_juice_flow"
+      },
+      {
+        "type": "single",
+        "resource": "create_dd:fluid/pumpkin_juice_still"
+      },
+      {
+        "type": "single",
+        "resource": "create_dd:fluid/pumpkin_milkshake_flow"
+      },
+      {
+        "type": "single",
+        "resource": "create_dd:fluid/pumpkin_milkshake_still"
+      },
+      {
+        "type": "single",
         "resource": "create_dd:fluid/hot_chocolate_flow"
       },
       {

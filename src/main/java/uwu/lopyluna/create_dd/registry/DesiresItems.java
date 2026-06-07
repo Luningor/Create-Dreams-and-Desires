@@ -857,6 +857,15 @@ public class DesiresItems {
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .register();
 
+    public static final ItemEntry<PumpkinMilkshake> pumpkin_milkshake = REGISTRATE.item("pumpkin_milkshake", PumpkinMilkshake::new)
+            .model((c, p) -> p.withExistingParent(c.getId().getPath(),
+                    new ResourceLocation("item/generated")).texture("layer0",
+                    new ResourceLocation(DesiresCreate.MOD_ID,"item/" + c.getId().getPath())))
+            .tag(AllTags.AllItemTags.UPRIGHT_ON_BELT.tag)
+            .properties(p -> p.stacksTo(12))
+            .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
+            .register();
+
     public static final ItemEntry<CaramelMilkshake> caramel_milkshake = REGISTRATE.item("caramel_milkshake", CaramelMilkshake::new)
             .model((c, p) -> p.withExistingParent(c.getId().getPath(),
                     new ResourceLocation("item/generated")).texture("layer0",

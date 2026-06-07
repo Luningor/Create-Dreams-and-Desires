@@ -30,7 +30,7 @@ public class ChocolateMilkshake extends Item {
         if (playerentity instanceof ServerPlayer)
             CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayer) playerentity, stack);
 
-        if (!world.isClientSide)
+        if (!world.isClientSide) {
             entity.addEffect(new MobEffectInstance(MobEffects.LUCK, 2 * 60 * 20, 4, false, false, false));
             entity.removeEffect(MobEffects.POISON);
             entity.removeEffect(MobEffects.WITHER);
@@ -49,6 +49,7 @@ public class ChocolateMilkshake extends Item {
             entity.removeEffect(MobEffects.HEALTH_BOOST);
             entity.removeEffect(MobEffects.ABSORPTION);
             entity.removeEffect(MobEffects.FIRE_RESISTANCE);
+        }
 
         if (playerentity != null) {
             playerentity.awardStat(Stats.ITEM_USED.get(this));
@@ -67,17 +68,17 @@ public class ChocolateMilkshake extends Item {
         return stack;
     }
 
-    public int getUseDuration(ItemStack p_77626_1_) {
+    public int getUseDuration(ItemStack stack) {
         return 42;
     }
 
-    public UseAnim getUseAnimation(ItemStack p_77661_1_) {
+    public UseAnim getUseAnimation(ItemStack stack) {
         return UseAnim.DRINK;
     }
 
-    public InteractionResultHolder<ItemStack> use(Level p_77659_1_, Player p_77659_2_, InteractionHand p_77659_3_) {
-        p_77659_2_.startUsingItem(p_77659_3_);
-        return InteractionResultHolder.success(p_77659_2_.getItemInHand(p_77659_3_));
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand hand) {
+        pPlayer.startUsingItem(hand);
+        return InteractionResultHolder.success(pPlayer.getItemInHand(hand));
     }
 
 }
