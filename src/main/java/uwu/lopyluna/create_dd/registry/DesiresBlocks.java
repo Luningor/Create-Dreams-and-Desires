@@ -64,6 +64,7 @@ import uwu.lopyluna.create_dd.content.blocks.kinetics.accelerator_motor.Accelera
 import uwu.lopyluna.create_dd.content.blocks.kinetics.cog_crank.CogCrankItem;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.creative_gear_motor.CreativeGearMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.golden_mixer.GoldenMixerBlock;
+import uwu.lopyluna.create_dd.content.blocks.kinetics.golden_mixer.GoldenMixerBlockItem;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.kinetic_motor.KineticMotorBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.multimeter.MultiMeterBlock;
 import uwu.lopyluna.create_dd.content.blocks.kinetics.giant_gear.GiantGearBlock;
@@ -994,7 +995,7 @@ public class DesiresBlocks {
                     .define('C', DesiresItems.GOLDEN_WHISK.get())
                     .unlockedBy("has_" + c.getName(), has(c.get()))
                     .save(p, DesiresCreate.asResource("crafting/" + c.getName())))
-            .item(AssemblyOperatorBlockItem::new)
+            .item(GoldenMixerBlockItem::new)
             .tab(DesiresCreativeModeTabs.BASE_CREATIVE_TAB.getKey())
             .transform(customItemModel())
             .lang("Golden Mixer")

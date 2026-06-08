@@ -5,6 +5,8 @@ import com.simibubi.create.content.kinetics.base.KineticBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import com.simibubi.create.content.processing.basin.BasinBlock;
 import com.simibubi.create.foundation.block.IBE;
+import net.createmod.catnip.data.Iterate;
+import net.createmod.catnip.placement.PlacementHelpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
@@ -28,16 +30,29 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 @SuppressWarnings("deprecation")
 public class GoldenMixerBlock extends KineticBlock implements IBE<GoldenMixerBlockEntity>, ICogWheel {
+    private final int placementHelperId;
+    private final int integratedCogHelperId;
+
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
 
     public GoldenMixerBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(AXIS, Direction.Axis.Y));
+
+        placementHelperId = PlacementHelpers.register(new GoldenMixerBlockItem.LargeCogHelper());
+        integratedCogHelperId = PlacementHelpers.register(new GoldenMixerBlockItem.IntegratedLargeCogHelper());
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        return !BasinBlock.isBasin(worldIn, pos.below());
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        if (!super.canSurvive(state, level, pos))
+            return false;
+
+        for (Direction d : Direction.Plane.HORIZONTAL)
+            if (level.getBlockState(pos.relative(d)).getBlock() instanceof ICogWheel)
+                return false;
+
+        return !BasinBlock.isBasin(level, pos.below());
     }
 
     @Override
@@ -96,4 +111,21 @@ public class GoldenMixerBlock extends KineticBlock implements IBE<GoldenMixerBlo
     public boolean isPathfindable(BlockState state, BlockGetter reader, BlockPos pos, PathComputationType type) {
         return false;
     }
+
+    public static boolean isInvalidCogwheelPosition(boolean large, LevelReader worldIn, BlockPos pos, Direction.Axis cogAxis) {
+        for (Direction facing : Iterate.directions) {
+            if (facing.getAxis() == cogAxis)
+                continue;
+
+            BlockPos offsetPos = pos.relative(facing);
+            BlockState blockState = worldIn.getBlockState(offsetPos);
+            if (blockState.hasProperty(AXIS) && facing.getAxis() == blockState.getValue(AXIS))
+                continue;
+
+            if (ICogWheel.isLargeCog(blockState) || large && ICogWheel.isSmallCog(blockState))
+                return true;
+        }
+        return false;
+    }
+
 }

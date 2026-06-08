@@ -20,21 +20,18 @@
       "item": "minecraft:snowball"
     },
     {
-      "item": "minecraft:pumpkin"
+      "fluid": "create_dd:pumpkin_juice",
+      "amount": 250
     },
     {
-      "item": "minecraft:pumpkin"
-    },
-    {
-      "type": "forge:tag",
-      "amount": 250,
-      "tag": "forge:milk"
+      "fluidTag": "forge:cream",
+      "amount": 250
     }
   ],
   "results": [
     {
-      "amount": 500,
-      "id": "create_dd:pumpkin_milkshake"
+      "fluid": "create_dd:pumpkin_milkshake",
+      "amount": 500
     }
   ]
 }

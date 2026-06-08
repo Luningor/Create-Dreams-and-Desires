@@ -1,18 +1,16 @@
 package uwu.lopyluna.create_dd.content.blocks.kinetics.creative_gear_motor;
 
 import com.simibubi.create.AllShapes;
-import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.ICogWheel;
 import com.simibubi.create.foundation.block.IBE;
-import com.simibubi.create.foundation.block.ProperWaterloggedBlock;
-import net.createmod.catnip.data.Iterate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,7 +19,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -35,6 +32,26 @@ public class CreativeGearMotorBlock extends DirectionalKineticBlock implements S
     public CreativeGearMotorBlock(Properties properties) {
         super(properties);
         registerDefaultState(super.defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, false));
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        if (!super.canSurvive(state, level, pos))
+            return false;
+
+        Direction.Axis axis = state.getValue(FACING).getAxis();
+
+        for (Direction d : Direction.values()) {
+            if (d.getAxis() == axis)
+                continue;
+
+            BlockState neighbour = level.getBlockState(pos.relative(d));
+
+            if (ICogWheel.isLargeCog(neighbour))
+                return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -59,38 +76,14 @@ public class CreativeGearMotorBlock extends DirectionalKineticBlock implements S
 
     @Override
     public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighbourState, LevelAccessor world, BlockPos pos, BlockPos neighbourPos) {
-        if (state.getValue(BlockStateProperties.WATERLOGGED)) world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+
+        if (!state.canSurvive(world, pos))
+            return Blocks.AIR.defaultBlockState();
+
+        if (state.getValue(BlockStateProperties.WATERLOGGED))
+            world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+
         return state;
-    }
-
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        var toPlace = super.getStateForPlacement(context);
-        var level = context.getLevel();
-        var pos = context.getClickedPos();
-        var player = context.getPlayer();
-        toPlace = ProperWaterloggedBlock.withWater(level, toPlace, pos);
-
-        var nearestLookingDirection = context.getNearestLookingDirection();
-        var targetDirection = context.getPlayer() != null && context.getPlayer().isShiftKeyDown() ? nearestLookingDirection : nearestLookingDirection.getOpposite();
-        Direction bestConnectedDirection = null;
-        var bestDistance = Double.MAX_VALUE;
-
-        for (var d : Iterate.directions) {
-            var adjPos = pos.relative(d);
-            var adjState = level.getBlockState(adjPos);
-            if (!FluidPipeBlock.canConnectTo(level, adjPos, adjState, d)) continue;
-            var distance = Vec3.atLowerCornerOf(d.getNormal()).distanceTo(Vec3.atLowerCornerOf(targetDirection.getNormal()));
-            if (distance > bestDistance) continue;
-            bestDistance = distance;
-            bestConnectedDirection = d;
-        }
-
-        if (bestConnectedDirection == null) return toPlace;
-        if (bestConnectedDirection.getAxis() == targetDirection.getAxis()) return toPlace;
-        if (player != null && player.isShiftKeyDown()) return toPlace;
-
-        return toPlace != null ? toPlace.setValue(FACING, bestConnectedDirection) : null;
     }
 
     @Override

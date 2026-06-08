@@ -26,9 +26,11 @@ public class DesiresPonderScenes {
         HELPER.forComponents(DesiresBlocks.SPLASHING_SAIL).addStoryBoard("fan_sails", DesiresProcessingScenes::fanSails);
         HELPER.forComponents(DesiresBlocks.SEETHING_SAIL).addStoryBoard("fan_sails", DesiresProcessingScenes::fanSails);
         HELPER.forComponents(DesiresBlocks.FREEZING_SAIL).addStoryBoard("fan_sails", DesiresProcessingScenes::fanSails);
+        HELPER.forComponents(DesiresBlocks.DRAGON_BREATHING_SAIL).addStoryBoard("fan_sails", DesiresProcessingScenes::fanSails);
         HELPER.forComponents(DesiresBlocks.ACCELERATOR_MOTOR).addStoryBoard("accelerator_motor", DesiresProcessingScenes::motors, AllCreatePonderTags.KINETIC_SOURCES);
         HELPER.forComponents(DesiresBlocks.KINETIC_MOTOR).addStoryBoard("kinetic_motor", DesiresProcessingScenes::motors, AllCreatePonderTags.KINETIC_SOURCES);
         HELPER.forComponents(DesiresBlocks.COG_CRANK).addStoryBoard("cog_crank", DesiresProcessingScenes::cogCrank, AllCreatePonderTags.KINETIC_SOURCES);
+        HELPER.forComponents(DesiresBlocks.LARGE_COG_CRANK).addStoryBoard("cog_crank", DesiresProcessingScenes::cogCrank, AllCreatePonderTags.KINETIC_SOURCES);
         HELPER.forComponents(DesiresBlocks.INDUSTRIAL_FAN).addStoryBoard("industrial_fan_source", DesiresProcessingScenes::industrialFanSource, AllCreatePonderTags.KINETIC_SOURCES);
 
         HELPER.forComponents(DesiresItems.PONDER_STONE_GENERATION).addStoryBoard("gen/blue_ice", DesiresProcessingScenes::stoneGeneration, DesiresPonderTags.STONE_GENERATION.getId());
@@ -90,6 +92,8 @@ public class DesiresPonderScenes {
         HELPER.forComponents(DesiresBlocks.SEETHING_SAIL)
                 .addStoryBoard(new ResourceLocation("create:sail"), BearingScenes::sail);
         HELPER.forComponents(DesiresBlocks.FREEZING_SAIL)
+                .addStoryBoard(new ResourceLocation("create:sail"), BearingScenes::sail);
+        HELPER.forComponents(DesiresBlocks.DRAGON_BREATHING_SAIL)
                 .addStoryBoard(new ResourceLocation("create:sail"), BearingScenes::sail);
     }
 }

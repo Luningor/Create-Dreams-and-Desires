@@ -1,5 +1,7 @@
 package uwu.lopyluna.create_dd.content.blocks.contraptions.drill.shadow;
 
+import com.google.common.base.Predicates;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllShapes;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
@@ -184,12 +186,22 @@ public class ShadowDrillBlock extends DirectionalKineticBlock implements IBE<Sha
 
         @Override
         public Predicate<ItemStack> getItemPredicate() {
-            return DesiresBlocks.SHADOW_DRILL::isIn;
+            return Predicates.or(
+                    stack -> stack != null && DesiresBlocks.BRONZE_DRILL.isIn(stack),
+                    stack1 -> stack1 != null && DesiresBlocks.RADIANT_DRILL.isIn(stack1),
+                    stack2 -> stack2 != null && DesiresBlocks.SHADOW_DRILL.isIn(stack2),
+                    stack3 -> stack3 != null && AllBlocks.MECHANICAL_DRILL.isIn(stack3)
+            );
         }
 
         @Override
         public Predicate<BlockState> getStatePredicate() {
-            return DesiresBlocks.SHADOW_DRILL::has;
+            return Predicates.or(
+                    stack -> stack != null && DesiresBlocks.BRONZE_DRILL.has(stack),
+                    stack1 -> stack1 != null && DesiresBlocks.RADIANT_DRILL.has(stack1),
+                    stack2 -> stack2 != null && DesiresBlocks.SHADOW_DRILL.has(stack2),
+                    stack3 -> stack3 != null && AllBlocks.MECHANICAL_DRILL.has(stack3)
+            );
         }
 
         @Override

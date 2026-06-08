@@ -1,7 +1,7 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "forge:ingots/lapis_alloy"
+    "tag": "forge:bury_blends"
   },
   "result": "create_dd:overburden_scaffolding",
   "count": 2

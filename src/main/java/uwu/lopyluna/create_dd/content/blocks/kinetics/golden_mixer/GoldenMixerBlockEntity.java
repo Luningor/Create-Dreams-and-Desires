@@ -22,7 +22,6 @@ import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.math.VecHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -104,7 +103,7 @@ public class GoldenMixerBlockEntity extends BasinOperatingBlockEntity {
         return new AABB(worldPosition).expandTowards(0, -1.5, 0);
     }
 
-    protected void read(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+    protected void read(CompoundTag compound, boolean clientPacket) {
         running = compound.getBoolean("Running");
         runningTicks = compound.getInt("Ticks");
         super.read(compound, clientPacket);
@@ -113,7 +112,7 @@ public class GoldenMixerBlockEntity extends BasinOperatingBlockEntity {
             getBasin().ifPresent(bte -> bte.setAreFluidsMoving(running && runningTicks <= ticksHigh()));
     }
 
-    protected void write(CompoundTag compound, HolderLookup.Provider registries, boolean clientPacket) {
+    protected void write(CompoundTag compound, boolean clientPacket) {
         compound.putBoolean("Running", running);
         compound.putInt("Ticks", runningTicks);
         super.write(compound, clientPacket);

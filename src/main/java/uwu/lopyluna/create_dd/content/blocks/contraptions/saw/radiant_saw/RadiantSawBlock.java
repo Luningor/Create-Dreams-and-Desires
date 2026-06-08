@@ -1,5 +1,7 @@
 package uwu.lopyluna.create_dd.content.blocks.contraptions.saw.radiant_saw;
 
+import com.google.common.base.Predicates;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.saw.SawBlock;
 import net.createmod.catnip.placement.IPlacementHelper;
 import net.createmod.catnip.placement.PlacementHelpers;
@@ -77,12 +79,22 @@ public class RadiantSawBlock extends SawBlock {
 
         @Override
         public Predicate<ItemStack> getItemPredicate() {
-            return DesiresBlocks.RADIANT_SAW::isIn;
+            return Predicates.or(
+                    stack -> stack != null && DesiresBlocks.BRONZE_SAW.isIn(stack),
+                    stack1 -> stack1 != null && DesiresBlocks.RADIANT_SAW.isIn(stack1),
+                    stack2 -> stack2 != null && DesiresBlocks.SHADOW_SAW.isIn(stack2),
+                    stack3 -> stack3 != null && AllBlocks.MECHANICAL_SAW.isIn(stack3)
+            );
         }
 
         @Override
         public Predicate<BlockState> getStatePredicate() {
-            return DesiresBlocks.RADIANT_SAW::has;
+            return Predicates.or(
+                    stack -> stack != null && DesiresBlocks.BRONZE_SAW.has(stack),
+                    stack1 -> stack1 != null && DesiresBlocks.RADIANT_SAW.has(stack1),
+                    stack2 -> stack2 != null && DesiresBlocks.SHADOW_SAW.has(stack2),
+                    stack3 -> stack3 != null && AllBlocks.MECHANICAL_SAW.has(stack3)
+            );
         }
 
         @Override

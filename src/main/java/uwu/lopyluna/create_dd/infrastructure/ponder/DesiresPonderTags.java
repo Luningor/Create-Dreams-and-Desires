@@ -93,6 +93,7 @@ public class DesiresPonderTags {
                 .add(DesiresBlocks.SHADOW_SAW)
                 .add(DesiresBlocks.RADIANT_SAW)
                 .add(DesiresBlocks.COG_CRANK)
+                .add(DesiresBlocks.LARGE_COG_CRANK)
                 .add(DesiresBlocks.ACCELERATOR_MOTOR)
                 .add(DesiresBlocks.KINETIC_MOTOR)
                 .add(AllBlocks.FLYWHEEL)
@@ -104,6 +105,7 @@ public class DesiresPonderTags {
                 .add(DesiresBlocks.SPLASHING_SAIL)
                 .add(DesiresBlocks.SEETHING_SAIL)
                 .add(DesiresBlocks.HAUNTING_SAIL)
+                .add(DesiresBlocks.DRAGON_BREATHING_SAIL)
         ;
 
         HELPER.addToTag(KINETIC_APPLIANCES)
@@ -131,6 +133,7 @@ public class DesiresPonderTags {
         HELPER.addToTag(KINETIC_SOURCES)
                 .add(DesiresBlocks.INDUSTRIAL_FAN)
                 .add(DesiresBlocks.COG_CRANK)
+                .add(DesiresBlocks.LARGE_COG_CRANK)
                 .add(DesiresBlocks.ACCELERATOR_MOTOR)
                 .add(DesiresBlocks.KINETIC_MOTOR)
                 .add(AllBlocks.FLYWHEEL)
@@ -148,6 +151,7 @@ public class DesiresPonderTags {
                 .add(DesiresBlocks.SPLASHING_SAIL)
                 .add(DesiresBlocks.SEETHING_SAIL)
                 .add(DesiresBlocks.HAUNTING_SAIL)
+                .add(DesiresBlocks.DRAGON_BREATHING_SAIL)
         ;
 
         HELPER.addToTag(REDSTONE)

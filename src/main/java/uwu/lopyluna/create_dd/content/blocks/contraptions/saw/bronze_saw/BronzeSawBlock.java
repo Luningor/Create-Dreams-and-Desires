@@ -1,5 +1,7 @@
 package uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw;
 
+import com.google.common.base.Predicates;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.kinetics.saw.SawBlock;
 import net.createmod.catnip.placement.IPlacementHelper;
 import net.createmod.catnip.placement.PlacementHelpers;
@@ -29,7 +31,7 @@ import java.util.function.Predicate;
 public class BronzeSawBlock extends SawBlock {
     public static final BooleanProperty FLIPPED = BooleanProperty.create("flipped");
 
-    public static final int placementHelperId = PlacementHelpers.register(new uwu.lopyluna.create_dd.content.blocks.contraptions.saw.bronze_saw.BronzeSawBlock.PlacementHelper());
+    public static final int placementHelperId = PlacementHelpers.register(new BronzeSawBlock.PlacementHelper());
 
     public BronzeSawBlock(Properties properties) {
         super(properties);
@@ -77,12 +79,22 @@ public class BronzeSawBlock extends SawBlock {
 
         @Override
         public Predicate<ItemStack> getItemPredicate() {
-            return DesiresBlocks.BRONZE_SAW::isIn;
+            return Predicates.or(
+                    stack -> stack != null && DesiresBlocks.BRONZE_SAW.isIn(stack),
+                    stack1 -> stack1 != null && DesiresBlocks.RADIANT_SAW.isIn(stack1),
+                    stack2 -> stack2 != null && DesiresBlocks.SHADOW_SAW.isIn(stack2),
+                    stack3 -> stack3 != null && AllBlocks.MECHANICAL_SAW.isIn(stack3)
+            );
         }
 
         @Override
         public Predicate<BlockState> getStatePredicate() {
-            return DesiresBlocks.BRONZE_SAW::has;
+            return Predicates.or(
+                    stack -> stack != null && DesiresBlocks.BRONZE_SAW.has(stack),
+                    stack1 -> stack1 != null && DesiresBlocks.RADIANT_SAW.has(stack1),
+                    stack2 -> stack2 != null && DesiresBlocks.SHADOW_SAW.has(stack2),
+                    stack3 -> stack3 != null && AllBlocks.MECHANICAL_SAW.has(stack3)
+            );
         }
 
         @Override
